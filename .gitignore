@@ -1,0 +1,14 @@
+.codex
+.pipeline_watchdog.lock
+__pycache__/
+*.pyc
+
+token.txt
+
+logs/
+cache/
+repos/
+
+data/progress_collect.json
+data/progress_bcs.json
+

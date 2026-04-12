@@ -1,0 +1,14 @@
+{
+  "sample_size": 100,
+  "positives_in_sample": 4,
+  "ecosystem_mix": {
+    "maven": 71,
+    "pypi": 29
+  },
+  "bump_mix": {
+    "patch": 43,
+    "minor": 32,
+    "major": 21,
+    "unknown": 4
+  }
+}

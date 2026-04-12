@@ -1,0 +1,31 @@
+{
+  "final_dataset_rows": 783,
+  "final_repositories": 132,
+  "java_rows": 554,
+  "python_rows": 229,
+  "overall_bc_prevalence": 0.034482758620689655,
+  "java_bc_prevalence": 0.04693140794223827,
+  "python_bc_prevalence": 0.004366812227074236,
+  "rq2_best_model": "Gradient Boosting",
+  "rq2_best_auc": 0.8799559471365639,
+  "flow": {
+    "cve_records_enriched": 268,
+    "duplicate_rows_removed": 397,
+    "ecosystem_counts_final": {
+      "maven": 554,
+      "pypi": 229
+    },
+    "final_dataset_prs": 783,
+    "prs_with_bc_results": 783,
+    "prs_with_cve": 645,
+    "raw_rows": 1180,
+    "raw_unique_prs": 783,
+    "repos_final": 132,
+    "version_bump_counts_final": {
+      "major": 182,
+      "minor": 251,
+      "patch": 334,
+      "unknown": 16
+    }
+  }
+}

@@ -1,0 +1,90 @@
+\documentclass[10pt,journal]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{url}
+\usepackage{amsmath}
+
+\title{SecBreak: Client-Side Breaking-Change Risk in Dependabot Security Pull Requests}
+\author{Anonymous Author(s)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Automated security pull requests are widely treated as urgent and low-friction maintenance work, yet their compatibility risk is poorly understood from the client perspective. We present SecBreak, a reproducible empirical pipeline for measuring breaking changes (BCs) in Dependabot security pull requests. Across a frozen cohort of 783 unique PRs from 132 repositories collected between 2022 and 2024, we combine CVE enrichment, API-level compatibility detection, and post-merge maintenance signals. We observe a syntactic BC prevalence of 3.4\% overall, with Maven at 4.7\% and PyPI at 0.4\%. Patch-level updates remain non-zero risk at 2.4\%. A leakage-safe Gradient Boosting model reaches an AUC-ROC of 0.88, with repository stars, version bump magnitude, and CVSS score as the strongest predictive signals. Among BC-inducing PRs, 29.6\% are merged and 25.9\% receive a follow-up fix within seven days. We package the cohort manifest, validation sample, and all analysis outputs as a replication package. The paper positions these results as a client-side complement to prior provider-side studies of security release compatibility.
+\end{abstract}
+
+\begin{IEEEkeywords}
+dependency updates, security patches, API compatibility, empirical software engineering, software supply chain
+\end{IEEEkeywords}
+
+\section{Introduction}
+Security update automation compresses the time between vulnerability disclosure and remediation. In practice, tools such as Dependabot lower patching cost by generating upgrade PRs directly in client repositories. This benefit comes with an under-studied question: how often do these security PRs break consumers?
+
+Prior TSE work reported that 13.2\% of security releases declare backward incompatibility in provider-side metadata and identified downstream impact measurement as future work~\cite{raemaekers2021}. SecBreak addresses that gap from the client side. Our study focuses on three questions: prevalence (RQ1), predictability (RQ2), and team response (RQ3).
+
+\section{Study Design}
+\subsection{Frozen Cohort}
+The final raw collection contained 1{,}180 rows. After deduplicating repeated sightings of the same PR, the frozen cohort contains 783 unique PRs. We export the full cohort manifest and flow accounting in \texttt{results/cohort/frozen\_cohort.csv} and \texttt{results/cohort/cohort\_flow.json}. The final cohort includes 554 Maven PRs and 229 PyPI PRs across 132 repositories.
+
+\subsection{Signals and Measures}
+For each PR we extract repository metadata, dependency versions, version-bump type, CVE identifiers, CVSS severity, and CWE categories. Java compatibility is measured with Roseau under Java~25; Python uses a lighter public API comparison and is therefore weaker evidence. We explicitly preserve this asymmetry as a threat to validity. Behavioral BC is approximated through before/after test execution when a project test suite is available.
+
+\subsection{Validation Package}
+To strengthen future detector validation, we produce a stratified manual-validation package of 100 sampled PRs in \texttt{results/validation/bc\_validation\_sample.csv}, together with an adjudication protocol. This package is intended for manual estimation of detector precision and qualitative error analysis.
+
+\section{Results}
+\subsection{RQ1: Prevalence}
+Out of 783 unique PRs, 27 introduce at least one syntactic BC, for 3.4\% prevalence (95\% CI: 2.4\%--5.0\%). Maven reaches 4.7\%, while PyPI reaches 0.4\%. Patch-level security PRs still show 2.4\% BC prevalence, indicating that patch bumps are safer than major upgrades but not risk-free.
+
+\begin{table}[t]
+\caption{Main prevalence findings}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & Value & Notes \\
+\midrule
+Unique PRs analyzed & 783 & frozen cohort \\
+Overall BC prevalence & 3.4\% & 27/783 \\
+Maven BC prevalence & 4.7\% & 26/554 \\
+PyPI BC prevalence & 0.4\% & 1/229 \\
+Patch-level BC prevalence & 2.4\% & 8/334 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The most frequent BC types are method removal and method return-type change. Method-level compatibility changes dominate the detected failures.
+
+\subsection{RQ2: Predictability}
+Using only pre-outcome features, Gradient Boosting achieves the best held-out performance with AUC-ROC 0.88. The strongest features are repository stars, version bump magnitude, and CVSS score. This suggests that compatibility risk is learnable from a small set of repository and update characteristics, although the limited number of positive BC cases argues for cautious interpretation.
+
+\subsection{RQ3: Team Response}
+Among the 27 BC-inducing PRs, 8 are merged (29.6\%). Follow-up fixes occur quickly when they occur at all: 25.9\% within seven days and a median time-to-fix of 0.9 days. We observe 11.1\% reversions and no detected CI failures in the observed post-merge window. These results suggest that teams sometimes accept compatibility risk in exchange for faster vulnerability remediation.
+
+\section{Discussion}
+The main message is not that security PRs are ``safe,'' but that provider metadata and downstream breakage capture different constructs. Our observed 3.4\% client-side prevalence is meaningfully lower than the 13.2\% provider-side metadata baseline from prior TSE work~\cite{raemaekers2021}. The contrast does not invalidate the earlier result; instead, it indicates that release metadata over- and under-approximates different kinds of client impact. For maintainers, the practical takeaway is that patch-level security automation remains useful, but compatibility signals should accompany severity signals.
+
+\section{Threats to Validity}
+SecBreak still has important limitations. First, the final cohort is smaller than the aspirational 2{,}000-PR target. Second, Java detection is stronger than Python detection. Third, the behavioral BC signal depends on the availability of runnable project tests. Fourth, RQ3 relies on GitHub heuristics for follow-up fixes and reversions. To address these concerns, we now ship a frozen cohort manifest and a manual validation package, but manual adjudication remains future work.
+
+\section{Replication Package}
+The repository contains:
+\begin{itemize}
+\item final dataset: \texttt{data/analysis\_dataset.csv}
+\item cohort manifest: \texttt{results/cohort/frozen\_cohort.csv}
+\item cohort flow: \texttt{results/cohort/cohort\_flow.json}
+\item validation package: \texttt{results/validation/bc\_validation\_sample.csv}
+\item model outputs: \texttt{results/rq2\_model\_results.csv}
+\item final summary: \texttt{results/secbreak\_summary.md}
+\end{itemize}
+
+\begin{thebibliography}{1}
+\bibitem{raemaekers2021}
+S.~Raemaekers, A.~van Deursen, and J.~Visser, ``Do Security Updates Break Compatibility? An Empirical Study of Versioning in Security Releases,'' \emph{IEEE Transactions on Software Engineering}, 2021.
+\end{thebibliography}
+
+\end{document}

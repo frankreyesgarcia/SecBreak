@@ -1,0 +1,2152 @@
+{
+  "CVE-2014-4043": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-94"
+    ],
+    "description": "The posix_spawn_file_actions_addopen function in glibc before 2.20 does not copy its path argument in accordance with the POSIX specification, which allows context-dependent attackers to trigger use-after-free vulnerabilities.",
+    "severity": "HIGH"
+  },
+  "CVE-2018-1320": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-295"
+    ],
+    "description": "Apache Thrift Java client library versions 0.5.0 through 0.11.0 can bypass SASL negotiation isComplete validation in the org.apache.thrift.transport.TSaslTransport class. An assert used to determine if the SASL handshake had successfully completed could be disabled in production settings making the validation incomplete.",
+    "severity": "HIGH"
+  },
+  "CVE-2018-25032": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.",
+    "severity": "HIGH"
+  },
+  "CVE-2018-6342": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-78"
+    ],
+    "description": "react-dev-utils on Windows allows developers to run a local webserver for accepting various commands, including a command to launch an editor. The input to that command was not properly sanitized, allowing an attacker who can make a network request to the server (either via CSRF or by direct request) to execute arbitrary commands on the targeted system. This issue affects multiple branches: 1.x.x prior to 1.0.4, 2.x.x prior to 2.0.2, 3.x.x prior to 3.1.2, 4.x.x prior to 4.2.2, and 5.x.x prior to 5.0.2.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2018-8088": {
+    "cvss_score": 9.8,
+    "cwe_ids": [],
+    "description": "org.slf4j.ext.EventData in the slf4j-ext module in QOS.CH SLF4J before 1.8.0-beta2 allows remote attackers to bypass intended access restrictions via crafted data. EventData in the slf4j-ext module in QOS.CH SLF4J, has been fixed in SLF4J versions 1.7.26 later and in the 2.0.x series.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2019-14900": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "A flaw was found in Hibernate ORM in versions before 5.3.18, 5.4.18 and 5.5.0.Beta1. A SQL injection in the implementation of the JPA Criteria API can permit unsanitized literals when a literal is used in the SELECT or GROUP BY parts of the query. This flaw could allow an attacker to access unauthorized information or possibly conduct further attacks.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2019-17564": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "description": "Unsafe deserialization occurs within a Dubbo application which has HTTP remoting enabled. An attacker may submit a POST request with a Java object in it to completely compromise a Provider instance of Apache Dubbo, if this instance enables HTTP. This issue affected Apache Dubbo 2.7.0 to 2.7.4, 2.6.0 to 2.6.7, and all 2.5.x versions.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2019-17664": {
+    "cvss_score": 7.8,
+    "cwe_ids": [
+      "CWE-426"
+    ],
+    "description": "NSA Ghidra through 9.0.4 uses a potentially untrusted search path. When executing Ghidra from a given path, the Java process working directory is set to this path. Then, when launching the Python interpreter via the \"Ghidra Codebrowser > Window > Python\" option, Ghidra will try to execute the cmd.exe program from this working directory.",
+    "severity": "HIGH"
+  },
+  "CVE-2019-5427": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-776"
+    ],
+    "description": "c3p0 version < 0.9.5.4 may be exploited by a billion laughs attack when loading XML configuration due to missing protections against recursive entity expansion when loading configuration.",
+    "severity": "HIGH"
+  },
+  "CVE-2019-8331": {
+    "cvss_score": 6.1,
+    "cwe_ids": [
+      "CWE-79"
+    ],
+    "description": "In Bootstrap before 3.4.1 and 4.3.x before 4.3.1, XSS is possible in the tooltip or popover data-template attribute.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-11022": {
+    "cvss_score": 6.9,
+    "cwe_ids": [
+      "CWE-79"
+    ],
+    "description": "In jQuery versions greater than or equal to 1.2 and before 3.5.0, passing HTML from untrusted sources - even after sanitizing it - to one of jQuery's DOM manipulation methods (i.e. .html(), .append(), and others) may execute untrusted code. This problem is patched in jQuery 3.5.0.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-14343": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-20"
+    ],
+    "description": "A vulnerability was discovered in the PyYAML library in versions before 5.4, where it is susceptible to arbitrary code execution when it processes untrusted YAML files through the full_load method or with the FullLoader loader. Applications that use the library to process untrusted input may be vulnerable to this flaw. This flaw allows an attacker to execute arbitrary code on the system by abusing the python/object/new constructor. This flaw is due to an incomplete fix for CVE-2020-1747.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2020-15228": {
+    "cvss_score": 3.5,
+    "cwe_ids": [
+      "CWE-20",
+      "CWE-77"
+    ],
+    "description": "In the `@actions/core` npm module before version 1.2.6,`addPath` and `exportVariable` functions communicate with the Actions Runner over stdout by generating a string in a specific format. Workflows that log untrusted data to stdout may invoke these commands, resulting in the path or environment variables being modified without the intention of the workflow or action author. The runner will release an update that disables the `set-env` and `add-path` workflow commands in the near future. For now, users should upgrade to `@actions/core v1.2.6` or later, and replace any instance of the `set-env` or `add-path` commands in their workflows with the new Environment File Syntax. Workflows and actions using the old commands or older versions of the toolkit will start to warn, then error out during workflow execution.",
+    "severity": "LOW"
+  },
+  "CVE-2020-15250": {
+    "cvss_score": 4.4,
+    "cwe_ids": [
+      "CWE-200",
+      "CWE-732"
+    ],
+    "description": "In JUnit4 from version 4.7 and before 4.13.1, the test rule TemporaryFolder contains a local information disclosure vulnerability. On Unix like systems, the system's temporary directory is shared between all users on that system. Because of this, when files and directories are written into this directory they are, by default, readable by other users on that same system. This vulnerability does not allow other users to overwrite the contents of these directories or files. This is purely an information disclosure vulnerability. This vulnerability impacts you if the JUnit tests write sensitive information, like API keys or passwords, into the temporary folder, and the JUnit tests execute in an environment where the OS has other untrusted users. Because certain JDK file system APIs were only added in JDK 1.7, this this fix is dependent upon the version of the JDK you are using. For Java 1.7 and higher users: this vulnerability is fixed in 4.13.1. For Java 1.6 and lower users: no patch is available, you must use the workaround below. If you are unable to patch, or are stuck running on Java 1.6, specifying the `java.io.tmpdir` system environment variable to a directory that is exclusively owned by the executing user will fix this vulnerability. For more information, including an example of vulnerable code, see the referenced GitHub Security Advisory.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-15366": {
+    "cvss_score": 5.6,
+    "cwe_ids": [
+      "CWE-1321"
+    ],
+    "description": "An issue was discovered in ajv.validate() in Ajv (aka Another JSON Schema Validator) 6.12.2. A carefully crafted JSON schema could be provided that allows execution of other code by prototype pollution. (While untrusted schemas are recommended against, the worst case of an untrusted schema should be a denial of service, not execution of code.)",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-1945": {
+    "cvss_score": 6.3,
+    "cwe_ids": [
+      "CWE-668"
+    ],
+    "description": "Apache Ant 1.1 to 1.9.14 and 1.10.0 to 1.10.7 uses the default temporary directory identified by the Java system property java.io.tmpdir for several tasks and may thus leak sensitive information. The fixcrlf and replaceregexp tasks also copy files from the temporary directory back into the build tree allowing an attacker to inject modified source files into the build process.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-25638": {
+    "cvss_score": 7.4,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "A flaw was found in hibernate-core in versions prior to and including 5.4.23.Final. A SQL injection in the implementation of the JPA Criteria API can permit unsanitized literals when a literal is used in the SQL comments of the query. This flaw could allow an attacker to access unauthorized information or possibly conduct further attacks. The highest threat from this vulnerability is to data confidentiality and integrity.",
+    "severity": "HIGH"
+  },
+  "CVE-2020-25658": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-327",
+      "CWE-385"
+    ],
+    "description": "It was found that python-rsa is vulnerable to Bleichenbacher timing attacks. An attacker can use this flaw via the RSA decryption API to decrypt parts of the cipher text encrypted with RSA.",
+    "severity": "HIGH"
+  },
+  "CVE-2020-25659": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-385"
+    ],
+    "description": "python-cryptography 3.2 is vulnerable to Bleichenbacher timing attacks in the RSA decryption API, via timed processing of valid PKCS#1 v1.5 ciphertext.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-28052": {
+    "cvss_score": 8.1,
+    "cwe_ids": [],
+    "description": "An issue was discovered in Legion of the Bouncy Castle BC Java 1.65 and 1.66. The OpenBSDBCrypt.checkPassword utility method compared incorrect data when checking the password, allowing incorrect passwords to indicate they were matching with previously hashed ones that were different.",
+    "severity": "HIGH"
+  },
+  "CVE-2020-35653": {
+    "cvss_score": 7.1,
+    "cwe_ids": [
+      "CWE-125"
+    ],
+    "description": "In Pillow before 8.1.0, PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.",
+    "severity": "HIGH"
+  },
+  "CVE-2020-35654": {
+    "cvss_score": 8.8,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "In Pillow before 8.1.0, TiffDecode has a heap-based buffer overflow when decoding crafted YCbCr files because of certain interpretation conflicts with LibTIFF in RGBA mode.",
+    "severity": "HIGH"
+  },
+  "CVE-2020-35655": {
+    "cvss_score": 5.4,
+    "cwe_ids": [
+      "CWE-125"
+    ],
+    "description": "In Pillow before 8.1.0, SGIRleDecode has a 4-byte buffer over-read when decoding crafted SGI RLE image files because offsets and length tables are mishandled.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-36242": {
+    "cvss_score": 9.1,
+    "cwe_ids": [
+      "CWE-190",
+      "CWE-787"
+    ],
+    "description": "In the cryptography package before 3.3.2 for Python, certain sequences of update calls to symmetrically encrypt multi-GB values could result in an integer overflow and buffer overflow, as demonstrated by the Fernet class.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2020-36518": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "jackson-databind before 2.13.0 allows a Java StackOverflow exception and denial of service via a large depth of nested objects.",
+    "severity": "HIGH"
+  },
+  "CVE-2020-7021": {
+    "cvss_score": 4.9,
+    "cwe_ids": [
+      "CWE-532"
+    ],
+    "description": "Elasticsearch versions before 7.10.0 and 6.8.14 have an information disclosure issue when audit logging and the emit_request_body option is enabled. The Elasticsearch audit log could contain sensitive information such as password hashes or authentication tokens. This could allow an Elasticsearch administrator to view these details.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2020-8908": {
+    "cvss_score": 3.3,
+    "cwe_ids": [
+      "CWE-378",
+      "CWE-732"
+    ],
+    "description": "A temp directory creation vulnerability exists in all versions of Guava, allowing an attacker with access to the machine to potentially access data in a temporary directory created by the Guava API com.google.common.io.Files.createTempDir(). By default, on unix-like systems, the created directory is world-readable (readable by an attacker with access to the system). The method in question has been marked @Deprecated in versions 30.0 and later and should not be used. For Android developers, we recommend choosing a temporary directory API provided by Android, such as context.getCacheDir(). For other Java developers, we recommend migrating to the Java 7 API java.nio.file.Files.createTempDirectory() which explicitly configures permissions of 700, or configuring the Java runtime's java.io.tmpdir system property to point to a location whose permissions are appropriately configured.",
+    "severity": "LOW"
+  },
+  "CVE-2020-9488": {
+    "cvss_score": 3.7,
+    "cwe_ids": [
+      "CWE-295"
+    ],
+    "description": "Improper validation of certificate with host mismatch in Apache Log4j SMTP appender. This could allow an SMTPS connection to be intercepted by a man-in-the-middle attack which could leak any log messages sent through that appender. Fixed in Apache Log4j 2.12.3 and 2.13.1",
+    "severity": "LOW"
+  },
+  "CVE-2021-0341": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-295"
+    ],
+    "description": "In verifyHostName of OkHostnameVerifier.java, there is a possible way to accept a certificate for the wrong domain due to improperly used crypto. This could lead to remote information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.Product: AndroidVersions: Android-8.1 Android-9 Android-10 Android-11Android ID: A-171980069",
+    "severity": "HIGH"
+  },
+  "CVE-2021-20328": {
+    "cvss_score": 6.4,
+    "cwe_ids": [
+      "CWE-295"
+    ],
+    "description": "Specific versions of the Java driver that support client-side field level encryption (CSFLE) fail to perform correct host name verification on the KMS server\u2019s certificate. This vulnerability in combination with a privileged network position active MITM attack could result in interception of traffic between the Java driver and the KMS service rendering Field Level Encryption ineffective. This issue was discovered during internal testing and affects all versions of the Java driver that support CSFLE. The Java async, Scala, and reactive streams drivers are not impacted. This vulnerability does not impact driver traffic payloads with CSFLE-supported key services originating from applications residing inside the AWS, GCP, and Azure network fabrics due to compensating controls in these environments. This issue does not impact driver workloads that don\u2019t use Field Level Encryption.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-213": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "CVE-2021-22569": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-696"
+    ],
+    "description": "An issue in protobuf-java allowed the interleaving of com.google.protobuf.UnknownFieldSet fields in such a way that would be processed out of order. A small malicious payload can occupy the parser for several minutes by creating large numbers of short-lived objects that cause frequent, repeated pauses. We recommend upgrading libraries beyond the vulnerable versions.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-23437": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-125"
+    ],
+    "description": "The package pillow 5.2.0 and before 8.3.2 are vulnerable to Regular Expression Denial of Service (ReDoS) via the getrgb function.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-23566": {
+    "cvss_score": 4.0,
+    "cwe_ids": [
+      "CWE-704"
+    ],
+    "description": "The package nanoid from 3.0.0 and before 3.1.31 are vulnerable to Information Exposure via the valueOf() function which allows to reproduce the last id generated.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-23840": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-190"
+    ],
+    "description": "Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash. OpenSSL versions 1.1.1i and below are affected by this issue. Users of these versions should upgrade to OpenSSL 1.1.1j. OpenSSL versions 1.0.2x and below are affected by this issue. However OpenSSL 1.0.2 is out of support and no longer receiving public updates. Premium support customers of OpenSSL 1.0.2 should upgrade to 1.0.2y. Other users should upgrade to 1.1.1j. Fixed in OpenSSL 1.1.1j (Affected 1.1.1-1.1.1i). Fixed in OpenSSL 1.0.2y (Affected 1.0.2-1.0.2x).",
+    "severity": "HIGH"
+  },
+  "CVE-2021-2471": {
+    "cvss_score": 5.9,
+    "cwe_ids": [],
+    "description": "Vulnerability in the MySQL Connectors product of Oracle MySQL (component: Connector/J). Supported versions that are affected are 8.0.26 and prior. Difficult to exploit vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Connectors. Successful attacks of this vulnerability can result in unauthorized access to critical data or complete access to all MySQL Connectors accessible data and unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of MySQL Connectors. CVSS 3.1 Base Score 5.9 (Confidentiality and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:H).",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-25289": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "An issue was discovered in Pillow before 8.1.1. TiffDecode has a heap-based buffer overflow when decoding crafted YCbCr files because of certain interpretation conflicts with LibTIFF in RGBA mode. NOTE: this issue exists because of an incomplete fix for CVE-2020-35654.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-25290": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "An issue was discovered in Pillow before 8.1.1. In TiffDecode.c, there is a negative-offset memcpy with an invalid size.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-25291": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-125"
+    ],
+    "description": "An issue was discovered in Pillow before 8.1.1. In TiffDecode.c, there is an out-of-bounds read in TiffreadRGBATile via invalid tile boundaries.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-25292": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "An issue was discovered in Pillow before 8.1.1. The PDF parser allows a regular expression DoS (ReDoS) attack via a crafted PDF file because of a catastrophic backtracking regex.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-25293": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-125"
+    ],
+    "description": "An issue was discovered in Pillow before 8.1.1. There is an out-of-bounds read in SGIRleDecode.c.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-28163": {
+    "cvss_score": 2.7,
+    "cwe_ids": [
+      "CWE-200",
+      "CWE-59"
+    ],
+    "description": "In Eclipse Jetty 9.4.32 to 9.4.38, 10.0.0.beta2 to 10.0.1, and 11.0.0.beta2 to 11.0.1, if a user uses a webapps directory that is a symlink, the contents of the webapps directory is deployed as a static webapp, inadvertently serving the webapps themselves and anything else that might be in that directory.",
+    "severity": "LOW"
+  },
+  "CVE-2021-28164": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-200",
+      "CWE-551"
+    ],
+    "description": "In Eclipse Jetty 9.4.37.v20210219 to 9.4.38.v20210224, the default compliance mode allows requests with URIs that contain %2e or %2e%2e segments to access protected resources within the WEB-INF directory. For example a request to /context/%2e/WEB-INF/web.xml can retrieve the web.xml file. This can reveal sensitive information regarding the implementation of a web application.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-28165": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400",
+      "CWE-551",
+      "CWE-755"
+    ],
+    "description": "In Eclipse Jetty 7.2.2 to 9.4.38, 10.0.0.alpha0 to 10.0.1, and 11.0.0.alpha0 to 11.0.1, CPU usage can reach 100% upon receiving a large invalid TLS frame.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-28169": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-200"
+    ],
+    "description": "For Eclipse Jetty versions <= 9.4.40, <= 10.0.2, <= 11.0.2, it is possible for requests to the ConcatServlet with a doubly encoded path to access protected resources within the WEB-INF directory. For example a request to `/concat?/%2557EB-INF/web.xml` can retrieve the web.xml file. This can reveal sensitive information regarding the implementation of a web application.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-28658": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "description": "In Django 2.2 before 2.2.20, 3.0 before 3.0.14, and 3.1 before 3.1.8, MultiPartParser allowed directory traversal via uploaded files with suitably crafted file names. Built-in upload handlers were not affected by this vulnerability.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-28675": {
+    "cvss_score": 5.5,
+    "cwe_ids": [
+      "CWE-252"
+    ],
+    "description": "An issue was discovered in Pillow before 8.2.0. PSDImagePlugin.PsdImageFile lacked a sanity check on the number of input layers relative to the size of the data block. This could lead to a DoS on Image.open prior to Image.load.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-28676": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-835"
+    ],
+    "description": "An issue was discovered in Pillow before 8.2.0. For FLI data, FliDecode did not properly check that the block advance was non-zero, potentially leading to an infinite loop on load.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-28677": {
+    "cvss_score": 7.5,
+    "cwe_ids": [],
+    "description": "An issue was discovered in Pillow before 8.2.0. For EPS data, the readline implementation used in EPSImageFile has to deal with any combination of \\r and \\n as line endings. It used an accidentally quadratic method of accumulating lines while looking for a line ending. A malicious EPS file could use this to perform a DoS of Pillow in the open phase, before an image was accepted for opening.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-28678": {
+    "cvss_score": 5.5,
+    "cwe_ids": [
+      "CWE-345"
+    ],
+    "description": "An issue was discovered in Pillow before 8.2.0. For BLP data, BlpImagePlugin did not properly check that reads (after jumping to file offsets) returned data. This could lead to a DoS where the decoder could be run a large number of times on empty data.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-29505": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-502",
+      "CWE-94"
+    ],
+    "description": "XStream is software for serializing Java objects to XML and back again. A vulnerability in XStream versions prior to 1.4.17 may allow a remote attacker has sufficient rights to execute commands of the host only by manipulating the processed input stream. No user who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types is affected. The vulnerability is patched in version 1.4.17.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-30560": {
+    "cvss_score": 8.8,
+    "cwe_ids": [
+      "CWE-416"
+    ],
+    "description": "Use after free in Blink XSLT in Google Chrome prior to 91.0.4472.164 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-31542": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "description": "In Django 2.2 before 2.2.21, 3.1 before 3.1.9, and 3.2 before 3.2.1, MultiPartParser, UploadedFile, and FieldFile allowed directory traversal via uploaded files with suitably crafted file names.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-32052": {
+    "cvss_score": 6.1,
+    "cwe_ids": [
+      "CWE-79"
+    ],
+    "description": "In Django 2.2 before 2.2.22, 3.1 before 3.1.10, and 3.2 before 3.2.2 (with Python 3.9.5+), URLValidator does not prohibit newlines and tabs (unless the URLField form field is used). If an application uses values with newlines in an HTTP response, header injection can occur. Django itself is unaffected because HttpResponse prohibits newlines in HTTP headers.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-3281": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "description": "In Django 2.2 before 2.2.18, 3.0 before 3.0.12, and 3.1 before 3.1.6, the django.utils.archive.extract method (used by \"startapp --template\" and \"startproject --template\") allows directory traversal via an archive with absolute paths or relative paths with dot segments.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-33203": {
+    "cvss_score": 4.9,
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "description": "Django before 2.2.24, 3.x before 3.1.12, and 3.2.x before 3.2.4 has a potential directory traversal via django.contrib.admindocs. Staff members could use the TemplateDetailView view to check the existence of arbitrary files. Additionally, if (and only if) the default admindocs templates have been customized by application developers to also show file contents, then not only the existence but also the file contents would have been exposed. In other words, there is directory traversal outside of the template root directories.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-33571": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "description": "In Django 2.2 before 2.2.24, 3.x before 3.1.12, and 3.2 before 3.2.4, URLValidator, validate_ipv4_address, and validate_ipv46_address do not prohibit leading zero characters in octal literals. This may allow a bypass of access control that is based on IP addresses. (validate_ipv4_address and validate_ipv46_address are unaffected with Python 3.9.5+..) .",
+    "severity": "HIGH"
+  },
+  "CVE-2021-34428": {
+    "cvss_score": 2.9,
+    "cwe_ids": [
+      "CWE-613"
+    ],
+    "description": "For Eclipse Jetty versions <= 9.4.40, <= 10.0.2, <= 11.0.2, if an exception is thrown from the SessionListener#sessionDestroyed() method, then the session ID is not invalidated in the session ID manager. On deployments with clustered sessions and multiple contexts this can result in a session not being invalidated. This can result in an application used on a shared computer being left logged in.",
+    "severity": "LOW"
+  },
+  "CVE-2021-34429": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-200",
+      "CWE-551"
+    ],
+    "description": "For Eclipse Jetty versions 9.4.37-9.4.42, 10.0.1-10.0.5 & 11.0.1-11.0.5, URIs can be crafted using some encoded characters to access the content of the WEB-INF directory and/or bypass some security constraints. This is a variation of the vulnerability reported in CVE-2021-28164/GHSA-v7ff-8wcx-gmc5.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-34552": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-120"
+    ],
+    "description": "Pillow through 8.2.0 and PIL (aka Python Imaging Library) through 1.1.7 allow an attacker to pass controlled parameters directly into a convert function to trigger a buffer overflow in Convert.c.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-35042": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "Django 3.1.x before 3.1.13 and 3.2.x before 3.2.5 allows QuerySet.order_by SQL injection if order_by is untrusted input from a client of a web application.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-35065": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "The glob-parent package before 6.0.1 for Node.js allows ReDoS (regular expression denial of service) attacks against the enclosure regular expression.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-35515": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-834",
+      "CWE-835"
+    ],
+    "description": "When reading a specially crafted 7Z archive, the construction of the list of codecs that decompress an entry can result in an infinite loop. This could be used to mount a denial of service attack against services that use Compress' sevenz package.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-35516": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-130",
+      "CWE-770"
+    ],
+    "description": "When reading a specially crafted 7Z archive, Compress can be made to allocate large amounts of memory that finally leads to an out of memory error even for very small inputs. This could be used to mount a denial of service attack against services that use Compress' sevenz package.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-35517": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-130",
+      "CWE-770"
+    ],
+    "description": "When reading a specially crafted TAR archive, Compress can be made to allocate large amounts of memory that finally leads to an out of memory error even for very small inputs. This could be used to mount a denial of service attack against services that use Compress' tar package.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-36090": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-130"
+    ],
+    "description": "When reading a specially crafted ZIP archive, Compress can be made to allocate large amounts of memory that finally leads to an out of memory error even for very small inputs. This could be used to mount a denial of service attack against services that use Compress' zip package.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-3807": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "ansi-regex is vulnerable to Inefficient Regular Expression Complexity",
+    "severity": "HIGH"
+  },
+  "CVE-2021-42550": {
+    "cvss_score": 6.6,
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "description": "In logback version 1.2.7 and prior versions, an attacker with the required privileges to edit configurations files could craft a malicious configuration allowing to execute arbitrary code loaded from LDAP servers.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-42740": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-77"
+    ],
+    "description": "The shell-quote package before 1.7.3 for Node.js allows command injection. An attacker can inject unescaped shell metacharacters through a regex designed to support Windows drive letters. If the output of this package is passed to a real shell as a quoted argument to a command with exec(), an attacker can inject arbitrary commands. This is because the Windows drive letter regex character class is {A-z] instead of the correct {A-Za-z]. Several shell metacharacters exist in the space between capital letter Z and lower case letter a, such as the backtick character.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-43045": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "A vulnerability in the .NET SDK of Apache Avro allows an attacker to allocate excessive resources, potentially causing a denial-of-service attack. This issue affects .NET applications using Apache Avro version 1.10.2 and prior versions. Users should update to version 1.11.0 which addresses this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-43113": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-77"
+    ],
+    "description": "iTextPDF in iText 7 and up to (excluding 4.4.13.3) 7.1.17 allows command injection via a CompareTool filename that is mishandled on the gs (aka Ghostscript) command line in GhostscriptHelper.java.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-43859": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "XStream is an open source java library to serialize objects to XML and back again. Versions prior to 1.4.19 may allow a remote attacker to allocate 100% CPU time on the target system depending on CPU type or parallel execution of such a payload resulting in a denial of service only by manipulating the processed input stream. XStream 1.4.19 monitors and accumulates the time it takes to add elements to collections and throws an exception if a set threshold is exceeded. Users are advised to upgrade as soon as possible. Users unable to upgrade may set the NO_REFERENCE mode to prevent recursion. See GHSA-rmr5-cpv2-vgjf for further details on a workaround if an upgrade is not possible.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-44228": {
+    "cvss_score": 10.0,
+    "cwe_ids": [
+      "CWE-20",
+      "CWE-400",
+      "CWE-502",
+      "CWE-917"
+    ],
+    "description": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-44420": {
+    "cvss_score": 7.3,
+    "cwe_ids": [],
+    "description": "In Django 2.2 before 2.2.25, 3.1 before 3.1.14, and 3.2 before 3.2.10, HTTP requests for URLs with trailing newlines could bypass upstream access control based on URL paths.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-44832": {
+    "cvss_score": 6.6,
+    "cwe_ids": [
+      "CWE-20",
+      "CWE-74"
+    ],
+    "description": "Apache Log4j2 versions 2.0-beta7 through 2.17.0 (excluding security fix releases 2.3.2 and 2.12.4) are vulnerable to a remote code execution (RCE) attack when a configuration uses a JDBC Appender with a JNDI LDAP data source URI when an attacker has control of the target LDAP server. This issue is fixed by limiting JNDI data source names to the java protocol in Log4j2 versions 2.17.1, 2.12.4, and 2.3.2.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2021-44878": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-347"
+    ],
+    "description": "If an OpenID Connect provider supports the \"none\" algorithm (i.e., tokens with no signature), pac4j v5.3.0 (and prior) does not refuse it without an explicit configuration on its side or for the \"idtoken\" response type which is not secure and violates the OpenID Core Specification. The \"none\" algorithm does not require any signature verification when validating the ID tokens, which allows the attacker to bypass the token validation by injecting a malformed ID token using \"none\" as the value of \"alg\" key in the header with an empty signature value.",
+    "severity": "HIGH"
+  },
+  "CVE-2021-44906": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-1321"
+    ],
+    "description": "Minimist <=1.2.5 is vulnerable to Prototype Pollution via file index.js, function setKey() (lines 69-95).",
+    "severity": "CRITICAL"
+  },
+  "CVE-2021-45105": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-20",
+      "CWE-674"
+    ],
+    "description": "Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3 and 2.3.1) did not protect from uncontrolled recursion from self-referential lookups. This allows an attacker with control over Thread Context Map data to cause a denial of service when a crafted string is interpreted. This issue was fixed in Log4j 2.17.0, 2.12.3, and 2.3.1.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-0512": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-639"
+    ],
+    "description": "Authorization Bypass Through User-Controlled Key in NPM url-parse prior to 1.5.6.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-0639": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-639"
+    ],
+    "description": "Authorization Bypass Through User-Controlled Key in NPM url-parse prior to 1.5.7.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-0686": {
+    "cvss_score": 9.1,
+    "cwe_ids": [
+      "CWE-639"
+    ],
+    "description": "Authorization Bypass Through User-Controlled Key in NPM url-parse prior to 1.5.8.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-0691": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-639"
+    ],
+    "description": "Authorization Bypass Through User-Controlled Key in NPM url-parse prior to 1.5.9.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-2047": {
+    "cvss_score": 2.7,
+    "cwe_ids": [
+      "CWE-20"
+    ],
+    "description": "In Eclipse Jetty versions 9.4.0 thru 9.4.46, and 10.0.0 thru 10.0.9, and 11.0.0 thru 11.0.9 versions, the parsing of the authority segment of an http scheme URI, the Jetty HttpURI class improperly detects an invalid input as a hostname. This can lead to failures in a Proxy scenario.",
+    "severity": "LOW"
+  },
+  "CVE-2022-2048": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-410",
+      "CWE-664"
+    ],
+    "description": "In Eclipse Jetty HTTP/2 server implementation, when encountering an invalid HTTP/2 request, the error handling has a bug that can wind up not properly cleaning up the active connections and associated resources. This can lead to a Denial of Service scenario where there are no enough resources left to process good requests.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-21363": {
+    "cvss_score": 6.6,
+    "cwe_ids": [],
+    "description": "Vulnerability in the MySQL Connectors product of Oracle MySQL (component: Connector/J). Supported versions that are affected are 8.0.27 and prior. Difficult to exploit vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Connectors. Successful attacks of this vulnerability can result in takeover of MySQL Connectors. CVSS 3.1 Base Score 6.6 (Confidentiality, Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H).",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-21449": {
+    "cvss_score": 7.5,
+    "cwe_ids": [],
+    "description": "Vulnerability in the Oracle Java SE, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Libraries). Supported versions that are affected are Oracle Java SE: 17.0.2 and 18; Oracle GraalVM Enterprise Edition: 21.3.1 and 22.0.0.2. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM Enterprise Edition. Successful attacks of this vulnerability can result in unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability can also be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. CVSS 3.1 Base Score 7.5 (Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N).",
+    "severity": "HIGH"
+  },
+  "CVE-2022-21718": {
+    "cvss_score": 3.4,
+    "cwe_ids": [
+      "CWE-668",
+      "CWE-862"
+    ],
+    "description": "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. A vulnerability in versions prior to `17.0.0-alpha.6`, `16.0.6`, `15.3.5`, `14.2.4`, and `13.6.6` allows renderers to obtain access to a bluetooth device via the web bluetooth API if the app has not configured a custom `select-bluetooth-device` event handler. This has been patched and Electron versions `17.0.0-alpha.6`, `16.0.6`, `15.3.5`, `14.2.4`, and `13.6.6` contain the fix. Code from the GitHub Security Advisory can be added to the app to work around the issue.",
+    "severity": "LOW"
+  },
+  "CVE-2022-21724": {
+    "cvss_score": 7.0,
+    "cwe_ids": [
+      "CWE-665"
+    ],
+    "description": "pgjdbc is the offical PostgreSQL JDBC Driver. A security hole was found in the jdbc driver for postgresql database while doing security research. The system using the postgresql library will be attacked when attacker control the jdbc url or properties. pgjdbc instantiates plugin instances based on class names provided via `authenticationPluginClassName`, `sslhostnameverifier`, `socketFactory`, `sslfactory`, `sslpasswordcallback` connection properties. However, the driver did not verify if the class implements the expected interface before instantiating the class. This can lead to code execution loaded via arbitrary classes. Users using plugins are advised to upgrade. There are no known workarounds for this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-2191": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-404",
+      "CWE-664"
+    ],
+    "description": "In Eclipse Jetty versions 10.0.0 thru 10.0.9, and 11.0.0 thru 11.0.9 versions, SslConnection does not release ByteBuffers from configured ByteBufferPool in case of error code paths.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-22818": {
+    "cvss_score": 6.1,
+    "cwe_ids": [
+      "CWE-79"
+    ],
+    "description": "The {% debug %} template tag in Django 2.2 before 2.2.27, 3.2 before 3.2.12, and 4.0 before 4.0.2 does not properly encode the current context. This may lead to XSS.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-22965": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-94"
+    ],
+    "description": "A Spring MVC or Spring WebFlux application running on JDK 9+ may be vulnerable to remote code execution (RCE) via data binding. The specific exploit requires the application to run on Tomcat as a WAR deployment. If the application is deployed as a Spring Boot executable jar, i.e. the default, it is not vulnerable to the exploit. However, the nature of the vulnerability is more general, and there may be other ways to exploit it.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-22968": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-178"
+    ],
+    "description": "In Spring Framework versions 5.3.0 - 5.3.18, 5.2.0 - 5.2.20, and older unsupported versions, the patterns for disallowedFields on a DataBinder are case sensitive which means a field is not effectively protected unless it is listed with both upper and lower case for the first character of the field, including upper and lower case for the first character of all nested fields within the property path.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-22970": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "In spring framework versions prior to 5.3.20+ , 5.2.22+ and old unsupported versions, applications that handle file uploads are vulnerable to DoS attack if they rely on data binding to set a MultipartFile or javax.servlet.Part to a field in a model object.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-22971": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "In spring framework versions prior to 5.3.20+ , 5.2.22+ and old unsupported versions, application with a STOMP over WebSocket endpoint is vulnerable to a denial of service attack by an authenticated user.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-22976": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-190"
+    ],
+    "description": "Spring Security versions 5.5.x prior to 5.5.7, 5.6.x prior to 5.6.4, and earlier unsupported versions contain an integer overflow vulnerability. When using the BCrypt class with the maximum work factor (31), the encoder does not perform any salt rounds, due to an integer overflow error. The default settings are not affected by this CVE.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-22978": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-863"
+    ],
+    "description": "In spring security versions prior to 5.4.11+, 5.5.7+ , 5.6.4+ and older unsupported versions, RegexRequestMatcher can easily be misconfigured to be bypassed on some servlet containers. Applications using RegexRequestMatcher with `.` in the regular expression are possibly vulnerable to an authorization bypass.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-2309": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-476"
+    ],
+    "description": "NULL Pointer Dereference allows attackers to cause a denial of service (or application crash). This only applies when lxml is used together with libxml2 2.9.10 through 2.9.14. libxml2 2.9.9 and earlier are not affected. It allows triggering crashes through forged input data, given a vulnerable code sequence in the application. The vulnerability is caused by the iterwalk function (also used by the canonicalize function). Such code shouldn't be in wide-spread use, given that parsing + iterwalk would usually be replaced with the more efficient iterparse function. However, an XML converter that serialises to C14N would also be vulnerable, for example, and there are legitimate use cases for this code sequence. If untrusted input is received (also remotely) and processed via iterwalk function, a crash can be triggered.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-23221": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-88"
+    ],
+    "description": "H2 Console before 2.1.210 allows remote attackers to execute arbitrary code via a jdbc:h2:mem JDBC URL containing the IGNORE_UNKNOWN_SETTINGS=TRUE;FORBID_CREATION=FALSE;INIT=RUNSCRIPT substring, a different vulnerability than CVE-2021-42392.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-23305": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "By design, the JDBCAppender in Log4j 1.2.x accepts an SQL statement as a configuration parameter where the values to be inserted are converters from PatternLayout. The message converter, %m, is likely to always be included. This allows attackers to manipulate the SQL by entering crafted strings into input fields or headers of an application that are logged allowing unintended SQL queries to be executed. Note this issue only affects Log4j 1.x when specifically configured to use the JDBCAppender, which is not the default. Beginning in version 2.0-beta8, the JDBCAppender was re-introduced with proper support for parameterized SQL queries and further customization over the columns written to in logs. Apache Log4j 1.2 reached end of life in August 2015. Users should upgrade to Log4j 2 as it addresses numerous other issues from the previous versions.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-23308": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-416"
+    ],
+    "description": "valid.c in libxml2 before 2.9.13 has a use-after-free of ID and IDREF attributes.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-23437": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-835"
+    ],
+    "description": "There's a vulnerability within the Apache Xerces Java (XercesJ) XML parser when handling specially crafted XML document payloads. This causes, the XercesJ XML parser to wait in an infinite loop, which may sometimes consume system resources for prolonged duration. This vulnerability is present within XercesJ version 2.12.1 and the previous versions.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-23476": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-252",
+      "CWE-476"
+    ],
+    "description": "Nokogiri is an open source XML and HTML library for the Ruby programming language. Nokogiri `1.13.8` and `1.13.9` fail to check the return value from `xmlTextReaderExpand` in the method `Nokogiri::XML::Reader#attribute_hash`. This can lead to a null pointer exception when invalid markup is being parsed. For applications using `XML::Reader` to parse untrusted inputs, this may potentially be a vector for a denial of service attack. Users are advised to upgrade to Nokogiri `>= 1.13.10`. Users may be able to search their code for calls to either `XML::Reader#attributes` or `XML::Reader#attribute_hash` to determine if they are affected.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-23833": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-835"
+    ],
+    "description": "An issue was discovered in MultiPartParser in Django 2.2 before 2.2.27, 3.2 before 3.2.12, and 4.0 before 4.0.2. Passing certain inputs to multipart forms could result in an infinite loop when parsing files.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-24329": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-829"
+    ],
+    "description": "In JetBrains Kotlin before 1.6.0, it was not possible to lock dependencies for Multiplatform Gradle Projects.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-24771": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-347"
+    ],
+    "description": "Forge (also called `node-forge`) is a native implementation of Transport Layer Security in JavaScript. Prior to version 1.3.0, RSA PKCS#1 v1.5 signature verification code is lenient in checking the digest algorithm structure. This can allow a crafted structure that steals padding bytes and uses unchecked portion of the PKCS#1 encoded message to forge a signature when a low public exponent is being used. The issue has been addressed in `node-forge` version 1.3.0. There are currently no known workarounds.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-24772": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-347"
+    ],
+    "description": "Forge (also called `node-forge`) is a native implementation of Transport Layer Security in JavaScript. Prior to version 1.3.0, RSA PKCS#1 v1.5 signature verification code does not check for tailing garbage bytes after decoding a `DigestInfo` ASN.1 structure. This can allow padding bytes to be removed and garbage data added to forge a signature when a low public exponent is being used. The issue has been addressed in `node-forge` version 1.3.0. There are currently no known workarounds.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-24773": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-347"
+    ],
+    "description": "Forge (also called `node-forge`) is a native implementation of Transport Layer Security in JavaScript. Prior to version 1.3.0, RSA PKCS#1 v1.5 signature verification code does not properly check `DigestInfo` for a proper ASN.1 structure. This can lead to successful verification with signatures that contain invalid structures but a valid digest. The issue has been addressed in `node-forge` version 1.3.0. There are currently no known workarounds.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-24836": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "description": "Nokogiri is an open source XML and HTML library for Ruby. Nokogiri `< v1.13.4` contains an inefficient regular expression that is susceptible to excessive backtracking when attempting to detect encoding in HTML documents. Users are advised to upgrade to Nokogiri `>= 1.13.4`. There are no known workarounds for this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-24839": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "org.cyberneko.html is an html parser written in Java. The fork of `org.cyberneko.html` used by Nokogiri (Rubygem) raises a `java.lang.OutOfMemoryError` exception when parsing ill-formed HTML markup. Users are advised to upgrade to `>= 1.9.22.noko2`. Note: The upstream library `org.cyberneko.html` is no longer maintained. Nokogiri uses its own fork of this library located at https://github.com/sparklemotion/nekohtml and this CVE applies only to that fork. Other forks of nekohtml may have a similar vulnerability.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-25857": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-776"
+    ],
+    "description": "The package org.yaml:snakeyaml from 0 and before 1.31 are vulnerable to Denial of Service (DoS) due missing to nested depth limitation for collections.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-25858": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "The package terser before 4.8.1, from 5.0.0 and before 5.14.2 are vulnerable to Regular Expression Denial of Service (ReDoS) due to insecure usage of regular expressions.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-26260": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-1321"
+    ],
+    "description": "Simple-Plist v1.3.0 was discovered to contain a prototype pollution vulnerability via .parse().",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-26520": {
+    "cvss_score": 9.8,
+    "cwe_ids": [],
+    "description": "In pgjdbc before 42.3.3, an attacker (who controls the jdbc URL or properties) can call java.util.logging.FileHandler to write to arbitrary files through the loggerFile and loggerLevel connection properties. An example situation is that an attacker could create an executable JSP file under a Tomcat web root. NOTE: the vendor's position is that there is no pgjdbc vulnerability; instead, it is a vulnerability for any application to use the pgjdbc driver with untrusted connection properties",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-28111": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "MyBatis PageHelper v1.x.x-v3.7.0 v4.0.0-v5.0.0,v5.1.0-v5.3.0 was discovered to contain a time-blind SQL injection vulnerability via the orderBy parameter.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-28346": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "An issue was discovered in Django 2.2 before 2.2.28, 3.2 before 3.2.13, and 4.0 before 4.0.4. QuerySet.annotate(), aggregate(), and extra() methods are subject to SQL injection in column aliases via a crafted dictionary (with dictionary expansion) as the passed **kwargs.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-28347": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "A SQL injection issue was discovered in QuerySet.explain() in Django 2.2 before 2.2.28, 3.2 before 3.2.13, and 4.0 before 4.0.4. This occurs by passing a crafted dictionary (with dictionary expansion) as the **options argument, and placing the injection payload in an option name.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-29181": {
+    "cvss_score": 8.2,
+    "cwe_ids": [
+      "CWE-241",
+      "CWE-843"
+    ],
+    "description": "Nokogiri is an open source XML and HTML library for Ruby. Nokogiri prior to version 1.13.6 does not type-check all inputs into the XML and HTML4 SAX parsers, allowing specially crafted untrusted inputs to cause illegal memory access errors (segfault) or reads from unrelated memory. Version 1.13.6 contains a patch for this issue. As a workaround, ensure the untrusted input is a `String` by calling `#to_s` or equivalent.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-29824": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-190"
+    ],
+    "description": "In libxml2 before 2.9.14, several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. Other software using libxml2's buffer functions, for example libxslt through 1.1.35, is affected as well.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-30595": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "libImaging/TgaRleDecode.c in Pillow 9.1.0 has a heap buffer overflow in the processing of invalid TGA image files.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-3102": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "CVE-2022-311": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "CVE-2022-31116": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-670"
+    ],
+    "description": "UltraJSON is a fast JSON encoder and decoder written in pure C with bindings for Python 3.7+. Affected versions were found to improperly decode certain characters. JSON strings that contain escaped surrogate characters not part of a proper surrogate pair were decoded incorrectly. Besides corrupting strings, this allowed for potential key confusion and value overwriting in dictionaries. All users parsing JSON from untrusted sources are vulnerable. From version 5.4.0, UltraJSON decodes lone surrogates in the same way as the standard library's `json` module does, preserving them in the parsed output. Users are advised to upgrade. There are no known workarounds for this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-31117": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-415"
+    ],
+    "description": "UltraJSON is a fast JSON encoder and decoder written in pure C with bindings for Python 3.7+. In versions prior to 5.4.0 an error occurring while reallocating a buffer for string decoding can cause the buffer to get freed twice. Due to how UltraJSON uses the internal decoder, this double free is impossible to trigger from Python. This issue has been resolved in version 5.4.0 and all users should upgrade to UltraJSON 5.4.0. There are no known workarounds for this issue.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-31159": {
+    "cvss_score": 7.9,
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "description": "The AWS SDK for Java enables Java developers to work with Amazon Web Services. A partial-path traversal issue exists within the `downloadDirectory` method in the AWS S3 TransferManager component of the AWS SDK for Java v1 prior to version 1.12.261. Applications using the SDK control the `destinationDirectory` argument, but S3 object keys are determined by the application that uploaded the objects. The `downloadDirectory` method allows the caller to pass a filesystem object in the object key but contained an issue in the validation logic for the key name. A knowledgeable actor could bypass the validation logic by including a UNIX double-dot in the bucket key. Under certain conditions, this could permit them to retrieve a directory from their S3 bucket that is one level up in the filesystem from their working directory. This issue\u2019s scope is limited to directories whose name prefix matches the destinationDirectory. E.g. for destination directory`/tmp/foo`, the actor can cause a download to `/tmp/foo-bar`, but not `/tmp/bar`. If `com.amazonaws.services.s3.transfer.TransferManager::downloadDirectory` is used to download an untrusted buckets contents, the contents of that bucket can be written outside of the intended destination directory. Version 1.12.261 contains a patch for this issue. As a workaround, when calling `com.amazonaws.services.s3.transfer.TransferManager::downloadDirectory`, pass a `KeyFilter` that forbids `S3ObjectSummary` objects that `getKey` method return a string containing the substring `..` .",
+    "severity": "HIGH"
+  },
+  "CVE-2022-31163": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-22",
+      "CWE-23"
+    ],
+    "description": "TZInfo is a Ruby library that provides access to time zone data and allows times to be converted using time zone rules. Versions prior to 0.36.1, as well as those prior to 1.2.10 when used with the Ruby data source tzinfo-data, are vulnerable to relative path traversal. With the Ruby data source, time zones are defined in Ruby files. There is one file per time zone. Time zone files are loaded with `require` on demand. In the affected versions, `TZInfo::Timezone.get` fails to validate time zone identifiers correctly, allowing a new line character within the identifier. With Ruby version 1.9.3 and later, `TZInfo::Timezone.get` can be made to load unintended files with `require`, executing them within the Ruby process. Versions 0.3.61 and 1.2.10 include fixes to correctly validate time zone identifiers. Versions 2.0.0 and later are not vulnerable. Version 0.3.61 can still load arbitrary files from the Ruby load path if their name follows the rules for a valid time zone identifier and the file has a prefix of `tzinfo/definition` within a directory in the load path. Applications should ensure that untrusted files are not placed in a directory on the load path. As a workaround, the time zone identifier can be validated before passing to `TZInfo::Timezone.get` by ensuring it matches the regular expression `\\A[A-Za-z0-9+\\-_]+(?:\\/[A-Za-z0-9+\\-_]+)*\\z`.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-31197": {
+    "cvss_score": 7.1,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "PostgreSQL JDBC Driver (PgJDBC for short) allows Java programs to connect to a PostgreSQL database using standard, database independent Java code. The PGJDBC implementation of the `java.sql.ResultRow.refreshRow()` method is not performing escaping of column names so a malicious column name that contains a statement terminator, e.g. `;`, could lead to SQL injection. This could lead to executing additional SQL commands as the application's JDBC user. User applications that do not invoke the `ResultSet.refreshRow()` method are not impacted. User application that do invoke that method are impacted if the underlying database that they are querying via their JDBC application may be under the control of an attacker. The attack requires the attacker to trick the user into executing SQL against a table name who's column names would contain the malicious SQL and subsequently invoke the `refreshRow()` method on the ResultSet. Note that the application's JDBC user and the schema owner need not be the same. A JDBC application that executes as a privileged user querying database schemas owned by potentially malicious less-privileged users would be vulnerable. In that situation it may be possible for the malicious user to craft a schema that causes the application to execute commands as the privileged user. Patched versions will be released as `42.2.26` and `42.4.1`. Users are advised to upgrade. There are no known workarounds for this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-31690": {
+    "cvss_score": 8.1,
+    "cwe_ids": [],
+    "description": "Spring Security, versions 5.7 prior to 5.7.5, and 5.6 prior to 5.6.9, and older unsupported versions could be susceptible to a privilege escalation under certain conditions. A malicious user or attacker can modify a request initiated by the Client (via the browser) to the Authorization Server which can lead to a privilege escalation on the subsequent approval. This scenario can happen if the Authorization Server responds with an OAuth2 Access Token Response containing an empty scope list (per RFC 6749, Section 5.1) on the subsequent request to the token endpoint to obtain the access token.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-31692": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-639"
+    ],
+    "description": "Spring Security, versions 5.7 prior to 5.7.5 and 5.6 prior to 5.6.9 could be susceptible to authorization rules bypass via forward or include dispatcher types. Specifically, an application is vulnerable when all of the following are true: The application expects that Spring Security applies security to forward and include dispatcher types. The application uses the AuthorizationFilter either manually or via the authorizeHttpRequests() method. The application configures the FilterChainProxy to apply to forward and/or include requests (e.g. spring.security.filter.dispatcher-types = request, error, async, forward, include). The application may forward or include the request to a higher privilege-secured endpoint.The application configures Spring Security to apply to every dispatcher type via authorizeHttpRequests().shouldFilterAllDispatcherTypes(true)",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-3171": {
+    "cvss_score": 4.3,
+    "cwe_ids": [
+      "CWE-20"
+    ],
+    "description": "A parsing issue with binary data in protobuf-java core and lite versions prior to 3.21.7, 3.20.3, 3.19.6 and 3.16.3 can lead to a denial of service attack. Inputs containing multiple instances of non-repeated embedded messages with repeated or unknown fields causes objects to be converted back-n-forth between mutable and immutable forms, resulting in potentially long garbage collection pauses. We recommend updating to the versions mentioned above.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-34265": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "An issue was discovered in Django 3.2 before 3.2.14 and 4.0 before 4.0.6. The Trunc() and Extract() database functions are subject to SQL injection if untrusted data is used as a kind/lookup_name value. Applications that constrain the lookup name and kind choice to a known safe list are unaffected.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-35954": {
+    "cvss_score": 5.0,
+    "cwe_ids": [
+      "CWE-74",
+      "CWE-77"
+    ],
+    "description": "The GitHub Actions ToolKit provides a set of packages to make creating actions easier. The `core.exportVariable` function uses a well known delimiter that attackers can use to break out of that specific variable and assign values to other arbitrary variables. Workflows that write untrusted values to the `GITHUB_ENV` file may cause the path or other environment variables to be modified without the intention of the workflow or action author. Users should upgrade to `@actions/core v1.9.1`. If you are unable to upgrade the `@actions/core` package, you can modify your action to ensure that any user input does not contain the delimiter `_GitHubActionsFileCommandDelimeter_` before calling `core.exportVariable`.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-3602": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "A buffer overrun can be triggered in X.509 certificate verification, specifically in name constraint checking. Note that this occurs after certificate chain signature verification and requires either a CA to have signed the malicious certificate or for the application to continue certificate verification despite failure to construct a path to a trusted issuer. An attacker can craft a malicious email address to overflow four attacker-controlled bytes on the stack. This buffer overflow could result in a crash (causing a denial of service) or potentially remote code execution. Many platforms implement stack overflow protections which would mitigate against the risk of remote code execution. The risk may be further mitigated based on stack layout for any given platform/compiler. Pre-announcements of CVE-2022-3602 described this issue as CRITICAL. Further analysis based on some of the mitigating factors described above have led this to be downgraded to HIGH. Users are still encouraged to upgrade to a new version as soon as possible. In a TLS client, this can be triggered by connecting to a malicious server. In a TLS server, this can be triggered if the server requests client authentication and a malicious client connects. Fixed in OpenSSL 3.0.7 (Affected 3.0.0,3.0.1,3.0.2,3.0.3,3.0.4,3.0.5,3.0.6).",
+    "severity": "HIGH"
+  },
+  "CVE-2022-36087": {
+    "cvss_score": 5.7,
+    "cwe_ids": [
+      "CWE-20",
+      "CWE-601"
+    ],
+    "description": "OAuthLib is an implementation of the OAuth request-signing logic for Python 3.6+. In OAuthLib versions 3.1.1 until 3.2.1, an attacker providing malicious redirect uri can cause denial of service. An attacker can also leverage usage of `uri_validate` functions depending where it is used. OAuthLib applications using OAuth2.0 provider support or use directly `uri_validate` are affected by this issue. Version 3.2.1 contains a patch. There are no known workarounds.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-36359": {
+    "cvss_score": 8.8,
+    "cwe_ids": [
+      "CWE-494"
+    ],
+    "description": "An issue was discovered in the HTTP FileResponse class in Django 3.2 before 3.2.15 and 4.0 before 4.0.7. An application is vulnerable to a reflected file download (RFD) attack that sets the Content-Disposition header of a FileResponse when the filename is derived from user-supplied input.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-37434": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-120",
+      "CWE-787"
+    ],
+    "description": "zlib through 1.2.12 has a heap-based buffer over-read or buffer overflow in inflate in inflate.c via a large gzip header extra field. NOTE: only applications that call inflateGetHeader are affected. Some common applications bundle the affected zlib source code but may be unable to call inflateGetHeader (e.g., see the nodejs/node reference).",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-37603": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "A Regular expression denial of service (ReDoS) flaw was found in Function interpolateName in interpolateName.js in webpack loader-utils 2.0.0 via the url variable in interpolateName.js.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-3786": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-120"
+    ],
+    "description": "A buffer overrun can be triggered in X.509 certificate verification, specifically in name constraint checking. Note that this occurs after certificate chain signature verification and requires either a CA to have signed a malicious certificate or for an application to continue certificate verification despite failure to construct a path to a trusted issuer. An attacker can craft a malicious email address in a certificate to overflow an arbitrary number of bytes containing the `.' character (decimal 46) on the stack. This buffer overflow could result in a crash (causing a denial of service). In a TLS client, this can be triggered by connecting to a malicious server. In a TLS server, this can be triggered if the server requests client authentication and a malicious client connects.\n\n",
+    "severity": "HIGH"
+  },
+  "CVE-2022-38752": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-121",
+      "CWE-787"
+    ],
+    "description": "Using snakeYAML to parse untrusted YAML files may be vulnerable to Denial of Service attacks (DOS). If the parser is running on user supplied input, an attacker may supply content that causes the parser to crash by stack-overflow.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-40151": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-121",
+      "CWE-787"
+    ],
+    "description": "Those using Xstream to seralize XML data may be vulnerable to Denial of Service attacks (DOS). If the parser is running on user supplied input, an attacker may supply content that causes the parser to crash by stackoverflow. This effect may support a denial of service attack.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-40303": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-190"
+    ],
+    "description": "An issue was discovered in libxml2 before 2.10.3. When parsing a multi-gigabyte XML document with the XML_PARSE_HUGE parser option enabled, several integer counters can overflow. This results in an attempt to access an array at a negative 2GB offset, typically leading to a segmentation fault.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-40304": {
+    "cvss_score": 7.8,
+    "cwe_ids": [
+      "CWE-415"
+    ],
+    "description": "An issue was discovered in libxml2 before 2.10.3. Certain invalid XML entity definitions can corrupt a hash table key, potentially leading to subsequent logic errors. In one case, a double-free can be provoked.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-41853": {
+    "cvss_score": 8.0,
+    "cwe_ids": [
+      "CWE-470"
+    ],
+    "description": "Those using java.sql.Statement or java.sql.PreparedStatement in hsqldb (HyperSQL DataBase) to process untrusted input may be vulnerable to a remote code execution attack. By default it is allowed to call any static method of any Java class in the classpath resulting in code execution. The issue can be prevented by updating to 2.7.1 or by setting the system property \"hsqldb.method_class_names\" to classes which are allowed to be called. For example, System.setProperty(\"hsqldb.method_class_names\", \"abc\") or Java argument -Dhsqldb.method_class_names=\"abc\" can be used. From version 2.7.1 all classes by default are not accessible except those in java.lang.Math and need to be manually enabled.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-41881": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-674"
+    ],
+    "description": "Netty project is an event-driven asynchronous network application framework. In versions prior to 4.1.86.Final, a StackOverflowError can be raised when parsing a malformed crafted message due to an infinite recursion. This issue is patched in version 4.1.86.Final. There is no workaround, except using a custom HaProxyMessageDecoder.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-41915": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-113",
+      "CWE-436"
+    ],
+    "description": "Netty project is an event-driven asynchronous network application framework. Starting in version 4.1.83.Final and prior to 4.1.86.Final, when calling `DefaultHttpHeadesr.set` with an _iterator_ of values, header value validation was not performed, allowing malicious header values in the iterator to perform HTTP Response Splitting. This issue has been patched in version 4.1.86.Final. Integrators can work around the issue by changing the `DefaultHttpHeaders.set(CharSequence, Iterator<?>)` call, into a `remove()` call, and call `add()` in a loop over the iterator of values.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-41946": {
+    "cvss_score": 4.7,
+    "cwe_ids": [
+      "CWE-200",
+      "CWE-377",
+      "CWE-668"
+    ],
+    "description": "pgjdbc is an open source postgresql JDBC Driver. In affected versions a prepared statement using either `PreparedStatement.setText(int, InputStream)` or `PreparedStatemet.setBytea(int, InputStream)` will create a temporary file if the InputStream is larger than 2k. This will create a temporary file which is readable by other users on Unix like systems, but not MacOS. On Unix like systems, the system's temporary directory is shared between all users on that system. Because of this, when files and directories are written into this directory they are, by default, readable by other users on that same system. This vulnerability does not allow other users to overwrite the contents of these directories or files. This is purely an information disclosure vulnerability. Because certain JDK file system APIs were only added in JDK 1.7, this this fix is dependent upon the version of the JDK you are using. Java 1.7 and higher users: this vulnerability is fixed in 4.5.0. Java 1.6 and lower users: no patch is available. If you are unable to patch, or are stuck running on Java 1.6, specifying the java.io.tmpdir system environment variable to a directory that is exclusively owned by the executing user will mitigate this vulnerability.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2022-41966": {
+    "cvss_score": 8.2,
+    "cwe_ids": [
+      "CWE-120",
+      "CWE-121",
+      "CWE-502",
+      "CWE-674"
+    ],
+    "description": "XStream serializes Java objects to XML and back again. Versions prior to 1.4.20 may allow a remote attacker to terminate the application with a stack overflow error, resulting in a denial of service only via manipulation the processed input stream. The attack uses the hash code implementation for collections and maps to force recursive hash calculation causing a stack overflow. This issue is patched in version 1.4.20 which handles the stack overflow and raises an InputManipulationException instead. A potential workaround for users who only use HashMap or HashSet and whose XML refers these only as default map or set, is to change the default implementation of java.util.Map and java.util per the code example in the referenced advisory. However, this implies that your application does not care about the implementation of the map and all elements are comparable.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-42003": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "description": "In FasterXML jackson-databind before versions 2.13.4.1 and 2.12.17.1, resource exhaustion can occur because of a lack of a check in primitive value deserializers to avoid deep wrapper array nesting, when the UNWRAP_SINGLE_VALUE_ARRAYS feature is enabled.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-42889": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-94"
+    ],
+    "description": "Apache Commons Text performs variable interpolation, allowing properties to be dynamically evaluated and expanded. The standard format for interpolation is \"${prefix:name}\", where \"prefix\" is used to locate an instance of org.apache.commons.text.lookup.StringLookup that performs the interpolation. Starting with version 1.5 and continuing through 1.9, the set of default Lookup instances included interpolators that could result in arbitrary code execution or contact with remote servers. These lookups are: - \"script\" - execute expressions using the JVM script execution engine (javax.script) - \"dns\" - resolve dns records - \"url\" - load values from urls, including from remote servers Applications using the interpolation defaults in the affected versions may be vulnerable to remote code execution or unintentional contact with remote servers if untrusted configuration values are used. Users are recommended to upgrade to Apache Commons Text 1.10.0, which disables the problematic interpolators by default.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2022-44570": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "description": "A denial of service vulnerability in the Range header parsing component of Rack >= 1.5.0. A Carefully crafted input can cause the Range header parsing component in Rack to take an unexpected amount of time, possibly resulting in a denial of service attack vector. Any applications that deal with Range requests (such as streaming applications, or applications that serve files) may be impacted.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-44571": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "description": "There is a denial of service vulnerability in the Content-Disposition parsingcomponent of Rack fixed in 2.0.9.2, 2.1.4.2, 2.2.4.1, 3.0.0.1. This could allow an attacker to craft an input that can cause Content-Disposition header parsing in Rackto take an unexpected amount of time, possibly resulting in a denial ofservice attack vector. This header is used typically used in multipartparsing. Any applications that parse multipart posts using Rack (virtuallyall Rails applications) are impacted.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-44572": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "description": "A denial of service vulnerability in the multipart parsing component of Rack fixed in 2.0.9.2, 2.1.4.2, 2.2.4.1 and 3.0.0.1 could allow an attacker tocraft input that can cause RFC2183 multipart boundary parsing in Rack to take an unexpected amount of time, possibly resulting in a denial of service attack vector. Any applications that parse multipart posts using Rack (virtually all Rails applications) are impacted.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-4492": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "description": "The undertow client is not checking the server identity presented by the server certificate in https connections. This is a compulsory step (at least it should be performed by default) in https and in http/2. I would add it to any TLS client protocol.",
+    "severity": "HIGH"
+  },
+  "CVE-2022-45688": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "description": "A stack overflow in the XML.toJSONObject component of hutool-json v5.8.10 allows attackers to cause a Denial of Service (DoS) via crafted JSON or XML data.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-0842": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1321"
+    ],
+    "description": "xml2js version 0.4.23 allows an external attacker to edit or add new properties to an object. This is possible because the application does not properly validate incoming JSON keys, thus allowing the __proto__ property to be edited.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-1108": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-835"
+    ],
+    "description": "A flaw was found in undertow. This issue makes achieving a denial of service possible due to an unexpected handshake status updated in SslConduit, where the loop never terminates.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-1370": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-674"
+    ],
+    "description": "[Json-smart](https://netplex.github.io/json-smart/) is a performance focused, JSON processor lib.\n\nWhen reaching a \u2018[\u2018 or \u2018{\u2018 character in the JSON input, the code parses an array or an object respectively.\n\nIt was discovered that the code does not have any limit to the nesting of such arrays or objects. Since the parsing of nested arrays and objects is done recursively, nesting too many of them can cause a stack exhaustion (stack overflow) and crash the software.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-1428": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-617"
+    ],
+    "description": "There exists an vulnerability causing an abort() to be called in gRPC.\u00a0\nThe following headers cause gRPC's C++ implementation to abort() when called via http2:\n\nte: x (x != trailers)\n\n:scheme: x (x != http, https)\n\ngrpclb_client_stats: x (x == anything)\n\nOn top of sending one of those headers, a later header must be sent that gets the total header size past 8KB. We recommend upgrading past git commit\u00a02485fa94bd8a723e5c977d55a3ce10b301b437f8 or v1.53 and above.\n\n",
+    "severity": "HIGH"
+  },
+  "CVE-2023-22102": {
+    "cvss_score": 8.3,
+    "cwe_ids": [
+      "CWE-284"
+    ],
+    "description": "Vulnerability in the MySQL Connectors product of Oracle MySQL (component: Connector/J).  Supported versions that are affected are 8.1.0 and prior. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise MySQL Connectors.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in MySQL Connectors, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in takeover of MySQL Connectors. CVSS 3.1 Base Score 8.3 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H).",
+    "severity": "HIGH"
+  },
+  "CVE-2023-22899": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-346"
+    ],
+    "description": "Zip4j through 2.11.2, as used in Threema and other products, does not always check the MAC when decrypting a ZIP archive.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-23931": {
+    "cvss_score": 4.8,
+    "cwe_ids": [
+      "CWE-754"
+    ],
+    "description": "cryptography is a package designed to expose cryptographic primitives and recipes to Python developers. In affected versions `Cipher.update_into` would accept Python objects which implement the buffer protocol, but provide only immutable buffers. This would allow immutable objects (such as `bytes`) to be mutated, thus violating fundamental rules of Python and resulting in corrupted output. This now correctly raises an exception. This issue has been present since `update_into` was originally introduced in cryptography 1.8.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-26048": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-400",
+      "CWE-770"
+    ],
+    "description": "Jetty is a java based web server and servlet engine. In affected versions servlets with multipart support (e.g. annotated with `@MultipartConfig`) that call `HttpServletRequest.getParameter()` or `HttpServletRequest.getParts()` may cause `OutOfMemoryError` when the client sends a multipart request with a part that has a name but no filename and very large content. This happens even with the default settings of `fileSizeThreshold=0` which should stream the whole part content to disk. An attacker client may send a large multipart request and cause the server to throw `OutOfMemoryError`. However, the server may be able to recover after the `OutOfMemoryError` and continue its service -- although it may take some time. This issue has been patched in versions 9.4.51, 10.0.14, and 11.0.14. Users are advised to upgrade. Users unable to upgrade may set the multipart parameter `maxRequestSize` which must be set to a non-negative value, so the whole multipart content is limited (although still read into memory).",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-26049": {
+    "cvss_score": 2.4,
+    "cwe_ids": [
+      "CWE-200"
+    ],
+    "description": "Jetty is a java based web server and servlet engine. Nonstandard cookie parsing in Jetty may allow an attacker to smuggle cookies within other cookies, or otherwise perform unintended behavior by tampering with the cookie parsing mechanism. If Jetty sees a cookie VALUE that starts with `\"` (double quote), it will continue to read the cookie string until it sees a closing quote -- even if a semicolon is encountered. So, a cookie header such as: `DISPLAY_LANGUAGE=\"b; JSESSIONID=1337; c=d\"` will be parsed as one cookie, with the name DISPLAY_LANGUAGE and a value of b; JSESSIONID=1337; c=d instead of 3 separate cookies. This has security implications because if, say, JSESSIONID is an HttpOnly cookie, and the DISPLAY_LANGUAGE cookie value is rendered on the page, an attacker can smuggle the JSESSIONID cookie into the DISPLAY_LANGUAGE cookie and thereby exfiltrate it. This is significant when an intermediary is enacting some policy based on cookies, so a smuggled cookie can bypass that policy yet still be seen by the Jetty server or its logging system. This issue has been addressed in versions 9.4.51, 10.0.14, 11.0.14, and 12.0.0.beta0 and users are advised to upgrade. There are no known workarounds for this issue.",
+    "severity": "LOW"
+  },
+  "CVE-2023-26115": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "All versions of the package word-wrap are vulnerable to Regular Expression Denial of Service (ReDoS) due to the usage of an insecure regular expression within the result variable.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-26303": {
+    "cvss_score": 3.3,
+    "cwe_ids": [
+      "CWE-173"
+    ],
+    "description": "Denial of service could be caused to markdown-it-py, before v2.2.0, if an attacker was allowed to force null assertions with specially crafted input.",
+    "severity": "LOW"
+  },
+  "CVE-2023-26364": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-20"
+    ],
+    "description": "@adobe/css-tools version 4.3.0 and earlier are affected by an Improper Input Validation vulnerability that could result in a minor denial of service while attempting to parse CSS. Exploitation of this issue does not require user interaction or privileges.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-26964": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "An issue was discovered in hyper v0.13.7. h2-0.2.4 Stream stacking occurs when the H2 component processes HTTP2 RST_STREAM frames. As a result, the memory and CPU usage are high which can lead to a Denial of Service (DoS).",
+    "severity": "HIGH"
+  },
+  "CVE-2023-27530": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400",
+      "CWE-770"
+    ],
+    "description": "A DoS vulnerability exists in Rack <v3.0.4.2, <v2.2.6.3, <v2.1.4.3 and <v2.0.9.3 within in the Multipart MIME parsing code in which could allow an attacker to craft requests that can be abuse to cause multipart parsing to take longer than expected.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-27539": {
+    "cvss_score": 5.3,
+    "cwe_ids": [],
+    "description": "There is a denial of service vulnerability in the header parsing component of Rack.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-28484": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-476"
+    ],
+    "description": "In libxml2 before 2.10.4, parsing of certain invalid XSD schemas can lead to a NULL pointer dereference and subsequently a segfault. This occurs in xmlSchemaFixupComplexType in xmlschemas.c.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-28858": {
+    "cvss_score": 3.7,
+    "cwe_ids": [
+      "CWE-193"
+    ],
+    "description": "redis-py before 4.5.3 leaves a connection open after canceling an async Redis command at an inopportune time, and can send response data to the client of an unrelated request in an off-by-one manner. NOTE: this CVE Record was initially created in response to reports about ChatGPT, and 4.3.6, 4.4.3, and 4.5.3 were released (changing the behavior for pipeline operations); however, please see CVE-2023-28859 about addressing data leakage across AsyncIO connections in general.",
+    "severity": "LOW"
+  },
+  "CVE-2023-28859": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-459"
+    ],
+    "description": "redis-py before 4.4.4 and 4.5.x before 4.5.4 leaves a connection open after canceling an async Redis command at an inopportune time, and can send response data to the client of an unrelated request. (This could, for example, happen for a non-pipeline operation.) NOTE: the solutions for CVE-2023-28859 address data leakage across AsyncIO connections in general.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-29469": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-415"
+    ],
+    "description": "An issue was discovered in libxml2 before 2.10.4. When hashing empty dict strings in a crafted XML document, xmlDictComputeFastKey in dict.c can produce non-deterministic values, leading to various logic and memory errors, such as a double free. This behavior occurs because there is an attempt to use the first byte of an empty string, and any value is possible (not solely the '\\0' value).",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-29483": {
+    "cvss_score": 7.0,
+    "cwe_ids": [
+      "CWE-292"
+    ],
+    "description": "eventlet before 0.35.2, as used in dnspython before 2.6.0, allows remote attackers to interfere with DNS name resolution by quickly sending an invalid packet from the expected IP address and source port, aka a \"TuDoor\" attack. In other words, dnspython does not have the preferred behavior in which the DNS name resolution algorithm would proceed, within the full time window, in order to wait for a valid packet. NOTE: dnspython 2.6.0 is unusable for a different reason that was addressed in 2.6.1.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-2976": {
+    "cvss_score": 5.5,
+    "cwe_ids": [
+      "CWE-552"
+    ],
+    "description": "Use of Java's default temporary directory for file creation in `FileBackedOutputStream` in Google Guava versions 1.0 to 31.1 on Unix systems and Android Ice Cream Sandwich allows other users and apps on the machine with access to the default Java temporary directory to be able to access the files created by the class.\n\nEven though the security vulnerability is fixed in version 32.0.0, we recommend using version 32.0.1 as version 32.0.0 breaks some functionality under Windows.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-30861": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-539"
+    ],
+    "description": "Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session and the proxy's behavior regarding cookies. The risk depends on all these conditions being met.\n\n1. The application must be hosted behind a caching proxy that does not strip cookies or ignore responses with cookies.\n2. The application sets `session.permanent = True`\n3. The application does not access or modify the session at any point during a request.\n4. `SESSION_REFRESH_EACH_REQUEST` enabled (the default).\n5. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.\n\nThis happens because vulnerable versions of Flask only set the `Vary: Cookie` header when the session is accessed or modified, not when it is refreshed (re-sent to update the expiration) without being accessed or modified. This issue has been fixed in versions 2.3.2 and 2.2.5.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-32681": {
+    "cvss_score": 6.1,
+    "cwe_ids": [
+      "CWE-200"
+    ],
+    "description": "Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to an HTTPS endpoint. This is a product of how we use `rebuild_proxies` to reattach the `Proxy-Authorization` header to requests. For HTTP connections sent through the tunnel, the proxy will identify the header in the request itself and remove it prior to forwarding to the destination server. However when sent over HTTPS, the `Proxy-Authorization` header must be sent in the CONNECT request as the proxy has no visibility into the tunneled request. This results in Requests forwarding proxy credentials to the destination server unintentionally, allowing a malicious actor to potentially exfiltrate sensitive information. This issue has been patched in version 2.31.0.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-32731": {
+    "cvss_score": 7.4,
+    "cwe_ids": [
+      "CWE-440"
+    ],
+    "description": "When gRPC HTTP2 stack raised a header size exceeded error, it skipped parsing the rest of the HPACK frame. This caused any HPACK table mutations to also be skipped, resulting in a desynchronization of HPACK tables between sender and receiver. If leveraged, say, between a proxy and a backend, this could lead to requests from the proxy being interpreted as containing headers from different proxy clients - leading to an information leak that can be used for privilege escalation or data exfiltration. We recommend upgrading beyond the commit contained in\u00a0 https://github.com/grpc/grpc/pull/33005 https://github.com/grpc/grpc/pull/33005 \n",
+    "severity": "HIGH"
+  },
+  "CVE-2023-32732": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-440"
+    ],
+    "description": "gRPC contains a vulnerability whereby a client can cause a termination of connection between a HTTP2 proxy and a gRPC server: a base64 encoding error for `-bin` suffixed headers will result in a disconnection by the gRPC server, but is typically allowed by HTTP2 proxies. We recommend upgrading beyond the commit in\u00a0 https://github.com/grpc/grpc/pull/32309 https://www.google.com/url",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-34453": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-190"
+    ],
+    "description": "snappy-java is a fast compressor/decompressor for Java. Due to unchecked multiplications, an integer overflow may occur in versions prior to 1.1.10.1, causing a fatal error.\n\nThe function `shuffle(int[] input)` in the file `BitShuffle.java` receives an array of integers and applies a bit shuffle on it. It does so by multiplying the length by 4 and passing it to the natively compiled shuffle function. Since the length is not tested, the multiplication by four can cause an integer overflow and become a smaller value than the true size, or even zero or negative. In the case of a negative value, a `java.lang.NegativeArraySizeException` exception will raise, which can crash the program. In a case of a value that is zero or too small, the code that afterwards references the shuffled array will assume a bigger size of the array, which might cause exceptions such as `java.lang.ArrayIndexOutOfBoundsException`.\n\nThe same issue exists also when using the `shuffle` functions that receive a double, float, long and short, each using a different multiplier that may cause the same issue.\n\nVersion 1.1.10.1 contains a patch for this vulnerability.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-34454": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-190"
+    ],
+    "description": "snappy-java is a fast compressor/decompressor for Java. Due to unchecked multiplications, an integer overflow may occur in versions prior to 1.1.10.1, causing an unrecoverable fatal error.\n\nThe function `compress(char[] input)` in the file `Snappy.java` receives an array of characters and compresses it. It does so by multiplying the length by 2 and passing it to the rawCompress` function.\n\nSince the length is not tested, the multiplication by two can cause an integer overflow and become negative. The rawCompress function then uses the received length and passes it to the natively compiled maxCompressedLength function, using the returned value to allocate a byte array.\n\nSince the maxCompressedLength function treats the length as an unsigned integer, it doesn\u2019t care that it is negative, and it returns a valid value, which is casted to a signed integer by the Java engine. If the result is negative, a `java.lang.NegativeArraySizeException` exception will be raised while trying to allocate the array `buf`. On the other side, if the result is positive, the `buf` array will successfully be allocated, but its size might be too small to use for the compression, causing a fatal Access Violation error.\n\nThe same issue exists also when using the `compress` functions that receive double, float, int, long and short, each using a different multiplier that may cause the same issue. The issue most likely won\u2019t occur when using a byte array, since creating a byte array of size 0x80000000 (or any other negative value) is impossible in the first place.\n\nVersion 1.1.10.1 contains a patch for this issue.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-34455": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "snappy-java is a fast compressor/decompressor for Java. Due to use of an unchecked chunk length, an unrecoverable fatal error can occur in versions prior to 1.1.10.1.\n\nThe code in the function hasNextChunk in the fileSnappyInputStream.java checks if a given stream has more chunks to read. It does that by attempting to read 4 bytes. If it wasn\u2019t possible to read the 4 bytes, the function returns false. Otherwise, if 4 bytes were available, the code treats them as the length of the next chunk.\n\nIn the case that the `compressed` variable is null, a byte array is allocated with the size given by the input data. Since the code doesn\u2019t test the legality of the `chunkSize` variable, it is possible to pass a negative number (such as 0xFFFFFFFF which is -1), which will cause the code to raise a `java.lang.NegativeArraySizeException` exception. A worse case would happen when passing a huge positive value (such as 0x7FFFFFFF), which would raise the fatal `java.lang.OutOfMemoryError` error.\n\nVersion 1.1.10.1 contains a patch for this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-3635": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-195",
+      "CWE-681"
+    ],
+    "description": "GzipSource does not handle an exception that might be raised when parsing a malformed gzip buffer. This may lead to denial of service of the Okio client when handling a crafted GZIP archive, by using the GzipSource class.\n\n",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-36478": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-190",
+      "CWE-400"
+    ],
+    "description": "Eclipse Jetty provides a web server and servlet container. In versions 11.0.0 through 11.0.15, 10.0.0 through 10.0.15, and 9.0.0 through 9.4.52, an integer overflow in `MetaDataBuilder.checkSize` allows for HTTP/2 HPACK header values to\nexceed their size limit. `MetaDataBuilder.java` determines if a header name or value exceeds the size limit, and throws an exception if the limit is exceeded. However, when length is very large and huffman is true, the multiplication by 4 in line 295\nwill overflow, and length will become negative. `(_size+length)` will now be negative, and the check on line 296 will not be triggered. Furthermore, `MetaDataBuilder.checkSize` allows for user-entered HPACK header value sizes to be negative, potentially leading to a very large buffer allocation later on when the user-entered size is multiplied by 2. This means that if a user provides a negative length value (or, more precisely, a length value which, when multiplied by the 4/3 fudge factor, is negative), and this length value is a very large positive number when multiplied by 2, then the user can cause a very large buffer to be allocated on the server. Users of HTTP/2 can be impacted by a remote denial of service attack. The issue has been fixed in versions 11.0.16, 10.0.16, and 9.4.53. There are no known workarounds.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-36479": {
+    "cvss_score": 3.5,
+    "cwe_ids": [
+      "CWE-149"
+    ],
+    "description": "Eclipse Jetty Canonical Repository is the canonical repository for the Jetty project. Users of the CgiServlet with a very specific command structure may have the wrong command executed. If a user sends a request to a org.eclipse.jetty.servlets.CGI Servlet for a binary with a space in its name, the servlet will escape the command by wrapping it in quotation marks. This wrapped command, plus an optional command prefix, will then be executed through a call to Runtime.exec. If the original binary name provided by the user contains a quotation mark followed by a space, the resulting command line will contain multiple tokens instead of one. This issue was patched in version 9.4.52, 10.0.16, 11.0.16 and 12.0.0-beta2.",
+    "severity": "LOW"
+  },
+  "CVE-2023-39410": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "description": "When deserializing untrusted or corrupted data, it is possible for a reader to consume memory beyond the allowed constraints and thus lead to out of memory on the system.\n\nThis issue affects Java applications using Apache Avro Java SDK up to and including 1.11.2.  Users should update to apache-avro version 1.11.3 which addresses this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-39967": {
+    "cvss_score": 10.0,
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "description": "WireMock is a tool for mocking HTTP services. When certain request URLs like \u201c@127.0.0.1:1234\" are used in WireMock Studio configuration fields, the request might be forwarded to an arbitrary service reachable from WireMock\u2019s instance. There are 3 identified potential attack vectors: via \u201cTestRequester\u201d functionality, webhooks and the proxy mode. As we can control HTTP Method, HTTP Headers, HTTP Data, it allows sending requests with the default level of credentials for the WireMock instance. The vendor has discontinued the affected Wiremock studio product and there will be no fix. Users are advised to find alternatives.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2023-40167": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-130"
+    ],
+    "description": "Jetty is a Java based web server and servlet engine. Prior to versions 9.4.52, 10.0.16, 11.0.16, and 12.0.1, Jetty accepts the `+` character proceeding the content-length value in a HTTP/1 header field.  This is more permissive than allowed by the RFC and other servers routinely reject such requests with 400 responses.  There is no known exploit scenario, but it is conceivable that request smuggling could result if jetty is used in combination with a server that does not close the connection after sending such a 400 response. Versions 9.4.52, 10.0.16, 11.0.16, and 12.0.1 contain a patch for this issue. There is no workaround as there is no known exploit scenario.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-41327": {
+    "cvss_score": 4.6,
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "description": "WireMock is a tool for mocking HTTP services. WireMock can be configured to only permit proxying (and therefore recording) to certain addresses. This is achieved via a list of allowed address rules and a list of denied address rules, where the allowed list is evaluated first. \n\nUntil WireMock Webhooks Extension 3.0.0-beta-15, the filtering of target addresses from the proxy mode DID NOT work for Webhooks, so the users were potentially vulnerable regardless of the `limitProxyTargets` settings. Via the WireMock webhooks configuration, POST requests from a webhook might be forwarded to an arbitrary service reachable from WireMock\u2019s instance. For example, If someone is running the WireMock docker Container inside a private cluster, they can trigger internal POST requests against unsecured APIs or even against secure ones by passing a token, discovered using another exploit, via authentication headers. This issue has been addressed in versions 2.35.1 and 3.0.3 of wiremock. Wiremock studio has been discontinued and will not see a fix. Users unable to upgrade should use external firewall rules to define the list of permitted destinations.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-41329": {
+    "cvss_score": 3.9,
+    "cwe_ids": [
+      "CWE-290"
+    ],
+    "description": "WireMock is a tool for mocking HTTP services. The proxy mode of WireMock, can be protected by the network restrictions configuration, as documented in Preventing proxying to and recording from specific target addresses. These restrictions can be configured using the domain names, and in such a case the configuration is vulnerable to the DNS rebinding attacks. A similar patch was applied in WireMock 3.0.0-beta-15 for the WireMock Webhook Extensions. The root cause of the attack is a defect in the logic which allows for a race condition triggered by a DNS server whose address expires in between the initial validation and the outbound network request that might go to a domain that was supposed to be prohibited. Control over a DNS service is required to exploit this attack, so it has high execution complexity and limited impact. This issue has been addressed in version 2.35.1 of wiremock-jre8 and wiremock-jre8-standalone, version 3.0.3 of wiremock and wiremock-standalone, version 2.6.1 of the python version of wiremock, and versions 2.35.1-1 and 3.0.3-1 of the wiremock/wiremock Docker container. Users are advised to upgrade. Users unable to upgrade should either configure firewall rules to define the list of permitted destinations or to configure WireMock to use IP addresses instead of the domain names.",
+    "severity": "LOW"
+  },
+  "CVE-2023-41900": {
+    "cvss_score": 3.5,
+    "cwe_ids": [
+      "CWE-1390",
+      "CWE-287"
+    ],
+    "description": "Jetty is a Java based web server and servlet engine. Versions 9.4.21 through 9.4.51, 10.0.15, and 11.0.15 are vulnerable to weak authentication. If a Jetty `OpenIdAuthenticator` uses the optional nested `LoginService`, and that `LoginService` decides to revoke an already authenticated user, then the current request will still treat the user as authenticated. The authentication is then cleared from the session and subsequent requests will not be treated as authenticated. So a request on a previously authenticated session could be allowed to bypass authentication after it had been rejected by the `LoginService`. This impacts usages of the jetty-openid which have configured a nested `LoginService` and where that `LoginService` will is capable of rejecting previously authenticated users. Versions 9.4.52, 10.0.16, and 11.0.16 have a patch for this issue.",
+    "severity": "LOW"
+  },
+  "CVE-2023-42282": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "description": "The ip package before 1.1.9 for Node.js might allow SSRF because some IP addresses (such as 0x7f.1) are improperly categorized as globally routable via isPublic.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2023-4236": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-617"
+    ],
+    "description": "A flaw in the networking code handling DNS-over-TLS queries may cause `named` to terminate unexpectedly due to an assertion failure. This happens when internal data structures are incorrectly reused under significant DNS-over-TLS query load.\nThis issue affects BIND 9 versions 9.18.0 through 9.18.18 and 9.18.11-S1 through 9.18.18-S1.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-42503": {
+    "cvss_score": 5.5,
+    "cwe_ids": [
+      "CWE-20",
+      "CWE-400"
+    ],
+    "description": "Improper Input Validation, Uncontrolled Resource Consumption vulnerability in Apache Commons Compress in TAR parsing.This issue affects Apache Commons Compress:\u00a0from 1.22 before 1.24.0.\n\nUsers are recommended to upgrade to version 1.24.0, which fixes the issue.\n\nA third party can create a malformed TAR file by manipulating file modification times headers, which when parsed with Apache Commons Compress, will cause a denial of service issue via CPU consumption.\n\nIn version 1.22 of Apache Commons Compress, support was added for file modification times with higher precision (issue # COMPRESS-612 [1]). The format for the PAX extended headers carrying this data consists of two numbers separated by a period [2], indicating seconds and subsecond precision (for example \u201c1647221103.5998539\u201d). The impacted fields are \u201catime\u201d, \u201cctime\u201d, \u201cmtime\u201d and \u201cLIBARCHIVE.creationtime\u201d. No input validation is performed prior to the parsing of header values.\n\nParsing of these numbers uses the BigDecimal [3] class from the JDK which has a publicly known algorithmic complexity issue when doing operations on large numbers, causing denial of service (see issue # JDK-6560193 [4]). A third party can manipulate file time headers in a TAR file by placing a number with a very long fraction (300,000 digits) or a number with exponent notation (such as \u201c9e9999999\u201d) within a file modification time header, and the parsing of files with these headers will take hours instead of seconds, leading to a denial of service via exhaustion of CPU resources. This issue is similar to CVE-2012-2098 [5].\n\n[1]:  https://issues.apache.org/jira/browse/COMPRESS-612 \n[2]:  https://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html#tag_20_92_13_05 \n[3]:  https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html \n[4]:  https://bugs.openjdk.org/browse/JDK-6560193 \n[5]:  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-2098 \n\nOnly applications using CompressorStreamFactory class (with auto-detection of file types), TarArchiveInputStream and TarFile classes to parse TAR files are impacted. Since this code was introduced in v1.22, only that version and later versions are impacted.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-43642": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "snappy-java is a Java port of the snappy, a fast C++ compresser/decompresser developed by Google. The SnappyInputStream was found to be vulnerable to Denial of Service (DoS) attacks when decompressing data with a too large chunk size. Due to missing upper bound check on chunk length, an unrecoverable fatal error can occur. All versions of snappy-java including the latest released version 1.1.10.3 are vulnerable to this issue. A fix has been introduced in commit `9f8c3cf74` which will be included in the 1.1.10.4 release. Users are advised to upgrade. Users unable to upgrade should only accept compressed data from trusted sources.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-43646": {
+    "cvss_score": 8.6,
+    "cwe_ids": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "description": "get-func-name is a module to retrieve a function's name securely and consistently both in NodeJS and the browser. Versions prior to 2.0.1 are subject to a regular expression denial of service (redos) vulnerability which may lead to a denial of service when parsing malicious input. This vulnerability can be exploited when there is an imbalance in parentheses, which results in excessive backtracking and subsequently increases the CPU load and processing time significantly. This vulnerability can be triggered using the following input: '\\t'.repeat(54773) + '\\t/function/i'. This issue has been addressed in commit `f934b228b` which has been included in releases from 2.0.1. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-44270": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-74"
+    ],
+    "description": "An issue was discovered in PostCSS before 8.4.31. The vulnerability affects linters using PostCSS to parse external untrusted CSS. An attacker can prepare CSS in such a way that it will contains parts parsed by PostCSS as a CSS comment. After processing by PostCSS, it will be included in the PostCSS output in CSS nodes (rules, properties) despite being included in a comment.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-44487": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "The HTTP/2 protocol allows a denial of service (server resource consumption) because request cancellation can reset many streams quickly, as exploited in the wild in August through October 2023.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-45857": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-352"
+    ],
+    "description": "An issue discovered in Axios 1.5.1 inadvertently reveals the confidential XSRF-TOKEN stored in cookies by including it in the HTTP header X-XSRF-TOKEN for every request made to any host allowing attackers to view sensitive information.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-45859": {
+    "cvss_score": 7.6,
+    "cwe_ids": [
+      "CWE-922"
+    ],
+    "description": "In Hazelcast through 4.1.10, 4.2 through 4.2.8, 5.0 through 5.0.5, 5.1 through 5.1.7, 5.2 through 5.2.4, and 5.3 through 5.3.2, some client operations don't check permissions properly, allowing authenticated users to access data stored in the cluster.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-45860": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "In Hazelcast Platform through 5.3.4, a security issue exists within the SQL mapping for the CSV File Source connector. This issue arises from inadequate permission checking, which could enable unauthorized clients to access data from files stored on a member's filesystem.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-46695": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "An issue was discovered in Django 3.2 before 3.2.23, 4.1 before 4.1.13, and 4.2 before 4.2.7. The NFKC normalization is slow on Windows. As a consequence, django.contrib.auth.forms.UsernameField is subject to a potential DoS (denial of service) attack via certain inputs with a very large number of Unicode characters.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-4853": {
+    "cvss_score": 8.1,
+    "cwe_ids": [
+      "CWE-148",
+      "CWE-863"
+    ],
+    "description": "A flaw was found in Quarkus where HTTP security policies are not sanitizing certain character permutations correctly when accepting requests, resulting in incorrect evaluation of permissions. This issue could allow an attacker to bypass the security policy altogether, resulting in unauthorized endpoint access and possibly a denial of service.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-49083": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-476"
+    ],
+    "description": "cryptography is a package designed to expose cryptographic primitives and recipes to Python developers. Calling `load_pem_pkcs7_certificates` or `load_der_pkcs7_certificates` could lead to a NULL-pointer dereference and segfault. Exploitation of this vulnerability poses a serious risk of Denial of Service (DoS) for any application attempting to deserialize a PKCS7 blob/certificate. The consequences extend to potential disruptions in system availability and stability. This vulnerability has been patched in version 41.0.6.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-50387": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "Certain DNSSEC aspects of the DNS protocol (in RFC 4033, 4034, 4035, 6840, and related RFCs) allow remote attackers to cause a denial of service (CPU consumption) via one or more DNSSEC responses, aka the \"KeyTrap\" issue. One of the concerns is that, when there is a zone with many DNSKEY and RRSIG records, the protocol specification implies that an algorithm must evaluate all combinations of DNSKEY and RRSIG records.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-5072": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "Denial of Service  in JSON-Java versions up to and including 20230618. \u00a0A bug in the parser means that an input string of modest size can lead to indefinite amounts of memory being used.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-50868": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "The Closest Encloser Proof aspect of the DNS protocol (in RFC 5155 when RFC 9276 guidance is skipped) allows remote attackers to cause a denial of service (CPU consumption for SHA-1 computations) via DNSSEC responses in a random subdomain attack, aka the \"NSEC3\" issue. The RFC 5155 specification implies that an algorithm must perform thousands of iterations of a hash function in certain situations.",
+    "severity": "HIGH"
+  },
+  "CVE-2023-51074": {
+    "cvss_score": 5.3,
+    "cwe_ids": [],
+    "description": "json-path v2.8.0 was discovered to contain a stack overflow via the Criteria.parse() method.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2023-5379": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "A flaw was found in Undertow. When an AJP request is sent that exceeds the max-header-size attribute in ajp-listener, JBoss EAP is marked in an error state by mod_cluster in httpd, causing JBoss EAP to close the TCP connection without returning an AJP response. This happens because mod_proxy_cluster marks the JBoss EAP instance as an error worker when the TCP connection is closed from the backend after sending the AJP request without receiving an AJP response, and stops forwarding. This issue could allow a malicious user could to repeatedly send requests that exceed the max-header-size, causing a Denial of Service (DoS).",
+    "severity": "HIGH"
+  },
+  "CVE-2023-5685": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "A flaw was found in XNIO. The XNIO NotifierState that can cause a Stack Overflow Exception when the chain of notifier states becomes problematically large can lead to uncontrolled resource management and a possible denial of service (DoS).",
+    "severity": "HIGH"
+  },
+  "CVE-2023-6378": {
+    "cvss_score": 7.1,
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "description": "A serialization vulnerability in logback receiver component part of \nlogback version 1.4.11 allows an attacker to mount a Denial-Of-Service \nattack by sending poisoned data.\n\n",
+    "severity": "HIGH"
+  },
+  "CVE-2023-6481": {
+    "cvss_score": 7.1,
+    "cwe_ids": [],
+    "description": "A serialization vulnerability in logback receiver component part of \nlogback version 1.4.13,\u00a01.3.13 and\u00a01.2.12 allows an attacker to mount a Denial-Of-Service \nattack by sending poisoned data.\n\n",
+    "severity": "HIGH"
+  },
+  "CVE-2024-10270": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "A vulnerability was found in the Keycloak-services package. If untrusted data is passed to the SearchQueryUtils method, it could lead to a denial of service (DoS) scenario by exhausting system resources due to a Regex complexity.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-1459": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-24"
+    ],
+    "description": "A path traversal vulnerability was found in Undertow. This issue may allow a remote attacker to append a specially-crafted sequence to an HTTP request for an application deployed to JBoss EAP, which may permit access to privileged or restricted files and directories.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-1597": {
+    "cvss_score": 10.0,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "pgjdbc, the PostgreSQL JDBC Driver, allows attacker to inject SQL if using PreferQueryMode=SIMPLE. Note this is not the default. In the default mode there is no vulnerability. A placeholder for a numeric value must be immediately preceded by a minus. There must be a second placeholder for a string value after the first placeholder; both must be on the same line. By constructing a matching string payload, the attacker can inject SQL to alter the query,bypassing the protections that parameterized queries bring against SQL Injection attacks. Versions before 42.7.2, 42.6.1, 42.5.5, 42.4.4, 42.3.9, and 42.2.28 are affected.",
+    "severity": "CRITICAL"
+  },
+  "CVE-2024-1635": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "A vulnerability was found in Undertow. This vulnerability impacts a server that supports the wildfly-http-client protocol. Whenever a malicious user opens and closes a connection with the HTTP port of the server and then closes the connection immediately, the server will end with both memory and open file limits exhausted at some point, depending on the amount of memory available. \r\n\r\nAt HTTP upgrade to remoting, the WriteTimeoutStreamSinkConduit leaks connections if RemotingConnection is closed by Remoting ServerConnectionOpenListener. Because the remoting connection originates in Undertow as part of the HTTP upgrade, there is an external layer to the remoting connection. This connection is unaware of the outermost layer when closing the connection during the connection opening procedure. Hence, the Undertow WriteTimeoutStreamSinkConduit is not notified of the closed connection in this scenario. Because WriteTimeoutStreamSinkConduit creates a timeout task, the whole dependency tree leaks via that task, which is added to XNIO WorkerThread. So, the workerThread points to the Undertow conduit, which contains the connections and causes the leak.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-21503": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333",
+      "CWE-75"
+    ],
+    "description": "Versions of the package black before 24.3.0 are vulnerable to Regular Expression Denial of Service (ReDoS) via the lines_with_leading_tabs_expanded function in the strings.py file. An attacker could exploit this vulnerability by crafting a malicious input that causes a denial of service.\r\rExploiting this vulnerability is possible when running Black on untrusted input, or if you habitually put thousands of leading tab characters in your docstrings.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-21631": {
+    "cvss_score": 6.5,
+    "cwe_ids": [
+      "CWE-1104",
+      "CWE-190",
+      "CWE-20"
+    ],
+    "description": "Vapor is an HTTP web framework for Swift. Prior to version 4.90.0, Vapor's `vapor_urlparser_parse` function uses `uint16_t` indexes when parsing a URI's components, which may cause integer overflows when parsing untrusted inputs. This vulnerability does not affect Vapor directly but could impact applications relying on the URI type for validating user input. The URI type is used in several places in Vapor. A developer may decide to use URI to represent a URL in their application (especially if that URL is then passed to the HTTP Client) and rely on its public properties and methods. However, URI may fail to properly parse a valid (albeit abnormally long) URL, due to string ranges being converted to 16-bit integers. An attacker may use this behavior to trick the application into accepting a URL to an untrusted destination. By padding the port number with zeros, an attacker can cause an integer overflow to occur when the URL authority is parsed and, as a result, spoof the host. Version 4.90.0 contains a patch for this issue. As a workaround, validate user input before parsing as a URI or, if possible, use Foundation's `URL` and `URLComponents` utilities.\n",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-22201": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400",
+      "CWE-770"
+    ],
+    "description": "Jetty is a Java based web server and servlet engine. An HTTP/2 SSL connection that is established and TCP congested will be leaked when it times out. An attacker can cause many connections to end up in this state, and the server may run out of file descriptors, eventually causing the server to stop accepting new connections from valid clients. The vulnerability is patched in 9.4.54, 10.0.20, 11.0.20, and 12.0.6.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-22243": {
+    "cvss_score": 8.1,
+    "cwe_ids": [
+      "CWE-601"
+    ],
+    "description": "Applications that use UriComponentsBuilder\u00a0to parse an externally provided URL (e.g. through a query parameter) AND\u00a0perform validation checks on the host of the parsed URL may be vulnerable to a  open redirect https://cwe.mitre.org/data/definitions/601.html \u00a0attack or to a SSRF attack if the URL is used after passing validation checks.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-22259": {
+    "cvss_score": 8.1,
+    "cwe_ids": [
+      "CWE-601"
+    ],
+    "description": "Applications that use UriComponentsBuilder in Spring Framework\u00a0to parse an externally provided URL (e.g. through a query parameter) AND\u00a0perform validation checks on the host of the parsed URL may be vulnerable to a  open redirect https://cwe.mitre.org/data/definitions/601.html \u00a0attack or to a SSRF attack if the URL is used after passing validation checks.\n\nThis is the same as  CVE-2024-22243 https://spring.io/security/cve-2024-22243 , but with different input.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-22871": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "description": "An issue in Clojure versions 1.20 to 1.12.0-alpha5 allows an attacker to cause a denial of service (DoS) via the clojure.core$partial$fn__5920 function.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-24680": {
+    "cvss_score": 7.5,
+    "cwe_ids": [],
+    "description": "An issue was discovered in Django 3.2 before 3.2.24, 4.2 before 4.2.10, and Django 5.0 before 5.0.2. The intcomma template filter was subject to a potential denial-of-service attack when used with very long strings.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-25062": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-416"
+    ],
+    "description": "An issue was discovered in libxml2 before 2.11.7 and 2.12.x before 2.12.5. When using the XML Reader interface with DTD validation and XInclude expansion enabled, processing crafted XML documents can lead to an xmlValidatePopElement use-after-free.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-25126": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "Rack is a modular Ruby web server interface. Carefully crafted content type headers can cause Rack\u2019s media type parser to take much longer than expected, leading to a possible denial of service vulnerability (ReDos 2nd degree polynomial). This vulnerability is patched in 3.0.9.1 and 2.2.8.1.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-25638": {
+    "cvss_score": 8.9,
+    "cwe_ids": [
+      "CWE-345",
+      "CWE-349"
+    ],
+    "description": "dnsjava is an implementation of DNS in Java. Records in DNS replies are not checked for their relevance to the query, allowing an attacker to respond with RRs from different zones. This vulnerability is fixed in 3.6.0.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-25710": {
+    "cvss_score": 8.1,
+    "cwe_ids": [
+      "CWE-835"
+    ],
+    "description": "Loop with Unreachable Exit Condition ('Infinite Loop') vulnerability in Apache Commons Compress.This issue affects Apache Commons Compress: from 1.3 through 1.25.0.\n\nUsers are recommended to upgrade to version 1.26.0 which fixes the issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-26130": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-476"
+    ],
+    "description": "cryptography is a package designed to expose cryptographic primitives and recipes to Python developers. Starting in version 38.0.0 and prior to version 42.0.4, if `pkcs12.serialize_key_and_certificates` is called with both a certificate whose public key did not match the provided private key and an `encryption_algorithm` with `hmac_hash` set (via `PrivateFormat.PKCS12.encryption_builder().hmac_hash(...)`, then a NULL pointer dereference would occur, crashing the Python process. This has been resolved in version 42.0.4, the first version in which a `ValueError` is properly raised.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-26141": {
+    "cvss_score": 5.8,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "Rack is a modular Ruby web server interface. Carefully crafted Range headers can cause a server to respond with an unexpectedly large response. Responding with such large responses could lead to a denial of service issue. Vulnerable applications will use the `Rack::File` middleware or the `Rack::Utils.byte_ranges` methods (this includes Rails applications). The vulnerability is fixed in 3.0.9.1 and 2.2.8.1.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-26146": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "Rack is a modular Ruby web server interface. Carefully crafted headers can cause header parsing in Rack to take longer than expected resulting in a possible denial of service issue. Accept and Forwarded headers are impacted. Ruby 3.2 has mitigations for this problem, so Rack applications using Ruby 3.2 or newer are unaffected. This vulnerability is fixed in 2.0.9.4, 2.1.4.4, 2.2.8.1, and 3.0.9.1.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-26308": {
+    "cvss_score": 5.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "Allocation of Resources Without Limits or Throttling vulnerability in Apache Commons Compress.This issue affects Apache Commons Compress: from 1.21 before 1.26.\n\nUsers are recommended to upgrade to version 1.26, which fixes the issue.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-27316": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-770"
+    ],
+    "description": "HTTP/2 incoming headers exceeding the limit are temporarily buffered in nghttp2 in order to generate an informative HTTP 413 response. If a client does not stop sending headers, this leads to memory exhaustion.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-27351": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "In Django 3.2 before 3.2.25, 4.2 before 4.2.11, and 5.0 before 5.0.3, the django.utils.text.Truncator.words() method (with html=True) and the truncatewords_html template filter are subject to a potential regular expression denial-of-service attack via a crafted string. NOTE: this issue exists because of an incomplete fix for CVE-2019-14232 and CVE-2023-43665.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-2965": {
+    "cvss_score": 4.7,
+    "cwe_ids": [
+      "CWE-674"
+    ],
+    "description": "A Denial-of-Service (DoS) vulnerability exists in the `SitemapLoader` class of the `langchain-ai/langchain` repository, affecting all versions. The `parse_sitemap` method, responsible for parsing sitemaps and extracting URLs, lacks a mechanism to prevent infinite recursion when a sitemap URL refers to the current sitemap itself. This oversight allows for the possibility of an infinite loop, leading to a crash by exceeding the maximum recursion depth in Python. This vulnerability can be exploited to occupy server socket/port resources and crash the Python process, impacting the availability of services relying on this functionality.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-29857": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-125"
+    ],
+    "description": "An issue was discovered in ECCurve.java and ECCurve.cs in Bouncy Castle Java (BC Java) before 1.78, BC Java LTS before 2.73.6, BC-FJA before 1.0.2.5, and BC C# .Net before 2.3.1. Importing an EC certificate with crafted F2m parameters can lead to excessive CPU consumption during the evaluation of the curve parameters.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-30171": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-203"
+    ],
+    "description": "An issue was discovered in Bouncy Castle Java TLS API and JSSE Provider before 1.78. Timing-based leakage may occur in RSA based handshakes because of exception processing.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-30172": {
+    "cvss_score": 7.5,
+    "cwe_ids": [],
+    "description": "An issue was discovered in Bouncy Castle Java Cryptography APIs before 1.78. An Ed25519 verification code infinite loop can occur via a crafted signature and public key.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-3095": {
+    "cvss_score": 7.7,
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "description": "A Server-Side Request Forgery (SSRF) vulnerability exists in the Web Research Retriever component of langchain-ai/langchain version 0.1.5. The vulnerability arises because the Web Research Retriever does not restrict requests to remote internet addresses, allowing it to reach local addresses. This flaw enables attackers to execute port scans, access local services, and in some scenarios, read instance metadata from cloud environments. The vulnerability is particularly concerning as it can be exploited to abuse the Web Explorer server as a proxy for web attacks on third parties and interact with servers in the local network, including reading their response data. This could potentially lead to arbitrary code execution, depending on the nature of the local services. The vulnerability is limited to GET requests, as POST requests are not possible, but the impact on confidentiality, integrity, and availability is significant due to the potential for stolen credentials and state-changing interactions with internal APIs.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-32888": {
+    "cvss_score": 10.0,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "The Amazon JDBC Driver for Redshift is a Type 4 JDBC driver that provides database connectivity through the standard JDBC application program interfaces (APIs) available in the Java Platform, Enterprise Editions. Prior to version 2.1.0.28, SQL injection is possible when using the non-default connection property `preferQueryMode=simple` in combination with application code which has a vulnerable SQL that negates a parameter value. There is no vulnerability in the driver when using the default, extended query mode. Note that `preferQueryMode` is not a supported parameter in Redshift JDBC driver, and is inherited code from Postgres JDBC driver. Users who do not override default settings to utilize this unsupported query mode are not affected. This issue is patched in driver version 2.1.0.28. As a workaround, do not use the connection property `preferQueryMode=simple`. (NOTE: Those who do not explicitly specify a query mode use the default of extended query mode and are not affected by this issue.)",
+    "severity": "CRITICAL"
+  },
+  "CVE-2024-35195": {
+    "cvss_score": 5.6,
+    "cwe_ids": [
+      "CWE-670"
+    ],
+    "description": "Requests is a HTTP library. Prior to 2.32.0, when making requests through a Requests `Session`, if the first request is made with `verify=False` to disable cert verification, all subsequent requests to the same host will continue to ignore cert verification regardless of changes to the value of `verify`. This behavior will continue for the lifecycle of the connection in the connection pool. This vulnerability is fixed in 2.32.0.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-36114": {
+    "cvss_score": 8.6,
+    "cwe_ids": [
+      "CWE-125",
+      "CWE-787"
+    ],
+    "description": "Aircompressor is a library with ports of the Snappy, LZO, LZ4, and Zstandard compression algorithms to Java. All decompressor implementations of Aircompressor (LZ4, LZO, Snappy, Zstandard) can crash the JVM for certain input, and in some cases also leak the content of other memory of the Java process (which could contain sensitive information). When decompressing certain data, the decompressors try to access memory outside the bounds of the given byte arrays or byte buffers. Because Aircompressor uses the JDK class `sun.misc.Unsafe` to speed up memory access, no additional bounds checks are performed and this has similar security consequences as out-of-bounds access in C or C++, namely it can lead to non-deterministic behavior or crash the JVM. Users should update to Aircompressor 0.27 or newer where these issues have been fixed. When decompressing data from untrusted users, this can be exploited for a denial-of-service attack by crashing the JVM, or to leak other sensitive information from the Java process. There are no known workarounds for this issue.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-3651": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "A vulnerability was identified in the kjd/idna library, specifically within the `idna.encode()` function, affecting version 3.6. The issue arises from the function's handling of crafted input strings, which can lead to quadratic complexity and consequently, a denial of service condition. This vulnerability is triggered by a crafted input that causes the `idna.encode()` function to process the input with considerable computational load, significantly increasing the processing time in a quadratic manner relative to the input size.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-4067": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-1333"
+    ],
+    "description": "The NPM package `micromatch` prior to 4.0.8 is vulnerable to Regular Expression Denial of Service (ReDoS). The vulnerability occurs in `micromatch.braces()` in `index.js` because the pattern `.*` will greedily match anything. By passing a malicious payload, the pattern matching will keep backtracking to the input while it doesn't find the closing bracket. As the input size increases, the consumption time will also increase until it causes the application to hang or slow down. There was a merged fix but further testing shows the issue persists. This issue should be mitigated by using a safe pattern that won't start backtracking the regular expression due to greedy matching. This issue was fixed in version 4.0.8.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-4068": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1050",
+      "CWE-400"
+    ],
+    "description": "The NPM package `braces`, versions prior to 3.0.3, fails to limit the number of characters it can handle, which could lead to Memory Exhaustion. In `lib/parse.js,` if a malicious user sends \"imbalanced braces\" as input, the parsing will enter a loop, which will cause the program to start allocating heap memory without freeing it at any moment of the loop. Eventually, the JavaScript heap limit is reached, and the program will crash.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-41989": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "An issue was discovered in Django 5.0 before 5.0.8 and 4.2 before 4.2.15. The floatformat template filter is subject to significant memory consumption when given a string representation of a number in scientific notation with a large exponent.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-41990": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-130"
+    ],
+    "description": "An issue was discovered in Django 5.0 before 5.0.8 and 4.2 before 4.2.15. The urlize() and urlizetrunc() template filters are subject to a potential denial-of-service attack via very large inputs with a specific sequence of characters.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-41991": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-1284",
+      "CWE-130"
+    ],
+    "description": "An issue was discovered in Django 5.0 before 5.0.8 and 4.2 before 4.2.15. The urlize and urlizetrunc template filters, and the AdminURLFieldWidget widget, are subject to a potential denial-of-service attack via certain inputs with a very large number of Unicode characters.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-42": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "CVE-2024-42005": {
+    "cvss_score": 7.3,
+    "cwe_ids": [
+      "CWE-89"
+    ],
+    "description": "An issue was discovered in Django 5.0 before 5.0.8 and 4.2 before 4.2.15. QuerySet.values() and values_list() methods on models with a JSONField are subject to SQL injection in column aliases via a crafted JSON object key as a passed *arg.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-43788": {
+    "cvss_score": 6.4,
+    "cwe_ids": [
+      "CWE-79"
+    ],
+    "description": "Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. The webpack developers have discovered a DOM Clobbering vulnerability in Webpack\u2019s `AutoPublicPathRuntimeModule`. The DOM Clobbering gadget in the module can lead to cross-site scripting (XSS) in web pages where scriptless attacker-controlled HTML elements (e.g., an `img` tag with an unsanitized `name` attribute) are present. Real-world exploitation of this gadget has been observed in the Canvas LMS which allows a XSS attack to happen through a javascript code compiled by Webpack (the vulnerable part is from Webpack). DOM Clobbering is a type of code-reuse attack where the attacker first embeds a piece of non-script, seemingly benign HTML markups in the webpage (e.g. through a post or comment) and leverages the gadgets (pieces of js code) living in the existing javascript code to transform it into executable code. This vulnerability can lead to cross-site scripting (XSS) on websites that include Webpack-generated files and allow users to inject certain scriptless HTML tags with improperly sanitized name or id attributes. This issue has been addressed in release version 5.94.0. All users are advised to upgrade. There are no known workarounds for this issue.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-45230": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-120"
+    ],
+    "description": "An issue was discovered in Django 5.1 before 5.1.1, 5.0 before 5.0.9, and 4.2 before 4.2.16. The urlize() and urlizetrunc() template filters are subject to a potential denial-of-service attack via very large inputs with a specific sequence of characters.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-45231": {
+    "cvss_score": 5.3,
+    "cwe_ids": [
+      "CWE-203"
+    ],
+    "description": "An issue was discovered in Django v5.1.1, v5.0.9, and v4.2.16. The django.contrib.auth.forms.PasswordResetForm class, when used in a view implementing password reset flows, allows remote attackers to enumerate user e-mail addresses by sending password reset requests and observing the outcome (only when e-mail sending is consistently failing).",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-47535": {
+    "cvss_score": 5.5,
+    "cwe_ids": [
+      "CWE-400"
+    ],
+    "description": "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers & clients. An unsafe reading of environment file could potentially cause a denial of service in Netty. When loaded on an Windows application, Netty attempts to load a file that does not exist. If an attacker creates such a large file, the Netty application crashes. This vulnerability is fixed in 4.1.115.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-47764": {
+    "cvss_score": null,
+    "cwe_ids": [
+      "CWE-74"
+    ],
+    "description": "cookie is a basic HTTP cookie parser and serializer for HTTP servers. The cookie name could be used to set other fields of the cookie, resulting in an unexpected cookie value. A similar escape can be used for path and domain, which could be abused to alter other fields of the cookie. Upgrade to 0.7.0, which updates the validation for name, path, and domain.",
+    "severity": null
+  },
+  "CVE-2024-6162": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-488"
+    ],
+    "description": "A vulnerability was found in Undertow, where URL-encoded request paths can be mishandled during concurrent requests on the AJP listener. This issue arises because the same buffer is used to decode the paths for multiple requests simultaneously, leading to incorrect path information being processed. As a result, the server may attempt to access the wrong path, causing errors such as \"404 Not Found\" or other application failures. This flaw can potentially lead to a denial of service, as legitimate resources become inaccessible due to the path mix-up.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-6763": {
+    "cvss_score": 3.7,
+    "cwe_ids": [
+      "CWE-1286"
+    ],
+    "description": "Eclipse Jetty is a lightweight, highly scalable, Java-based web server and Servlet engine . It includes a utility class, HttpURI, for URI/URL parsing.\n\nThe HttpURI class does insufficient validation on the authority segment of a URI.  However the behaviour of HttpURI\n differs from the common browsers in how it handles a URI that would be \nconsidered invalid if fully validated against the RRC.  Specifically HttpURI\n and the browser may differ on the value of the host extracted from an \ninvalid URI and thus a combination of Jetty and a vulnerable browser may\n be vulnerable to a open redirect attack or to a SSRF attack if the URI \nis used after passing validation checks.",
+    "severity": "LOW"
+  },
+  "CVE-2024-7254": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-400",
+      "CWE-674",
+      "CWE-787"
+    ],
+    "description": "Any project that parses untrusted Protocol Buffers data\u00a0containing an arbitrary number of nested groups / series of SGROUP\u00a0tags can corrupted by exceeding the stack limit i.e. StackOverflow. Parsing nested groups as unknown fields with DiscardUnknownFieldsParser or Java Protobuf Lite parser, or against Protobuf map fields, creates unbounded recursions that can be abused by an attacker.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-7885": {
+    "cvss_score": 7.5,
+    "cwe_ids": [
+      "CWE-362"
+    ],
+    "description": "A vulnerability was found in Undertow where the ProxyProtocolReadListener reuses the same StringBuilder instance across multiple requests. This issue occurs when the parseProxyProtocolV1 method processes multiple requests on the same HTTP connection. As a result, different requests may share the same StringBuilder instance, potentially leading to information leakage between requests or responses. In some cases, a value from a previous request or response may be erroneously reused, which could lead to unintended data exposure. This issue primarily results in errors and connection termination but creates a risk of data leakage in multi-request environments.",
+    "severity": "HIGH"
+  },
+  "CVE-2024-8184": {
+    "cvss_score": 5.9,
+    "cwe_ids": [
+      "CWE-400",
+      "CWE-770"
+    ],
+    "description": "There exists a security vulnerability in Jetty's ThreadLimitHandler.getRemote() which can be exploited by unauthorized users to cause remote denial-of-service (DoS) attack.  By repeatedly sending crafted requests, attackers can trigger OutofMemory errors and exhaust the server's memory.",
+    "severity": "MEDIUM"
+  },
+  "CVE-2024-8309": {
+    "cvss_score": 9.8,
+    "cwe_ids": [
+      "CWE-74",
+      "CWE-89"
+    ],
+    "description": "A vulnerability in the GraphCypherQAChain class of langchain-ai/langchain version 0.2.5 allows for SQL injection through prompt injection. This vulnerability can lead to unauthorized data manipulation, data exfiltration, denial of service (DoS) by deleting all data, breaches in multi-tenant security environments, and data integrity issues. Attackers can create, update, or delete nodes and relationships without proper authorization, extract sensitive data, disrupt services, access data across different tenants, and compromise the integrity of the database.",
+    "severity": "CRITICAL"
+  },
+  "cve-2021-44228": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-22965": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-22968": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-22970": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-22971": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-22976": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-22978": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-31690": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  },
+  "cve-2022-31692": {
+    "cvss_score": null,
+    "cwe_ids": [],
+    "description": "",
+    "severity": null
+  }
+}
