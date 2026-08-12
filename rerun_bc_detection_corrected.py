@@ -81,9 +81,9 @@ def main():
             else:
                 new_syntactic = detect_python_bcs(rerun_row, logger)
             checkpoint[ck_key] = new_syntactic
-            if idx % 20 == 0 or idx == total:
+            if idx % 5 == 0 or idx == total:
                 write_json(CHECKPOINT_PATH, checkpoint)
-                print(f"  progress: {idx}/{total}")
+                print(f"  progress: {idx}/{total}", flush=True)
 
         merged = dict(row)
         merged["has_bc"] = new_syntactic["has_bc"]

@@ -75,14 +75,21 @@ def main():
     print(f"  {analyzed_n}/{total} = {100*coverage:.1f}% of PRs had BC detection genuinely execute")
     tables.append({"metric": "pipeline_coverage_rate", "value": coverage, "ci_low": None, "ci_high": None, "n": total})
 
-    # --- Behavioral BC, restricted to analyzed_ok (see Phase 4 for harness status) ---
-    beh_n = int(analyzed["has_behavioral_bc"].sum())
-    tests_available_n = int(analyzed["tests_available"].sum()) if "tests_available" in analyzed else 0
-    b_low, b_high = wilson_ci(beh_n, analyzed_n)
-    print("=== Behavioral BC (informational only until Phase 4 harness fix lands) ===")
-    print(f"  {beh_n}/{analyzed_n} = {pct(beh_n, analyzed_n):.1f}% [95% CI {100*b_low:.1f}-{100*b_high:.1f}]")
-    print(f"  tests_available=True for {tests_available_n}/{analyzed_n} analyzed rows")
-    tables.append({"metric": "behavioral_bc_prevalence_PRE_PHASE4", "value": beh_n / analyzed_n if analyzed_n else 0, "ci_low": b_low, "ci_high": b_high, "n": analyzed_n})
+    # --- Behavioral BC: NOT REPORTED, see Phase 4 diagnostic conclusion ---
+    # Phase 4 fixed two structural harness bugs (head_sha never fetched;
+    # PyPI test env never provisioned) but a diagnostic sample then showed
+    # tests_pass_old=False for ~21/21 rows almost entirely due to environment
+    # confounds (missing test-only deps for PyPI, Maven Central rate-limiting
+    # on cold multi-module builds) unrelated to the PR under study — not real
+    # pre-existing failures or behavioral BCs. Reporting a percentage from
+    # this data would be actively misleading. Per the rectification doc's
+    # explicit fallback for this scenario, behavioral BC is intentionally
+    # left unmeasured here; see logs/rectification_decisions.log and the
+    # paper's Threats to Validity section for the full rationale.
+    print("=== Behavioral BC: NOT REPORTED (see logs/rectification_decisions.log) ===")
+    print("  Harness structurally fixed, but pass/fail signal is confounded by")
+    print("  environment issues, not real BC signal. Left as future work.")
+    tables.append({"metric": "behavioral_bc_prevalence_NOT_MEASURED", "value": None, "ci_low": None, "ci_high": None, "n": analyzed_n})
 
     # --- Ecosystem breakdown (analyzed_ok only) ---
     eco_table = pd.crosstab(analyzed["ecosystem"], analyzed["has_bc"])

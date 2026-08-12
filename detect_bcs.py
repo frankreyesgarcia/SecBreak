@@ -42,35 +42,81 @@ def run(cmd: List[str], cwd: Optional[Path] = None, timeout: Optional[int] = Non
     )
 
 
+MAVEN_CENTRAL_BASE = "https://repo.maven.apache.org/maven2"
+
+
 def maven_copy(artifact: str, out_dir: Path) -> Optional[Path]:
-    out_dir.mkdir(parents=True, exist_ok=True)
-    result = run(
-        [
-            "mvn",
-            "dependency:copy",
-            f"-Dartifact={artifact}:jar",
-            f"-DoutputDirectory={out_dir}",
-        ],
-        timeout=300,
-    )
-    if result.returncode != 0:
+    """Downloads a jar directly from Maven Central via HTTPS instead of
+    `mvn dependency:copy`. In this environment, `mvn dependency:copy` (and
+    even plain plugin resolution, i.e. before it even reaches the target
+    artifact) hangs indefinitely: Maven selects a legacy WagonTransporter
+    that never opens a socket to repo.maven.apache.org (confirmed via `ss`
+    while it hung), even though a direct curl/HTTPS request to the exact
+    same URL resolves in well under a second and `mvn test` reactor builds
+    (a different resolver code path) download from Central successfully.
+    Bypassing the dependency-plugin mojo entirely sidesteps whatever is
+    broken in that specific resolution path.
+    """
+    import urllib.parse
+    import urllib.request
+    import urllib.error
+
+    parts = artifact.split(":")
+    if len(parts) != 3:
         return None
-    jars = list(out_dir.glob("*.jar"))
-    return jars[0] if jars else None
+    group_id, artifact_id, version = parts
+    if not group_id or not artifact_id or not version:
+        return None
+
+    group_path = group_id.replace(".", "/")
+    filename = f"{artifact_id}-{version}.jar"
+    url = f"{MAVEN_CENTRAL_BASE}/{urllib.parse.quote(group_path)}/{urllib.parse.quote(artifact_id)}/{urllib.parse.quote(version)}/{urllib.parse.quote(filename)}"
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    dest = out_dir / filename
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "SecBreak-rectification/1.0"})
+        with urllib.request.urlopen(req, timeout=30) as resp, dest.open("wb") as fh:
+            shutil.copyfileobj(resp, fh)
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
+        dest.unlink(missing_ok=True)
+        return None
+    if not dest.exists() or dest.stat().st_size == 0:
+        return None
+    return dest
+
+
+def resolve_java_bin() -> str:
+    """Roseau's class files require Java >=25 (UnsupportedClassVersionError
+    otherwise); the default `java` on PATH in this environment is Java 21.
+    If JAVA_BIN isn't explicitly set, auto-discover an sdkman Java 25
+    candidate instead of silently falling back to a `java` that can't run
+    Roseau at all — that exact silent-fallback caused an entire rerun to
+    produce zero roseau results before this was caught."""
+    env_bin = os.environ.get("JAVA_BIN")
+    if env_bin:
+        return env_bin
+    sdkman_java = Path.home() / ".sdkman" / "candidates" / "java"
+    if sdkman_java.exists():
+        candidates = sorted(sdkman_java.glob("25.*"), reverse=True)
+        for candidate in candidates:
+            java_path = candidate / "bin" / "java"
+            if java_path.exists():
+                return str(java_path)
+    return "java"
 
 
 def roseau_available() -> Optional[Path]:
+    java_bin = resolve_java_bin()
     env_path = os.environ.get("ROSEAU_JAR")
     if env_path and Path(env_path).exists():
         candidate = Path(env_path)
-        java_bin = os.environ.get("JAVA_BIN", "java")
         probe = run([java_bin, "-jar", str(candidate), "--help"], timeout=30)
         if probe.returncode == 0:
             return candidate
         return None
     local = list(Path(".").glob("**/roseau-*.jar"))
     for candidate in local:
-        java_bin = os.environ.get("JAVA_BIN", "java")
         probe = run([java_bin, "-jar", str(candidate), "--help"], timeout=30)
         if probe.returncode == 0:
             return candidate
@@ -124,7 +170,7 @@ def detect_maven_bcs(row: Dict, logger) -> Dict:
         roseau_jar = roseau_available()
         if roseau_jar:
             out_path = CACHE_DIR / f"{pr_id}_roseau.json"
-            java_bin = os.environ.get("JAVA_BIN", "java")
+            java_bin = resolve_java_bin()
             result = run(
                 [
                     java_bin,
@@ -396,6 +442,23 @@ def behavioral_check(row: Dict, logger, check_flaky: bool = False, maven_timeout
             if old_results_2["tests_available"]:
                 flaky_old = old_results["passed"] != old_results_2["passed"]
 
+        # clone_repo() only fetches base_sha (--depth 1); head_sha's commit object
+        # is not present in the shallow history yet, so `git checkout head_sha`
+        # fails with "fatal: reference is not a tree" unless it's fetched first.
+        # This was silently swallowing tests_pass_new to None on essentially every
+        # row in the original harness.
+        fetch_head = run(["git", "fetch", "--depth", "1", "origin", row["head_sha"]], cwd=repo_dir, timeout=300)
+        _log_invocation(logger, f"{ctx}:fetch_head", ["git", "fetch", "--depth", "1", "origin", row["head_sha"]], repo_dir, fetch_head.returncode, 0.0, fetch_head.stdout, fetch_head.stderr, False)
+        if fetch_head.returncode != 0:
+            return {
+                "tests_available": True,
+                "tests_pass_old": old_results["passed"],
+                "tests_pass_new": None,
+                "test_failures_new": [],
+                "tests_timeout": old_results.get("tests_timeout", False),
+                "harness_error": "head_fetch_failed",
+                "flaky_old": flaky_old,
+            }
         checkout = run(["git", "checkout", row["head_sha"]], cwd=repo_dir, timeout=120)
         _log_invocation(logger, f"{ctx}:checkout_head", ["git", "checkout", row["head_sha"]], repo_dir, checkout.returncode, 0.0, checkout.stdout, checkout.stderr, False)
         if checkout.returncode != 0:

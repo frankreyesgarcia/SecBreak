@@ -9,6 +9,7 @@ token.txt
 logs/
 cache/
 repos/
+jars/*/
 
 data/progress_collect.json
 data/progress_bcs.json
