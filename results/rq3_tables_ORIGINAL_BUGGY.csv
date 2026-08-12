@@ -1,0 +1,8 @@
+metric,value
+merged_anyway_pct,29.62962962962963
+followup_7d_pct,25.925925925925927
+followup_30d_pct,29.62962962962963
+followup_90d_pct,29.62962962962963
+ci_fail_pct,0.0
+reverted_pct,11.11111111111111
+median_fix_days,0.9170081018518519
