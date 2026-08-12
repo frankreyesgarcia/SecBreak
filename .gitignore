@@ -2,6 +2,7 @@
 .pipeline_watchdog.lock
 __pycache__/
 *.pyc
+.venv/
 
 token.txt
 
@@ -11,4 +12,7 @@ repos/
 
 data/progress_collect.json
 data/progress_bcs.json
+data/progress_fix_coords.json
+data/progress_rerun_bcs.json
+data/phase4_diagnostic_results.jsonl
 

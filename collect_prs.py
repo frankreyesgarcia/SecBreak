@@ -80,6 +80,10 @@ def guarded_call(func, logger, progress: Dict, *args, **kwargs):
 
 
 def repo_has_ci(repo, logger, progress) -> bool:
+    """Checks for a non-empty .github/workflows directory only — this is a
+    presence-of-CI-configuration signal, not proof that CI ran or passed for
+    any specific PR. Paper wording should say "presence of a CI
+    configuration", not "continuous integration signals"."""
     try:
         contents = guarded_call(repo.get_contents, logger, progress, ".github/workflows")
         return isinstance(contents, list) and len(contents) > 0

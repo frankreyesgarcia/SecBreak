@@ -3,6 +3,7 @@ import os
 import shutil
 import subprocess
 import tempfile
+import time
 import venv
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -249,81 +250,182 @@ def clone_repo(repo_full_name: str, sha: str, target: Path) -> bool:
     return run(["git", "checkout", sha], cwd=target, timeout=120).returncode == 0
 
 
-def run_repo_tests(repo_path: Path, ecosystem: str) -> Dict:
+MAVEN_TEST_TIMEOUT_DEFAULT = 1800  # was 300s; too short for cold-.m2, full-suite runs (Phase 4 diagnosis)
+PYPI_TEST_TIMEOUT_DEFAULT = 1200
+PYPI_INSTALL_TIMEOUT_DEFAULT = 600
+
+PYTHON_PROJECT_MARKERS = [
+    "pytest.ini", "pyproject.toml", "setup.py", "setup.cfg",
+    "requirements.txt", "tox.ini", "Pipfile",
+]
+
+
+def _tail(text: str, limit: int = 4000) -> str:
+    return text[-limit:] if text else ""
+
+
+def _log_invocation(logger, ctx: str, cmd, cwd, returncode, elapsed, stdout, stderr, timed_out: bool):
+    if logger is None:
+        return
+    logger.info(
+        "[%s] cmd=%s cwd=%s returncode=%s elapsed=%.1fs timed_out=%s\n--- stdout tail ---\n%s\n--- stderr tail ---\n%s",
+        ctx, " ".join(cmd), cwd, returncode, elapsed, timed_out, _tail(stdout), _tail(stderr),
+    )
+
+
+def _prepare_python_venv(repo_path: Path, logger, ctx: str, install_timeout: int) -> Optional[Path]:
+    """Create a throwaway venv, install the repo's own deps + pytest into it.
+
+    Behavioral testing previously ran the bare `pytest` command against
+    PATH, with no guarantee pytest (or the repo's own dependencies) were
+    installed anywhere — that's why tests_available was False for 100% of
+    PyPI rows: run_repo_tests() raised FileNotFoundError, which propagated
+    up through behavioral_check()'s broad except-Exception and silently
+    became "tests_available: False" with no record of why.
+    """
+    venv_dir = repo_path.parent / f"{repo_path.name}_testenv"
+    shutil.rmtree(venv_dir, ignore_errors=True)
+    start = time.time()
+    try:
+        venv.EnvBuilder(with_pip=True).create(venv_dir)
+    except Exception as exc:
+        if logger:
+            logger.warning("[%s] venv creation failed: %s", ctx, exc)
+        return None
+    pip = venv_dir / "bin" / "pip"
+
+    install_cmds = [[str(pip), "install", "--quiet", "pytest"]]
+    if (repo_path / "pyproject.toml").exists() or (repo_path / "setup.py").exists():
+        install_cmds.append([str(pip), "install", "--quiet", "-e", "."])
+    elif (repo_path / "requirements.txt").exists():
+        install_cmds.append([str(pip), "install", "--quiet", "-r", "requirements.txt"])
+
+    for cmd in install_cmds:
+        try:
+            result = run(cmd, cwd=repo_path, timeout=install_timeout)
+        except subprocess.TimeoutExpired:
+            if logger:
+                logger.warning("[%s] install timed out: %s", ctx, " ".join(cmd))
+            return None
+        elapsed = time.time() - start
+        _log_invocation(logger, f"{ctx}:install", cmd, repo_path, result.returncode, elapsed, result.stdout, result.stderr, False)
+        if result.returncode != 0 and cmd is install_cmds[-1]:
+            # the repo's own install failed; pytest alone still lets us try collection,
+            # but record this so it's distinguishable from a harness bug.
+            if logger:
+                logger.warning("[%s] repo dependency install failed (returncode=%s)", ctx, result.returncode)
+    return venv_dir
+
+
+def run_repo_tests(repo_path: Path, ecosystem: str, logger=None, ctx: str = "", timeout: Optional[int] = None) -> Dict:
     if ecosystem == "maven":
         if not (repo_path / "pom.xml").exists():
-            return {"tests_available": False, "tests_timeout": False}
-        cmd = ["mvn", "test", "-DskipITs"]
+            if logger:
+                logger.info("[%s] no pom.xml at %s -> tests_available=False", ctx, repo_path)
+            return {"tests_available": False, "tests_timeout": False, "harness_error": "no_pom_xml"}
+        cmd = ["mvn", "test", "-B", "-fae"]
+        effective_timeout = timeout or MAVEN_TEST_TIMEOUT_DEFAULT
     else:
-        if not any((repo_path / name).exists() for name in ["pytest.ini", "pyproject.toml", "setup.py", "requirements.txt"]):
-            return {"tests_available": False, "tests_timeout": False}
-        cmd = ["pytest", "-q"]
+        if not any((repo_path / name).exists() for name in PYTHON_PROJECT_MARKERS):
+            if logger:
+                logger.info("[%s] no python project markers at %s -> tests_available=False", ctx, repo_path)
+            return {"tests_available": False, "tests_timeout": False, "harness_error": "no_python_project_markers"}
+        venv_dir = _prepare_python_venv(repo_path, logger, ctx, PYPI_INSTALL_TIMEOUT_DEFAULT)
+        if venv_dir is None:
+            return {"tests_available": False, "tests_timeout": False, "harness_error": "test_dependency_install_failed"}
+        cmd = [str(venv_dir / "bin" / "pytest"), "-q", "--maxfail=50"]
+        effective_timeout = timeout or PYPI_TEST_TIMEOUT_DEFAULT
+
+    start = time.time()
     try:
-        result = run(cmd, cwd=repo_path, timeout=300)
-        failed = []
-        for line in (result.stdout + "\n" + result.stderr).splitlines():
-            if "FAILED" in line and "::" in line:
-                failed.append(line.strip())
-        return {
-            "tests_available": True,
-            "tests_timeout": False,
-            "passed": result.returncode == 0,
-            "failures": failed[:50],
-        }
-    except subprocess.TimeoutExpired:
-        return {"tests_available": True, "tests_timeout": True, "passed": False, "failures": []}
+        result = run(cmd, cwd=repo_path, timeout=effective_timeout)
+    except subprocess.TimeoutExpired as exc:
+        elapsed = time.time() - start
+        _log_invocation(logger, ctx, cmd, repo_path, None, elapsed, exc.stdout or "", exc.stderr or "", True)
+        return {"tests_available": True, "tests_timeout": True, "passed": False, "failures": [], "elapsed_seconds": elapsed}
+    except FileNotFoundError as exc:
+        if logger:
+            logger.warning("[%s] command not found: %s (%s)", ctx, " ".join(cmd), exc)
+        return {"tests_available": False, "tests_timeout": False, "harness_error": f"command_not_found:{cmd[0]}"}
+
+    elapsed = time.time() - start
+    _log_invocation(logger, ctx, cmd, repo_path, result.returncode, elapsed, result.stdout, result.stderr, False)
+    failed = []
+    for line in (result.stdout + "\n" + result.stderr).splitlines():
+        if "FAILED" in line and "::" in line:
+            failed.append(line.strip())
+    return {
+        "tests_available": True,
+        "tests_timeout": False,
+        "passed": result.returncode == 0,
+        "failures": failed[:50],
+        "elapsed_seconds": elapsed,
+    }
 
 
-def behavioral_check(row: Dict, logger) -> Dict:
+def behavioral_check(row: Dict, logger, check_flaky: bool = False, maven_timeout: Optional[int] = None, pypi_timeout: Optional[int] = None) -> Dict:
     repo_name = row["repo_full_name"].replace("/", "_")
     repo_dir = REPOS_DIR / repo_name
+    ctx = f"{row['repo_full_name']}#{row['pr_number']}"
+    timeout = maven_timeout if row["ecosystem"] == "maven" else pypi_timeout
+    empty = {
+        "tests_available": False,
+        "tests_pass_old": None,
+        "tests_pass_new": None,
+        "test_failures_new": [],
+        "tests_timeout": False,
+        "harness_error": None,
+        "flaky_old": None,
+    }
     try:
         if repo_dir.exists():
             shutil.rmtree(repo_dir)
         if not clone_repo(row["repo_full_name"], row["base_sha"], repo_dir):
-            return {
-                "tests_available": False,
-                "tests_pass_old": None,
-                "tests_pass_new": None,
-                "test_failures_new": [],
-                "tests_timeout": False,
-            }
-        old_results = run_repo_tests(repo_dir, row["ecosystem"])
+            out = dict(empty)
+            out["harness_error"] = "clone_failed"
+            return out
+        old_results = run_repo_tests(repo_dir, row["ecosystem"], logger, f"{ctx}:old", timeout)
         if not old_results["tests_available"]:
-            return {
-                "tests_available": False,
-                "tests_pass_old": None,
-                "tests_pass_new": None,
-                "test_failures_new": [],
-                "tests_timeout": False,
-            }
-        if run(["git", "checkout", row["head_sha"]], cwd=repo_dir, timeout=120).returncode != 0:
+            out = dict(empty)
+            out["harness_error"] = old_results.get("harness_error")
+            return out
+
+        flaky_old = None
+        if check_flaky:
+            old_results_2 = run_repo_tests(repo_dir, row["ecosystem"], logger, f"{ctx}:old_rerun", timeout)
+            if old_results_2["tests_available"]:
+                flaky_old = old_results["passed"] != old_results_2["passed"]
+
+        checkout = run(["git", "checkout", row["head_sha"]], cwd=repo_dir, timeout=120)
+        _log_invocation(logger, f"{ctx}:checkout_head", ["git", "checkout", row["head_sha"]], repo_dir, checkout.returncode, 0.0, checkout.stdout, checkout.stderr, False)
+        if checkout.returncode != 0:
             return {
                 "tests_available": True,
                 "tests_pass_old": old_results["passed"],
                 "tests_pass_new": None,
                 "test_failures_new": [],
-                "tests_timeout": False,
+                "tests_timeout": old_results.get("tests_timeout", False),
+                "harness_error": "head_checkout_failed",
+                "flaky_old": flaky_old,
             }
-        new_results = run_repo_tests(repo_dir, row["ecosystem"])
+        new_results = run_repo_tests(repo_dir, row["ecosystem"], logger, f"{ctx}:new", timeout)
         return {
             "tests_available": True,
             "tests_pass_old": old_results["passed"],
             "tests_pass_new": new_results.get("passed"),
             "test_failures_new": new_results.get("failures", []),
             "tests_timeout": old_results.get("tests_timeout") or new_results.get("tests_timeout"),
+            "harness_error": new_results.get("harness_error"),
+            "flaky_old": flaky_old,
         }
     except Exception as exc:
-        logger.exception("Behavioral check failed for %s#%s: %s", row["repo_full_name"], row["pr_number"], exc)
-        return {
-            "tests_available": False,
-            "tests_pass_old": None,
-            "tests_pass_new": None,
-            "test_failures_new": [],
-            "tests_timeout": False,
-        }
+        logger.exception("Behavioral check failed for %s: %s", ctx, exc)
+        out = dict(empty)
+        out["harness_error"] = f"exception:{exc}"
+        return out
     finally:
         shutil.rmtree(repo_dir, ignore_errors=True)
+        shutil.rmtree(repo_dir.parent / f"{repo_dir.name}_testenv", ignore_errors=True)
 
 
 def main():

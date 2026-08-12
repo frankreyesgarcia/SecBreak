@@ -39,7 +39,7 @@ We built \textit{SecBreak}, a reproducible pipeline that collects Dependabot sec
 
 \section{Study Design}
 \subsection{Dataset Construction}
-We collected Dependabot-authored security PRs from GitHub repositories with continuous integration signals and Java or Python ecosystems. The collection period spans January~1,~2022 to December~31,~2024. The raw collection contained 1{,}180 rows; after deduplication by repository and PR number, 783 unique security PRs remained for analysis across 132 repositories.
+We collected Dependabot-authored security PRs from GitHub repositories with a non-empty \texttt{.github/workflows} directory (presence of a CI configuration; this does not verify that CI actually ran or passed for a given PR) and Java or Python ecosystems. The collection period spans January~1,~2022 to December~31,~2024. The raw collection contained 1{,}180 rows; after deduplication by repository and PR number, 783 unique security PRs remained for analysis across 132 repositories. Of these, 52.9\% (414/783) were merged.
 
 For each PR we extracted the repository, PR metadata, dependency name, old and new versions, inferred version bump type, and CVE identifiers when present. We enriched CVEs through the NVD REST API to obtain CVSS scores, severity labels, CWE identifiers, and descriptions.
 
@@ -65,7 +65,6 @@ Unique PRs analyzed & 783 & 132 repositories \\
 Overall syntactic BC prevalence & 3.4\% & 27/783 \\
 95\% CI & [2.4\%, 5.0\%] & Wilson interval \\
 Behavioral BC prevalence & 0.0\% & Test-based signal \\
-Merged PRs & 52.9\% & 414/783 \\
 \bottomrule
 \end{tabular}
 \end{table}
