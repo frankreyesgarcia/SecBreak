@@ -1,0 +1,10 @@
+{"repo_full_name": "iluwatar/java-design-patterns", "pr_number": 2014, "merged": true, "followup_fix_days": 0.4088541666666667, "reverted": false, "naive_candidates": 5, "strict_candidates": 3}
+{"repo_full_name": "iluwatar/java-design-patterns", "pr_number": 1962, "merged": false, "followup_fix_days": null, "reverted": false, "naive_candidates": 0, "strict_candidates": 0}
+{"repo_full_name": "iluwatar/java-design-patterns", "pr_number": 1954, "merged": false, "followup_fix_days": null, "reverted": false, "naive_candidates": 0, "strict_candidates": 0}
+{"repo_full_name": "apache/dubbo", "pr_number": 11743, "merged": true, "followup_fix_days": 0.00042824074074074075, "reverted": false, "naive_candidates": 27, "strict_candidates": 1}
+{"repo_full_name": "apache/dubbo", "pr_number": 11379, "merged": true, "followup_fix_days": 2.202916666666667, "reverted": true, "naive_candidates": 14, "strict_candidates": 11}
+{"repo_full_name": "netty/netty", "pr_number": 13718, "merged": true, "followup_fix_days": null, "reverted": false, "naive_candidates": 9, "strict_candidates": 0}
+{"repo_full_name": "keycloak/keycloak", "pr_number": 20463, "merged": true, "followup_fix_days": 1.732210648148148, "reverted": false, "naive_candidates": 10, "strict_candidates": 1}
+{"repo_full_name": "alibaba/nacos", "pr_number": 11473, "merged": true, "followup_fix_days": 19.91587962962963, "reverted": false, "naive_candidates": 27, "strict_candidates": 2}
+{"repo_full_name": "alibaba/nacos", "pr_number": 11472, "merged": true, "followup_fix_days": 19.916122685185186, "reverted": false, "naive_candidates": 27, "strict_candidates": 2}
+{"repo_full_name": "alibaba/nacos", "pr_number": 10648, "merged": false, "followup_fix_days": null, "reverted": false, "naive_candidates": 0, "strict_candidates": 0}

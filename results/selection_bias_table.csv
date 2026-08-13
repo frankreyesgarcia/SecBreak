@@ -1,0 +1,5 @@
+variable,test,analyzed_median,analyzed_iqr_low,analyzed_iqr_high,unanalyzed_median,unanalyzed_iqr_low,unanalyzed_iqr_high,statistic,p_value,analyzed_proportions,unanalyzed_proportions
+repo_stars,Mann-Whitney U,9234.0,430.0,16684.0,15591.0,8623.0,26079.0,49730.0,3.016190864914303e-17,,
+ecosystem,chi-square,,,,,,,9.496402253292228,0.002058751824318284,"{""maven"": 0.6531, ""pypi"": 0.3469}","{""maven"": 0.756, ""pypi"": 0.244}"
+version_bump_type,chi-square,,,,,,,1.5890744381008866,0.6618696472057364,"{""major"": 0.252, ""minor"": 0.3089, ""patch"": 0.4201, ""unknown"": 0.019}","{""major"": 0.215, ""minor"": 0.3309, ""patch"": 0.4324, ""unknown"": 0.0217}"
+merged,chi-square,,,,,,,24.630352620582077,6.944920081052741e-07,"{""False"": 0.5664, ""True"": 0.4336}","{""False"": 0.3865, ""True"": 0.6135}"
