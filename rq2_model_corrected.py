@@ -18,6 +18,8 @@ Original results/rq2_model_results.csv, rq2_feature_importance.csv, and
 figures are left untouched; this writes *_corrected outputs.
 """
 
+import argparse
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -33,14 +35,12 @@ from sklearn.tree import DecisionTreeClassifier
 from pipeline_utils import DATA_DIR, FIGURES_DIR, RESULTS_DIR
 
 DATASET_PATH = DATA_DIR / "analysis_dataset_corrected.csv"
-RESULTS_PATH = RESULTS_DIR / "rq2_model_results_corrected.csv"
-IMPORTANCE_PATH = RESULTS_DIR / "rq2_feature_importance_corrected.csv"
 
 N_REPEATS = 5
 N_SPLITS = 5
 
 
-def get_features(df: pd.DataFrame):
+def get_features(df: pd.DataFrame, drop_ecosystem: bool = False):
     base = [
         "cvss_score",
         "cvss_severity_ord",
@@ -49,6 +49,10 @@ def get_features(df: pd.DataFrame):
         "ecosystem_bin",
         "repo_stars",
     ]
+    if drop_ecosystem:
+        # constant within a single-ecosystem subset (e.g. --maven-only) --
+        # zero variance breaks StandardScaler and carries no signal anyway.
+        base = [c for c in base if c != "ecosystem_bin"]
     cwe_cols = [col for col in df.columns if col.startswith("cwe_") and col not in {"cwe_ids_details", "cwe_top_category"}]
     feature_cols = [col for col in base + cwe_cols if col in df.columns]
     X = df[feature_cols].fillna(0)
@@ -67,13 +71,25 @@ def build_models():
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--maven-only", action="store_true", help="Filter to ecosystem=='maven' before any computation (Phase 5 robustness variant)")
+    args = parser.parse_args()
+
+    suffix = "_mavenonly" if args.maven_only else "_corrected"
+    fig_suffix = "_mavenonly" if args.maven_only else ""
+    results_path = RESULTS_DIR / f"rq2_model_results{suffix}.csv"
+    importance_path = RESULTS_DIR / f"rq2_feature_importance{suffix}.csv"
+
     sns.set_theme(style="whitegrid")
     df = pd.read_csv(DATASET_PATH)
     df["analyzed_ok"] = df["analyzed_ok"].astype(bool)
+    if args.maven_only:
+        df = df[df["ecosystem"] == "maven"].copy()
     df = df[df["analyzed_ok"]].reset_index(drop=True)
-    print(f"[rq2_model_corrected] training on {len(df)} analyzed_ok rows ({df['repo_full_name'].nunique()} distinct repos)")
+    print(f"[rq2_model_corrected] training on {len(df)} analyzed_ok rows ({df['repo_full_name'].nunique()} distinct repos)"
+          + (" [--maven-only]" if args.maven_only else ""))
 
-    X, y, feature_cols = get_features(df)
+    X, y, feature_cols = get_features(df, drop_ecosystem=args.maven_only)
     groups = df["repo_full_name"]
 
     # --- sanity check: has_cve importance after removing has_behavioral_bc ---
@@ -135,7 +151,7 @@ def main():
         importance = pd.Series(dtype=float)
 
     if not importance.empty:
-        importance.head(20).rename_axis("feature").reset_index(name="importance").to_csv(IMPORTANCE_PATH, index=False)
+        importance.head(20).rename_axis("feature").reset_index(name="importance").to_csv(importance_path, index=False)
         print("Top 10 features (fit on full analyzed_ok set):")
         for feature, score in importance.head(10).items():
             print(f"  {feature}: {score:.4f}")
@@ -143,7 +159,7 @@ def main():
     if best_mean < 0.65:
         print("MODEL NOTE: mean AUC-ROC below 0.65 suggests BC risk is not reliably predictable from CVE/version features alone under a repo-grouped evaluation.")
 
-    pd.DataFrame(rows).to_csv(RESULTS_PATH, index=False)
+    pd.DataFrame(rows).to_csv(results_path, index=False)
 
     plt.figure(figsize=(8, 6))
     for name in models:
@@ -160,7 +176,7 @@ def main():
     plt.title("RQ2 ROC Curves (repo-grouped CV, corrected)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(FIGURES_DIR / "rq2_roc_curves.png", dpi=200)
+    plt.savefig(FIGURES_DIR / f"rq2_roc_curves{fig_suffix}.png", dpi=200)
     plt.close()
 
     if not importance.empty:
@@ -168,7 +184,7 @@ def main():
         sns.barplot(x=importance.head(10).values, y=importance.head(10).index, orient="h")
         plt.title("Top 10 Feature Importances (corrected)")
         plt.tight_layout()
-        plt.savefig(FIGURES_DIR / "rq2_feature_importance.png", dpi=200)
+        plt.savefig(FIGURES_DIR / f"rq2_feature_importance{fig_suffix}.png", dpi=200)
         plt.close()
 
     total_evals = sum(len(v) for v in per_model_fold_aucs.values())

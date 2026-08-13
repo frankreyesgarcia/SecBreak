@@ -18,6 +18,7 @@ Writes to new paths (data/rq3_followup_strict.jsonl, results/rq3_tables_strict.c
 so rq3_analysis_corrected.py's outputs stay untouched for before/after comparison.
 """
 
+import argparse
 import time
 from datetime import datetime
 from pathlib import Path
@@ -31,7 +32,6 @@ from rq3_analysis import gh_headers
 DATASET_PATH = DATA_DIR / "analysis_dataset_corrected.csv"
 FOLLOWUP_PATH = DATA_DIR / "rq3_followup_strict.jsonl"
 NAIVE_FOLLOWUP_PATH = DATA_DIR / "rq3_followup_corrected.jsonl"
-TABLES_PATH = RESULTS_DIR / "rq3_tables_strict.csv"
 DECISIONS_LOG = Path("logs/strengthening_decisions.log")
 
 MANIFEST_BASENAMES = {"pom.xml", "build.gradle", "build.gradle.kts", "requirements.txt", "setup.py", "pyproject.toml"}
@@ -186,11 +186,22 @@ def summarize(bc_df, label):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--maven-only", action="store_true", help="Filter to ecosystem=='maven' before any computation (Phase 5 robustness variant)")
+    args = parser.parse_args()
+
+    tables_path = RESULTS_DIR / ("rq3_tables_mavenonly.csv" if args.maven_only else "rq3_tables_strict.csv")
+
     df = pd.read_csv(DATASET_PATH)
     df["analyzed_ok"] = df["analyzed_ok"].astype(bool)
+    if args.maven_only:
+        df = df[df["ecosystem"] == "maven"].copy()
     bc_df = df[(df["has_bc"] == 1) & (df["analyzed_ok"])].copy()
-    print(f"[rq3_analysis_strict] {len(bc_df)} BC-introducing analyzed_ok PRs")
+    print(f"[rq3_analysis_strict] {len(bc_df)} BC-introducing analyzed_ok PRs" + (" [--maven-only]" if args.maven_only else ""))
 
+    # Maven-only rows are a subset of the full 159-row BC set already cached
+    # in FOLLOWUP_PATH by the dual-ecosystem run; collect_followup() skips
+    # anything already cached, so this makes no new API calls in that case.
     follow_df = collect_followup(bc_df)
     strict_df = bc_df.merge(follow_df, on=["repo_full_name", "pr_number"], how="left")
 
@@ -217,7 +228,7 @@ def main():
         f"Decision: report strict numbers as the paper's cited RQ3 remediation-speed figures."
     )
 
-    pd.DataFrame([naive_summary, strict_summary]).to_csv(TABLES_PATH, index=False)
+    pd.DataFrame([naive_summary, strict_summary]).to_csv(tables_path, index=False)
     print(f"[DONE] rq3_analysis_strict — {len(bc_df)} records processed, {strict_summary['fixes_found']} strict fixes found")
 
 

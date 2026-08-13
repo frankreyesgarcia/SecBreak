@@ -1,0 +1,5 @@
+metric,value,ci_low,ci_high,n
+full_cohort_naive_rate_NOT_PREVALENCE,0.2851985559566787,0.24918004756345008,0.3241755429841175,554
+analyzed_only_prevalence,0.6556016597510373,0.5935900475002852,0.7127304470561954,241
+pipeline_coverage_rate,0.43501805054151627,,,554
+behavioral_bc_prevalence_NOT_MEASURED,,,,241

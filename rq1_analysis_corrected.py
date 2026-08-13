@@ -17,6 +17,7 @@ untouched (preserved as *_ORIGINAL_BUGGY for the record); this script writes
 *_corrected outputs alongside them.
 """
 
+import argparse
 from collections import Counter
 
 import matplotlib.pyplot as plt
@@ -28,7 +29,6 @@ from statsmodels.stats.proportion import proportions_ztest
 from pipeline_utils import DATA_DIR, FIGURES_DIR, RESULTS_DIR, pct, wilson_ci
 
 DATASET_PATH = DATA_DIR / "analysis_dataset_corrected.csv"
-TABLES_PATH = RESULTS_DIR / "rq1_tables_corrected.csv"
 
 
 def error_bar_frame(has_bc: pd.Series, labels: pd.Series):
@@ -42,9 +42,20 @@ def error_bar_frame(has_bc: pd.Series, labels: pd.Series):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--maven-only", action="store_true", help="Filter to ecosystem=='maven' before any computation (Phase 5 robustness variant)")
+    args = parser.parse_args()
+
+    suffix = "_mavenonly" if args.maven_only else "_corrected"
+    tables_path = RESULTS_DIR / f"rq1_tables{suffix}.csv"
+    fig_suffix = "_mavenonly" if args.maven_only else ""
+
     sns.set_theme(style="whitegrid")
     df = pd.read_csv(DATASET_PATH)
     df["analyzed_ok"] = df["analyzed_ok"].astype(bool)
+    if args.maven_only:
+        df = df[df["ecosystem"] == "maven"].copy()
+        print(f"[rq1_analysis] --maven-only: filtered to {len(df)} Maven rows")
     analyzed = df[df["analyzed_ok"]].copy()
 
     tables = []
@@ -140,7 +151,7 @@ def main():
     print(f"  Type-level: {100*type_count/total_types:.1f}%")
     print(f"  Field-level: {100*field_count/total_types:.1f}%")
 
-    pd.DataFrame(tables).to_csv(TABLES_PATH, index=False)
+    pd.DataFrame(tables).to_csv(tables_path, index=False)
 
     bump_df = error_bar_frame(analyzed["has_bc"], analyzed["version_bump_type"])
     plt.figure(figsize=(8, 5))
@@ -148,7 +159,7 @@ def main():
     plt.ylabel("BC prevalence (%)")
     plt.title("Security PR BC Prevalence by Version Bump (analyzed_ok only, corrected)")
     plt.tight_layout()
-    plt.savefig(FIGURES_DIR / "rq1_prevalence_by_bump.png", dpi=200)
+    plt.savefig(FIGURES_DIR / f"rq1_prevalence_by_bump{fig_suffix}.png", dpi=200)
     plt.close()
 
     sev_df = error_bar_frame(analyzed["has_bc"], analyzed["severity"].fillna("UNKNOWN"))
@@ -157,7 +168,7 @@ def main():
     plt.ylabel("BC prevalence (%)")
     plt.title("Security PR BC Prevalence by CVSS Severity (analyzed_ok only, corrected)")
     plt.tight_layout()
-    plt.savefig(FIGURES_DIR / "rq1_prevalence_by_severity.png", dpi=200)
+    plt.savefig(FIGURES_DIR / f"rq1_prevalence_by_severity{fig_suffix}.png", dpi=200)
     plt.close()
 
     if not type_df.empty:
@@ -165,7 +176,7 @@ def main():
         sns.barplot(data=type_df.head(15), x="count", y="bc_type", orient="h")
         plt.title("Most Common BC Types (analyzed_ok only, corrected)")
         plt.tight_layout()
-        plt.savefig(FIGURES_DIR / "rq1_bc_types.png", dpi=200)
+        plt.savefig(FIGURES_DIR / f"rq1_bc_types{fig_suffix}.png", dpi=200)
         plt.close()
 
     print(f"[DONE] rq1_analysis_corrected — {total} records processed, {analyzed_n} analyzed_ok")
