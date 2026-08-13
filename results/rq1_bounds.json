@@ -1,21 +1,21 @@
 {
   "n_total": 783,
-  "n_analyzed": 369,
-  "n_unanalyzed": 414,
-  "n_bc": 159,
-  "worst_case_lower_pct": 20.306513409961685,
-  "worst_case_upper_pct": 73.18007662835248,
-  "analyzed_only_pct": 43.08943089430894,
+  "n_analyzed": 380,
+  "n_unanalyzed": 403,
+  "n_bc": 160,
+  "worst_case_lower_pct": 20.434227330779056,
+  "worst_case_upper_pct": 71.9029374201788,
+  "analyzed_only_pct": 42.10526315789474,
   "analyzed_only_ci": [
-    38.13351387416639,
-    48.18775499711837
+    37.244317001128124,
+    47.124235026583314
   ],
-  "model_imputed_pct": 38.042352852554004,
+  "model_imputed_pct": 37.96476008027733,
   "model_imputed_bootstrap_ci": [
-    36.61749031606431,
-    39.36476777041074
+    36.61696987319832,
+    39.23037643470833
   ],
-  "model_imputed_mean_predicted_prob": 0.33543870250120245,
+  "model_imputed_mean_predicted_prob": 0.3406056362991847,
   "feature_cols": [
     "cvss_score",
     "cvss_severity_ord",
@@ -26,12 +26,12 @@
     "cwe_UNKNOWN",
     "cwe_CWE_89",
     "cwe_CWE_1333",
-    "cwe_CWE_400",
-    "cwe_CWE_378",
-    "cwe_CWE_200",
-    "cwe_CWE_476",
+    "cwe_CWE_770",
+    "cwe_CWE_552",
     "cwe_CWE_502",
-    "cwe_CWE_20",
+    "cwe_CWE_674",
+    "cwe_CWE_476",
+    "cwe_CWE_1321",
     "cwe_CWE_665"
   ],
   "n_bootstrap": 1000

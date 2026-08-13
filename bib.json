@@ -1,0 +1,1739 @@
+{
+  "papers": [
+    {
+      "title": "Leveraging the Crowd for Dependency Management: An Empirical Study on the Dependabot Compatibility Score",
+      "authors": [
+        {
+          "name": "F. Côgo",
+          "id": "3261420"
+        },
+        {
+          "name": "Ahmed E. Hassan",
+          "id": "2291358891"
+        }
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "score": 0.9736713366782273,
+      "abstract": "Dependabot, a popular dependency management tool, includes a compatibility score feature that helps client packages assess the risk of accepting a dependency update by leveraging knowledge from\"the crowd\". For each dependency update, Dependabot calculates this compatibility score as the proportion of successful updates performed by other client packages that use the same provider package as a dependency. In this paper, we study the efficacy of the compatibility score to help client packages assess the risks involved with accepting a dependency update. We analyze 579,206 pull requests opened by Dependabot to update a dependency, along with 618,045 compatibility score records calculated by Dependabot. We find that a compatibility score cannot be calculated for 83% of the dependency updates due to the lack of data from the crowd. Yet, the vast majority of the scores that can be calculated have a small confidence interval and are based on low-quality data, suggesting that client packages should have additional angles to evaluate the risk of an update and the trustworthiness of the compatibility score. To overcome these limitations, we propose metrics that amplify the input from the crowd and demonstrate the ability of those metrics to predict the acceptance of a successful update by client packages. We also demonstrate that historical update metrics from client packages can be used to provide a more personalized compatibility score. Based on our findings, we argue that, when leveraging the crowd, dependency management bots should include a confidence interval to help calibrate the trust clients can place in the compatibility score, and consider the quality of tests that exercise candidate updates.",
+      "corpusId": 268384876,
+      "url": "https://api.semanticscholar.org/CorpusId:268384876"
+    },
+    {
+      "title": "Can We Trust Tests To Automate Dependency Updates? A Case Study of Java Projects",
+      "authors": [
+        {
+          "name": "Joseph Hejderup",
+          "id": "50818032"
+        },
+        {
+          "name": "Georgios Gousios",
+          "id": "2211882"
+        }
+      ],
+      "year": 2021,
+      "venue": "Journal of Systems and Software",
+      "score": 0.9053348862751898,
+      "abstract": "Developers are increasingly using services such as Dependabot to automate dependency updates. However, recent research has shown that developers perceive such services as unreliable, as they heavily rely on test coverage to detect conflicts in updates. To understand the prevalence of tests exercising dependencies, we calculate the test coverage of direct and indirect uses of dependencies in 521 well-tested Java projects. We find that tests only cover 58% of direct and 20% of transitive dependency calls. By creating 1,122,420 artificial updates with simple faults covering all dependency usages in 262 projects, we measure the effectiveness of test suites in detecting semantic faults in dependencies; we find that tests can only detect 47% of direct and 35% of indirect artificial faults on average. To increase reliability, we investigate the use of change impact analysis as a means of reducing false negatives; on average, our tool can uncover 74% of injected faults in direct dependencies and 64% for transitive dependencies, nearly two times more than test suites. We then apply our tool in 22 real-world dependency updates, where it identifies three semantically conflicting cases and five cases of unused dependencies. Our findings indicate that the combination of static and dynamic analysis should be a requirement for future dependency updating systems.",
+      "corpusId": 237635211,
+      "url": "https://api.semanticscholar.org/CorpusId:237635211"
+    },
+    {
+      "title": "Automating Dependency Updates in Practice: An Exploratory Study on GitHub Dependabot",
+      "authors": [
+        {
+          "name": "Runzhi He",
+          "id": "2127664123"
+        },
+        {
+          "name": "Hao He",
+          "id": "2110435561"
+        },
+        {
+          "name": "Yuxia Zhang",
+          "id": "2108079034"
+        },
+        {
+          "name": "Minghui Zhou",
+          "id": "40318014"
+        }
+      ],
+      "year": 2022,
+      "venue": "IEEE Transactions on Software Engineering",
+      "score": 0.8009196258348455,
+      "abstract": "Dependency management bots automatically open pull requests to update software dependencies on behalf of developers. Early research shows that developers are suspicious of updates performed by dependency management bots and feel tired of overwhelming notifications from these bots. Despite this, dependency management bots are becoming increasingly popular. Such contrast motivates us to investigate Dependabot, currently the most visible bot on GitHub, to reveal the effectiveness and limitations of state-of-art dependency management bots. We use exploratory data analysis and a developer survey to evaluate the effectiveness of Dependabot in keeping dependencies up-to-date, interacting with developers, reducing update suspicion, and reducing notification fatigue. We obtain mixed findings. On the positive side, projects do reduce technical lag after Dependabot adoption and developers are highly receptive to its pull requests. On the negative side, its compatibility scores are too scarce to be effective in reducing update suspicion; developers tend to configure Dependabot toward reducing the number of notifications; and 11.3% of projects have deprecated Dependabot in favor of other alternatives. The survey confirms our findings and provides insights into the key missing features of Dependabot. Based on our findings, we derive and summarize the key characteristics of an ideal dependency management bot which can be grouped into four dimensions: configurability, autonomy, transparency, and self-adaptability.",
+      "corpusId": 249674743,
+      "url": "https://api.semanticscholar.org/CorpusId:249674743"
+    },
+    {
+      "title": "On the Use of Dependabot Security Pull Requests",
+      "authors": [
+        {
+          "name": "Mahmoud Alfadel",
+          "id": "9724763"
+        },
+        {
+          "name": "D. Costa",
+          "id": "115989708"
+        },
+        {
+          "name": "Emad Shihab",
+          "id": "3318024"
+        },
+        {
+          "name": "Mouafak Mkhallalati",
+          "id": "2100142115"
+        }
+      ],
+      "year": 2021,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.7953043825676904,
+      "abstract": "",
+      "corpusId": 232768177,
+      "url": "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9463148"
+    },
+    {
+      "title": "Dependabot and security pull requests: large empirical study",
+      "authors": [
+        {
+          "name": "Hocine Rebatchi",
+          "id": "2080428934"
+        },
+        {
+          "name": "Tégawendé F. Bissyandé",
+          "id": "3023999"
+        },
+        {
+          "name": "Naouel Moha",
+          "id": "2420979"
+        }
+      ],
+      "year": 2024,
+      "venue": "Empirical Software Engineering",
+      "score": 0.7850621833071794,
+      "abstract": "Modern software development is a complex engineering process where developer code cohabits with an increasingly larger number of external open-source components. Even though these components facilitate sharing and reusing code along with other benefits related to maintenance and code quality, they are often the seeds of vulnerabilities in the software supply chain leading to attacks with severe consequences. Indeed, one common strategy used to conduct attacks is to exploit or inject other security flaws in new versions of dependency packages. It is thus important to keep dependencies updated in a software development project. Unfortunately, several prior studies have highlighted that, to a large extent, developers struggle to keep track of the dependency package updates, and do not quickly incorporate security patches. Therefore, automated dependency-update bots have been proposed to mitigate the impact and the emergence of vulnerabilities in open-source projects. In our study, we focus on Dependabot, a dependency management bot that has gained popularity on GitHub recently. It allows developers to keep a lookout on project dependencies and reduce the effort of monitoring the safety of the software supply chain. We performed a large empirical study on dependency updates and security pull requests to understand: (1) the degree and reasons of Dependabot’s popularity; (2) the patterns of developers’ practices and techniques to deal with vulnerabilities in dependencies; (3) the management of security pull requests (PRs), the threat lifetime, and the fix delay; and (4) the factors that significantly correlate with the acceptance of security PRs and fast merges. To that end, we collected a dataset of 9,916,318 pull request-related issues made in 1,743,035 projects on GitHub for more than 10 different programming languages. In addition to the comprehensive quantitative analysis, we performed a manual qualitative analysis on a representative sample of the dataset, and we substantiated our findings by sending a survey to developers that use dependency management tools. Our study shows that Dependabot dominates more than 65% of dependency management activity, mainly due to its efficiency, accessibility, adaptivity, and availability of support. We also found that developers handle dependency vulnerabilities differently, but mainly rely on the automation of PRs generation to upgrade vulnerable dependencies. Interestingly, Dependabot’s and developers’ security PRs are highly accepted, and the automation allows to accelerate their management, so that fixes are applied in less than one day. However, the threat of dependency vulnerabilities remains hidden for 512 days on average, and patches are disclosed after 362 days due to the reliance on the manual effort of security experts. Also, project characteristics, the amount of PR changes, as well as developer and dependency features seem to be highly correlated with the acceptance and fast merges of security PRs.",
+      "corpusId": 271578186,
+      "url": "https://doi.org/10.1007/s10664-024-10523-y"
+    },
+    {
+      "title": "Securing dependencies: A comprehensive study of Dependabot’s impact on vulnerability mitigation",
+      "authors": [
+        {
+          "name": "Hamid Mohayeji",
+          "id": "1702993620"
+        },
+        {
+          "name": "A. Agaronian",
+          "id": "2035064461"
+        },
+        {
+          "name": "Eleni Constantinou",
+          "id": "2274686750"
+        },
+        {
+          "name": "Nicola Zannone",
+          "id": "2302857778"
+        },
+        {
+          "name": "Alexander Serebrenik",
+          "id": "2265910353"
+        }
+      ],
+      "year": 2025,
+      "venue": "Empirical Software Engineering",
+      "score": 0.7848294440921795,
+      "abstract": "The growing use of third-party libraries in software development poses a hidden security risk, as vulnerabilities in these libraries can easily spread to dependent applications. Project maintainers must remain vigilant regarding updates and patches for these external libraries, a responsibility that is facilitated by automated tools, also known as bots. This study centers on Dependabot, a widely adopted bot that offers security and version updates. We aim to scrutinize the impact of Dependabot on mitigating vulnerabilities arising from dependencies, preventing potential prolonged security issues in open-source software. We investigate how developers react to security updates provided by Dependabot within engineered and actively maintained JavaScript projects. We also delve into how project attributes, including the integration of tests and continuous integration (CI) tools, influence the acceptance rate of security updates. Additionally, we perform a detailed analysis of the lifespan of each vulnerability to demonstrate how they are dealt with when Dependabot is in use. Our findings reveal a significant reliance on Dependabot by developers for managing security vulnerabilities in dependencies, with most updates being merged swiftly within days. We find that projects equipped with tests and CI tools are more likely to merge security updates. Conversely, when developers opt not to merge a security update, they often manually address the identified vulnerability. This manual approach, however, could span over several months, potentially exposing projects to security risks. Crucially, in many instances, the manual fixes are potentially inspired by earlier security updates, underscoring Dependabot’s pivotal role in safeguarding dependencies.",
+      "corpusId": 277513861,
+      "url": "https://api.semanticscholar.org/CorpusId:277513861"
+    },
+    {
+      "title": "The Importance of Attributes in Predicting the Lifetime of Human and Automated Pull Requests",
+      "authors": [
+        {
+          "name": "Leandro Ferrarezi Valiante",
+          "id": "2327635446"
+        },
+        {
+          "name": "M. Wessel",
+          "id": "2156237"
+        },
+        {
+          "name": "Manoel Limeira de Lima Júnior",
+          "id": "2327641583"
+        }
+      ],
+      "year": 2024,
+      "venue": "Anais do I Workshop sobre Bots na Engenharia de Software (WBOTS 2024)",
+      "score": 0.7847473812350085,
+      "abstract": "Pull request(PR)-based workflows improves collaboration in software development; however, the influx of PRs in certain repositories is challenging. Bots, like Dependabot, automate PR creation but can cause communication noise, indicating the need for smarter tools. We investigated 197, 736 PRs from 90 open-source projects using regression algorithms to predict PR lifetimes. Results showed that in 21 repositories, Dependabot PRs were reviewed faster, whereas in 47 repositories, human PRs were quicker. The RMSE difference was notable, with 18, 338 minutes for human PRs and 5, 585 minutes for Dependabot PRs. Key attributes for prediction were similar across scenarios, although the number of commits was very important only for Dependabot PRs.",
+      "corpusId": 273601777,
+      "url": "https://api.semanticscholar.org/CorpusId:273601777"
+    },
+    {
+      "title": "An Overview and Catalogue of Dependency Challenges in Open Source Software Package Registries",
+      "authors": [
+        {
+          "name": "Tom Mens",
+          "id": "2239456818"
+        },
+        {
+          "name": "Alexandre Decan",
+          "id": "2794053"
+        }
+      ],
+      "year": 2024,
+      "venue": "BElgian-NEtherlands software eVOLution symposium",
+      "score": 0.7559760295179873,
+      "abstract": "While open-source software has enabled significant levels of reuse to speed up software development, it has also given rise to the dreadful dependency hell that all software practitioners face on a regular basis. This article provides a catalogue of dependency-related challenges that come with relying on OSS packages or libraries. The catalogue is based on the scientific literature on empirical research that has been conducted to understand, quantify and overcome these challenges. Our overview of this very active research field of package dependency management can be used as a starting point for junior and senior researchers as well as practitioners that would like to learn more about research advances in dealing with the challenges that come with the dependency networks of large OSS package registries.",
+      "corpusId": 272968805,
+      "url": "https://api.semanticscholar.org/CorpusId:272968805"
+    },
+    {
+      "title": "Investigating the Resolution of Vulnerable Dependencies with Dependabot Security Updates",
+      "authors": [
+        {
+          "name": "Hamid Mohayeji",
+          "id": "1702993620"
+        },
+        {
+          "name": "A. Agaronian",
+          "id": "2035064461"
+        },
+        {
+          "name": "Eleni Constantinou",
+          "id": "2970508"
+        },
+        {
+          "name": "Nicola Zannone",
+          "id": "3288964"
+        },
+        {
+          "name": "A. Serebrenik",
+          "id": "49691997"
+        }
+      ],
+      "year": 2023,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.7527077241385972,
+      "abstract": "",
+      "corpusId": 259836242,
+      "url": "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10174082"
+    },
+    {
+      "title": "The Effectiveness of Security Interventions on GitHub",
+      "authors": [
+        {
+          "name": "F. Fischer",
+          "id": "2238953752"
+        },
+        {
+          "name": "Jonas Höbenreich",
+          "id": "2241519131"
+        },
+        {
+          "name": "Jens Grossklags",
+          "id": "1718732"
+        }
+      ],
+      "year": 2023,
+      "venue": "Conference on Computer and Communications Security",
+      "score": 0.7191723094444085,
+      "abstract": "In 2017, GitHub was the first online open source platform to show security alerts to its users. It has since introduced further security interventions to help developers improve the security of their open source software. In this study, we investigate and compare the effects of these interventions. This offers a valuable empirical perspective on security interventions in the context of software development, enriching the predominantly qualitative and survey-based literature landscape with substantial data-driven insights. We conduct a time series analysis on security-altering commits covering the entire history of a large-scale sample of over 50,000 GitHub repositories to infer the causal effects of the security alert, security update, and code scanning interventions. Our analysis shows that while all of GitHub's security interventions have a significant positive effect on security, they differ greatly in their effect size. By comparing the design of each intervention, we identify the building blocks that worked well and those that did not. We also provide recommendations on how practitioners can improve the design of their interventions to enhance their effectiveness.",
+      "corpusId": 261682312,
+      "url": "http://dl.acm.org/citation.cfm?id=3623174"
+    },
+    {
+      "title": "Towards Efficient and Secure Pull-Request-Based Software Development",
+      "authors": [
+        {
+          "name": "Kazi Amit Hasan",
+          "id": "2277541726"
+        }
+      ],
+      "year": 2026,
+      "venue": "SIGSOFT FSE Companion",
+      "score": 0.5944605401014853,
+      "abstract": "Pull-request-based development (PBD) is the dominant workflow in modern open-source software (OSS), where pull requests (PRs) are the central coordination unit for review, CI/CD validation, and fixing security vulnerabilities. Existing research studies PR responsiveness, CI/CD performance, and vulnerability handling in isolation, even though delays and security risks accumulate through the same PR-mediated workflow. To address this gap, this thesis treats PBD as a unified workflow and investigates how suboptimal PR management creates avoidable PR delays and increased security risk. We provide empirical evidence and tools to address these coupled outcomes. Overall, the thesis connects efficiency and security through one PR-based workflow. It provides actionable guidance for reducing PR delays by characterizing and improving key efficiency bottlenecks, and offers recommendations for improving vulnerability management by developing an LLM-based, low-noise, evidence-driven security alert system.",
+      "corpusId": 290255350,
+      "url": "https://api.semanticscholar.org/CorpusId:290255350"
+    },
+    {
+      "title": "Security in the Age of AI Teammates: An Empirical Study of Agentic Pull Requests on GitHub",
+      "authors": [
+        {
+          "name": "Mohammed Latif Siddiq",
+          "id": "2091784637"
+        },
+        {
+          "name": "Xinye Zhao",
+          "id": "2216308108"
+        },
+        {
+          "name": "V. C. Lopes",
+          "id": "2215824394"
+        },
+        {
+          "name": "B.K. Casey",
+          "id": "2206225352"
+        },
+        {
+          "name": "Joanna C. S. Santos",
+          "id": "2265242774"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.5934429925763046,
+      "abstract": "Autonomous coding agents are increasingly deployed as AI teammates in modern software engineering, independently authoring pull requests (PRs) that modify production code at scale. This study aims to systematically characterize how autonomous coding agents contribute to software security in practice, how these security-related contributions are reviewed and accepted, and which observable signals are associated with PR rejection. We conduct a large-scale empirical analysis of agent-authored PRs using the AIDev dataset, comprising of over 33,000 curated PRs from popular GitHub repositories. Security-relevant PRs are identified using a keyword filtering strategy, followed by manual validation, resulting in 1,293 confirmed security-related agentic-PRs. We then analyze prevalence, acceptance outcomes, and review latency across autonomous agents, programming ecosystems, and types of code changes. Moreover, we apply qualitative open coding to identify recurring security-related actions and underlying intents, and examine review metadata to identify early signals associated with PR rejection. Security-related Agentic-PRs constitute a meaningful share of agent activity (approximately 4\\%). Rather than focusing solely on narrow vulnerability fixes, agents most frequently perform supportive security hardening activities, including testing, documentation, configuration, and improved error handling. Compared to non-security PRs, security-related Agentic-PRs exhibit lower merge rates and longer review latency, reflecting heightened human scrutiny, with variation across agents and programming ecosystems. PR rejection is more strongly associated with PR complexity and verbosity than with explicit security topics.",
+      "corpusId": 284475914,
+      "url": "https://api.semanticscholar.org/CorpusId:284475914"
+    },
+    {
+      "title": "\"I wasn't sure if this is indeed a security risk\": Data-driven Understanding of Security Issue Reporting in GitHub Repositories of Open Source npm Packages",
+      "authors": [
+        {
+          "name": "R. Ghosh",
+          "id": "2261531410"
+        },
+        {
+          "name": "Shiladitya De",
+          "id": "2366537218"
+        },
+        {
+          "name": "Mainack Mondal",
+          "id": "40068190"
+        }
+      ],
+      "year": 2025,
+      "venue": "USENIX Security Symposium",
+      "score": 0.576526998710631,
+      "abstract": "The npm (Node Package Manager) ecosystem is the most important package manager for JavaScript development with millions of users. Consequently, a plethora of earlier work investigated how vulnerability reporting, patch propagation, and in general detection as well as resolution of security issues in such ecosystems can be facilitated. However, understanding the ground reality of security-related issue reporting by users (and bots) in npm-along with the associated challenges has been relatively less explored at scale. In this work, we bridge this gap by collecting 10,907,467 issues reported across GitHub repositories of 45,466 diverse npm packages. We found that the tags associated with these issues indicate the existence of only 0.13% security-related issues. However, our approach of manual analysis followed by developing high accuracy machine learning models identify 1,617,738 security-related issues which are not tagged as security-related (14.8% of all issues) as well as 4,461,934 comments made on these issues. We found that the bots which are in wide use today might not be sufficient for either detecting or offering assistance. Furthermore, our analysis of user-developer interaction data hints that many user-reported security issues might not be addressed by developers-they are not tagged as security-related issues and might be closed without valid justification. Consequently, a correlation analysis hints that the developers quickly handle security issues with known solutions (e.g., corresponding to CVE). However, security issues without such known solutions (even with reproducible code) might not be resolved. Our findings offer actionable insights for improving security management in open-source ecosystems, highlighting the need for smarter tools and better collaboration. The data and code for this work is available at https://doi.org/10.5281/zenodo.15614029",
+      "corpusId": 279251349,
+      "url": "https://api.semanticscholar.org/CorpusId:279251349"
+    },
+    {
+      "title": "Trust but Verify? Uncovering the Security Debt of Autonomous Coding Agents",
+      "authors": [
+        {
+          "name": "Nazmus Sakib",
+          "id": "2120334638"
+        },
+        {
+          "name": "Dipayan Banik",
+          "id": "2350576053"
+        },
+        {
+          "name": "Murtuza Jadliwala",
+          "id": "2235825"
+        }
+      ],
+      "year": 2026,
+      "venue": "unknown",
+      "score": 0.4965043201264852,
+      "abstract": "The increasing adoption of autonomous coding agents accelerates software development but also introduces scoped security risks within high-impact file paths that can outpace traditional human review capacity. While prior research has primarily evaluated these systems in terms of functional correctness and productivity, this paper presents a large-scale empirical study using the AIDev dataset to systematically characterize security code smells in agent-generated pull requests (PRs). Through a combination of a validated LLM-as-a-judge framework and manual qualitative analysis, we identify and classify security misconfigurations across 16,112 file changes spanning 4,022 pull requests. Our results reveal that 38.9% of agent-generated PRs contain at least one security smell, with supply chain integrity issues accounting for 82.3% of all detected security smells. Furthermore, hard-coded credentials constitute 99.6% of all critical-severity security smells. Crucially, we find that human collaborators are responsible for introducing 67.6% of genuine leaked secrets within these agent-assisted workflows, while existing automated and human review processes fail to detect 81.1% of these credentials prior to integration. These findings highlight substantial security risks in agent-assisted software development workflows and suggest a potential reduction in developer vigilance. They also underscore the urgent need for context-aware security guardrails implemented directly at the point of human-AI collaboration.",
+      "corpusId": 290148855,
+      "url": "https://api.semanticscholar.org/CorpusId:290148855"
+    },
+    {
+      "title": "Insights into Security-Related AI-Generated Pull Requests",
+      "authors": [
+        {
+          "name": "Md. Fazle Rabbi",
+          "id": "12523006"
+        },
+        {
+          "name": "A. K. Turzo",
+          "id": "1956044781"
+        },
+        {
+          "name": "A. I. Champa",
+          "id": "1642314160"
+        },
+        {
+          "name": "M. Zibran",
+          "id": "3258253"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.49496407770328843,
+      "abstract": "Recent years have experienced growing contributions of AI coding agents that assist human developers in various software engineering tasks. However, this growing AI-assisted autonomy raises questions about security and trust. In this paper, we analyze more than 33,000 AI-generated pull requests (PRs) and identify 675 security-related submissions made by agentic AIs. Then we examine the security-related PRs with a focus on recurring security weaknesses, review outcomes and latency, commit message quality, and rejection reasons. The results show that security-related AI PRs introduce a small set of recurring weaknesses such as regex inefficiencies, injection flaws, and path traversal. Many flawed contributions are still merged, while rejections often arise from social or process factors such as inactivity or missing test coverage. The commit message quality of AI PRs has a limited effect on acceptance or latency, in contrast to human PRs reported in previous studies. We also extend existing rejection taxonomies by adding categories that are unique to AI-generated security contributions. These findings offer new insights into the strengths and shortcomings of autonomous coding systems in secure software development.",
+      "corpusId": 287668661,
+      "url": "https://api.semanticscholar.org/CorpusId:287668661"
+    },
+    {
+      "title": "How Humans, Bots, and Agents Communicate About Vulnerabilities in Pull Requests",
+      "authors": [
+        {
+          "name": "Pien Rooijendijk",
+          "id": "2406991743"
+        },
+        {
+          "name": "Christoph Treude",
+          "id": "2275193202"
+        },
+        {
+          "name": "M. Wessel",
+          "id": "2156237"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.4666183737904762,
+      "abstract": "Developers may reference vulnerabilities in pull request discussions through both explicit identifiers, such as CVEs or GHSAs, and implicit security-related language (e.g.,\"unauthorized access\"or\"SQL injection\"). Prior work has primarily focused on explicit identifiers, potentially overlooking vulnerability discussions that lack formal references. Bots and coding agents are becoming more common in pull requests, raising new questions about how different accounts communicate about vulnerabilities. In this registered report, we describe our planned study of vulnerability communication in pull requests by humans, bots, and coding agents. Building on the AIDev-pop dataset, we analyze explicit vulnerability references and implicit security-related signals across pull request titles, descriptions, review comments, commit messages, and timeline discussions. We further investigate whether these references are associated with vulnerabilities introduced or fixed in the modified code and how they relate to pull request review activity and outcomes. This study contributes a large-scale empirical investigation of vulnerability communication practices in modern software development.",
+      "corpusId": 289669659,
+      "url": "https://api.semanticscholar.org/CorpusId:289669659"
+    },
+    {
+      "title": "SWE-RL: Advancing LLM Reasoning via Reinforcement Learning on Open Software Evolution",
+      "authors": [
+        {
+          "name": "Yuxiang Wei",
+          "id": "2237736409"
+        },
+        {
+          "name": "Olivier Duchenne",
+          "id": "2096643450"
+        },
+        {
+          "name": "Jade Copet",
+          "id": "1805998294"
+        },
+        {
+          "name": "Quentin Carbonneaux",
+          "id": "2641202"
+        },
+        {
+          "name": "Lingming Zhang",
+          "id": "2289125201"
+        },
+        {
+          "name": "Daniel Fried",
+          "id": "2365935955"
+        },
+        {
+          "name": "Gabriel Synnaeve",
+          "id": "2282478"
+        },
+        {
+          "name": "Rishabh Singh",
+          "id": "2347179772"
+        },
+        {
+          "name": "Sida Wang",
+          "id": "2324830843"
+        }
+      ],
+      "year": 2025,
+      "venue": "Neural Information Processing Systems",
+      "score": 0.4405611947980344,
+      "abstract": "The recent DeepSeek-R1 release has demonstrated the immense potential of reinforcement learning (RL) in enhancing the general reasoning capabilities of large language models (LLMs). While DeepSeek-R1 and other follow-up work primarily focus on applying RL to competitive coding and math problems, this paper introduces SWE-RL, the first approach to scale RL-based LLM reasoning for real-world software engineering. Leveraging a lightweight rule-based reward (e.g., the similarity score between ground-truth and LLM-generated solutions), SWE-RL enables LLMs to autonomously recover a developer's reasoning processes and solutions by learning from extensive open-source software evolution data -- the record of a software's entire lifecycle, including its code snapshots, code changes, and events such as issues and pull requests. Trained on top of Llama 3, our resulting reasoning model, Llama3-SWE-RL-70B, achieves a 41.0% solve rate on SWE-bench Verified -- a human-verified collection of real-world GitHub issues. To our knowledge, this is the best performance reported for medium-sized (<100B) LLMs to date, even comparable to leading proprietary LLMs like GPT-4o. Surprisingly, despite performing RL solely on software evolution data, Llama3-SWE-RL has even emerged with generalized reasoning skills. For example, it shows improved results on five out-of-domain tasks, namely, function coding, library use, code reasoning, mathematics, and general language understanding, whereas a supervised-finetuning baseline even leads to performance degradation on average. Overall, SWE-RL opens up a new direction to improve the reasoning capabilities of LLMs through reinforcement learning on massive software engineering data.",
+      "corpusId": 276580226,
+      "url": "https://api.semanticscholar.org/CorpusId:276580226"
+    },
+    {
+      "title": "Towards a Benchmark for Dependency Decision-Making",
+      "authors": [
+        {
+          "name": "Tanmay Singla",
+          "id": "2181728959"
+        },
+        {
+          "name": "Berk Çakar",
+          "id": "2311869404"
+        },
+        {
+          "name": "Paschal C. Amusuo",
+          "id": "2176804459"
+        },
+        {
+          "name": "James C. Davis",
+          "id": "2262091821"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.43851487950477946,
+      "abstract": "AI coding agents increasingly modify real software repositories and make dependency decisions, including adding, removing, or updating third-party packages. These choices can materially affect security posture and maintenance burden, yet repository-level evaluations largely emphasize test passing and executability without explicitly scoring whether systems (i) reuse existing dependencies, (ii) avoid unnecessary additions, or (iii) select versions that satisfy security and policy constraints. We propose DepDec-Bench, a benchmark for evaluating dependency decision-making beyond functional correctness. To ground DepDec-Bench in real-world behavior, we conduct a preliminary study of 117,062 dependency changes from agent- and human-authored pull requests across seven ecosystems. We show that coding agents frequently make dependency decisions with security consequences that remain invisible to test-focused evaluation: agents select PR-time known-vulnerable versions (2.46%) and exhibit net-negative security impact overall (net impact -98 vs. +1,316 for humans). These observations inform DepDec-Bench task families and metrics that evaluate safe version selection, reuse discipline, and restraint against dependency bloat alongside test passing.",
+      "corpusId": 284475972,
+      "url": "https://api.semanticscholar.org/CorpusId:284475972"
+    },
+    {
+      "title": "SWE-bench Goes Live!",
+      "authors": [
+        {
+          "name": "Linghao Zhang",
+          "id": "2342190879"
+        },
+        {
+          "name": "Shilin He",
+          "id": "2268726648"
+        },
+        {
+          "name": "Chaoyun Zhang",
+          "id": "2256775302"
+        },
+        {
+          "name": "Yu Kang",
+          "id": "2278791992"
+        },
+        {
+          "name": "Bowen Li",
+          "id": "2312050006"
+        },
+        {
+          "name": "Chengxing Xie",
+          "id": "2304273530"
+        },
+        {
+          "name": "J. Wang",
+          "id": "2110199989"
+        },
+        {
+          "name": "Maoquan Wang",
+          "id": "2259909300"
+        },
+        {
+          "name": "Yufan Huang",
+          "id": "2260263643"
+        },
+        {
+          "name": "Shengyu Fu",
+          "id": "2364702995"
+        },
+        {
+          "name": "Elsie Nallipogu",
+          "id": "3318884"
+        },
+        {
+          "name": "Qingwei Lin",
+          "id": "2303522901"
+        },
+        {
+          "name": "Yingnong Dang",
+          "id": "2068876376"
+        },
+        {
+          "name": "Saravan Rajmohan",
+          "id": "2336867866"
+        },
+        {
+          "name": "Yudong Zhang",
+          "id": "2374937069"
+        }
+      ],
+      "year": 2025,
+      "venue": "Neural Information Processing Systems",
+      "score": 0.43321927806314436,
+      "abstract": "The issue-resolving task, where a model generates patches to fix real-world bugs, has emerged as a critical benchmark for evaluating the capabilities of large language models (LLMs). While SWE-bench and its variants have become standard in this domain, they suffer from key limitations: they have not been updated since their initial releases, cover a narrow set of repositories, and depend heavily on manual effort for instance construction and environment setup. These factors hinder scalability and introduce risks of overfitting and data contamination. In this work, we present SWE-bench-Live, a live-updatable benchmark designed to overcome these challenges. Our initial release consists of 1,319 tasks derived from real GitHub issues created since 2024, spanning 93 repositories. Each task is accompanied by a dedicated Docker image to ensure reproducible execution. Central to our benchmark is \\method, an automated curation pipeline that streamlines the entire process from instance creation to environment setup, removing manual bottlenecks and enabling scalability and continuous updates. We evaluate a range of state-of-the-art agent frameworks and LLMs on SWE-bench-Live, revealing a substantial performance gap compared to static benchmarks like SWE-bench, even under controlled evaluation conditions. To better understand this discrepancy, we perform detailed analyses across repository origin, issue recency, and task difficulty. By providing a fresh, diverse, and executable benchmark grounded in live repository activity, SWE-bench-Live facilitates rigorous, contamination-resistant evaluation of LLMs and agents in dynamic, real-world software development settings.",
+      "corpusId": 278996246,
+      "url": "https://api.semanticscholar.org/CorpusId:278996246"
+    },
+    {
+      "title": "Investigating Autonomous Agent Contributions in the Wild: Activity Patterns and Code Change over Time",
+      "authors": [
+        {
+          "name": "R. Popescu",
+          "id": "2286878163"
+        },
+        {
+          "name": "David Gros",
+          "id": "2387863988"
+        },
+        {
+          "name": "Andrei Botocan",
+          "id": "2427142646"
+        },
+        {
+          "name": "Rahul Pandita",
+          "id": "2320151806"
+        },
+        {
+          "name": "Prem Devanbu",
+          "id": "114875459"
+        },
+        {
+          "name": "Maliheh Izadi",
+          "id": "2304217859"
+        }
+      ],
+      "year": 2026,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.42990843965010644,
+      "abstract": "The rise of large language models for code has reshaped software development. Autonomous coding agents, able to create branches, open pull requests, and perform code reviews, now actively contribute to real-world projects. Their growing role offers a unique and timely opportunity to investigate AI-driven contributions and their effects on code quality, team dynamics, and software maintainability. In this work, we construct a novel dataset of approximately 110,000 open-source pull requests, including associated commits, comments, reviews, issues, and file changes, collectively representing millions of lines of source code. We compare five popular coding agents, including OpenAI Codex, Claude Code, GitHub Copilot, Google Jules, and Devin, examining how their usage differs in various development aspects such as merge frequency, edited file types, and developer interaction signals, including comments and reviews. Furthermore, we emphasize that code authoring and review are only a small part of the larger software engineering process, as the resulting code must also be maintained and updated over time. Hence, we offer several longitudinal estimates of survival and churn rates for agent-generated versus human-authored code. Ultimately, our findings indicate an increasing agent activity in open-source projects, although their contributions are associated with more churn over time compared to human-authored code.",
+      "corpusId": 287023598,
+      "url": "https://api.semanticscholar.org/CorpusId:287023598"
+    },
+    {
+      "title": "Skywork-SWE: Unveiling Data Scaling Laws for Software Engineering in LLMs",
+      "authors": [
+        {
+          "name": "Liang Zeng",
+          "id": "2304645914"
+        },
+        {
+          "name": "Yongcong Li",
+          "id": "2370961248"
+        },
+        {
+          "name": "Yuzhen Xiao",
+          "id": "2371002168"
+        },
+        {
+          "name": "Changshi Li",
+          "id": "2371037193"
+        },
+        {
+          "name": "Chris Liu",
+          "id": "2271515779"
+        },
+        {
+          "name": "Rui Yan",
+          "id": "2327349028"
+        },
+        {
+          "name": "Tianwen Wei",
+          "id": "2263421000"
+        },
+        {
+          "name": "Jujie He",
+          "id": "2308563502"
+        },
+        {
+          "name": "Xuchen Song",
+          "id": "2354290518"
+        },
+        {
+          "name": "Yang Liu",
+          "id": "2327475990"
+        },
+        {
+          "name": "Yahui Zhou",
+          "id": "2263493641"
+        }
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "score": 0.4266256074300064,
+      "abstract": "Software engineering (SWE) has recently emerged as a crucial testbed for next-generation LLM agents, demanding inherent capabilities in two critical dimensions: sustained iterative problem-solving (e.g.,>50 interaction rounds) and long-context dependency resolution (e.g.,>32k tokens). However, the data curation process in SWE remains notoriously time-consuming, as it heavily relies on manual annotation for code file filtering and the setup of dedicated runtime environments to execute and validate unit tests. Consequently, most existing datasets are limited to only a few thousand GitHub-sourced instances. To this end, we propose an incremental, automated data-curation pipeline that systematically scales both the volume and diversity of SWE datasets. Our dataset comprises 10,169 real-world Python task instances from 2,531 distinct GitHub repositories, each accompanied by a task specified in natural language and a dedicated runtime-environment image for automated unit-test validation. We have carefully curated over 8,000 successfully runtime-validated training trajectories from our proposed SWE dataset. When fine-tuning the Skywork-SWE model on these trajectories, we uncover a striking data scaling phenomenon: the trained model's performance for software engineering capabilities in LLMs continues to improve as the data size increases, showing no signs of saturation. Notably, our Skywork-SWE model achieves 38.0% pass@1 accuracy on the SWE-bench Verified benchmark without using verifiers or multiple rollouts, establishing a new state-of-the-art (SOTA) among the Qwen2.5-Coder-32B-based LLMs built on the OpenHands agent framework. Furthermore, with the incorporation of test-time scaling techniques, the performance further improves to 47.0% accuracy, surpassing the previous SOTA results for sub-32B parameter models. We release the Skywork-SWE-32B model checkpoint to accelerate future research.",
+      "corpusId": 280000018,
+      "url": "https://api.semanticscholar.org/CorpusId:280000018"
+    },
+    {
+      "title": "SōjiTantei: Function-Call Reachability Detection of Vulnerable Code for npm Packages",
+      "authors": [
+        {
+          "name": "Bodin Chinthanet",
+          "id": "3409698"
+        },
+        {
+          "name": "R. Kula",
+          "id": "1680034"
+        },
+        {
+          "name": "Rodrigo Zapata",
+          "id": "2288009705"
+        },
+        {
+          "name": "T. Ishio",
+          "id": "145682543"
+        },
+        {
+          "name": "Ken-ichi Matsumoto",
+          "id": "144975613"
+        },
+        {
+          "name": "Akinori Ihara",
+          "id": "2385419"
+        }
+      ],
+      "year": 2021,
+      "venue": "IEICE Trans. Inf. Syst.",
+      "score": 0.41182262287611904,
+      "abstract": "It has become common practice for software projects to adopt third-party dependencies. Developers are encouraged to update any outdated dependency to remain safe from potential threats of vulnerabilities. In this study, we present an approach to aid developers show whether or not a vulnerable code is reachable for JavaScript projects. Our prototype, S\\=ojiTantei, is evaluated in two ways (i) the accuracy when compared to a manual approach and (ii) a larger-scale analysis of 780 clients from 78 security vulnerability cases. The first evaluation shows that S\\=ojiTantei has a high accuracy of 83.3%, with a speed of less than a second analysis per client. The second evaluation reveals that 68 out of the studied 78 vulnerabilities reported having at least one clean client. The study proves that automation is promising with the potential for further improvement.",
+      "corpusId": 237571717,
+      "url": "https://api.semanticscholar.org/CorpusId:237571717"
+    },
+    {
+      "title": "On the Security Blind Spots of Software Composition Analysis",
+      "authors": [
+        {
+          "name": "Jens Dietrich",
+          "id": "144212658"
+        },
+        {
+          "name": "Shawn Rasheed",
+          "id": "17285449"
+        },
+        {
+          "name": "Alexander Jordan",
+          "id": "2054376552"
+        },
+        {
+          "name": "Tim White",
+          "id": "2325731105"
+        }
+      ],
+      "year": 2023,
+      "venue": "SCORED@CCS",
+      "score": 0.3846135065454854,
+      "abstract": "Modern software heavily relies on the use of components. Those components are usually published in central repositories, and managed by build systems via dependencies. Due to issues around vulnerabilities, licenses, and the propagation of bugs, the study of those dependencies is of interest, and numerous software composition analysis (SCA) tools have emerged for this purpose. Most existing tools are based on the analysis of the dependency graph constructed from project metadata (declared dependencies). While this is easy to implement and scales well, there are known issues around the accuracy of the analysis. Recently, improvements have been proposed to address the low precision of this approach. We explore a different yet related problem: the recall of SCA, i.e., whether existing methods miss dependencies on vulnerable components. We demonstrate that for the Java / Maven ecosystem this is indeed the case as (often somehow obfuscated -- \"shaded\") clones of vulnerable components are deployed in Maven Central, but not marked as vulnerable in vulnerability databases. This can be exploited for subtle package typo-squatting and confusion attacks evading detection by SCA tools. We demonstrate that such vulnerable clones can be discovered with some rather simple tooling. Our approach is lightweight in that it does not require the creation and maintenance of a custom index, but directly uses Maven Central, and precise by design as it does not introduce new false positives. We evaluate our approach on 29 vulnerabilities with assigned CVEs. We retrieve over 53k potential vulnerable clones from Maven Central. After running our analysis on this set, we detect 727 confirmed vulnerable clones (86 if versions are aggregated) and synthesize proof-of-vulnerability tests for each of those. We demonstrate that existing software composition analysis tools often miss those exposures. At the time of submission those results have led to changes to the entries for ten CVEs in the GitHub Security Advisory Database (GHSA) via accepted pull requests.",
+      "corpusId": 259129477,
+      "url": "https://api.semanticscholar.org/CorpusId:259129477"
+    },
+    {
+      "title": "Understanding the role of external pull requests in the NPM ecosystem",
+      "authors": [
+        {
+          "name": "Vittunyuta Maeprasart",
+          "id": "2154102134"
+        },
+        {
+          "name": "Supatsara Wattanakriengkrai",
+          "id": "84165401"
+        },
+        {
+          "name": "R. Kula",
+          "id": "1680034"
+        },
+        {
+          "name": "Christoph Treude",
+          "id": "1685418"
+        },
+        {
+          "name": "Kenichi Matsumoto",
+          "id": "2148302707"
+        }
+      ],
+      "year": 2022,
+      "venue": "Empirical Software Engineering",
+      "score": 0.38372487322209026,
+      "abstract": "The risk to using third-party libraries in a software application is that much needed maintenance is solely carried out by library maintainers. These libraries may rely on a core team of maintainers (who might be a single maintainer that is unpaid and overworked) to serve a massive client user-base. On the other hand, being open source has the benefit of receiving contributions (in the form of External PRs) to help fix bugs and add new features. In this paper, we investigate the role by which External PRs (contributions from outside the core team of maintainers) contribute to a library. Through a preliminary analysis, we find that External PRs are prevalent, and just as likely to be accepted as maintainer PRs. We find that 26.75% of External PRs submitted fix existing issues. Moreover, fixes also belong to labels such as breaking changes , urgent , and on-hold . Differently from Internal PRs, External PRs cover documentation changes (44 out of 384 PRs), while not having as much refactoring (34 out of 384 PRs). On the other hand, External PRs also cover new features (380 out of 384 PRs) and bugs (120 out of 384 PRs). Our results lay the groundwork for understanding how maintainers decide which external contributions they select to evolve their libraries and what role they play in reducing the workload.",
+      "corpusId": 250426444,
+      "url": "https://api.semanticscholar.org/CorpusId:250426444"
+    },
+    {
+      "title": "A Large-Scale Investigation Into the Loss of Pull Request Data on GitHub",
+      "authors": [
+        {
+          "name": "Bowen Tang",
+          "id": "2357490983"
+        },
+        {
+          "name": "Katsuhisa Maruyama",
+          "id": "2311729643"
+        }
+      ],
+      "year": 2026,
+      "venue": "IEEE Access",
+      "score": 0.3806894630404762,
+      "abstract": "Analyzing pull requests (PRs) on GitHub provides valuable insights that can improve software development and maintenance. Therefore, researchers must collect PRs for empirical studies when testing hypotheses and creating practical tools based on these insights. Unfortunately, using GitHub as a data source for PRs carries the risk of data loss, owing to its flexible resource management. Existing studies have indicated that data losses can occur in PRs; however, the types and impacts of these losses remain unclear. This study shares findings from our investigation, which analyzed 84,828 PRs from 30 GitHub repositories and 2,345,724 actions recorded within the PRs. It clarified how different types of data loss affected PRs and highlighted variations in the percentage of PRs affected by loss. The results showed that 54.79% of the PRs experienced some data loss. Source code loss was common, whereas the loss of user information and commits was less frequent. Most user information loss resulted from missing committers. Compared to PRs that were rejected, merged PRs were more likely to have source code losses. The source code loss rate was much lower in testing-related PRs than in those unrelated to the testing. PRs that lacked files written in a programming language were more prone to commit loss. These findings help researchers better understand data loss in PRs and develop effective strategies to prevent it.",
+      "corpusId": 284798296,
+      "url": "https://api.semanticscholar.org/CorpusId:284798296"
+    },
+    {
+      "title": "PRCollector: Facilitating On-Demand Collection of Pull Request Data From GitHub",
+      "authors": [
+        {
+          "name": "Bowen Tang",
+          "id": "2357490983"
+        },
+        {
+          "name": "Katsuhisa Maruyama",
+          "id": "2311729643"
+        }
+      ],
+      "year": 2025,
+      "venue": "IEEE Access",
+      "score": 0.37320288877505675,
+      "abstract": "As pull-based software development has become popular, many researchers have analyzed pull request (PR) data in empirical studies. Consequently, they are keen to easily acquire and curate many PRs from software repositories. Although GitHub hosts numerous software projects, researchers have found online acquisition through the GitHub API troublesome. To overcome this problem, several offline datasets mirroring GitHub’s persistent data have been proposed. Unfortunately, these datasets incur high costs to maintain the latest data. Our proposed PRCollector, a PR data collection platform, enables users to write a simple Java program that automatically collects the desired PR data on demand and stores them in local storage. The collected data are organized according to our proposed metamodel, which illustrates the relationships between elements in PR activities. It is designed to bypass further analysis of Markdown descriptions in PR conversations and cumbersome tracking of source code elements corresponding to PR comments. The PR models stored locally reduce the time required to conduct investigations of PR data. Experimental results with 64,361 PRs across 23 repositories demonstrate that PRCollector is a superior choice for researchers seeking more efficient analyses of PRs.",
+      "corpusId": 280956204,
+      "url": "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11142716"
+    },
+    {
+      "title": "DepRadar: Agentic Coordination for Context Aware Defect Impact Analysis in Deep Learning Libraries",
+      "authors": [
+        {
+          "name": "Yi Gao",
+          "id": "2274995611"
+        },
+        {
+          "name": "Xing Hu",
+          "id": "2300331939"
+        },
+        {
+          "name": "Tongtong Xu",
+          "id": "2266011532"
+        },
+        {
+          "name": "Jialin Zhao",
+          "id": "2387631838"
+        },
+        {
+          "name": "Xiaohu Yang",
+          "id": "2247840482"
+        },
+        {
+          "name": "Xin Xia",
+          "id": "2300429108"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.37000867282977945,
+      "abstract": "Deep learning libraries like Transformers and Megatron are now widely adopted in modern AI programs. However, when these libraries introduce defects, ranging from silent computation errors to subtle performance regressions, it is often challenging for downstream users to assess whether their own programs are affected. Such impact analysis requires not only understanding the defect semantics but also checking whether the client code satisfies complex triggering conditions involving configuration flags, runtime environments, and indirect API usage. We present DepRadar, an agent coordination framework for fine grained defect and impact analysis in DL library updates. DepRadar coordinates four specialized agents across three steps: 1. the PR Miner and Code Diff Analyzer extract structured defect semantics from commits or pull requests, 2. the Orchestrator Agent synthesizes these signals into a unified defect pattern with trigger conditions, and 3. the Impact Analyzer checks downstream programs to determine whether the defect can be triggered. To improve accuracy and explainability, DepRadar integrates static analysis with DL-specific domain rules for defect reasoning and client side tracing. We evaluate DepRadar on 157 PRs and 70 commits across two representative DL libraries. It achieves 90% precision in defect identification and generates high quality structured fields (average field score 1.6). On 122 client programs, DepRadar identifies affected cases with 90% recall and 80% precision, substantially outperforming other baselines.",
+      "corpusId": 284718395,
+      "url": "https://api.semanticscholar.org/CorpusId:284718395"
+    },
+    {
+      "title": "Generative AI for Pull Request Descriptions: Adoption, Impact, and Developer Interventions",
+      "authors": [
+        {
+          "name": "Tao Xiao",
+          "id": "2278221619"
+        },
+        {
+          "name": "Hideaki Hata",
+          "id": "2238621457"
+        },
+        {
+          "name": "Christoph Treude",
+          "id": "1685418"
+        },
+        {
+          "name": "Kenichi Matsumoto",
+          "id": "2238636149"
+        }
+      ],
+      "year": 2024,
+      "venue": "Proc. ACM Softw. Eng.",
+      "score": 0.3594657261125216,
+      "abstract": "GitHub's Copilot for Pull Requests (PRs) is a promising service aiming to automate various developer tasks related to PRs, such as generating summaries of changes or providing complete walkthroughs with links to the relevant code. As this innovative technology gains traction in the Open Source Software (OSS) community, it is crucial to examine its early adoption and its impact on the development process. Additionally, it offers a unique opportunity to observe how developers respond when they disagree with the generated content. In our study, we employ a mixed-methods approach, blending quantitative analysis with qualitative insights, to examine 18,256 PRs in which parts of the descriptions were crafted by generative AI. Our findings indicate that: (1) Copilot for PRs, though in its infancy, is seeing a marked uptick in adoption. (2) PRs enhanced by Copilot for PRs require less review time and have a higher likelihood of being merged. (3) Developers using Copilot for PRs often complement the automated descriptions with their manual input. These results offer valuable insights into the growing integration of generative AI in software development.",
+      "corpusId": 267658099,
+      "url": "https://api.semanticscholar.org/CorpusId:267658099"
+    },
+    {
+      "title": "Sphinx: Benchmarking and Modeling for LLM-Driven Pull Request Review",
+      "authors": [
+        {
+          "name": "Daoan Zhang",
+          "id": "2266412651"
+        },
+        {
+          "name": "Shuo Zhang",
+          "id": "2293553363"
+        },
+        {
+          "name": "Zijian Jin",
+          "id": "2278326150"
+        },
+        {
+          "name": "Jiebo Luo",
+          "id": "2320811177"
+        },
+        {
+          "name": "Shengyu Fu",
+          "id": "2364702995"
+        },
+        {
+          "name": "Elsie Nallipogu",
+          "id": "3318884"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.35620127000296287,
+      "abstract": "Pull request (PR) review is essential for ensuring software quality, yet automating this task remains challenging due to noisy supervision, limited contextual understanding, and inadequate evaluation metrics. We present Sphinx, a unified framework for LLM-based PR review that addresses these limitations through three key components: (1) a structured data generation pipeline that produces context-rich, semantically grounded review comments by comparing pseudo-modified and merged code; (2) a checklist-based evaluation benchmark that assesses review quality based on structured coverage of actionable verification points, moving beyond surface-level metrics like BLEU; and (3) Checklist Reward Policy Optimization (CRPO), a novel training paradigm that uses rule-based, interpretable rewards to align model behavior with real-world review practices. Extensive experiments show that models trained with Sphinx achieve state-of-the-art performance on review completeness and precision, outperforming both proprietary and open-source baselines by up to 40\\% in checklist coverage. Together, Sphinx enables the development of PR review models that are not only fluent but also context-aware, technically precise, and practically deployable in real-world development workflows. The data will be released after review.",
+      "corpusId": 284544159,
+      "url": "https://api.semanticscholar.org/CorpusId:284544159"
+    },
+    {
+      "title": "A Mixed-Methods Study of Open-Source Software Maintainers On Vulnerability Management and Platform Security Features",
+      "authors": [
+        {
+          "name": "Jessy Ayala",
+          "id": "2132158313"
+        },
+        {
+          "name": "Yu-Jye Tung",
+          "id": "2320802392"
+        },
+        {
+          "name": "Joshua Garcia",
+          "id": "2301172862"
+        }
+      ],
+      "year": 2024,
+      "venue": "USENIX Security Symposium",
+      "score": 0.3551718570711703,
+      "abstract": "In open-source software (OSS), software vulnerabilities have significantly increased. Although researchers have investigated the perspectives of vulnerability reporters and OSS contributor security practices, understanding the perspectives of OSS maintainers on vulnerability management and platform security features is currently understudied. In this paper, we investigate the perspectives of OSS maintainers who maintain projects listed in the GitHub Advisory Database. We explore this area by conducting two studies: identifying aspects through a listing survey ($n_1=80$) and gathering insights from semi-structured interviews ($n_2=22$). Of the 37 identified aspects, we find that supply chain mistrust and lack of automation for vulnerability management are the most challenging, and barriers to adopting platform security features include a lack of awareness and the perception that they are not necessary. Surprisingly, we find that despite being previously vulnerable, some maintainers still allow public vulnerability reporting, or ignore reports altogether. Based on our findings, we discuss implications for OSS platforms and how the research community can better support OSS vulnerability management efforts.",
+      "corpusId": 272600455,
+      "url": "https://api.semanticscholar.org/CorpusId:272600455"
+    },
+    {
+      "title": "Can automated pull requests encourage software developers to upgrade out-of-date dependencies?",
+      "authors": [
+        {
+          "name": "Samim Mirhosseini",
+          "id": "27467538"
+        },
+        {
+          "name": "Chris Parnin",
+          "id": "1765101"
+        }
+      ],
+      "year": 2017,
+      "venue": "International Conference on Automated Software Engineering",
+      "score": 0.3487056473523039,
+      "abstract": "",
+      "corpusId": 3035873,
+      "url": "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8115621"
+    },
+    {
+      "title": "Not All Dependencies are Equal: An Empirical Study on Production Dependencies in NPM",
+      "authors": [
+        {
+          "name": "Jasmine Latendresse",
+          "id": "2086607788"
+        },
+        {
+          "name": "Suhaib Mujahid",
+          "id": "19281977"
+        },
+        {
+          "name": "D. Costa",
+          "id": "115989708"
+        },
+        {
+          "name": "Emad Shihab",
+          "id": "3318024"
+        }
+      ],
+      "year": 2022,
+      "venue": "International Conference on Automated Software Engineering",
+      "score": 0.343974990016909,
+      "abstract": "Modern software systems are often built by leveraging code written by others in the form of libraries and packages to accelerate their development. While there are many benefits to using third-party packages, software projects often become dependent on a large number of software packages. Consequently, developers are faced with the difficult challenge of maintaining their project dependencies by keeping them up-to-date and free of security vulnerabilities. However, how often are project dependencies used in production where they could pose a threat to their project’s security? We conduct an empirical study on 100 JavaScript projects using the Node Package Manager (npm) to quantify how often project dependencies are released to production and analyze their characteristics and their impact on security. Our results indicate that less than 1% of the installed dependencies are released to production. Our analysis reveals that the functionality of a package is not enough to determine if it will be released to production or not. In fact, 59% of the installed dependencies configured as runtime dependencies are not used in production, and 28.2% of the dependencies configured as development dependencies are used in production, debunking two common assumptions of dependency management. Findings also indicate that most security alerts target dependencies not used in production, making them highly unlikely to be a risk for the security of the software. Our study unveils a more complex side of dependency management: not all dependencies are equal. Dependencies used in production are more sensitive to security exposure and should be prioritized. However, current tools lack the appropriate support in identifying production dependencies.",
+      "corpusId": 251196746,
+      "url": "https://api.semanticscholar.org/CorpusId:251196746"
+    },
+    {
+      "title": "A ground-truth dataset and classification model for detecting bots in GitHub issue and PR comments",
+      "authors": [
+        {
+          "name": "M. Golzadeh",
+          "id": "13546149"
+        },
+        {
+          "name": "Alexandre Decan",
+          "id": "2794053"
+        },
+        {
+          "name": "Damien Legay",
+          "id": "52307499"
+        },
+        {
+          "name": "T. Mens",
+          "id": "1794675"
+        }
+      ],
+      "year": 2020,
+      "venue": "Journal of Systems and Software",
+      "score": 0.34249655086955766,
+      "abstract": "Bots are frequently used in Github repositories to automate repetitive activities that are part of the distributed software development process. They communicate with human actors through comments. While detecting their presence is important for many reasons, no large and representative ground-truth dataset is available, nor are classification models to detect and validate bots on the basis of such a dataset. This paper proposes such a ground-truth dataset, based on a manual analysis with high interrater agreement, of pull request and issue comments in 5,000 distinct Github accounts of which 527 accounts have been identified as bots. Using this dataset we propose an automated classification model based on the random forest classifier, taking as main features the number of empty and non-empty comments of each account, the number of comment patterns, and the inequality between comments within comment patterns. We obtained a very high accuracy (weighted F1-score of 0.99) on the remaining test set containing 40% of the data. Only 8 out of 211 bots in the test set are misclassified as humans. We integrated the classification model into an open source command-line tool, to allow practitioners to detect which accounts in a given Github repository actually correspond to bots.",
+      "corpusId": 222177507,
+      "url": "https://arxiv.org/pdf/2010.03303.pdf"
+    },
+    {
+      "title": "Lingma SWE-GPT: An Open Development-Process-Centric Language Model for Automated Software Improvement",
+      "authors": [
+        {
+          "name": "Yingwei Ma",
+          "id": "2304576674"
+        },
+        {
+          "name": "Rongyu Cao",
+          "id": "2304468929"
+        },
+        {
+          "name": "Yongchang Cao",
+          "id": "2323841614"
+        },
+        {
+          "name": "Yue Zhang",
+          "id": "2329685637"
+        },
+        {
+          "name": "Jue Chen",
+          "id": "2329006820"
+        },
+        {
+          "name": "Yibo Liu",
+          "id": "2328996993"
+        },
+        {
+          "name": "Yuchen Liu",
+          "id": "2328998523"
+        },
+        {
+          "name": "Binhua Li",
+          "id": "66200440"
+        },
+        {
+          "name": "Fei Huang",
+          "id": "2304136336"
+        },
+        {
+          "name": "Yongbin Li",
+          "id": "2323761746"
+        }
+      ],
+      "year": 2024,
+      "venue": "arXiv.org",
+      "score": 0.34168850606066065,
+      "abstract": "Recent advancements in LLM-based agents have led to significant progress in automatic software engineering, particularly in software maintenance and evolution. Despite these encouraging advances, current research faces two major challenges. First, SOTA performance primarily depends on closed-source models, which significantly limits the technology's accessibility, and potential for customization in diverse SE tasks. Second, these models are predominantly trained on static code data, lacking a deep understanding of the dynamic interactions, iterative problem-solving processes, and evolutionary characteristics inherent in software development. To address these challenges, our study adopts a software engineering perspective. We recognize that real-world software maintenance and evolution processes encompass not only static code data but also developers' thought processes, utilization of external tools, and the interaction between different functional personnel. Consequently, we introduce the Lingma SWE-GPT series, comprising Lingma SWE-GPT 7B and 72B. By learning from and simulating real-world code submission activities, Lingma SWE-GPT systematically incorporates the dynamic interactions and iterative problem-solving inherent in software development process, thereby achieving a more comprehensive understanding of software improvement processes. We conducted experimental evaluations using SWE-bench Verified benchmark. The results demonstrate that Lingma SWE-GPT 72B successfully resolves 30.20% of the GitHub issues, marking a significant improvement in automatic issue resolution (22.76% relative improvement compared to Llama 3.1 405B), approaching the performance of closed-source models (31.80\\% issues of GPT-4o resolved). Notably, Lingma SWE-GPT 7B resolves 18.20% of the issues, highlighting the potential for applying smaller models to ASE tasks.",
+      "corpusId": 273798457,
+      "url": "https://api.semanticscholar.org/CorpusId:273798457"
+    },
+    {
+      "title": "The Value of Effective Pull Request Description",
+      "authors": [
+        {
+          "name": "Shirin Pirouzkhah",
+          "id": "2399379461"
+        },
+        {
+          "name": "P. Gonçalves",
+          "id": "1752632692"
+        },
+        {
+          "name": "Alberto Bacchelli",
+          "id": "2258059197"
+        }
+      ],
+      "year": 2026,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.3395468461279628,
+      "abstract": "In the pull-based development model, code contributions are submitted as pull requests (PRs) to undergo reviews and approval by other developers with the goal of being merged into the code base. A PR can be supported by a description, whose role has not yet been systematically investigated. To fill in this gap, we conducted a mixed-methods empirical study of PR descriptions. We conducted a gray literature review of guidelines on writing PR descriptions and derived a taxonomy of eight recommended elements. Using this taxonomy, we analyzed 80K GitHub PRs across 156 projects and five programming languages to assess associations between these elements and code review outcomes (e.g., merge decision, latency, first response time, review comments, and review iteration cycles). To complement these results, we surveyed 64 developers about the perceived importance of each element. Finally, we analyzed which submission-time factors predict whether PRs include a description and which elements they contain. We found that developers view PR descriptions as important, but their elements matter differently: purpose and code explanations are valued by developers for preserving the rationale and history of changes, while stating the desired feedback type best predicts change acceptance and reviewer engagement. PR descriptions are also more common in mature projects and complex changes, suggesting they are written when most useful rather than as a formality.",
+      "corpusId": 285616660,
+      "url": "https://api.semanticscholar.org/CorpusId:285616660"
+    },
+    {
+      "title": "Pull Request Decisions Explained: An Empirical Overview",
+      "authors": [
+        {
+          "name": "Xunhui Zhang",
+          "id": "3440433"
+        },
+        {
+          "name": "Yue Yu",
+          "id": "47111832"
+        },
+        {
+          "name": "Georgios Gousios",
+          "id": "2211882"
+        },
+        {
+          "name": "Ayushi Rastogi",
+          "id": "40464536"
+        }
+      ],
+      "year": 2023,
+      "venue": "IEEE Transactions on Software Engineering",
+      "score": 0.33279939176194795,
+      "abstract": "",
+      "corpusId": 235248323,
+      "url": "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9749844"
+    },
+    {
+      "title": "Understanding the Threats of Upstream Vulnerabilities to Downstream Projects in the Maven Ecosystem",
+      "authors": [
+        {
+          "name": "Yulun Wu",
+          "id": "2223144852"
+        },
+        {
+          "name": "Zeliang Yu",
+          "id": "2223172928"
+        },
+        {
+          "name": "Ming Wen",
+          "id": "2143099423"
+        },
+        {
+          "name": "Qiang Li",
+          "id": "2329381994"
+        },
+        {
+          "name": "Deqing Zou",
+          "id": "2068865"
+        },
+        {
+          "name": "Hai Jin",
+          "id": "2152883041"
+        }
+      ],
+      "year": 2023,
+      "venue": "International Conference on Software Engineering",
+      "score": 0.33274002557139504,
+      "abstract": "",
+      "corpusId": 259860766,
+      "url": "http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10172868"
+    },
+    {
+      "title": "SWE-GPT: A Process-Centric Language Model for Automated Software Improvement",
+      "authors": [
+        {
+          "name": "Yingwei Ma",
+          "id": "2304576674"
+        },
+        {
+          "name": "Rongyu Cao",
+          "id": "2304468929"
+        },
+        {
+          "name": "Yongchang Cao",
+          "id": "2323841614"
+        },
+        {
+          "name": "Yue Zhang",
+          "id": "2329685637"
+        },
+        {
+          "name": "Jue Chen",
+          "id": "2329006820"
+        },
+        {
+          "name": "Yibo Liu",
+          "id": "2328996993"
+        },
+        {
+          "name": "Yuchen Liu",
+          "id": "2328998523"
+        },
+        {
+          "name": "Binhua Li",
+          "id": "2340177438"
+        },
+        {
+          "name": "Fei Huang",
+          "id": "2304136336"
+        },
+        {
+          "name": "Yongbin Li",
+          "id": "2111164175"
+        }
+      ],
+      "year": 2025,
+      "venue": "Proc. ACM Softw. Eng.",
+      "score": 0.3318365814521163,
+      "abstract": "Large language models (LLMs) have demonstrated remarkable performance in code generation, significantly enhancing the coding efficiency of developers. Recent advancements in LLM-based agents have led to significant progress in end-to-end automatic software engineering (ASE), particularly in software maintenance (e.g., fixing software issues) and evolution (e.g., adding new features). Despite these encouraging advances, current research faces two major challenges. First, state-of-the-art performance primarily depends on closed-source models like GPT-4, which significantly limits the technology’s accessibility, and potential for customization in diverse software engineering tasks. This dependence also raises concerns about data privacy, particularly when handling sensitive codebases. Second, these models are predominantly trained on static code data, lacking a deep understanding of the dynamic interactions, iterative problem-solving processes, and evolutionary characteristics inherent in software development. Consequently, they may face challenges in navigating complex project structures and generating contextually relevant solutions, which can affect their practical utility in real-world scenarios. To address these challenges, our study adopts a software engineering perspective. We recognize that real-world software maintenance and evolution processes encompass not only static code data but also developers’ thought processes, utilization of external tools, and the interaction between different functional personnel. Our objective is to develop an open-source large language model specifically optimized for software improvement, aiming to match the performance of closed-source alternatives while offering greater accessibility and customization potential. Consequently, we introduce the Lingma SWE-GPT series, comprising Lingma SWE-GPT 7B and Lingma SWE-GPT 72B. By learning from and simulating real-world code submission activities, Lingma SWE-GPT systematically incorporates the dynamic interactions and iterative problem-solving inherent in software development process—such as repository understanding, fault localization, and patch generation—thereby achieving a more comprehensive understanding of software improvement processes. We conducted experimental evaluations using SWE-bench-Verified benchmark (comprising 500 real GitHub issues), recently proposed by OpenAI. The results demonstrate that Lingma SWE-GPT 72B successfully resolves 30.20% of the GitHub issues, marking a significant improvement in automatic issue resolution (22.76% relative improvement compared to Llama 3.1 405B), approaching the performance of closed-source models (31.80% issues of GPT-4o resolved). Notably, Lingma SWE-GPT 7B resolves 18.20% of the issues, surpassing the 17.20% resolution rate of Llama 3.1 70B, highlighting the potential for applying smaller models to ASE tasks.",
+      "corpusId": 279470187,
+      "url": "https://api.semanticscholar.org/CorpusId:279470187"
+    },
+    {
+      "title": "Automatic Generation of Pull Request Descriptions",
+      "authors": [
+        {
+          "name": "Zhongxin Liu",
+          "id": "12907867"
+        },
+        {
+          "name": "Xin Xia",
+          "id": "144558659"
+        },
+        {
+          "name": "Christoph Treude",
+          "id": "1685418"
+        },
+        {
+          "name": "D. Lo",
+          "id": "143960553"
+        },
+        {
+          "name": "Shanping Li",
+          "id": "1773299"
+        }
+      ],
+      "year": 2019,
+      "venue": "International Conference on Automated Software Engineering",
+      "score": 0.3290266165179944,
+      "abstract": "Enabled by the pull-based development model, developers can easily contribute to a project through pull requests (PRs). When creating a PR, developers can add a free-form description to describe what changes are made in this PR and/or why. Such a description is helpful for reviewers and other developers to gain a quick understanding of the PR without touching the details and may reduce the possibility of the PR being ignored or rejected. However, developers sometimes neglect to write descriptions for PRs. For example, in our collected dataset with over 333K PRs, more than 34% of the PR descriptions are empty. To alleviate this problem, we propose an approach to automatically generate PR descriptions based on the commit messages and the added source code comments in the PRs. We regard this problem as a text summarization problem and solve it using a novel sequence-to-sequence model. To cope with out-of-vocabulary words in software artifacts and bridge the gap between the training loss function of the sequence-to-sequence model and the evaluation metric ROUGE, which has been shown to correspond to human evaluation, we integrate the pointer generator and directly optimize for ROUGE using reinforcement learning and a special loss function. We build a dataset with over 41K PRs and evaluate our approach on this dataset through ROUGE and a human evaluation. Our evaluation results show that our approach outperforms two baselines by significant margins.",
+      "corpusId": 202577456,
+      "url": "http://dl.acm.org/citation.cfm?id=3382524"
+    },
+    {
+      "title": "The GitHub Development Workflow Automation Ecosystems",
+      "authors": [
+        {
+          "name": "M. Wessel",
+          "id": "2156237"
+        },
+        {
+          "name": "T. Mens",
+          "id": "1794675"
+        },
+        {
+          "name": "Alexandre Decan",
+          "id": "2794053"
+        },
+        {
+          "name": "Pooya Rostami Mazrae",
+          "id": "2117589348"
+        }
+      ],
+      "year": 2023,
+      "venue": "Software Ecosystems: Tooling and Analytics",
+      "score": 0.32899968095618615,
+      "abstract": "Large-scale software development has become a highly collaborative and geographically distributed endeavour, especially in open-source software development ecosystems and their associated developer communities. It has given rise to modern development processes (e.g., pull-based development) that involve a wide range of activities such as issue and bug handling, code reviewing, coding, testing, and deployment. These often very effort-intensive activities are supported by a wide variety of tools such as version control systems, bug and issue trackers, code reviewing systems, code quality analysis tools, test automation, dependency management, and vulnerability detection tools. To reduce the complexity of the collaborative development process, many of the repetitive human activities that are part of the development workflow are being automated by CI/CD tools that help to increase the productivity and quality of software projects. Social coding platforms aim to integrate all this tooling and workflow automation in a single encompassing environment. These social coding platforms gave rise to the emergence of development bots, facilitating the integration with external CI/CD tools and enabling the automation of many other development-related tasks. GitHub, the most popular social coding platform, has introduced GitHub Actions to automate workflows in its hosted software development repositories since November 2019. This chapter explores the ecosystems of development bots and GitHub Actions and their interconnection. It provides an extensive survey of the state-of-the-art in this domain, discusses the opportunities and threats that these ecosystems entail, and reports on the challenges and future perspectives for researchers as well as software practitioners.",
+      "corpusId": 258557363,
+      "url": "https://api.semanticscholar.org/CorpusId:258557363"
+    },
+    {
+      "title": "SWE-Perf: Can Language Models Optimize Code Performance on Real-World Repositories?",
+      "authors": [
+        {
+          "name": "Xinyi He",
+          "id": "2348725220"
+        },
+        {
+          "name": "Qian Liu",
+          "id": "2301197322"
+        },
+        {
+          "name": "Mingzhe Du",
+          "id": "2362652887"
+        },
+        {
+          "name": "Lin Yan",
+          "id": "2356792115"
+        },
+        {
+          "name": "Zhijie Fan",
+          "id": "2376463013"
+        },
+        {
+          "name": "Yiming Huang",
+          "id": "2261394934"
+        },
+        {
+          "name": "Zejian Yuan",
+          "id": "2184090239"
+        },
+        {
+          "name": "Zejun Ma",
+          "id": "2356479376"
+        }
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "score": 0.3268929396848565,
+      "abstract": "Code performance optimization is paramount in real-world software engineering and critical for production-level systems. While Large Language Models (LLMs) have demonstrated impressive capabilities in code generation and bug fixing, their proficiency in enhancing code performance at the repository level remains largely unexplored. To address this gap, we introduce SWE-Perf, the first benchmark specifically designed to systematically evaluate LLMs on code performance optimization tasks within authentic repository contexts. SWE-Perf comprises 140 carefully curated instances, each derived from performance-improving pull requests from popular GitHub repositories. Each benchmark instance includes the relevant codebase, target functions, performance-related tests, expert-authored patches, and executable environments. Through a comprehensive evaluation of representative methods that span file-level and repo-level approaches (e.g., Agentless and OpenHands), we reveal a substantial capability gap between existing LLMs and expert-level optimization performance, highlighting critical research opportunities in this emerging field.",
+      "corpusId": 280297994,
+      "url": "https://api.semanticscholar.org/CorpusId:280297994"
+    },
+    {
+      "title": "SWE-Bench++: A Framework for the Scalable Generation of Software Engineering Benchmarks from Open-Source Repositories",
+      "authors": [
+        {
+          "name": "Lilin Wang",
+          "id": "2284807810"
+        },
+        {
+          "name": "Lucas Ramalho",
+          "id": "2399963707"
+        },
+        {
+          "name": "Alan Celestino",
+          "id": "2399962051"
+        },
+        {
+          "name": "Phuc Pham",
+          "id": "2334870396"
+        },
+        {
+          "name": "Yu Liu",
+          "id": "2379811092"
+        },
+        {
+          "name": "Umang Kumar Sinha",
+          "id": "2399963586"
+        },
+        {
+          "name": "A. Portillo",
+          "id": "2399963543"
+        },
+        {
+          "name": "Onassis Osunwa",
+          "id": "2399963570"
+        },
+        {
+          "name": "Gabriel Maduekwe",
+          "id": "2399963640"
+        }
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "score": 0.32685964309724974,
+      "abstract": "Benchmarks like SWE-bench have standardized the evaluation of Large Language Models (LLMs) on repository-level software engineering tasks. However, these efforts remain limited by manual curation, static datasets, and a focus on Python-based bug fixes. We introduce SWE-Bench++, an automated framework that generates repository-level coding tasks from open-source GitHub projects. Unlike synthetic approaches, our pipeline harvests live pull requests to cover both bug fixes and feature requests across 11 languages. SWE-Bench++ turns GitHub pull requests (PRs) into reproducible, execution-based tasks via four stages: programmatic sourcing, environment synthesis, test oracle extraction, and quality assurance. A final hint-guided trajectory synthesis step converts instances that strong models fail on into training trajectories. Our initial benchmark consists of 11,133 instances from 3,971 repositories across 11 languages. On a subset of 1,782 instances of this benchmark, today's strongest models perform as follows: claude-sonnet-4.5 achieves 36.20% pass@10, gpt-5-2025-08-07 34.57%, gemini/gemini-2.5-pro 24.92%, and gpt-4o 16.89%. We further demonstrate the utility of our dataset by showing that fine-tuning on SWE-Bench++ instances yields measurable improvements on the SWE-bench Multilingual benchmark. SWE-Bench++ provides a scalable, multilingual benchmark for evaluating and improving repository-level code generation.",
+      "corpusId": 284058170,
+      "url": "https://api.semanticscholar.org/CorpusId:284058170"
+    },
+    {
+      "title": "What to Cut? Predicting Unnecessary Methods in Agentic Code Generation",
+      "authors": [
+        {
+          "name": "Kanetaka Watanabe",
+          "id": "2109941742"
+        },
+        {
+          "name": "Tatsuya Shirai",
+          "id": "2386606757"
+        },
+        {
+          "name": "Yutaro Kashiwa",
+          "id": "40293906"
+        },
+        {
+          "name": "Hajimu Iida",
+          "id": "2273975187"
+        }
+      ],
+      "year": 2026,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.32446542662255495,
+      "abstract": "Agentic Coding, powered by autonomous agents such as GitHub Copilot and Cursor, enables developers to generate code, tests, and pull requests from natural language instructions alone. While this accelerates implementation, it produces larger volumes of code per pull request, shifting the burden from implementers to reviewers. In practice, a notable portion of AI-generated code is eventually deleted during review, yet reviewers must still examine such code before deciding to remove it. No prior work has explored methods to help reviewers efficiently identify code that will be removed. In this paper, we propose a prediction model that identifies functions likely to be deleted during PR review. Our results show that functions deleted for different reasons exhibit distinct characteristics, and our model achieves an AUC of 87.1%. These findings suggest that predictive approaches can help reviewers prioritize their efforts on essential code.",
+      "corpusId": 285787579,
+      "url": "https://api.semanticscholar.org/CorpusId:285787579"
+    },
+    {
+      "title": "SWE-Universe: Scale Real-World Verifiable Environments to Millions",
+      "authors": [
+        {
+          "name": "Mouxiang Chen",
+          "id": "2366171968"
+        },
+        {
+          "name": "Lei Zhang",
+          "id": "2401623191"
+        },
+        {
+          "name": "Yunlong Feng",
+          "id": "2338541612"
+        },
+        {
+          "name": "Xuwu Wang",
+          "id": "2279096273"
+        },
+        {
+          "name": "Wenting Zhao",
+          "id": "2408685038"
+        },
+        {
+          "name": "Ruisheng Cao",
+          "id": "2375747329"
+        },
+        {
+          "name": "Jiaxin Yang",
+          "id": "2328943044"
+        },
+        {
+          "name": "Jiawei Chen",
+          "id": "2401299303"
+        },
+        {
+          "name": "Mingze Li",
+          "id": "2405408164"
+        },
+        {
+          "name": "Zeyao Ma",
+          "id": "2405725757"
+        },
+        {
+          "name": "H. Ge",
+          "id": "2408464074"
+        },
+        {
+          "name": "Zongmeng Zhang",
+          "id": "2408421782"
+        },
+        {
+          "name": "Zeyu Cui",
+          "id": "2248072386"
+        },
+        {
+          "name": "Dayiheng Liu",
+          "id": "2403252635"
+        },
+        {
+          "name": "Jingren Zhou",
+          "id": "2237981776"
+        },
+        {
+          "name": "Jianling Sun",
+          "id": "2265213398"
+        },
+        {
+          "name": "Junyang Lin",
+          "id": "2312866505"
+        },
+        {
+          "name": "Binyuan Hui",
+          "id": "2321578848"
+        }
+      ],
+      "year": 2026,
+      "venue": "arXiv.org",
+      "score": 0.324133001786669,
+      "abstract": "We propose SWE-Universe, a scalable and efficient framework for automatically constructing real-world software engineering (SWE) verifiable environments from GitHub pull requests (PRs). To overcome the prevalent challenges of automatic building, such as low production yield, weak verifiers, and prohibitive cost, our framework utilizes a building agent powered by an efficient custom-trained model. This agent employs iterative self-verification and in-loop hacking detection to ensure the reliable generation of high-fidelity, verifiable tasks. Using this method, we scale the number of real-world multilingual SWE environments to a million scale (807,693). We demonstrate the profound value of our environments through large-scale agentic mid-training and reinforcement learning. Finally, we applied this technique to Qwen3-Max-Thinking and achieved a score of 75.3% on SWE-Bench Verified. Our work provides both a critical resource and a robust methodology to advance the next generation of coding agents.",
+      "corpusId": 285270381,
+      "url": "https://api.semanticscholar.org/CorpusId:285270381"
+    },
+    {
+      "title": "A dataset for pull-based development research",
+      "authors": [
+        {
+          "name": "Georgios Gousios",
+          "id": "2211882"
+        },
+        {
+          "name": "A. Zaidman",
+          "id": "1702285"
+        }
+      ],
+      "year": 2014,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.3231042310040552,
+      "abstract": "",
+      "corpusId": 15537872,
+      "url": "http://dl.acm.org/citation.cfm?id=2597122"
+    },
+    {
+      "title": "Nudge: Accelerating Overdue Pull Requests toward Completion",
+      "authors": [
+        {
+          "name": "C. Maddila",
+          "id": "22192720"
+        },
+        {
+          "name": "Sai Surya Upadrasta",
+          "id": "2028788248"
+        },
+        {
+          "name": "Chetan Bansal",
+          "id": "2239106685"
+        },
+        {
+          "name": "N. Nagappan",
+          "id": "1693689"
+        },
+        {
+          "name": "Georgios Gousios",
+          "id": "2211882"
+        },
+        {
+          "name": "Arie van Deursen",
+          "id": "10734708"
+        }
+      ],
+      "year": 2020,
+      "venue": "ACM Transactions on Software Engineering and Methodology",
+      "score": 0.3226426398583882,
+      "abstract": "Pull requests are a key part of the collaborative software development and code review process today. However, pull requests can also slow down the software development process when the reviewer(s) or the author do not actively engage with the pull request. In this work, we design an end-to-end service, Nudge, for accelerating overdue pull requests toward completion by reminding the author or the reviewer(s) to engage with their overdue pull requests. First, we use models based on effort estimation and machine learning to predict the completion time for a given pull request. Second, we use activity detection to filter out pull requests that may be overdue but for which sufficient action is taking place nonetheless. Last, we use actor identification to understand who the blocker of the pull request is and nudge the appropriate actor (author or reviewer(s)). The key novelty of Nudge is that it succeeds in reducing pull request resolution time, while ensuring that developers perceive the notifications sent as useful, at the scale of thousands of repositories. In a randomized trial on 147 repositories in use at Microsoft, Nudge was able to reduce pull request resolution time by 60% for 8,500 pull requests, when compared to overdue pull requests for which Nudge did not send a notification. Furthermore, developers receiving Nudge notifications resolved 73% of these notifications as positive. We observed similar results when scaling up the deployment of Nudge to 8,000 repositories at Microsoft, for which Nudge sent 210,000 notifications during a full year. This demonstrates Nudge’s ability to scale to thousands of repositories. Last, our qualitative analysis of a selection of Nudge notifications indicates areas for future research, such as taking dependencies among pull requests and developer availability into account.",
+      "corpusId": 227162462,
+      "url": "http://dl.acm.org/citation.cfm?id=3544791"
+    },
+    {
+      "title": "Automatic Core-Developer Identification on GitHub: A Validation Study",
+      "authors": [
+        {
+          "name": "Thomas Bock",
+          "id": "2073157977"
+        },
+        {
+          "name": "Nils Alznauer",
+          "id": "2215015936"
+        },
+        {
+          "name": "Mitchell Joblin",
+          "id": "2020545"
+        },
+        {
+          "name": "Sven Apel",
+          "id": "1721771"
+        }
+      ],
+      "year": 2023,
+      "venue": "ACM Transactions on Software Engineering and Methodology",
+      "score": 0.32250448154431116,
+      "abstract": "",
+      "corpusId": 258259390,
+      "url": "http://dl.acm.org/citation.cfm?id=3593803"
+    },
+    {
+      "title": "SWE Data Construction, Automatically!",
+      "authors": [
+        {
+          "name": "Lianghong Guo",
+          "id": "2217902484"
+        },
+        {
+          "name": "Yanlin Wang",
+          "id": "2239164852"
+        },
+        {
+          "name": "Caihua Li",
+          "id": "2367619114"
+        },
+        {
+          "name": "Pengyu Yang",
+          "id": "2366863539"
+        },
+        {
+          "name": "Jiachi Chen",
+          "id": "2254800142"
+        },
+        {
+          "name": "Haoyu Song",
+          "id": "2402993174"
+        },
+        {
+          "name": "Duyu Tang",
+          "id": "2366668935"
+        },
+        {
+          "name": "Zibin Zheng",
+          "id": "2267902535"
+        }
+      ],
+      "year": 2025,
+      "venue": "Proceedings of the ACM on Software Engineering",
+      "score": 0.321834598741881,
+      "abstract": "Constructing large-scale datasets for the GitHub issue resolution task is crucial for both training and evaluating the software engineering capabilities of Large Language Models (LLMs). However, the existing GitHub issue resolution data construction pipeline is challenging and labor-intensive. We identify three key limitations in existing pipelines: (1) test patches collected often omit binary file changes; (2) the manual construction of evaluation environments is labor-intensive; and (3) the fail2pass validation phase requires manual inspection of test logs and writing custom parsing code to extract test status from logs. In this paper, we propose SWE-Factory, a fully automated issue resolution data construction pipeline, to resolve these limitations. First, our pipeline automatically recovers missing binary test files and ensures the correctness of test patches. Second, we introduce SWE-Builder, an LLM-based agentic system that automates evaluation environment construction. Third, we introduce a standardized, exit-code-based log parsing method to automatically extract test status, enabling a fully automated fail2pass validation. Experiments on 671 real-world GitHub issues across four programming languages show that our method can effectively construct valid evaluation environments for GitHub issues at a reasonable cost. For example, with GPT-4.1 mini, our SWE-Builder constructs 337 valid task instances out of 671 issues, at $0.047 per instance. Our ablation study further shows the effectiveness of different components of SWE-Builder. We also demonstrate through manual inspection that our exit-code-based fail2pass validation method is highly accurate, achieving an F1 score of 0.99. Additionally, we conduct an exploratory experiment to investigate whether we can use SWE-Factory to enhance models’ software engineering ability. After training five models on 2,809 Python task instances collected by our method, all models show improved software engineering ability. For example, the resolve rate of a trained Qwen2.5-Coder-14B-Instruct on SWE-bench Verified increases from 5.8% to 21.0%. We hope our method can accelerate the construction of large-scale, high-quality GitHub issue resolution datasets for both training and evaluation.",
+      "corpusId": 284488853,
+      "url": "https://api.semanticscholar.org/CorpusId:284488853"
+    },
+    {
+      "title": "Detecting Duplicate Contributions in Pull-Based Model Combining Textual and Change Similarities",
+      "authors": [
+        {
+          "name": "Zhixing Li",
+          "id": "46948203"
+        },
+        {
+          "name": "Yue Yu",
+          "id": "47111832"
+        },
+        {
+          "name": "Tao Wang",
+          "id": "39082503"
+        },
+        {
+          "name": "Gang Yin",
+          "id": "143634613"
+        },
+        {
+          "name": "Xinjun Mao",
+          "id": "39389365"
+        },
+        {
+          "name": "Huaimin Wang",
+          "id": "2455662908"
+        }
+      ],
+      "year": 2021,
+      "venue": "Journal of Computational Science and Technology",
+      "score": 0.3217063444620495,
+      "abstract": "",
+      "corpusId": 211161912,
+      "url": "https://doi.org/10.1007/s11390-020-9935-1"
+    },
+    {
+      "title": "Dependency management bots in open-source systems—prevalence and adoption",
+      "authors": [
+        {
+          "name": "Linda Erlenhov",
+          "id": "51128103"
+        },
+        {
+          "name": "F. D. O. Neto",
+          "id": "2547568"
+        },
+        {
+          "name": "P. Leitner",
+          "id": "1910406"
+        }
+      ],
+      "year": 2022,
+      "venue": "PeerJ Computer Science",
+      "score": 0.3210926149905286,
+      "abstract": "Bots have become active contributors in maintaining open-source repositories. However, the definitions of bot activity in open-source software vary from a more lenient stance encompassing every non-human contributions vs frameworks that cover contributions from tools that have autonomy or human-like traits (i.e., Devbots). Understanding which of those definitions are being used is essential to enable (i) reliable sampling of bots and (ii) fair comparison of their practical impact in, e.g., developers’ productivity. This paper reports on an empirical study composed of both quantitative and qualitative analysis of bot activity. By analysing those two bot definitions in an existing dataset of bot commits, we see that only 10 out of 54 listed tools (mainly dependency management) comply with the characteristics of Devbots. Moreover, five of those Devbots have similar patterns of contributions over 93 projects, such as similar proportions of merged pull-requests and days until issues are closed. Our analysis also reveals that most projects (77%) experiment with more than one bot before deciding to adopt or switch between bots. In fact, a thematic analysis of developers’ comments in those projects reveal factors driving the discussions about Devbot adoption or removal, such as the impact of the generated noise and the needed adaptation in development practices within the project.",
+      "corpusId": 247281185,
+      "url": "https://pdfs.semanticscholar.org/1db4/8148058a01ad24404ec7b370394a9bb0f29a.pdf"
+    },
+    {
+      "title": "GHTorrent: Github's data from a firehose",
+      "authors": [
+        {
+          "name": "Georgios Gousios",
+          "id": "2211882"
+        },
+        {
+          "name": "D. Spinellis",
+          "id": "1740799"
+        }
+      ],
+      "year": 2012,
+      "venue": "IEEE Working Conference on Mining Software Repositories",
+      "score": 0.3209565897320198,
+      "abstract": "",
+      "corpusId": 773656,
+      "url": "http://dl.acm.org/citation.cfm?id=2664449"
+    },
+    {
+      "title": "AInsteinBench: Benchmarking Coding Agents on Scientific Repositories",
+      "authors": [
+        {
+          "name": "Titouan Duston",
+          "id": "1729247401"
+        },
+        {
+          "name": "Shuo Xin",
+          "id": "2317121029"
+        },
+        {
+          "name": "Yang Sun",
+          "id": "2377961664"
+        },
+        {
+          "name": "Daoguang Zan",
+          "id": "2134434187"
+        },
+        {
+          "name": "Aoyan Li",
+          "id": "2333410582"
+        },
+        {
+          "name": "Shulin Xin",
+          "id": "2333361785"
+        },
+        {
+          "name": "Kai Shen",
+          "id": "2366015248"
+        },
+        {
+          "name": "Yixiao Chen",
+          "id": "2350520250"
+        },
+        {
+          "name": "Qiming Sun",
+          "id": "2374073781"
+        },
+        {
+          "name": "Ge Zhang",
+          "id": "2375404741"
+        },
+        {
+          "name": "Jiashuo Liu",
+          "id": "2380796696"
+        },
+        {
+          "name": "Huan Zhou",
+          "id": "2398796252"
+        },
+        {
+          "name": "Jingkai Liu",
+          "id": "2376205199"
+        },
+        {
+          "name": "Zhichen Pu",
+          "id": "2295888412"
+        },
+        {
+          "name": "Yuanheng Wang",
+          "id": "2146019780"
+        },
+        {
+          "name": "Bo-Xuan Ge",
+          "id": "2401263281"
+        },
+        {
+          "name": "Xin Tong",
+          "id": "2353246071"
+        },
+        {
+          "name": "Fei Ye",
+          "id": "2053898557"
+        },
+        {
+          "name": "Zhi-Chao Zhao",
+          "id": "2332543149"
+        },
+        {
+          "name": "Wenbiao Han",
+          "id": "2348503718"
+        },
+        {
+          "name": "Zhoujian Cao",
+          "id": "2263444137"
+        },
+        {
+          "name": "Yueran Zhao",
+          "id": "2401467385"
+        },
+        {
+          "name": "Weiluo Ren",
+          "id": "19174100"
+        },
+        {
+          "name": "Qingshen Long",
+          "id": "2376507688"
+        },
+        {
+          "name": "Yu-Xiang Liu",
+          "id": "2300049095"
+        },
+        {
+          "name": "Anni Huang",
+          "id": "2401509116"
+        },
+        {
+          "name": "Yidi Du",
+          "id": "2376527146"
+        },
+        {
+          "name": "Yuanyuan Rong",
+          "id": "2401264076"
+        },
+        {
+          "name": "Jiahao Peng",
+          "id": "2279273328"
+        }
+      ],
+      "year": 2025,
+      "venue": "arXiv.org",
+      "score": 0.32001238675422305,
+      "abstract": "We introduce AInsteinBench, a large-scale benchmark for evaluating whether large language model (LLM) agents can operate as scientific computing development agents within real research software ecosystems. Unlike existing scientific reasoning benchmarks which focus on conceptual knowledge, or software engineering benchmarks that emphasize generic feature implementation and issue resolving, AInsteinBench evaluates models in end-to-end scientific development settings grounded in production-grade scientific repositories. The benchmark consists of tasks derived from maintainer-authored pull requests across six widely used scientific codebases, spanning quantum chemistry, quantum computing, molecular dynamics, numerical relativity, fluid dynamics, and cheminformatics. All benchmark tasks are carefully curated through multi-stage filtering and expert review to ensure scientific challenge, adequate test coverage, and well-calibrated difficulty. By leveraging evaluation in executable environments, scientifically meaningful failure modes, and test-driven verification, AInsteinBench measures a model's ability to move beyond surface-level code generation toward the core competencies required for computational scientific research.",
+      "corpusId": 284275651,
+      "url": "https://api.semanticscholar.org/CorpusId:284275651"
+    },
+    {
+      "title": "Testability Refactoring in Pull Requests: Patterns and Trends",
+      "authors": [
+        {
+          "name": "Pavel Reich",
+          "id": "2055639396"
+        },
+        {
+          "name": "W. Maalej",
+          "id": "1706506"
+        }
+      ],
+      "year": 2023,
+      "venue": "International Conference on Software Engineering",
+      "score": 0.3194013823218785,
+      "abstract": "To create unit tests, it may be necessary to refactor the production code, e.g. by widening access to specific methods or by decomposing classes into smaller units that are easier to test independently. We report on an extensive study to understand such composite refactoring procedures for the purpose of improving testability. We collected and studied 346,841 java pull requests from 621 GitHub projects. First, we compared the atomic refactorings in two populations: pull requests with changed test-pairs (i.e. with co-changes in production and test code and thus potentially including testability refactoring) and pull requests without test-pairs. We found significantly more atomic refactorings in test-pairs pull requests, such as Change Variable Type Operation or Change Parameter Type. Second, we manually analyzed the code changes of 200 pull requests, where developers explicitly mention the terms “testability” or “refactor + test”. We identified ten composite refactoring procedures for the purpose of testability, which we call testability refactoring patterns. Third, we manually analyzed additional 524 test-pairs pull requests: both randomly selected and where we assumed to find testability refactorings, e.g. in pull requests about dependency or concurrency issues. About 25% of all analyzed pull requests actually included testability refactoring patterns. The most frequent were extract a method for override or for invocation, widen access to a method for invocation, and extract a class for invocation. We also report on frequent atomic refactorings which co-occur with the patterns and discuss the implications of our findings for research, practice, and education.",
+      "corpusId": 257766668,
+      "url": "https://api.semanticscholar.org/CorpusId:257766668"
+    }
+  ]
+}

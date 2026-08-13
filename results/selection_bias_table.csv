@@ -1,5 +1,5 @@
 variable,test,analyzed_median,analyzed_iqr_low,analyzed_iqr_high,unanalyzed_median,unanalyzed_iqr_low,unanalyzed_iqr_high,statistic,p_value,analyzed_proportions,unanalyzed_proportions
-repo_stars,Mann-Whitney U,9234.0,430.0,16684.0,15591.0,8623.0,26079.0,49730.0,3.016190864914303e-17,,
-ecosystem,chi-square,,,,,,,9.496402253292228,0.002058751824318284,"{""maven"": 0.6531, ""pypi"": 0.3469}","{""maven"": 0.756, ""pypi"": 0.244}"
-version_bump_type,chi-square,,,,,,,1.5890744381008866,0.6618696472057364,"{""major"": 0.252, ""minor"": 0.3089, ""patch"": 0.4201, ""unknown"": 0.019}","{""major"": 0.215, ""minor"": 0.3309, ""patch"": 0.4324, ""unknown"": 0.0217}"
-merged,chi-square,,,,,,,24.630352620582077,6.944920081052741e-07,"{""False"": 0.5664, ""True"": 0.4336}","{""False"": 0.3865, ""True"": 0.6135}"
+repo_stars,Mann-Whitney U,9234.0,290.0,16684.0,16684.0,8623.0,26079.0,46736.5,3.6483660575853464e-21,,
+ecosystem,chi-square,,,,,,,18.500769981786064,1.698356728607992e-05,"{""maven"": 0.6342, ""pypi"": 0.3658}","{""maven"": 0.7767, ""pypi"": 0.2233}"
+version_bump_type,chi-square,,,,,,,1.1006973536696887,0.7769057423299384,"{""major"": 0.2474, ""minor"": 0.3105, ""patch"": 0.4237, ""unknown"": 0.0184}","{""major"": 0.2184, ""minor"": 0.33, ""patch"": 0.4293, ""unknown"": 0.0223}"
+merged,chi-square,,,,,,,21.566697111307718,3.4173448936423334e-06,"{""False"": 0.5579, ""True"": 0.4421}","{""False"": 0.3896, ""True"": 0.6104}"

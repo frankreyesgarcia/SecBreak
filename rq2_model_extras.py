@@ -13,6 +13,8 @@
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
+from numpy.linalg import LinAlgError
+from scipy.linalg import qr
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedGroupKFold
@@ -27,6 +29,16 @@ COEF_PATH = RESULTS_DIR / "rq2_logit_coefficients.csv"
 N_REPEATS = 5
 N_SPLITS = 5
 HEADLINE_COEFS = ["ecosystem_bin", "cvss_score", "version_bump_ord", "repo_stars"]
+
+
+def independent_columns(frame: pd.DataFrame):
+    matrix = frame.astype(float).to_numpy()
+    _, r, piv = qr(matrix, mode="economic", pivoting=True)
+    rank = int(np.linalg.matrix_rank(matrix))
+    keep_idx = sorted(piv[:rank].tolist())
+    drop_cols = [frame.columns[i] for i in range(frame.shape[1]) if i not in keep_idx]
+    keep_cols = [frame.columns[i] for i in keep_idx]
+    return keep_cols, drop_cols
 
 
 def evaluate_dummy(X, y, groups):
@@ -91,32 +103,37 @@ def main():
         print("  coefficient/CI as directionally indicative only, not a stable estimate.)")
 
     print("[rq2_model_extras] fitting statsmodels Logit on full analyzed_ok set")
-    X_const = sm.add_constant(X.astype(float), has_constant="add")
-    fit = sm.Logit(y, X_const).fit(disp=False, maxiter=200)
-    conf_int = fit.conf_int(alpha=0.05)
-    conf_int.columns = ["ci_low", "ci_high"]
+    coef_df = pd.DataFrame()
+    try:
+        X_const = sm.add_constant(X.astype(float), has_constant="add")
+        fit = sm.Logit(y, X_const).fit(disp=False, maxiter=200)
+        conf_int = fit.conf_int(alpha=0.05)
+        conf_int.columns = ["ci_low", "ci_high"]
 
-    coef_df = pd.DataFrame({
-        "feature": fit.params.index,
-        "coef": fit.params.values,
-        "std_err": fit.bse.values,
-        "z": fit.tvalues.values,
-        "p_value": fit.pvalues.values,
-        "ci_low": conf_int["ci_low"].values,
-        "ci_high": conf_int["ci_high"].values,
-        "converged": fit.mle_retvals.get("converged", None),
-        "quasi_separated": [f in separated_features for f in fit.params.index],
-    })
-    coef_df.to_csv(COEF_PATH, index=False)
-    print(f"  wrote {len(coef_df)} coefficients to {COEF_PATH} (converged={fit.mle_retvals.get('converged')})")
+        coef_df = pd.DataFrame({
+            "feature": fit.params.index,
+            "coef": fit.params.values,
+            "std_err": fit.bse.values,
+            "z": fit.tvalues.values,
+            "p_value": fit.pvalues.values,
+            "ci_low": conf_int["ci_low"].values,
+            "ci_high": conf_int["ci_high"].values,
+            "converged": fit.mle_retvals.get("converged", None),
+            "quasi_separated": [f in separated_features for f in fit.params.index],
+        })
+        coef_df.to_csv(COEF_PATH, index=False)
+        print(f"  wrote {len(coef_df)} coefficients to {COEF_PATH} (converged={fit.mle_retvals.get('converged')})")
 
-    print("Headline coefficients (full model, 95% CI):")
-    for name in HEADLINE_COEFS:
-        if name in coef_df["feature"].values:
-            row = coef_df[coef_df["feature"] == name].iloc[0]
-            sig = "significant" if row["p_value"] < 0.05 else "not significant"
-            flag = " [UNSTABLE: quasi-separated, interpret direction only]" if row["quasi_separated"] else ""
-            print(f"  {name}: coef={row['coef']:.4g} [95% CI {row['ci_low']:.4g}, {row['ci_high']:.4g}], p={row['p_value']:.4g} ({sig}){flag}")
+        print("Headline coefficients (full model, 95% CI):")
+        for name in HEADLINE_COEFS:
+            if name in coef_df["feature"].values:
+                row = coef_df[coef_df["feature"] == name].iloc[0]
+                sig = "significant" if row["p_value"] < 0.05 else "not significant"
+                flag = " [UNSTABLE: quasi-separated, interpret direction only]" if row["quasi_separated"] else ""
+                print(f"  {name}: coef={row['coef']:.4g} [95% CI {row['ci_low']:.4g}, {row['ci_high']:.4g}], p={row['p_value']:.4g} ({sig}){flag}")
+    except LinAlgError as exc:
+        print(f"  full-model Logit unavailable: {exc}")
+        print("  continuing with reduced converged model only")
 
     # Robustness check: refit excluding any quasi-separated predictor so the
     # remaining coefficients (cvss_score, version_bump_ord, repo_stars) get a
@@ -124,9 +141,13 @@ def main():
     stable_path = RESULTS_DIR / "rq2_logit_coefficients_converged.csv"
     if separated_features:
         stable_cols = [c for c in X.columns if c not in separated_features]
-        X_stable = sm.add_constant(X[stable_cols].astype(float), has_constant="add")
+        indep_cols, dropped_collinear = independent_columns(X[stable_cols])
+        X_stable = sm.add_constant(X[indep_cols].astype(float), has_constant="add")
         fit_stable = sm.Logit(y, X_stable).fit(disp=False, maxiter=200)
-        print(f"  robustness refit excluding {separated_features}: converged={fit_stable.mle_retvals.get('converged')}")
+        print(
+            f"  robustness refit excluding {separated_features}: converged={fit_stable.mle_retvals.get('converged')}"
+            + (f"; dropped collinear features {dropped_collinear}" if dropped_collinear else "")
+        )
         stable_conf = fit_stable.conf_int(alpha=0.05)
         stable_conf.columns = ["ci_low", "ci_high"]
         stable_df = pd.DataFrame({
@@ -143,7 +164,7 @@ def main():
                 row = stable_df[stable_df["feature"] == name].iloc[0]
                 print(f"    (converged, excl. {separated_features}) {name}: coef={row['coef']:.4g} [95% CI {row['ci_low']:.4g}, {row['ci_high']:.4g}], p={row['p_value']:.4g}")
 
-    print(f"[DONE] rq2_model_extras — {len(df)} records processed, {len(dummy_aucs)} dummy folds + {len(coef_df)} coefficients")
+    print(f"[DONE] rq2_model_extras — {len(df)} records processed, {len(dummy_aucs)} dummy folds + {len(coef_df)} full-model coefficients")
 
 
 if __name__ == "__main__":

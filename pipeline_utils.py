@@ -122,10 +122,32 @@ def trimmed_text(text: Optional[str], limit: int = 2000) -> str:
 
 
 def extract_versions(text: str) -> (Optional[str], Optional[str]):
-    match = re.search(r"from (\S+) to (\S+)", text or "", re.IGNORECASE)
-    if not match:
-        return None, None
-    return match.group(1).strip(".,)"), match.group(2).strip(".,)")
+    text = text or ""
+    match = re.search(r"from (`?)([^\s`|]+)\1 to (`?)([^\s`|]+)\3", text, re.IGNORECASE)
+    if match:
+        return match.group(2).strip(".,)"), match.group(4).strip(".,)")
+
+    # Grouped Dependabot PRs often include a markdown table where the row for the
+    # security-relevant dependency appears before a more specific prose summary.
+    # Fall back to the first well-formed table row instead of mis-parsing the
+    # header separator row as old_version/new_version == "|".
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+        if len(cells) < 3:
+            continue
+        old_candidate = cells[-2].strip("` ")
+        new_candidate = cells[-1].strip("` ")
+        if not old_candidate or not new_candidate:
+            continue
+        if old_candidate.lower() in {"from", "---"} or new_candidate.lower() in {"to", "---"}:
+            continue
+        if re.search(r"\d", old_candidate) and re.search(r"\d", new_candidate):
+            return old_candidate.strip(".,)"), new_candidate.strip(".,)")
+
+    return None, None
 
 
 def extract_cves(*texts: Optional[str]) -> List[str]:

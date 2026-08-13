@@ -1,15 +1,15 @@
 {
   "sample_size": 100,
-  "excluded_not_analyzed_ok": 414,
-  "positives_in_sample": 44,
+  "excluded_not_analyzed_ok": 403,
+  "positives_in_sample": 43,
   "ecosystem_mix": {
-    "maven": 66,
-    "pypi": 34
+    "maven": 64,
+    "pypi": 36
   },
   "bump_mix": {
     "patch": 41,
-    "minor": 31,
-    "major": 26,
+    "minor": 32,
+    "major": 25,
     "unknown": 2
   }
 }

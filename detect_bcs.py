@@ -241,6 +241,43 @@ def compare_python_api(old_text: str, new_text: str) -> Dict:
     return {"has_bc": bool(bc_types), "bc_types": bc_types, "bc_count": len(bc_types), "tool_used": "griffe"}
 
 
+def resolve_python_import_name(python_bin: Path, dependency_name: str) -> str:
+    package_name = dependency_name.split("[")[0]
+    normalized = package_name.replace("-", "_").lower()
+    probe = (
+        "import importlib, sys\n"
+        "from importlib import metadata\n"
+        "pkg = sys.argv[1]\n"
+        "normalized = pkg.replace('-', '_').lower()\n"
+        "candidates = [normalized]\n"
+        "try:\n"
+        "    dist = metadata.distribution(pkg)\n"
+        "except Exception:\n"
+        "    dist = None\n"
+        "if dist is not None:\n"
+        "    try:\n"
+        "        top_level = dist.read_text('top_level.txt') or ''\n"
+        "    except Exception:\n"
+        "        top_level = ''\n"
+        "    for line in top_level.splitlines():\n"
+        "        line = line.strip()\n"
+        "        if line and line not in candidates:\n"
+        "            candidates.append(line)\n"
+        "for name in candidates:\n"
+        "    try:\n"
+        "        importlib.import_module(name)\n"
+        "        print(name)\n"
+        "        raise SystemExit(0)\n"
+        "    except Exception:\n"
+        "        pass\n"
+        "raise SystemExit(1)\n"
+    )
+    result = run([str(python_bin), "-c", probe, package_name], timeout=120)
+    if result.returncode == 0 and result.stdout.strip():
+        return result.stdout.strip().splitlines()[0]
+    return normalized
+
+
 def detect_python_bcs(row: Dict, logger) -> Dict:
     dep = row.get("dependency_name")
     old_version = row.get("old_version")
@@ -260,12 +297,14 @@ def detect_python_bcs(row: Dict, logger) -> Dict:
         install_new = run([str(new_python), "-m", "pip", "install", f"{dep}=={new_version}", "griffe"], timeout=600)
         if install_old.returncode != 0 or install_new.returncode != 0:
             return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": "griffe", "analysis_error": "pip_install_failed"}
+        old_import_name = resolve_python_import_name(old_python, dep)
+        new_import_name = resolve_python_import_name(new_python, dep)
         old_dump = run(
             [
                 str(old_python),
                 "-c",
                 "import importlib, inspect, sys; m=importlib.import_module(sys.argv[1]); print(inspect.getsource(m))",
-                dep.split("[")[0].replace("-", "_"),
+                old_import_name,
             ],
             timeout=120,
         )
@@ -274,7 +313,7 @@ def detect_python_bcs(row: Dict, logger) -> Dict:
                 str(new_python),
                 "-c",
                 "import importlib, inspect, sys; m=importlib.import_module(sys.argv[1]); print(inspect.getsource(m))",
-                dep.split("[")[0].replace("-", "_"),
+                new_import_name,
             ],
             timeout=120,
         )

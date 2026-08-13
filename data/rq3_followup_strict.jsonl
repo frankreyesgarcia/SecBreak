@@ -157,3 +157,4 @@
 {"repo_full_name": "apache/maven-scripting-plugin", "pr_number": 6, "merged": true, "followup_fix_days": 0.0004398148148148148, "reverted": true, "naive_candidates": 19, "strict_candidates": 16}
 {"repo_full_name": "apache/axis-axis2-java-core", "pr_number": 228, "merged": true, "followup_fix_days": 0.6452546296296297, "reverted": true, "naive_candidates": 16, "strict_candidates": 15}
 {"repo_full_name": "eGovFramework/egovframe-runtime", "pr_number": 6, "merged": false, "followup_fix_days": null, "reverted": false, "naive_candidates": 0, "strict_candidates": 0}
+{"repo_full_name": "holoviz/panel", "pr_number": 2103, "merged": true, "followup_fix_days": 0.625150462962963, "reverted": true, "naive_candidates": 19, "strict_candidates": 3}

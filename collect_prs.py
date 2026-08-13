@@ -103,17 +103,55 @@ def repo_matches(repo, logger, progress) -> Optional[str]:
 
 
 def parse_dependency_name(title: str, body: str) -> Optional[str]:
+    table_dep = None
+    for line in (body or "").splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+        if len(cells) < 3:
+            continue
+        package_cell = cells[0]
+        old_candidate = cells[-2].strip("` ")
+        new_candidate = cells[-1].strip("` ")
+        if not old_candidate or not new_candidate:
+            continue
+        if old_candidate.lower() in {"from", "---"} or new_candidate.lower() in {"to", "---"}:
+            continue
+        if not (re.search(r"\d", old_candidate) and re.search(r"\d", new_candidate)):
+            continue
+        link_match = re.search(r"\[([^\]]+)\]\([^)]+\)", package_cell)
+        if link_match:
+            table_dep = link_match.group(1).strip()
+        else:
+            table_dep = package_cell.strip("` ")
+        break
+
+    updates_match = re.search(r"Updates\s+`([^`]+)`\s+from\s+`?([^\s`]+)`?\s+to\s+`?([^\s`]+)`?", body or "", re.IGNORECASE)
+    updates_dep = updates_match.group(1).strip() if updates_match else None
+
     patterns = [
         r"bump ([\w\.\-:\/]+) from ",
         r"update ([\w\.\-:\/]+) from ",
         r"dependency ([\w\.\-:\/]+)",
     ]
     haystack = f"{title}\n{body}"
+    pattern_dep = None
     for pattern in patterns:
         match = re.search(pattern, haystack, re.IGNORECASE)
         if match:
-            return match.group(1)
-    return None
+            pattern_dep = match.group(1)
+            break
+
+    candidates = [candidate for candidate in [table_dep, updates_dep, pattern_dep] if candidate]
+    if not candidates:
+        return None
+
+    def score(candidate: str) -> tuple[int, int]:
+        rich = int(":" in candidate or "/" in candidate)
+        return (rich, len(candidate))
+
+    return max(candidates, key=score)
 
 
 def classify_state(pr) -> str:
