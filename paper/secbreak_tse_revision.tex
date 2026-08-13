@@ -37,6 +37,50 @@ Raemaekers \textit{et al.} reported in TSE that 13.2\% of security releases decl
 
 We built \textit{SecBreak}, a reproducible pipeline that collects Dependabot security PRs, enriches them with National Vulnerability Database (NVD) data, detects API incompatibilities, and analyzes downstream maintenance behavior. An earlier version of this pipeline contained a silent-default bug (Section~\ref{sec:rectification}) that treated PRs where BC detection never executed as verified negatives, understating prevalence by more than an order of magnitude and inverting the paper's comparison against the provider-side baseline. We describe the bug, the correction, and report only numbers computed after the fix. The main contribution of this paper is a client-side empirical characterization of compatibility risk in security update automation, together with a transparent, auditable account of what went wrong in the first analysis pass and how it was fixed.
 
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Breaking changes and SemVer compliance.} Foundational work established the source/binary/behavioral taxonomy of breaking changes and documented widespread SemVer violations across ecosystems~\cite{dietrich2014semver,
+raemaekers2017semver}. Ochoa et al. studied SemVer compliance at scale in Maven
+and quantified how frequently breaking changes appear in non-major
+releases~\cite{ochoa2022maven}. Jayasuriya et al. analyzed 18,415 Maven
+artifacts and found that 11.6\% of dependency updates introduce breaking
+changes, with roughly half occurring in non-major versions~\cite{jayasuriya2024emse}
+-- the closest prior measurement of client-side syntactic BC prevalence to the
+one in this paper, though for general dependency updates rather than
+specifically security-motivated ones. Hora et al. mapped manifesting breaking
+changes in npm and showed that a substantial share go
+undocumented~\cite{hora2018tosem}. % TODO: verify citation -- could not confirm
+% a matching 2018 Hora et al. npm/TOSEM paper against real bibliographic
+% sources during this pass (closest verified hits were Xavier/Brito/Hora/Valente,
+% SANER 2017, and Brito/Valente/Xavier/Hora, EMSE 2020 -- neither matches this
+% description exactly). Do not cite as-is without checking.
+
+\textbf{Security update automation.} Raemaekers et al.~\cite{raemaekers2021}
+is the direct point of comparison for this paper: they found that 13.2\% of
+security releases declare backward incompatibility via provider-side
+versioning metadata, and explicitly identified downstream, client-side
+validation as future work -- the gap this paper addresses. Kula et al. studied
+the adoption of security updates more broadly~\cite{kula2018emse}. More recent
+work has examined Dependabot and Renovate as interventions in the update
+process~\cite{dependabotrenovate2025}, but without measuring whether the
+updates these bots produce are themselves compatibility-safe. % TODO: verify
+% citation -- could not confirm a single paper studying both Dependabot AND
+% Renovate empirically under this key during this pass. The closest verified
+% match is a Dependabot-only 2025 EMSE paper ("Securing dependencies: A
+% comprehensive study of Dependabot's impact on vulnerability mitigation");
+% if that is the intended source, narrow the sentence to Dependabot only
+% rather than citing it for a Dependabot+Renovate comparison it doesn't make.
+
+\textbf{Positioning.} To our knowledge, no prior study measures client-side
+breaking-change prevalence specifically within the population of
+security-motivated automated pull requests, as opposed to dependency updates in
+general. This distinction matters practically: security PRs carry an implicit
+urgency (a known vulnerability) that general dependency updates do not, so the
+risk/reward calculus for merging quickly is different, and it is exactly this
+population that Raemaekers et al.'s provider-side metadata result leaves
+unmeasured at the client side.
+
 \section{Study Design}
 \subsection{Frozen Cohort}
 We collected Dependabot-authored security PRs from GitHub repositories with a non-empty \texttt{.github/workflows} directory (presence of a CI configuration; this does not verify that CI actually ran or passed for a given PR) and Java or Python ecosystems. The collection period spans January~1,~2022 to December~31,~2024. The raw collection contained 1{,}180 rows; after deduplicating repeated sightings of the same PR, the frozen cohort contains 783 unique PRs across 132 repositories (554 Maven, 229 PyPI), of which 52.9\% (414/783) were merged. We export the full cohort manifest and flow accounting in \texttt{results/cohort/frozen\_cohort.csv} and \texttt{results/cohort/cohort\_flow.json}.
@@ -167,9 +211,32 @@ The repository contains, for both the original (buggy) and corrected pipeline ru
 \item full rectification report and decision trail: \texttt{results/RECTIFICATION\_REPORT.md}
 \end{itemize}
 
-\begin{thebibliography}{1}
+\begin{thebibliography}{9}
 \bibitem{raemaekers2021}
 S.~Raemaekers, A.~van Deursen, and J.~Visser, ``Do Security Updates Break Compatibility? An Empirical Study of Versioning in Security Releases,'' \emph{IEEE Transactions on Software Engineering}, 2021.
+
+\bibitem{dietrich2014semver}
+J.~Dietrich, K.~Jezek, and P.~Brada, ``Broken Promises: An Empirical Study into Evolution Problems in Java Programs Caused by Library Upgrades,'' in \emph{Proc.\ Software Evolution Week -- IEEE Conf.\ on Software Maintenance, Reengineering, and Reverse Engineering (CSMR-WCRE)}, 2014, pp.\ 64--73.
+
+\bibitem{raemaekers2017semver}
+S.~Raemaekers, A.~van Deursen, and J.~Visser, ``Semantic Versioning and Impact of Breaking Changes in the Maven Repository,'' \emph{Journal of Systems and Software}, vol.\ 129, pp.\ 140--158, 2017.
+
+\bibitem{ochoa2022maven}
+L.~Ochoa, T.~Degueule, J.-R.~Falleri, and J.~Vinju, ``Breaking Bad? Semantic Versioning and Impact of Breaking Changes in Maven Central,'' \emph{Empirical Software Engineering}, vol.\ 27, 2022.
+
+\bibitem{jayasuriya2024emse}
+D.~Jayasuriya, S.~Ou, S.~Hegde, V.~Terragni, J.~Dietrich, and K.~Blincoe, ``An Extended Study of Syntactic Breaking Changes in the Wild,'' \emph{Empirical Software Engineering}, vol.\ 29, 2024.
+
+\bibitem{kula2018emse}
+R.~G.~Kula, D.~M.~German, A.~Ouni, T.~Ishio, and K.~Inoue, ``Do Developers Update Their Library Dependencies? An Empirical Study on the Impact of Security Advisories on Library Migration,'' \emph{Empirical Software Engineering}, vol.\ 23, no.\ 1, pp.\ 384--417, 2018.
+
+% \bibitem{hora2018tosem} -- NOT ADDED: could not verify against a real
+% bibliographic source during this pass. See % TODO comment at the citation
+% site in the Related Work section. Do not add a guessed entry here.
+
+% \bibitem{dependabotrenovate2025} -- NOT ADDED: could not verify a single
+% paper studying both Dependabot and Renovate under this key. See % TODO
+% comment at the citation site in the Related Work section.
 \end{thebibliography}
 
 \end{document}
