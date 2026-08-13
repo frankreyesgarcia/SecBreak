@@ -168,10 +168,13 @@ def summarize(bc_df, label):
     within_7 = int((bc_df["followup_fix_days"] <= 7).fillna(False).sum())
     within_30 = int((bc_df["followup_fix_days"] <= 30).fillna(False).sum())
     n_fixed = int(followups.shape[0])
+    reverted_n = int(bc_df["reverted"].fillna(False).sum()) if "reverted" in bc_df else None
     print(f"=== {label} ===")
     print(f"  fixes found: {n_fixed}/{total} ({pct(n_fixed, total):.1f}%)")
     print(f"  median: {median:.2f} days (IQR {iqr_low:.2f}-{iqr_high:.2f})")
     print(f"  within 7d: {within_7} ({pct(within_7, total):.1f}%), within 30d: {within_30} ({pct(within_30, total):.1f}%)")
+    if reverted_n is not None:
+        print(f"  reverted: {reverted_n} ({pct(reverted_n, total):.1f}%)")
     return {
         "label": label,
         "n_bc_prs": total,
@@ -182,6 +185,7 @@ def summarize(bc_df, label):
         "iqr_high": iqr_high,
         "within_7d_pct": pct(within_7, total),
         "within_30d_pct": pct(within_30, total),
+        "reverted_pct": pct(reverted_n, total) if reverted_n is not None else None,
     }
 
 
@@ -207,7 +211,8 @@ def main():
 
     naive_cache = load_jsonl(NAIVE_FOLLOWUP_PATH)
     naive_df_raw = pd.DataFrame(naive_cache) if naive_cache else pd.DataFrame(columns=["repo_full_name", "pr_number", "followup_fix_days"])
-    naive_df = bc_df.merge(naive_df_raw[["repo_full_name", "pr_number", "followup_fix_days"]], on=["repo_full_name", "pr_number"], how="left")
+    naive_cols = [c for c in ["repo_full_name", "pr_number", "followup_fix_days", "reverted"] if c in naive_df_raw.columns]
+    naive_df = bc_df.merge(naive_df_raw[naive_cols], on=["repo_full_name", "pr_number"], how="left")
 
     naive_summary = summarize(naive_df, "NAIVE (keyword-only, original corrected run)")
     strict_summary = summarize(strict_df, "STRICT (relatedness-filtered)")
