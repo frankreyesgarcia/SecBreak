@@ -1,0 +1,38 @@
+{
+  "n_total": 783,
+  "n_analyzed": 369,
+  "n_unanalyzed": 414,
+  "n_bc": 159,
+  "worst_case_lower_pct": 20.306513409961685,
+  "worst_case_upper_pct": 73.18007662835248,
+  "analyzed_only_pct": 43.08943089430894,
+  "analyzed_only_ci": [
+    38.13351387416639,
+    48.18775499711837
+  ],
+  "model_imputed_pct": 38.042352852554004,
+  "model_imputed_bootstrap_ci": [
+    36.61749031606431,
+    39.36476777041074
+  ],
+  "model_imputed_mean_predicted_prob": 0.33543870250120245,
+  "feature_cols": [
+    "cvss_score",
+    "cvss_severity_ord",
+    "version_bump_ord",
+    "has_cve",
+    "ecosystem_bin",
+    "repo_stars",
+    "cwe_UNKNOWN",
+    "cwe_CWE_89",
+    "cwe_CWE_1333",
+    "cwe_CWE_400",
+    "cwe_CWE_378",
+    "cwe_CWE_200",
+    "cwe_CWE_476",
+    "cwe_CWE_502",
+    "cwe_CWE_20",
+    "cwe_CWE_665"
+  ],
+  "n_bootstrap": 1000
+}
