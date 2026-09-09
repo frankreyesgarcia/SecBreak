@@ -2,22 +2,17 @@
 Phase 1/2 corrected files, with an explicit analyzed_ok column and without
 build_dataset.py's silent row-dropping.
 
-build_dataset.py's original bug: `if error_rate <= 0.4: merged =
-merged[merged["analysis_error"].isna()]` — a no-op here since the baseline
-error rate is 74.3% (> 0.4), so it fell into the else branch and kept all 783
-rows including ones where detection never ran. Those rows' has_bc is already
-hardcoded False inside detect_maven_bcs()'s error-path return values (not
-NaN), so nothing downstream could tell a real negative from "never analyzed".
-This script keeps every row (still no silent dropping) but adds analyzed_ok
-so rq1_analysis_corrected.py can compute prevalence over the right
-denominator instead of len(df).
+This variant now also carries forward the normalized dependency/package-manager
+classification used to decide which detector should run on each PR. That lets us
+separate true detector failures from rows that were previously sent to the wrong
+backend (for example Maven coordinates misrouted through the PyPI detector).
 """
 
 from collections import Counter
 
 import pandas as pd
 
-from pipeline_utils import DATA_DIR, load_jsonl, pct, wilson_ci
+from pipeline_utils import DATA_DIR, load_jsonl, normalize_pr_record, pct, wilson_ci
 
 RAW_PRS_PATH = DATA_DIR / "raw_prs_corrected.jsonl"
 RAW_PRS_FALLBACK = DATA_DIR / "raw_prs.jsonl"
@@ -42,7 +37,7 @@ def main():
     bc_path = BC_RESULTS_PATH if BC_RESULTS_PATH.exists() else BC_RESULTS_FALLBACK
     print(f"[build_dataset_corrected] reading {raw_path.name}, {bc_path.name}")
 
-    prs = pd.DataFrame(load_jsonl(raw_path))
+    prs = pd.DataFrame(normalize_pr_record(row) for row in load_jsonl(raw_path))
     bc = pd.DataFrame(load_jsonl(bc_path))
     cves = pd.read_json(CVE_DETAILS_PATH, orient="index").reset_index().rename(columns={"index": "cve_id"})
 
@@ -56,6 +51,15 @@ def main():
 
     expanded = prs.explode("cve_ids")
     merged = prs.merge(bc, on=["repo_full_name", "pr_number"], how="left")
+    for base_col in ["dependency_ecosystem", "detector_ecosystem"]:
+        left = f"{base_col}_x"
+        right = f"{base_col}_y"
+        if left in merged.columns or right in merged.columns:
+            merged[base_col] = merged.get(right).combine_first(merged.get(left))
+            if left in merged.columns:
+                merged = merged.drop(columns=[left])
+            if right in merged.columns:
+                merged = merged.drop(columns=[right])
     if not cves.empty:
         expanded = expanded.merge(cves, left_on="cve_ids", right_on="cve_id", how="left")
         cve_agg = (
@@ -70,7 +74,6 @@ def main():
         )
         merged = merged.merge(cve_agg, on=["repo_full_name", "pr_number"], how="left")
 
-    # analyzed_ok: detection genuinely ran (no analysis_error AND a tool actually executed).
     merged["analyzed_ok"] = merged["analysis_error"].isna() & merged["tool_used"].notna()
 
     merged["cvss_score"] = pd.to_numeric(merged["cvss_score"], errors="coerce")
@@ -100,9 +103,19 @@ def main():
     print(f"Pipeline coverage (analyzed_ok): {analyzed_ok_n} ({pct(analyzed_ok_n, total):.1f}%)")
     print(f"Naive full-cohort BC rate (NOT a prevalence estimate): {bc_n} ({pct(bc_n, total):.1f}%)")
     print(f"Analyzed-only BC prevalence: {bc_analyzed_n}/{analyzed_ok_n} ({pct(bc_analyzed_n, analyzed_ok_n):.1f}%) [95% CI {100*low:.1f}-{100*high:.1f}]")
+    print("By repo-level ecosystem:")
     for ecosystem in ["maven", "pypi"]:
         sub = merged[merged["ecosystem"] == ecosystem]
         print(f"  - {ecosystem.capitalize()}: {len(sub)} total, {int(sub['analyzed_ok'].sum())} analyzed_ok")
+    print("By dependency/package-manager ecosystem:")
+    dep_counts = merged.groupby("dependency_ecosystem")["analyzed_ok"].agg(["count", "sum"]).sort_values("count", ascending=False)
+    for dep_ecosystem, row in dep_counts.iterrows():
+        print(f"  - {dep_ecosystem}: {int(row['count'])} total, {int(row['sum'])} analyzed_ok")
+    supported = merged[merged["detector_ecosystem"].isin(["maven", "pypi"])].copy()
+    if len(supported):
+        print(f"Supported-detector coverage: {int(supported['analyzed_ok'].sum())}/{len(supported)} ({pct(int(supported['analyzed_ok'].sum()), len(supported)):.1f}%)")
+    unsupported = merged[~merged["detector_ecosystem"].isin(["maven", "pypi"])].copy()
+    print(f"Unsupported-by-current-detector rows: {len(unsupported)}")
     print("Top BC types (Roseau/japicmp/griffe):")
     counts = Counter()
     for value in merged.loc[merged["analyzed_ok"], "bc_types"].dropna():

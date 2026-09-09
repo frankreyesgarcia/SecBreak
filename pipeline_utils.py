@@ -17,6 +17,9 @@ REPOS_DIR = ROOT / "repos"
 JARS_DIR = ROOT / "jars"
 CACHE_DIR = ROOT / "cache"
 
+SUPPORTED_BC_ECOSYSTEMS = {"maven", "pypi"}
+GITHUB_ACTION_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+
 
 def ensure_layout() -> None:
     for path in [
@@ -127,10 +130,6 @@ def extract_versions(text: str) -> (Optional[str], Optional[str]):
     if match:
         return match.group(2).strip(".,)"), match.group(4).strip(".,)")
 
-    # Grouped Dependabot PRs often include a markdown table where the row for the
-    # security-relevant dependency appears before a more specific prose summary.
-    # Fall back to the first well-formed table row instead of mis-parsing the
-    # header separator row as old_version/new_version == "|".
     for line in text.splitlines():
         stripped = line.strip()
         if not stripped.startswith("|"):
@@ -157,6 +156,69 @@ def extract_cves(*texts: Optional[str]) -> List[str]:
             continue
         found.update(re.findall(r"CVE-\d{4}-\d+", text, re.IGNORECASE))
     return sorted(found)
+
+
+def infer_dependency_ecosystem(
+    repo_ecosystem: Optional[str],
+    dependency_name: Optional[str],
+    pr_title: Optional[str] = None,
+    pr_body: Optional[str] = None,
+    coordinate_source: Optional[str] = None,
+) -> str:
+    dep = (dependency_name or "").strip()
+    body = (pr_body or "").lower()
+    title = (pr_title or "").lower()
+    haystack = f"{title}\n{body}"
+
+    if coordinate_source in {"pr_diff_pom", "pr_diff_gradle"}:
+        return "maven"
+    if ":" in dep:
+        return "maven"
+    if dep.endswith(".version") or dep.endswith(".bom"):
+        return "maven_property_reference"
+    if dep and GITHUB_ACTION_RE.fullmatch(dep):
+        return "github_action"
+
+    if repo_ecosystem == "pypi":
+        return "pypi" if dep else "unknown"
+
+    if repo_ecosystem == "maven":
+        if any(marker in haystack for marker in ["pypi.org/project/", "readthedocs.io", "python-pillow", "pyca/"]):
+            return "pypi"
+        if any(marker in haystack for marker in ["npmjs.com/package/", "package-lock.json", "yarn.lock", "pnpm-lock", "node_modules"]):
+            return "npm"
+        if dep:
+            return "unknown_plain_dependency"
+        return "unknown"
+
+    return repo_ecosystem or "unknown"
+
+
+def detector_ecosystem(row: Dict) -> Optional[str]:
+    dep_ecosystem = row.get("dependency_ecosystem")
+    if not dep_ecosystem:
+        dep_ecosystem = infer_dependency_ecosystem(
+            row.get("ecosystem"),
+            row.get("dependency_name"),
+            row.get("pr_title"),
+            row.get("pr_body"),
+            row.get("coordinate_source"),
+        )
+    return dep_ecosystem if dep_ecosystem in SUPPORTED_BC_ECOSYSTEMS else None
+
+
+def normalize_pr_record(row: Dict) -> Dict:
+    out = dict(row)
+    out.setdefault("repo_ecosystem", out.get("ecosystem"))
+    out["dependency_ecosystem"] = infer_dependency_ecosystem(
+        out.get("repo_ecosystem") or out.get("ecosystem"),
+        out.get("dependency_name"),
+        out.get("pr_title"),
+        out.get("pr_body"),
+        out.get("coordinate_source"),
+    )
+    out["detector_ecosystem"] = detector_ecosystem(out)
+    return out
 
 
 def sleep_with_backoff(attempt: int, base: int = 60, cap: int = 900) -> None:

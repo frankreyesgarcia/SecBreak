@@ -4,7 +4,6 @@ import shutil
 import subprocess
 import tempfile
 import time
-import venv
 from pathlib import Path
 from typing import Dict, List, Optional
 from xml.etree import ElementTree as ET
@@ -16,8 +15,10 @@ from pipeline_utils import (
     LOGS_DIR,
     REPOS_DIR,
     append_jsonl,
+    detector_ecosystem,
     ensure_layout,
     load_jsonl,
+    normalize_pr_record,
     read_json,
     setup_logger,
     write_json,
@@ -45,17 +46,39 @@ def run(cmd: List[str], cwd: Optional[Path] = None, timeout: Optional[int] = Non
 MAVEN_CENTRAL_BASE = "https://repo.maven.apache.org/maven2"
 
 
-def maven_copy(artifact: str, out_dir: Path) -> Optional[Path]:
-    """Downloads a jar directly from Maven Central via HTTPS instead of
-    `mvn dependency:copy`. In this environment, `mvn dependency:copy` (and
-    even plain plugin resolution, i.e. before it even reaches the target
-    artifact) hangs indefinitely: Maven selects a legacy WagonTransporter
-    that never opens a socket to repo.maven.apache.org (confirmed via `ss`
-    while it hung), even though a direct curl/HTTPS request to the exact
-    same URL resolves in well under a second and `mvn test` reactor builds
-    (a different resolver code path) download from Central successfully.
-    Bypassing the dependency-plugin mojo entirely sidesteps whatever is
-    broken in that specific resolution path.
+def fetch_maven_packaging(group_id: str, artifact_id: str, version: str) -> Optional[str]:
+    import urllib.parse
+    import urllib.request
+    import urllib.error
+
+    group_path = group_id.replace(".", "/")
+    pom_name = f"{artifact_id}-{version}.pom"
+    pom_url = f"{MAVEN_CENTRAL_BASE}/{urllib.parse.quote(group_path)}/{urllib.parse.quote(artifact_id)}/{urllib.parse.quote(version)}/{urllib.parse.quote(pom_name)}"
+    try:
+        req = urllib.request.Request(pom_url, headers={"User-Agent": "SecBreak-coverage/1.0"})
+        with urllib.request.urlopen(req, timeout=4) as resp:
+            payload = resp.read().decode("utf-8", errors="replace")
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
+        return None
+
+    try:
+        root = ET.fromstring(payload)
+    except ET.ParseError:
+        return None
+
+    for child in root:
+        if child.tag.endswith("packaging") and (child.text or "").strip():
+            return (child.text or "").strip()
+    return "jar"
+
+
+def maven_copy(artifact: str, out_dir: Path) -> tuple[Optional[Path], str]:
+    """Download a diffable Maven artifact directly from Maven Central.
+
+    Prefer normal jars, but fall back to Jenkins/plug-in style archives (hpi/jpi)
+    which are still zip/jar containers and can be diffed by the binary tools. If
+    the published packaging is pom-only or otherwise non-diffable, return a more
+    precise status than generic jar_download_failed.
     """
     import urllib.parse
     import urllib.request
@@ -63,27 +86,33 @@ def maven_copy(artifact: str, out_dir: Path) -> Optional[Path]:
 
     parts = artifact.split(":")
     if len(parts) != 3:
-        return None
+        return None, "missing_dependency_coordinates"
     group_id, artifact_id, version = parts
     if not group_id or not artifact_id or not version:
-        return None
+        return None, "missing_dependency_coordinates"
 
     group_path = group_id.replace(".", "/")
-    filename = f"{artifact_id}-{version}.jar"
-    url = f"{MAVEN_CENTRAL_BASE}/{urllib.parse.quote(group_path)}/{urllib.parse.quote(artifact_id)}/{urllib.parse.quote(version)}/{urllib.parse.quote(filename)}"
-
     out_dir.mkdir(parents=True, exist_ok=True)
-    dest = out_dir / filename
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "SecBreak-rectification/1.0"})
-        with urllib.request.urlopen(req, timeout=30) as resp, dest.open("wb") as fh:
-            shutil.copyfileobj(resp, fh)
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
+
+    for ext in ["jar", "hpi", "jpi"]:
+        filename = f"{artifact_id}-{version}.{ext}"
+        url = f"{MAVEN_CENTRAL_BASE}/{urllib.parse.quote(group_path)}/{urllib.parse.quote(artifact_id)}/{urllib.parse.quote(version)}/{urllib.parse.quote(filename)}"
+        dest = out_dir / filename
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "SecBreak-coverage/1.0"})
+            with urllib.request.urlopen(req, timeout=4) as resp, dest.open("wb") as fh:
+                shutil.copyfileobj(resp, fh)
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
+            dest.unlink(missing_ok=True)
+            continue
+        if dest.exists() and dest.stat().st_size > 0:
+            return dest, ext
         dest.unlink(missing_ok=True)
-        return None
-    if not dest.exists() or dest.stat().st_size == 0:
-        return None
-    return dest
+
+    packaging = fetch_maven_packaging(group_id, artifact_id, version)
+    if packaging and packaging != "jar":
+        return None, f"unsupported_maven_packaging:{packaging}"
+    return None, "jar_download_failed"
 
 
 def resolve_java_bin() -> str:
@@ -162,9 +191,13 @@ def detect_maven_bcs(row: Dict, logger) -> Dict:
     try:
         if not dep or ":" not in dep or not old_version or not new_version:
             return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": None, "analysis_error": "missing_dependency_coordinates"}
-        old_jar = maven_copy(f"{dep}:{old_version}", work_dir)
-        new_jar = maven_copy(f"{dep}:{new_version}", work_dir)
+        old_jar, old_status = maven_copy(f"{dep}:{old_version}", work_dir)
+        new_jar, new_status = maven_copy(f"{dep}:{new_version}", work_dir)
         if not old_jar or not new_jar:
+            statuses = [status for status in [old_status, new_status] if status]
+            packaging_issue = next((status for status in statuses if status.startswith("unsupported_maven_packaging:")), None)
+            if packaging_issue:
+                return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": None, "analysis_error": packaging_issue}
             return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": None, "analysis_error": "jar_download_failed"}
 
         roseau_jar = roseau_available()
@@ -241,13 +274,73 @@ def compare_python_api(old_text: str, new_text: str) -> Dict:
     return {"has_bc": bool(bc_types), "bc_types": bc_types, "bc_count": len(bc_types), "tool_used": "griffe"}
 
 
-def resolve_python_import_name(python_bin: Path, dependency_name: str) -> str:
+def dump_python_source_tree(python_bin: str, site_dir: Path, import_name: str) -> Optional[str]:
+    probe = (
+        "import importlib, inspect, pathlib, sys\n"
+        "sys.path.insert(0, sys.argv[1])\n"
+        "name = sys.argv[2]\n"
+        "module = importlib.import_module(name)\n"
+        "chunks = []\n"
+        "try:\n"
+        "    chunks.append(inspect.getsource(module))\n"
+        "except Exception:\n"
+        "    pass\n"
+        "paths = []\n"
+        "spec = getattr(module, '__spec__', None)\n"
+        "module_file = getattr(module, '__file__', None)\n"
+        "if module_file:\n"
+        "    paths.append(pathlib.Path(module_file))\n"
+        "if spec is not None and getattr(spec, 'origin', None) and spec.origin != 'built-in':\n"
+        "    paths.append(pathlib.Path(spec.origin))\n"
+        "locations = getattr(spec, 'submodule_search_locations', None) if spec is not None else None\n"
+        "if locations:\n"
+        "    for loc in locations:\n"
+        "        paths.append(pathlib.Path(loc))\n"
+        "seen = set()\n"
+        "for path in paths:\n"
+        "    if not path:\n"
+        "        continue\n"
+        "    try:\n"
+        "        path = path.resolve()\n"
+        "    except Exception:\n"
+        "        pass\n"
+        "    if path in seen or not path.exists():\n"
+        "        continue\n"
+        "    seen.add(path)\n"
+        "    if path.is_file() and path.suffix == '.py':\n"
+        "        try:\n"
+        "            chunks.append(path.read_text(encoding='utf-8'))\n"
+        "        except Exception:\n"
+        "            pass\n"
+        "    elif path.is_dir():\n"
+        "        for sub in sorted(path.rglob('*.py')):\n"
+        "            if sub in seen:\n"
+        "                continue\n"
+        "            seen.add(sub)\n"
+        "            try:\n"
+        "                chunks.append(sub.read_text(encoding='utf-8'))\n"
+        "            except Exception:\n"
+        "                pass\n"
+        "payload = '\n'.join(chunk for chunk in chunks if chunk)\n"
+        "if payload.strip():\n"
+        "    print(payload)\n"
+        "    raise SystemExit(0)\n"
+        "raise SystemExit(1)\n"
+    )
+    result = run([python_bin, "-c", probe, str(site_dir), import_name], timeout=180)
+    if result.returncode == 0 and result.stdout.strip():
+        return result.stdout
+    return None
+
+
+def resolve_python_import_name(python_bin: str, site_dir: Path, dependency_name: str) -> str:
     package_name = dependency_name.split("[")[0]
     normalized = package_name.replace("-", "_").lower()
     probe = (
         "import importlib, sys\n"
+        "sys.path.insert(0, sys.argv[1])\n"
         "from importlib import metadata\n"
-        "pkg = sys.argv[1]\n"
+        "pkg = sys.argv[2]\n"
         "normalized = pkg.replace('-', '_').lower()\n"
         "candidates = [normalized]\n"
         "try:\n"
@@ -272,7 +365,7 @@ def resolve_python_import_name(python_bin: Path, dependency_name: str) -> str:
         "        pass\n"
         "raise SystemExit(1)\n"
     )
-    result = run([str(python_bin), "-c", probe, package_name], timeout=120)
+    result = run([python_bin, "-c", probe, str(site_dir), package_name], timeout=120)
     if result.returncode == 0 and result.stdout.strip():
         return result.stdout.strip().splitlines()[0]
     return normalized
@@ -285,41 +378,24 @@ def detect_python_bcs(row: Dict, logger) -> Dict:
     if not dep or not old_version or not new_version:
         return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": "griffe", "analysis_error": "missing_python_dependency_metadata"}
 
+    python_bin = shutil.which("python3") or "python3"
     with tempfile.TemporaryDirectory(prefix="secbreak_pybc_") as temp_dir:
         base = Path(temp_dir)
-        old_env = base / "old_env"
-        new_env = base / "new_env"
-        venv.EnvBuilder(with_pip=True).create(old_env)
-        venv.EnvBuilder(with_pip=True).create(new_env)
-        old_python = old_env / "bin" / "python"
-        new_python = new_env / "bin" / "python"
-        install_old = run([str(old_python), "-m", "pip", "install", f"{dep}=={old_version}", "griffe"], timeout=600)
-        install_new = run([str(new_python), "-m", "pip", "install", f"{dep}=={new_version}", "griffe"], timeout=600)
+        old_site = base / "old_site"
+        new_site = base / "new_site"
+        old_site.mkdir(parents=True, exist_ok=True)
+        new_site.mkdir(parents=True, exist_ok=True)
+        install_old = run([python_bin, "-m", "pip", "install", "--target", str(old_site), f"{dep}=={old_version}", "griffe"], timeout=PYPI_INSTALL_TIMEOUT_DEFAULT)
+        install_new = run([python_bin, "-m", "pip", "install", "--target", str(new_site), f"{dep}=={new_version}", "griffe"], timeout=PYPI_INSTALL_TIMEOUT_DEFAULT)
         if install_old.returncode != 0 or install_new.returncode != 0:
             return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": "griffe", "analysis_error": "pip_install_failed"}
-        old_import_name = resolve_python_import_name(old_python, dep)
-        new_import_name = resolve_python_import_name(new_python, dep)
-        old_dump = run(
-            [
-                str(old_python),
-                "-c",
-                "import importlib, inspect, sys; m=importlib.import_module(sys.argv[1]); print(inspect.getsource(m))",
-                old_import_name,
-            ],
-            timeout=120,
-        )
-        new_dump = run(
-            [
-                str(new_python),
-                "-c",
-                "import importlib, inspect, sys; m=importlib.import_module(sys.argv[1]); print(inspect.getsource(m))",
-                new_import_name,
-            ],
-            timeout=120,
-        )
-        if old_dump.returncode != 0 or new_dump.returncode != 0:
+        old_import_name = resolve_python_import_name(python_bin, old_site, dep)
+        new_import_name = resolve_python_import_name(python_bin, new_site, dep)
+        old_source = dump_python_source_tree(python_bin, old_site, old_import_name)
+        new_source = dump_python_source_tree(python_bin, new_site, new_import_name)
+        if not old_source or not new_source:
             return {"has_bc": False, "bc_types": [], "bc_count": 0, "tool_used": "griffe", "analysis_error": "source_extraction_failed"}
-        parsed = compare_python_api(old_dump.stdout, new_dump.stdout)
+        parsed = compare_python_api(old_source, new_source)
         parsed["analysis_error"] = None
         return parsed
 
@@ -337,7 +413,7 @@ def clone_repo(repo_full_name: str, sha: str, target: Path) -> bool:
 
 MAVEN_TEST_TIMEOUT_DEFAULT = 1800  # was 300s; too short for cold-.m2, full-suite runs (Phase 4 diagnosis)
 PYPI_TEST_TIMEOUT_DEFAULT = 1200
-PYPI_INSTALL_TIMEOUT_DEFAULT = 600
+PYPI_INSTALL_TIMEOUT_DEFAULT = 300
 
 PYTHON_PROJECT_MARKERS = [
     "pytest.ini", "pyproject.toml", "setup.py", "setup.cfg",

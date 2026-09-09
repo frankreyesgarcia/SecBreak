@@ -4,7 +4,7 @@ This package supports manual adjudication of the BC detector.
 
 **This sample is drawn only from PRs where BC detection genuinely executed**
 (`analyzed_ok == True` in data/analysis_dataset_corrected.csv — no
-`analysis_error`, and a detection tool actually ran). 403 rows where
+`analysis_error`, and a detection tool actually ran). 376 rows where
 detection never ran (missing dependency coordinates, failed jar/pip install,
 etc.) were excluded from the sampling frame entirely rather than being mixed
 in as if they were detector negatives. See results/rq1_tables_corrected.csv

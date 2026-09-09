@@ -158,3 +158,16 @@
 {"repo_full_name": "apache/axis-axis2-java-core", "pr_number": 228, "merged": true, "followup_fix_days": 0.6452546296296297, "reverted": true, "naive_candidates": 16, "strict_candidates": 15}
 {"repo_full_name": "eGovFramework/egovframe-runtime", "pr_number": 6, "merged": false, "followup_fix_days": null, "reverted": false, "naive_candidates": 0, "strict_candidates": 0}
 {"repo_full_name": "holoviz/panel", "pr_number": 2103, "merged": true, "followup_fix_days": 0.625150462962963, "reverted": true, "naive_candidates": 19, "strict_candidates": 3}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 9009, "merged": true, "followup_fix_days": 2.7164814814814813, "reverted": true, "naive_candidates": 16, "strict_candidates": 13}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8712, "merged": true, "followup_fix_days": 0.1548263888888889, "reverted": true, "naive_candidates": 16, "strict_candidates": 15}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8471, "merged": true, "followup_fix_days": 0.552349537037037, "reverted": false, "naive_candidates": 20, "strict_candidates": 18}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8470, "merged": true, "followup_fix_days": 0.552349537037037, "reverted": false, "naive_candidates": 20, "strict_candidates": 18}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8469, "merged": true, "followup_fix_days": 0.552349537037037, "reverted": false, "naive_candidates": 20, "strict_candidates": 18}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8467, "merged": true, "followup_fix_days": 0.552349537037037, "reverted": false, "naive_candidates": 20, "strict_candidates": 18}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8459, "merged": true, "followup_fix_days": 4.878634259259259, "reverted": false, "naive_candidates": 23, "strict_candidates": 23}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8455, "merged": true, "followup_fix_days": 0.552349537037037, "reverted": false, "naive_candidates": 20, "strict_candidates": 18}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 8126, "merged": true, "followup_fix_days": 0.0007407407407407407, "reverted": true, "naive_candidates": 19, "strict_candidates": 18}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 7101, "merged": false, "followup_fix_days": null, "reverted": false, "naive_candidates": 0, "strict_candidates": 0}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 6867, "merged": true, "followup_fix_days": 0.0017824074074074075, "reverted": false, "naive_candidates": 13, "strict_candidates": 7}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 6855, "merged": true, "followup_fix_days": 0.0017824074074074075, "reverted": false, "naive_candidates": 13, "strict_candidates": 7}
+{"repo_full_name": "testcontainers/testcontainers-java", "pr_number": 6511, "merged": true, "followup_fix_days": 0.34869212962962964, "reverted": false, "naive_candidates": 11, "strict_candidates": 10}
