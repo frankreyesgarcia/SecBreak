@@ -35,6 +35,8 @@ Raemaekers \textit{et al.} reported in TSE that 13.2\% of security releases decl
 \item How do teams react when a security PR with breaking changes is merged?
 \end{enumerate}
 
+Dependabot already exposes a crowd-sourced compatibility score meant to signal update risk, but Rombaut \textit{et al.} found it cannot be computed for 83\% of dependency updates for lack of crowd data, and is based on low-confidence data when it can~\cite{rombaut2024}. That gap motivates RQ2: a model that estimates compatibility risk from CVE and API-diff features available \emph{before} a PR is applied, independent of whether any downstream project has tried the update yet.
+
 We built \textit{SecBreak}, a reproducible pipeline that collects Dependabot security PRs, enriches them with National Vulnerability Database (NVD) data, detects API incompatibilities, and analyzes downstream maintenance behavior. An earlier version of this pipeline contained a silent-default bug (Section~\ref{sec:rectification}) that treated PRs where BC detection never executed as verified negatives, understating prevalence by more than an order of magnitude and inverting the paper's comparison against the provider-side baseline. We describe the bug, the correction, and report only numbers computed after the fix. The main contribution of this paper is not another study of Dependabot adoption, merge behavior, or automated repair; it is a client-side empirical characterization of the compatibility risk of the proposed security fix itself, together with a transparent, auditable account of what went wrong in the first analysis pass and how it was fixed.
 
 \section{Related Work}
@@ -48,7 +50,13 @@ artifacts and found that 11.6\% of dependency updates introduce breaking
 changes, with roughly half occurring in non-major versions~\cite{jayasuriya2024emse}
 -- the closest prior measurement of client-side syntactic BC prevalence to the
 one in this paper, though for general dependency updates rather than
-specifically security-motivated ones. This line of work establishes that
+specifically security-motivated ones. Venturini \textit{et al.} measured
+whether breaking changes actually \emph{manifest} in downstream npm packages by
+executing client test suites across non-major dependency updates, and found
+roughly 12\% of dependent packages and 14\% of releases affected~\cite{venturini2023};
+their signal is behavioral (test-based) and their population is general npm
+updates, whereas we measure syntactic API-level BCs via static diffing in
+Maven/PyPI security PRs specifically. This line of work establishes that
 breaking changes are common in dependency evolution, but it does not isolate
 the narrower population of automated security-fix PRs.
 
@@ -63,25 +71,34 @@ rather than relying on provider-declared metadata as a proxy.
 \textbf{Dependabot security PR management.} Prior Dependabot security-PR work
 studies how maintainers receive and process these automated updates, not
 whether the proposed fix itself is compatibility-safe. Alfadel et al.~(MSR
-2021) analyze adoption, merge timing, and rejection reasons for Dependabot
-security PRs in JavaScript projects. Rebatchi et al.~(EMSE 2024) study
-security-PR management, threat lifetime, and factors correlated with fast
-merges at much larger scale. Mohayeji et al.~(MSR 2023; EMSE 2025) study
-vulnerability resolution behavior and Dependabot's impact on mitigation in
-JavaScript projects. These studies are complementary to ours: they explain
-how security PRs are handled, whereas our contribution is to measure the
-client-side compatibility risk of the proposed security fix itself~\cite{alfadel2021,rebatchi2024,mohayeji2023,mohayeji2025}.
+2021) manually categorize why maintainers accept or close Dependabot security
+PRs in JavaScript projects; ``breaking build'' appears there as one
+maintainer-stated reason among several for closing a PR without merging -- a
+self-reported signal over the rejected subset, not an API-level compatibility
+measurement over the merged population, and not for Maven. Rebatchi et al.~(EMSE
+2024) study security-PR management, threat lifetime, and factors correlated with
+fast merges at much larger scale, again without API-level breaking-change
+analysis. Mohayeji et al.~(MSR 2023; EMSE 2025) study vulnerability resolution
+behavior and Dependabot's impact on mitigation in JavaScript projects. These
+studies are complementary to ours: they explain how security PRs are handled,
+whereas our contribution is to measure the client-side compatibility risk of
+the proposed security fix itself~\cite{alfadel2021,rebatchi2024,mohayeji2023,mohayeji2025}.
 
-\textbf{Supporting signals and repair.} Other work has examined whether tests
-can be trusted to validate dependency updates~\cite{hejderup2021}, and whether
-Dependabot's compatibility score offers a useful crowd-based signal for update
-risk~\cite{cogo2024}. More recent research studies automated repair of
-breaking dependency updates with large language models, for example
-Fruntke and Krinke's automatic repair study and the Byam
+\textbf{Detection tooling, supporting signals, and repair.} Other work has
+examined whether tests can be trusted to validate dependency
+updates~\cite{hejderup2021}, and whether Dependabot's compatibility score
+offers a useful crowd-based signal for update risk~\cite{rombaut2024}. Raj et
+al.'s BreakGuard generates LLM-authored tests to detect breaking changes a
+client's own suite misses, reporting partial detection (30.3\% of real BUMP
+breaking changes) and noting the approach is more reliable for crash-type than
+behavioral BCs~\cite{breakguard2026}; it is a general-purpose detector, not a
+prevalence study, and is not scoped to security PRs. More recent research
+studies automated repair of breaking dependency updates with large language
+models, for example Fruntke and Krinke's automatic repair study and the Byam
 pipeline~\cite{fruntke2025,byam2025}. Those papers address what to do after an
-update has already broken the client; this paper addresses the logically
-earlier question of how often Dependabot security PRs introduce that risk in
-the first place.
+update has already broken the client, or how to detect a break in one project;
+this paper addresses the logically earlier, population-level question of how
+often Dependabot security PRs introduce that risk in the first place.
 
 \textbf{Positioning.} To our knowledge, no prior study measures client-side
 breaking-change prevalence specifically within the population of Dependabot
@@ -102,7 +119,7 @@ For each PR we extracted the repository, PR metadata, dependency name, old and n
 For Maven projects we compared old and new dependency artifacts using Roseau, executed under Java~25. Roseau reports API-level breaking changes such as removed methods, changed return types, removed fields, and removed supertypes. For PyPI projects we used a lighter public API comparison based on version-isolated installs and signature extraction; we explicitly preserve this Java/Python asymmetry as a threat to validity. We also attempted a behavioral BC signal by running project tests before and after the dependency update when a test suite was present; Section~\ref{sec:rectification} explains why we do not report a behavioral BC percentage in this paper.
 
 \subsection{Feature Engineering and Analysis}
-The final analysis dataset includes all 783 unique PRs, with an explicit \texttt{analyzed\_ok} flag marking the 369 PRs where BC detection genuinely executed (Section~\ref{sec:rectification}). Engineered features include CVSS score, ordinal CVSS severity, version bump type, ecosystem, repository stars, one-hot encoded top CWE categories, and whether a CVE was present. The target for RQ2 is whether a PR introduced at least one syntactic BC, computed only over \texttt{analyzed\_ok} rows.
+The final analysis dataset includes all 783 unique PRs, with an explicit \texttt{analyzed\_ok} flag marking the 380 PRs where BC detection genuinely executed (Section~\ref{sec:rectification}). Engineered features include CVSS score, ordinal CVSS severity, version bump type, ecosystem, repository stars, one-hot encoded top CWE categories, and whether a CVE was present. The target for RQ2 is whether a PR introduced at least one syntactic BC, computed only over \texttt{analyzed\_ok} rows.
 
 \subsection{Validation Package}
 To support future detector validation, we produce a stratified manual-validation package of 100 sampled PRs, restricted to \texttt{analyzed\_ok} rows, in \texttt{results/validation/bc\_validation\_sample\_corrected.csv}, together with an adjudication protocol and, for each row, a pre-fetched PR-diff link, best-effort dependency changelog link, and formatted detector output to speed manual review.
@@ -209,6 +226,8 @@ This study has several limitations, some inherited from the original design and 
 
 \emph{Java analysis is stronger than Python.} Maven projects use Roseau, a source/bytecode-level compatibility checker; PyPI projects use a lighter public-API signature comparison. This asymmetry predates this correction and remains unresolved.
 
+\emph{Vulnerability metadata quality.} Recent work reports that a large fraction of vulnerability-database entries carry incorrect package coordinates or affected-version ranges~\cite{nvdquality2026}. Our analysis inherits CVE metadata from the NVD, but the artifacts it actually diffs are the concrete \texttt{old\_version}$\to$\texttt{new\_version} pair named in each Dependabot PR, not an NVD version range. As a direct check, we drew a random sample of 100 CVE-linked Maven PRs from the analyzed set and verified each claimed-vulnerable (\texttt{old\_version}) and fixed (\texttt{new\_version}) coordinate against Maven Central: all 100 of both resolved to real published artifacts (0\% mismatch; \texttt{data/nvd\_metadata\_validation.csv}). This rules out the ``phantom version'' failure mode for the measured subset -- every BC we report is computed between two artifacts that demonstrably exist -- but it does not verify that each CVE's severity or affected-range semantics are themselves correct, which we do not independently audit.
+
 \emph{RQ3} relies on GitHub activity heuristics -- follow-up PR titles, branch activity, commit-status checks -- which are imperfect proxies for maintenance response; Section~\ref{sec:rq3} shows how much naive keyword matching alone can overstate remediation speed, and a relatedness filter was applied for exactly that reason, but the filter itself (PR-number reference, manifest-file overlap, or dependency-name mention) is still a heuristic, not ground truth.
 
 Finally, the final cohort (783 unique PRs) is smaller than the 2{,}000-PR target originally sought by the collection process, which limits external validity beyond the repositories and time window studied.
@@ -227,6 +246,7 @@ The repository contains, for both the original (buggy) and corrected pipeline ru
 \item model outputs: \texttt{results/rq2\_model\_results\_corrected.csv}, logistic-regression coefficients with CIs: \texttt{results/rq2\_logit\_coefficients\_converged.csv}
 \item robustness bounds (Section~\ref{sec:robustness}): \texttt{results/rq1\_bounds.json}
 \item selection-bias quantification: \texttt{results/selection\_bias\_table.csv}
+\item NVD affected-version metadata validation: \texttt{data/nvd\_metadata\_validation.csv} (script: \texttt{nvd\_metadata\_validation.py})
 \item Maven-only vs.\ dual-ecosystem comparison: \texttt{results/MAVEN\_ONLY\_COMPARISON.md} and \texttt{results/*\_mavenonly.csv}
 \item validation review aids (PR-diff/changelog links, formatted detector output): \texttt{results/validation/review\_context.jsonl}
 \item full rectification report and decision trail: \texttt{results/RECTIFICATION\_REPORT.md}; paper-strengthening report: \texttt{results/STRENGTHENING\_REPORT.md}
@@ -254,8 +274,17 @@ R.~G.~Kula, D.~M.~German, A.~Ouni, T.~Ishio, and K.~Inoue, ``Do Developers Updat
 \bibitem{hejderup2021}
 J.~Hejderup and G.~Gousios, ``Can We Trust Tests To Automate Dependency Updates? A Case Study of Java Projects,'' \emph{Journal of Systems and Software}, vol.\ 183, p.\ 111097, 2021.
 
-\bibitem{cogo2024}
-F.~C{\^o}go and A.~E.~Hassan, ``Leveraging the Crowd for Dependency Management: An Empirical Study on the Dependabot Compatibility Score,'' \emph{arXiv preprint arXiv:2403.09012}, 2024.
+\bibitem{rombaut2024}
+B.~Rombaut, F.~R.~Cogo, and A.~E.~Hassan, ``Leveraging the Crowd for Dependency Management: An Empirical Study on the Dependabot Compatibility Score,'' \emph{arXiv preprint arXiv:2403.09012}, 2024.
+
+\bibitem{venturini2023}
+D.~Venturini, F.~R.~Cogo, I.~Polato, M.~A.~Gerosa, and I.~S.~Wiese, ``I Depended on You and You Broke Me: An Empirical Study of Manifesting Breaking Changes in Client Packages,'' \emph{ACM Transactions on Software Engineering and Methodology}, vol.\ 32, no.\ 4, 2023.
+
+\bibitem{breakguard2026}
+R.~Raj, B.~Baudry, and D.~E.~Costa, ``BreakGuard: Towards Detecting Dependency Breaking Changes with LLM-Generated Tests,'' \emph{arXiv preprint arXiv:2608.20167}, 2026.
+
+\bibitem{nvdquality2026}
+Y.~Nong, Y.~Du, T.~Xu, and H.~Cai, ``The Data Problem in Software Vulnerability Analysis: Artifacts, Quality, and Consumption,'' \emph{arXiv preprint arXiv:2609.01503}, 2026.
 
 \bibitem{alfadel2021}
 M.~Alfadel, D.~Costa, E.~Shihab, and M.~Mkhallalati, ``On the Use of Dependabot Security Pull Requests,'' in \emph{Proc.\ IEEE/ACM 18th Working Conf.\ on Mining Software Repositories (MSR)}, 2021, pp.\ 254--265.

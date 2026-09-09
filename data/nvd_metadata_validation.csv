@@ -1,0 +1,101 @@
+repo_full_name,pr_number,dependency_name,cve_ids,claimed_affected_version,fixed_version,affected_version_resolves,fixed_version_resolves,has_bc
+OpenAPITools/openapi-generator,18395,io.undertow:undertow-core,"['CVE-2023-5379', 'CVE-2024-1459', 'CVE-2024-1635']",2.3.5.Final,2.3.12.Final,True,True,0
+apache/dubbo,14042,com.alibaba.nacos:nacos-client,"['CVE-2024-22243', 'CVE-2024-22259']",2.3.1,2.3.2,True,True,0
+apache/shenyu,4204,com.github.pagehelper:pagehelper,['CVE-2022-28111'],5.3.0,5.3.1,True,True,1
+flowable/flowable-engine,3570,org.eclipse.jetty:jetty-server,"['CVE-2022-2047', 'CVE-2022-2048', 'CVE-2022-2191']",11.0.2,11.0.10,True,True,1
+googleapis/java-storage-nio,1244,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.1-android,32.0.0-android,True,True,0
+OpenFeign/feign,2204,org.json:json,['CVE-2023-5072'],20230618,20231013,True,True,0
+apache/seatunnel,2376,org.postgresql:postgresql,['CVE-2022-31197'],42.3.3,42.4.1,True,True,1
+apache/shenyu,4738,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",30.1.1-jre,32.0.0-jre,True,True,1
+apache/dubbo,11734,org.apache.maven:maven-plugin-api,['CVE-2021-42550'],3.5.4,3.9.0,True,True,0
+quarkusio/quarkus,24831,com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2,['cve-2022-22965'],2.11.0,2.11.1,True,True,0
+redisson/redisson,4696,org.hibernate:hibernate-core,"['CVE-2019-14900', 'CVE-2020-25638']",5.2.18.Final,5.3.20.Final,True,True,1
+flowable/flowable-engine,3568,org.eclipse.jetty:jetty-http,"['CVE-2022-2047', 'CVE-2022-2048', 'CVE-2022-2191']",11.0.2,11.0.10,True,True,1
+apache/shenyu,3080,com.alibaba:dubbo,['CVE-2019-17564'],2.6.5,2.6.9,True,True,1
+flowable/flowable-engine,3572,org.eclipse.jetty:jetty-server,"['CVE-2022-2047', 'CVE-2022-2048', 'CVE-2022-2191']",11.0.2,11.0.10,True,True,1
+questdb/questdb,2403,org.postgresql:postgresql,['CVE-2022-31197'],42.3.3,42.4.1,True,True,1
+apache/druid,12871,org.postgresql:postgresql,['CVE-2022-31197'],42.3.3,42.4.1,True,True,1
+apache/seatunnel,4926,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",27.0-jre,32.0.0-jre,True,True,1
+alibaba/nacos,11472,ch.qos.logback:logback-core,['CVE-2023-6378'],1.2.9,1.2.13,True,True,1
+mybatis/mybatis-3,2744,org.postgresql:postgresql,['CVE-2022-41946'],42.5.0,42.5.1,True,True,1
+apache/dolphinscheduler,14359,org.xerial.snappy:snappy-java,"['CVE-2023-34453', 'CVE-2023-34454', 'CVE-2023-34455']",1.1.8.4,1.1.10.1,True,True,1
+apache/flink,22783,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",27.0.1-jre,32.0.0-jre,True,True,1
+binarywang/WxJava,2982,org.eclipse.jetty:jetty-server,"['CVE-2023-26048', 'CVE-2023-26049']",9.4.43.v20210629,10.0.14,True,True,1
+quarkusio/quarkus,29458,org.postgresql:postgresql,['CVE-2022-41946'],42.5.0,42.5.1,True,True,1
+OpenAPITools/openapi-generator,16541,com.github.tomakehurst:wiremock-jre8,"['CVE-2023-39967', 'CVE-2023-41327', 'CVE-2023-41329']",2.27.2,2.35.1,True,True,1
+apache/seatunnel,4928,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.1-android,32.0.0-android,True,True,1
+Activiti/Activiti,3948,com.h2database:h2,['CVE-2022-23221'],1.4.200,2.1.210,True,True,1
+apache/dubbo,11743,org.apache.maven:maven-core,['CVE-2021-42550'],3.8.7,3.9.0,True,True,1
+dianping/cat,2122,org.eclipse.jetty:jetty-server,"['CVE-2021-28163', 'CVE-2021-28164', 'CVE-2021-28165', 'CVE-2021-28169']",9.4.35.v20201120,9.4.41.v20210516,True,True,1
+prestodb/presto,18149,org.postgresql:postgresql,['CVE-2022-31197'],42.3.3,42.4.1,True,True,1
+debezium/debezium,5077,ch.qos.logback:logback-classic,['CVE-2023-6378'],1.2.12,1.2.13,True,True,0
+quarkusio/quarkus,25115,com.nimbusds:nimbus-jose-jwt,['CVE-2022-21449'],9.21,9.22,True,True,0
+flowable/flowable-engine,3185,com.h2database:h2,['CVE-2022-23221'],1.4.200,2.1.210,True,True,1
+OpenAPITools/openapi-generator,17327,ch.qos.logback:logback-classic,['CVE-2023-6378'],1.2.11,1.2.13,True,True,0
+apache/shardingsphere,22373,org.postgresql:postgresql,['CVE-2022-41946'],42.4.1,42.4.3,True,True,1
+binarywang/WxJava,2986,org.eclipse.jetty:jetty-server,"['CVE-2023-26048', 'CVE-2023-26049']",9.4.51.v20230217,10.0.14,True,True,1
+apache/dolphinscheduler,14352,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.1-jre,32.0.0-jre,True,True,1
+quarkusio/quarkus,44696,org.keycloak:keycloak-core,['CVE-2024-10270'],25.0.6,26.0.6,True,True,1
+apache/seatunnel,2652,org.postgresql:postgresql,['CVE-2022-31197'],42.3.3,42.4.1,True,True,1
+apache/druid,14420,org.eclipse.jetty:jetty-server,"['CVE-2023-26048', 'CVE-2023-26049']",9.4.48.v20220622,9.4.51.v20230217,True,True,0
+qbicsoftware/data-manager-app,165,org.springframework.security:spring-security-core,[],5.7.2,5.7.5,True,True,0
+YunaiV/yudao-cloud,96,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.1-jre,32.0.0-jre,True,True,1
+quarkusio/quarkus,23427,com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2,['CVE-2021-45105'],2.10.0,2.11.0,True,True,0
+quarkusio/quarkus,24855,com.github.tomakehurst:wiremock-jre8-standalone,['CVE-2020-36518'],2.32.0,2.33.1,True,True,0
+alibaba/nacos,10648,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",30.1-jre,32.0.0-jre,True,True,1
+apache/seatunnel,2962,org.apache.pulsar:pulsar-broker,"['CVE-2021-22569', 'CVE-2021-43045', 'CVE-2021-44832', 'CVE-2022-21724']",2.8.0,2.8.4,True,True,1
+mybatis/mybatis-3,2635,org.postgresql:postgresql,['CVE-2022-31197'],42.4.0,42.4.1,True,True,0
+hs-web/hsweb-framework,214,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",30.1.1-jre,32.0.0-jre,True,True,1
+apache/skywalking,10015,org.postgresql:postgresql,['CVE-2022-41946'],42.4.1,42.4.3,True,True,1
+apache/seatunnel,6861,com.amazon.redshift:redshift-jdbc42,['CVE-2024-32888'],2.1.0.9,2.1.0.28,True,True,1
+quarkusio/quarkus,23773,com.amazonaws.serverless:aws-serverless-java-container-core,"['CVE-2021-44832', 'CVE-2021-45105']",1.6.1,1.7,True,True,0
+flowable/flowable-engine,3638,org.eclipse.jetty:jetty-server,"['CVE-2023-26048', 'CVE-2023-26049']",11.0.10,11.0.14,True,True,1
+checkstyle/checkstyle,15814,com.google.errorprone:error_prone_core,['CVE-2024-7254'],2.31.0,2.35.1,True,True,1
+apache/druid,16015,org.bitbucket.b_c:jose4j,['CVE-2018-8088'],0.9.3,0.9.4,True,True,0
+questdb/questdb,1853,org.postgresql:postgresql,['CVE-2022-21724'],42.2.12,42.2.25,True,True,1
+apache/shardingsphere,32311,org.apache.thrift:libthrift,['CVE-2018-1320'],0.9.3,0.14.0,True,True,0
+prestodb/presto,22322,org.postgresql:postgresql,"['CVE-2022-31197', 'CVE-2024-1597']",9.3-1102-jdbc41,42.3.9,True,True,1
+OpenRefine/OpenRefine,5145,org.postgresql:postgresql,['CVE-2022-31197'],42.4.0,42.4.1,True,True,0
+apache/seatunnel,7144,org.xerial.snappy:snappy-java,['CVE-2023-43642'],1.1.8.3,1.1.10.4,True,True,1
+alibaba/COLA,364,org.projectlombok:lombok,"['CVE-2021-44228', 'cve-2021-44228']",1.18.22,1.18.24,True,True,0
+alibaba/transmittable-thread-local,587,com.github.spotbugs:spotbugs-annotations,['CVE-2023-6481'],4.8.2,4.8.3,True,True,0
+debezium/debezium,5177,com.jayway.jsonpath:json-path,"['CVE-2023-1370', 'CVE-2023-51074']",2.7.0,2.9.0,True,True,0
+quarkusio/quarkus,44177,io.quarkus.security:quarkus-security,[],2.1.0,2.2.0,True,True,0
+apache/druid,13820,org.postgresql:postgresql,['CVE-2022-41946'],42.4.1,42.5.4,True,True,1
+apache/seatunnel,2851,org.postgresql:postgresql,"['CVE-2022-311', 'CVE-2022-31197']",42.3.3,42.3.7,True,True,1
+mybatis/mybatis-3,2464,org.postgresql:postgresql,['CVE-2022-21724'],42.3.2,42.3.3,True,True,0
+quarkusio/quarkus,23356,org.postgresql:postgresql,['CVE-2022-21724'],42.3.1,42.3.2,True,True,1
+mybatis/mybatis-3,2452,org.postgresql:postgresql,['CVE-2022-21724'],42.3.1,42.3.2,True,True,1
+google/guice,1750,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.0.1-jre,32.0.0-jre,True,True,1
+apache/seatunnel,2850,org.postgresql:postgresql,"['CVE-2022-311', 'CVE-2022-31197']",42.3.3,42.3.7,True,True,1
+quarkusio/quarkus,34067,org.xerial.snappy:snappy-java,"['CVE-2023-34453', 'CVE-2023-34454', 'CVE-2023-34455']",1.1.8.4,1.1.10.1,True,True,1
+quarkusio/quarkus,27397,org.postgresql:postgresql,['CVE-2022-31197'],42.4.1,42.4.2,True,True,1
+apache/shardingsphere-elasticjob,2077,com.h2database:h2,['CVE-2022-23221'],1.4.184,2.1.210,True,True,1
+questdb/questdb,4235,org.postgresql:postgresql,['CVE-2024-1597'],42.5.4,42.5.5,True,True,0
+OpenAPITools/openapi-generator,16540,com.github.tomakehurst:wiremock-jre8,"['CVE-2023-39967', 'CVE-2023-41327', 'CVE-2023-41329']",2.27.2,2.35.1,True,True,1
+quarkusio/quarkus,23156,biz.paluch.logging:logstash-gelf,['CVE-2021-44228'],1.14.1,1.15.0,True,True,0
+quarkusio/quarkus,23738,org.postgresql:postgresql,['CVE-2022-21724'],42.3.2,42.3.3,True,True,0
+apache/seatunnel,6860,com.amazon.redshift:redshift-jdbc42,['CVE-2024-32888'],2.1.0.9,2.1.0.28,True,True,1
+apache/dubbo,14907,io.micrometer:micrometer-core,['CVE-2024-47535'],1.13.6,1.14.1,True,True,0
+apache/shardingsphere,29808,com.jayway.jsonpath:json-path,['CVE-2023-51074'],2.8.0,2.9.0,True,True,0
+apache/dolphinscheduler,14350,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.0.1-jre,32.0.0-jre,True,True,1
+pinpoint-apm/pinpoint,9296,mysql:mysql-connector-java,['CVE-2022-21363'],8.0.27,8.0.28,True,True,1
+apache/shenyu,3081,com.alibaba:dubbo,['CVE-2019-17564'],2.6.5,2.6.9,True,True,1
+apache/shardingsphere,16601,com.h2database:h2,['CVE-2022-23221'],1.4.196,2.1.210,True,True,1
+jhy/jsoup,1940,org.eclipse.jetty:jetty-server,"['CVE-2023-26048', 'CVE-2023-26049']",9.4.51.v20230217,10.0.14,True,True,1
+flowable/flowable-engine,3637,org.eclipse.jetty:jetty-server,"['CVE-2023-26048', 'CVE-2023-26049']",11.0.10,11.0.14,True,True,1
+apache/druid,13427,org.postgresql:postgresql,['CVE-2022-41946'],42.4.1,42.4.3,True,True,1
+OpenAPITools/openapi-generator,15217,io.undertow:undertow-core,"['CVE-2022-4492', 'CVE-2023-1108']",2.2.19.Final,2.2.24.Final,True,True,1
+netty/netty,13718,ch.qos.logback:logback-classic,['CVE-2023-6378'],1.2.3,1.2.13,True,True,1
+jenkinsci/jenkins,7548,com.thoughtworks.xstream:xstream,"['CVE-2022-40151', 'CVE-2022-41966']",1.4.19,1.4.20,True,True,0
+OpenAPITools/openapi-generator,16539,com.github.tomakehurst:wiremock-jre8,"['CVE-2023-39967', 'CVE-2023-41327', 'CVE-2023-41329']",2.27.2,2.35.1,True,True,1
+redisson/redisson,5110,org.xerial.snappy:snappy-java,"['CVE-2023-34453', 'CVE-2023-34454', 'CVE-2023-34455']",1.1.9.1,1.1.10.1,True,True,0
+quarkusio/quarkus,43200,org.mvnpm:ansi-regex,['CVE-2021-3807'],5.0.1,6.1.0,True,True,0
+apache/dolphinscheduler,14351,com.google.guava:guava,"['CVE-2020-8908', 'CVE-2023-2976']",31.0.1-jre,32.0.0-jre,True,True,1
+OpenRefine/OpenRefine,4535,org.postgresql:postgresql,['CVE-2022-21724'],42.3.2,42.3.3,True,True,0
+alibaba/Sentinel,2612,com.alibaba:dubbo,['CVE-2019-17564'],2.6.6,2.6.9,True,True,1
+prestodb/presto,17250,org.postgresql:postgresql,['CVE-2022-21724'],42.2.5,42.2.25,True,True,1
+apache/druid,14434,org.xerial.snappy:snappy-java,"['CVE-2023-34453', 'CVE-2023-34454', 'CVE-2023-34455']",1.1.8.4,1.1.10.1,True,True,1
+flowable/flowable-engine,3321,org.springframework.security:spring-security-core,[],4.0.1.RELEASE,5.5.7,True,True,1
+YunaiV/yudao-cloud,77,com.xuxueli:xxl-job-core,"['CVE-2021-2471', 'CVE-2022-22965']",2.2.0,2.3.1,True,True,1
+redisson/redisson,5111,org.xerial.snappy:snappy-java,"['CVE-2023-34453', 'CVE-2023-34454', 'CVE-2023-34455']",1.1.9.1,1.1.10.1,True,True,0
