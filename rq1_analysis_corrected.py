@@ -142,14 +142,18 @@ def main():
         bc_types.update(items or [])
     type_rows = [{"bc_type": name, "count": count} for name, count in bc_types.most_common()]
     type_df = pd.DataFrame(type_rows)
-    total_types = max(sum(bc_types.values()), 1)
-    method_count = sum(count for name, count in bc_types.items() if "METHOD" in name)
-    type_count = sum(count for name, count in bc_types.items() if "TYPE" in name or "CLASS" in name)
-    field_count = sum(count for name, count in bc_types.items() if "FIELD" in name)
-    print("BC type distribution (analyzed_ok only):")
-    print(f"  Method-level: {100*method_count/total_types:.1f}%")
-    print(f"  Type-level: {100*type_count/total_types:.1f}%")
-    print(f"  Field-level: {100*field_count/total_types:.1f}%")
+    # Mutually-exclusive top-level kind, keyed on the event-name prefix, matching
+    # generate_presubmission_artifacts.py. An earlier version used substring tests
+    # ("METHOD" in name, "TYPE" in name or "CLASS" in name, "FIELD" in name), which
+    # double-counted events such as TYPE_NEW_ABSTRACT_METHOD and summed to >100%.
+    method_count = sum(count for name, count in bc_types.items() if name.startswith("METHOD_"))
+    type_count = sum(count for name, count in bc_types.items() if name.startswith("TYPE_"))
+    field_count = sum(count for name, count in bc_types.items() if name.startswith("FIELD_"))
+    classified_total = max(method_count + type_count + field_count, 1)
+    print(f"BC kind distribution (analyzed_ok only; {classified_total} method/type/field events, mutually exclusive):")
+    print(f"  Method-level: {100*method_count/classified_total:.1f}%")
+    print(f"  Type-level: {100*type_count/classified_total:.1f}%")
+    print(f"  Field-level: {100*field_count/classified_total:.1f}%")
 
     pd.DataFrame(tables).to_csv(tables_path, index=False)
 

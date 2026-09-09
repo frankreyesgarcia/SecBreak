@@ -1,0 +1,58 @@
+key,value,detail,raw_source
+cohort.raw_rows,1180,Raw collection rows before deduplication.,results/cohort/cohort_flow.json
+cohort.final_prs,783,Unique PRs in corrected analysis dataset.,data/analysis_dataset_corrected.csv
+cohort.repos_final,132,Distinct repositories in final cohort.,data/analysis_dataset_corrected.csv
+cohort.ecosystem_counts,"maven=554, pypi=229",Ecosystem counts in final cohort.,data/analysis_dataset_corrected.csv
+cohort.merged_rate,414/783 (52.9%),Merged PR share in final cohort.,data/analysis_dataset_corrected.csv
+rq1.coverage,380/783 (48.5%),Pipeline coverage rate.,results/rq1_tables_corrected.csv
+rq1.analyzed_prevalence,160/380 (42.1%),"Wilson CI [37.2%, 47.1%]",results/rq1_tables_corrected.csv
+rq1.full_naive_rate,160/783 (20.4%),"Full-cohort naive rate, not prevalence.",results/rq1_tables_corrected.csv
+rq1.provider_baseline,13.2%,External baseline cited from Raemaekers et al. (2021).,paper citation raemaekers2021
+rq1.ecosystem.maven,158/241 (65.6%),"Wilson CI [59.4%, 71.3%]",data/analysis_dataset_corrected.csv
+rq1.ecosystem.pypi,2/139 (1.4%),"Wilson CI [0.4%, 5.1%]",data/analysis_dataset_corrected.csv
+rq1.ecosystem.chi2,"chi2=146.070, p=1.253e-33",Ecosystem vs. BC contingency test on analyzed rows.,data/analysis_dataset_corrected.csv
+rq1.bump.patch,60/161 (37.3%),"Wilson CI [30.2%, 45.0%]",data/analysis_dataset_corrected.csv
+rq1.bump.minor,41/118 (34.7%),"Wilson CI [26.8%, 43.7%]",data/analysis_dataset_corrected.csv
+rq1.bump.major,57/94 (60.6%),"Wilson CI [50.5%, 69.9%]",data/analysis_dataset_corrected.csv
+rq1.bump.chi2,"chi2=17.939, p=4.529e-04",Version bump type vs. BC contingency test on analyzed rows.,data/analysis_dataset_corrected.csv
+rq1.cvss.spearman,"rho=-0.071, p=0.165",Spearman correlation between ordinal CVSS severity and BC risk.,data/analysis_dataset_corrected.csv
+rq1.cvss.low,37/42 (88.1%),"Wilson CI [75.0%, 94.8%]",data/analysis_dataset_corrected.csv
+rq1.cvss.medium,36/121 (29.8%),"Wilson CI [22.3%, 38.4%]",data/analysis_dataset_corrected.csv
+rq1.cvss.high,55/149 (36.9%),"Wilson CI [29.6%, 44.9%]",data/analysis_dataset_corrected.csv
+rq1.cvss.critical,29/58 (50.0%),"Wilson CI [37.5%, 62.5%]",data/analysis_dataset_corrected.csv
+rq1.bc_kind.method,79.0%,106981 of 135437 classified BC events.,data/analysis_dataset_corrected.csv
+rq1.bc_kind.type,11.6%,15696 of 135437 classified BC events.,data/analysis_dataset_corrected.csv
+rq1.bc_kind.field,9.4%,12760 of 135437 classified BC events.,data/analysis_dataset_corrected.csv
+rq1.bounds,"[20.4%, 71.9%]",Worst-case Manski bounds.,results/rq1_bounds.json
+rq1.imputed,38.0%,"bootstrap CI [36.6%, 39.2%]",results/rq1_bounds.json
+rq1.unanalyzed_n,403,Number of unanalyzed rows used in bounds/imputation.,results/rq1_bounds.json
+rq1.bootstrap_n,1000,Number of bootstrap resamples for imputation interval.,results/rq1_bounds.json
+rq2.model.Logistic Regression,0.849 ± 0.082,5 repeats x 5 folds = 25 evaluations.,results/rq2_model_results_corrected.csv
+rq2.model.Random Forest,0.894 ± 0.069,5 repeats x 5 folds = 25 evaluations.,results/rq2_model_results_corrected.csv
+rq2.model.Gradient Boosting,0.879 ± 0.067,5 repeats x 5 folds = 25 evaluations.,results/rq2_model_results_corrected.csv
+rq2.model.Decision Tree,0.794 ± 0.106,5 repeats x 5 folds = 25 evaluations.,results/rq2_model_results_corrected.csv
+rq2.model.Dummy (most_frequent),0.500 ± 0.000,5 repeats x 5 folds = 25 evaluations.,results/rq2_model_results_corrected.csv
+rq2.analyzed_repos,109,Distinct repositories represented in analyzed rows.,data/analysis_dataset_corrected.csv
+rq2.feature.repo_stars,0.381,Feature-importance rank 1 of 16.,results/rq2_feature_importance_corrected.csv
+rq2.feature.ecosystem_bin,0.188,Feature-importance rank 2 of 16.,results/rq2_feature_importance_corrected.csv
+rq2.feature.cvss_score,0.116,Feature-importance rank 3 of 16.,results/rq2_feature_importance_corrected.csv
+rq2.feature.version_bump_ord,0.075,Feature-importance rank 4 of 16.,results/rq2_feature_importance_corrected.csv
+rq2.feature.cvss_severity_ord,0.066,Feature-importance rank 5 of 16.,results/rq2_feature_importance_corrected.csv
+rq2.feature.has_cve,0.005,Feature-importance rank 15 of 16.,results/rq2_feature_importance_corrected.csv
+rq2.logit.ecosystem_bin,"beta=-5.26, p=3.68e-11","95% CI [-6.81, -3.70]",results/rq2_logit_coefficients_converged.csv
+rq2.logit.version_bump_ord,"beta=0.68, p=0.00198","95% CI [0.25, 1.11]",results/rq2_logit_coefficients_converged.csv
+rq2.logit.cvss_score,"beta=0.14, p=0.363","95% CI [-0.17, 0.45]",results/rq2_logit_coefficients_converged.csv
+rq2.logit.repo_stars,"beta=-0.00, p=0.359","95% CI [-0.00, 0.00]",results/rq2_logit_coefficients_converged.csv
+"rq3.NAIVE (keyword-only, original corrected run).base",160,BC-introducing PRs in this RQ3 variant.,results/rq3_tables_strict.csv
+"rq3.NAIVE (keyword-only, original corrected run).fixes",53/160 (33.125%),Median 0.962 days; IQR 0.134-3.543,results/rq3_tables_strict.csv
+"rq3.NAIVE (keyword-only, original corrected run).followup","7d=28.125%, 30d=31.250%, reverted=14.375%",Follow-up response percentages.,results/rq3_tables_strict.csv
+rq3.STRICT (relatedness-filtered).base,160,BC-introducing PRs in this RQ3 variant.,results/rq3_tables_strict.csv
+rq3.STRICT (relatedness-filtered).fixes,47/160 (29.375%),Median 3.543 days; IQR 0.804-10.405,results/rq3_tables_strict.csv
+rq3.STRICT (relatedness-filtered).followup,"7d=20.000%, 30d=25.625%, reverted=8.750%",Follow-up response percentages.,results/rq3_tables_strict.csv
+rq3.merged_bc,54/160 (33.8%),Merged share among BC-introducing PRs.,data/analysis_dataset_corrected.csv
+rectification.missing_coords,425/554 (76.7%),Maven rows whose older-style titles lacked resolvable groupId:artifactId before rectification.,results/RECTIFICATION_REPORT.md
+rectification.original_analyzed_n,201,Original analyzed set size before strengthened reruns.,results/RECTIFICATION_REPORT.md
+validation.sample_n,100,Rows in corrected manual validation sample.,results/validation/validation_sample_summary_corrected.json
+discussion.patch_recovery,69.3% vs. 10.0%,"Patch-bump BC rate among recovered rows vs original analyzed set, as documented in rectification report.",results/RECTIFICATION_REPORT.md
+discussion.sample_spotcheck_n,10,Manual spot-check count for newly-resolved rows documented in rectification report.,results/RECTIFICATION_REPORT.md
+threats.target_prs,2000,Original aspirational collection target mentioned in paper; not traced to a structured output artifact.,MISSING
