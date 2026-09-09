@@ -1,0 +1,1589 @@
+sort_rank,pr_id,repo_full_name,pr_number,ecosystem,detector,dependency,version_from,version_to,version_bump_type,detector_verdict,bc_count,bc_types,pr_diff_snippet,changelog_excerpt,changelog_link,changelog_context,pr_url,label,notes
+1,redisson/redisson#4694,redisson/redisson,4694,maven,roseau,org.hibernate:hibernate-core,4.3.11.Final,5.3.20.Final,major,BC,10263,METHOD_REMOVED x6846; TYPE_NEW_ABSTRACT_METHOD x1183; METHOD_RETURN_TYPE_CHANGED x940; TYPE_REMOVED x636; CONSTRUCTOR_REMOVED x179; TYPE_SUPERTYPE_REMOVED x178; FIELD_REMOVED x81; FIELD_TYPE_CHANGED x73; METHOD_PARAMETER_GENERICS_CHANGED x51; METHOD_NOW_FINAL x40; ANNOTATION_TARGET_REMOVED x18; METHOD_NOW_PROTECTED x9; CLASS_NOW_ABSTRACT x9; CLASS_NOW_FINAL x9; TYPE_KIND_CHANGED x5; METHOD_NOW_THROWS_CHECKED_EXCEPTION x3; METHOD_NO_LONGER_STATIC x2; FIELD_NOW_STATIC x1,"Bump hibernate-core from 4.3.11.Final to 5.3.20.Final in /redisson-hibernate/redisson-hibernate-4
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.hibernate:hibernate-core : 4.3.11.Final
+  + org.hibernate:hibernate-core : 5.3.20.Final
+full file diff: https://github.com/redisson/redisson/pull/4694/files","[Release notes] Sourced from hibernate-core's releases.
+Hibernate ORM 5.2.0
+5.2.0 includes many improvements and bug-fixes. For a complete list of changes, see https://hibernate.atlassian.net/projects/HHH/versions/23150/tab/release-report-done.
+Many of the changes in 5.2.0 have important ramifications in terms of both usage and extension. Be sure to read the 5.2 Migration Guide for details.
+Below is a discussion of the major changes.
+Java 8 baseline
+5.2 moves to Java 8 as its baseline. This means:
+- The hibernate-java8 module has been removed, and that functionality has been moved into hibernate-core.
+- Native support for Java 8 date/time types as Query parameters.
+- Support for streaming (java.util.stream.Stream) query results.
+- Support for java.util.Optional as return from methods that may return null.
+- Leveraging Java 8 ""default methods"" when introducing new methods to extension points.
+Consolidating JPA support into hibernate-core.
+That effectively means that the hibernate-entitymanager module no longer exists. Its functionality being consumed into hibernate-core.
+JCache support
+Support for using any JCache-compliant cache impl as a second-level caching provider.
+Session-level batch size support
+Support has been added for specifying a batch size for write operations per Session.
+  ... [truncated -- see changelog_link / pr_url]",changelog: http://github.com/hibernate/hibernate-orm/blob/HEAD/CHANGELOG.md  |  releases: http://github.com/hibernate/hibernate-orm/releases  |  repo: http://github.com/hibernate/hibernate-orm,curated-link,https://github.com/redisson/redisson/pull/4694,,
+2,redisson/redisson#4125,redisson/redisson,4125,maven,roseau,org.hibernate:hibernate-core,4.3.11.Final,5.4.24.Final,major,BC,10516,METHOD_REMOVED x6910; TYPE_NEW_ABSTRACT_METHOD x1243; METHOD_RETURN_TYPE_CHANGED x951; TYPE_REMOVED x649; CONSTRUCTOR_REMOVED x198; TYPE_SUPERTYPE_REMOVED x181; FIELD_REMOVED x106; FIELD_TYPE_CHANGED x73; METHOD_NOW_FINAL x72; METHOD_PARAMETER_GENERICS_CHANGED x54; ANNOTATION_TARGET_REMOVED x18; METHOD_NOW_PROTECTED x16; CLASS_NOW_FINAL x15; CLASS_NOW_ABSTRACT x13; TYPE_KIND_CHANGED x5; METHOD_NOW_THROWS_CHECKED_EXCEPTION x3; FIELD_NOW_FINAL x3; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x3; METHOD_NO_LONGER_STATIC x2; FIELD_NOW_STATIC x1,"Bump hibernate-core from 4.3.11.Final to 5.4.24.Final in /redisson-hibernate/redisson-hibernate-4
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.hibernate:hibernate-core : 4.3.11.Final
+  + org.hibernate:hibernate-core : 5.4.24.Final
+full file diff: https://github.com/redisson/redisson/pull/4125/files","[Release notes] Sourced from hibernate-core's releases.
+Hibernate ORM 5.2.0
+5.2.0 includes many improvements and bug-fixes. For a complete list of changes, see https://hibernate.atlassian.net/projects/HHH/versions/23150/tab/release-report-done.
+Many of the changes in 5.2.0 have important ramifications in terms of both usage and extension. Be sure to read the 5.2 Migration Guide for details.
+Below is a discussion of the major changes.
+Java 8 baseline
+5.2 moves to Java 8 as its baseline. This means:
+- The hibernate-java8 module has been removed, and that functionality has been moved into hibernate-core.
+- Native support for Java 8 date/time types as Query parameters.
+- Support for streaming (java.util.stream.Stream) query results.
+- Support for java.util.Optional as return from methods that may return null.
+- Leveraging Java 8 ""default methods"" when introducing new methods to extension points.
+Consolidating JPA support into hibernate-core.
+That effectively means that the hibernate-entitymanager module no longer exists. Its functionality being consumed into hibernate-core.
+JCache support
+Support for using any JCache-compliant cache impl as a second-level caching provider.
+Session-level batch size support
+Support has been added for specifying a batch size for write operations per Session.
+  ... [truncated -- see changelog_link / pr_url]",changelog: http://github.com/hibernate/hibernate-orm/blob/HEAD/CHANGELOG.md  |  releases: http://github.com/hibernate/hibernate-orm/releases  |  repo: http://github.com/hibernate/hibernate-orm,curated-link,https://github.com/redisson/redisson/pull/4125,,
+3,questdb/questdb#2403,questdb/questdb,2403,maven,roseau,org.postgresql:postgresql,42.3.3,42.4.1,minor,BC,1,METHOD_REMOVED x1,"chore(build): bump postgresql from 42.3.3 to 42.4.1 in /core
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.3.3
+  + org.postgresql:postgresql : 42.4.1
+full file diff: https://github.com/questdb/questdb/pull/2403/files","[Release notes] Sourced from postgresql's releases.
+42.4.0
+What's Changed
+- Enhancement: Made TimestampUtils.utcTz static and renamed to UTC_TIMEZONE by @​svendiedrichsen in pgjdbc/pgjdbc#2519
+- fix: return correct base type for domain from getUDTs (#2520) by @​alurie in pgjdbc/pgjdbc#2522
+- fix: support queries with up to 65535 (inclusive) parameters by @​vlsi in pgjdbc/pgjdbc#2525
+- chore: use META-INF/licenses/$group/$artifact-$version/... folder for licenses by @​vlsi in pgjdbc/pgjdbc#2531
+- fix: added GROUP_STARTUP_PARAMETERS boolean property to determine whether or not to group startup parameters in a transaction or not fixes Issue 2423 pgbouncer cannot deal with transactions in statement pooling mode by @​davecramer in pgjdbc/pgjdbc#2425
+- chore: Make the readme version agnostic by @​jorsol in pgjdbc/pgjdbc#2540
+- Release notes 42.4.0 by <a href=""https://git",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/questdb/questdb/pull/2403,,
+4,apache/maven-scripting-plugin#6,apache/maven-scripting-plugin,6,maven,roseau,org.apache.maven.shared:maven-shared-utils,3.2.1,3.3.3,minor,BC,4,METHOD_NOW_THROWS_CHECKED_EXCEPTION x3; METHOD_REMOVED x1,"Bump maven-shared-utils from 3.2.1 to 3.3.3
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.apache.maven.shared:maven-shared-utils : 3.2.1
+  + org.apache.maven.shared:maven-shared-utils : 3.3.3
+full file diff: https://github.com/apache/maven-scripting-plugin/pull/6/files",,changelog: https://github.com/apache/maven-shared-utils/tree/${project.scm.tag}/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/apache/maven-shared-utils/tree/${project.scm.tag}/releases  |  repo: https://github.com/apache/maven-shared-utils/tree/${project.scm.tag},curated-link,https://github.com/apache/maven-scripting-plugin/pull/6,,
+5,redisson/redisson#4087,redisson/redisson,4087,maven,roseau,com.h2database:h2,2.0.206,2.1.210,minor,BC,183,METHOD_REMOVED x103; METHOD_NOW_FINAL x71; FIELD_REMOVED x7; CONSTRUCTOR_REMOVED x1; TYPE_REMOVED x1,"Bump h2 from 2.0.206 to 2.1.210 in /redisson-hibernate
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.h2database:h2 : 2.0.206
+  + com.h2database:h2 : 2.1.210
+full file diff: https://github.com/redisson/redisson/pull/4087/files","[Release notes] Sourced from h2's releases.
+Version 2.1.210
+Two security vulnerabilities in H2 Console (CVE-2022-23221 and possible DNS rebinding attack) are fixed.
+Persistent databases created by H2 2.0.x don't need to be upgraded.
+Persistent databases created by H2 1.4.200 and older versions require export into SQL script with that old version and creation of a new database with the new version and execution of this script in it.
+... (truncated)",changelog: https://github.com/h2database/h2database/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/h2database/h2database/releases  |  repo: https://github.com/h2database/h2database,curated-link,https://github.com/redisson/redisson/pull/4087,,
+6,apache/dolphinscheduler#9344,apache/dolphinscheduler,9344,maven,roseau,org.postgresql:postgresql,42.2.5,42.3.3,minor,BC,140,TYPE_NEW_ABSTRACT_METHOD x51; METHOD_REMOVED x33; METHOD_RETURN_TYPE_CHANGED x17; FIELD_REMOVED x12; METHOD_PARAMETER_GENERICS_CHANGED x10; CONSTRUCTOR_REMOVED x7; TYPE_REMOVED x4; FIELD_NOW_FINAL x3; METHOD_NOW_THROWS_CHECKED_EXCEPTION x1; FIELD_TYPE_CHANGED x1; CLASS_NOW_STATIC x1,"Bump postgresql from 42.2.5 to 42.3.3
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.2.5
+  + org.postgresql:postgresql : 42.3.3
+full file diff: https://github.com/apache/dolphinscheduler/pull/9344/files","[Changelog] Sourced from postgresql's changelog.
+[42.3.3] (2022-02-15 11:32:24 -0500)
+Changed
+- fix: Removed loggerFile and loggerLevel configuration. While the properties still exist.
+They can no longer be used to configure the driver logging. Instead use java.util.logging
+configuration mechanisms such as logging.properties.
+Added
+Fixed
+[42.3.2] (2022-02-01 07:35:41 -0500)
+Security
+- CVE-2022-21724 pgjdbc instantiates plugin instances based on class names provided via authenticationPluginClassName,
+sslhostnameverifier, socketFactory, sslfactory, sslpasswordcallback connection properties.
+However, the driver did not verify if the class implements the expected interface before instantiating the class. This
+would allow a malicious class to be instantiated that could execute arbitrary code from the JVM. Fixed in commit
+Changed
+- perf: read in_hot_standby GUC on connection [PR #2334](pgjdbc/pgjdbc#2334)
+- test: materialized view privileges [PR #2209](pgjdbc/pgjdbc#2209) fixes [Issue #2060](pgjdbc/pgjdbc#2060)
+- docs: add info about convenience maven project [PR <a href=""https://github-",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/apache/dolphinscheduler/pull/9344,,
+7,apache/skywalking#9431,apache/skywalking,9431,maven,roseau,org.postgresql:postgresql,42.3.3,42.4.1,minor,BC,1,METHOD_REMOVED x1,"Bump postgresql from 42.3.3 to 42.4.1 in /oap-server-bom
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.3.3
+  + org.postgresql:postgresql : 42.4.1
+full file diff: https://github.com/apache/skywalking/pull/9431/files","[Release notes] Sourced from postgresql's releases.
+42.4.0
+What's Changed
+- Enhancement: Made TimestampUtils.utcTz static and renamed to UTC_TIMEZONE by @​svendiedrichsen in pgjdbc/pgjdbc#2519
+- fix: return correct base type for domain from getUDTs (#2520) by @​alurie in pgjdbc/pgjdbc#2522
+- fix: support queries with up to 65535 (inclusive) parameters by @​vlsi in pgjdbc/pgjdbc#2525
+- chore: use META-INF/licenses/$group/$artifact-$version/... folder for licenses by @​vlsi in pgjdbc/pgjdbc#2531
+- fix: added GROUP_STARTUP_PARAMETERS boolean property to determine whether or not to group startup parameters in a transaction or not fixes Issue 2423 pgbouncer cannot deal with transactions in statement pooling mode by @​davecramer in pgjdbc/pgjdbc#2425
+- chore: Make the readme version agnostic by @​jorsol in pgjdbc/pgjdbc#2540
+- Release notes 42.4.0 by <a href=""https://git",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/apache/skywalking/pull/9431,,
+8,apache/druid#13752,apache/druid,13752,maven,roseau,org.postgresql:postgresql,42.4.1,42.5.2,minor,BC,15,TYPE_NEW_ABSTRACT_METHOD x13; TYPE_REMOVED x2,"Bump postgresql from 42.4.1 to 42.5.2
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.4.1
+  + org.postgresql:postgresql : 42.5.2
+full file diff: https://github.com/apache/druid/pull/13752/files","[Changelog] Sourced from postgresql's changelog.
+[42.5.2] (2023-01-31 14:30:46 -0500)
+Changed
+docs: specify that timeouts are in seconds and there is a maximum. Housekeeping on some tests fixes #Issue 2671 [PR #2686](pgjdbc/pgjdbc#2686)
+docs: clarify binaryTransfer and add it to README PR# 2698
+docs: Document the need to encode reserved characters in the connection URL [PR #2700](pgjdbc/pgjdbc#2700)
+feat: Define binary transfer for custom types dynamically/automatically fixes [Issue #2554](pgjdbc/pgjdbc#2554) [PR #2556](pgjdbc/pgjdbc#2556)
+Added
+fix: added gssResponseTimeout as part of [PR #2687](pgjdbc/pgjdbc#2687) to make sure we don't wait forever on a GSS RESPONSE
+Fixed
+fix: Ensure case of XML tags in Maven snippet is correct [PR <a href=""https://github-redirect.dependabot.com/pgjdbc/pgjdbc",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/apache/druid/pull/13752,,
+9,OpenAPITools/openapi-generator#16541,OpenAPITools/openapi-generator,16541,maven,roseau,com.github.tomakehurst:wiremock-jre8,2.27.2,2.35.1,minor,BC,96,CONSTRUCTOR_REMOVED x16; METHOD_NOW_FINAL x16; TYPE_NEW_ABSTRACT_METHOD x13; METHOD_RETURN_TYPE_CHANGED x13; METHOD_REMOVED x12; FIELD_REMOVED x10; TYPE_REMOVED x7; METHOD_PARAMETER_GENERICS_CHANGED x5; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x1; CLASS_NOW_ABSTRACT x1; CLASS_NOW_FINAL x1; TYPE_SUPERTYPE_REMOVED x1,"Bump com.github.tomakehurst:wiremock-jre8 from 2.27.2 to 2.35.1 in /samples/client/echo_api/java/feign-gson
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.github.tomakehurst:wiremock-jre8 : 2.27.2
+  + com.github.tomakehurst:wiremock-jre8 : 2.35.1
+full file diff: https://github.com/OpenAPITools/openapi-generator/pull/16541/files","[Release notes] Sourced from com.github.tomakehurst:wiremock-jre8's releases.
+2.35.1 - Security Release
+🔒 This is a security release that addresses the following issues
+- CVE-2023-41327 - Controlled SSRF through URL in the WireMock Webhooks Extension and WireMock Studio
+- Overall CVSS Score: 4.6 (AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C)
+- CVE-2023-41329 - Domain restrictions bypass via DNS
+Rebinding in WireMock and WireMock Studio webhooks, proxy and recorder modes
+- Overall CVSS Score: 3.9 (AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:L/A:L/E:F/RL:O/RC:C)
+NOTE: WireMock Studio, a proprietary distribution discontinued in 2022, is also affected by those issues and also affected by CVE-2023-39967 - Overall CVSS Score 8.6 - “Controlled and full-read SSRF through URL parameter when testing a request, webhooks and proxy mode”. The fixes will not be provided. The vendor recommends migrating to WireMock Cloud which is available as SaaS and private beta for on-premises deployments
+Credits: @​W0rty, <a href=""https://git",changelog: https://github.com/wiremock/wiremock/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/wiremock/wiremock/releases  |  repo: https://github.com/wiremock/wiremock,curated-link,https://github.com/OpenAPITools/openapi-generator/pull/16541,,
+10,OpenAPITools/openapi-generator#16539,OpenAPITools/openapi-generator,16539,maven,roseau,com.github.tomakehurst:wiremock-jre8,2.27.2,2.35.1,minor,BC,96,CONSTRUCTOR_REMOVED x16; METHOD_NOW_FINAL x16; TYPE_NEW_ABSTRACT_METHOD x13; METHOD_RETURN_TYPE_CHANGED x13; METHOD_REMOVED x12; FIELD_REMOVED x10; TYPE_REMOVED x7; METHOD_PARAMETER_GENERICS_CHANGED x5; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x1; CLASS_NOW_ABSTRACT x1; CLASS_NOW_FINAL x1; TYPE_SUPERTYPE_REMOVED x1,"Bump com.github.tomakehurst:wiremock-jre8 from 2.27.2 to 2.35.1 in /samples/client/petstore/java/feign-no-nullable
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.github.tomakehurst:wiremock-jre8 : 2.27.2
+  + com.github.tomakehurst:wiremock-jre8 : 2.35.1
+full file diff: https://github.com/OpenAPITools/openapi-generator/pull/16539/files","[Release notes] Sourced from com.github.tomakehurst:wiremock-jre8's releases.
+2.35.1 - Security Release
+🔒 This is a security release that addresses the following issues
+- CVE-2023-41327 - Controlled SSRF through URL in the WireMock Webhooks Extension and WireMock Studio
+- Overall CVSS Score: 4.6 (AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:F/RL:O/RC:C)
+- CVE-2023-41329 - Domain restrictions bypass via DNS
+Rebinding in WireMock and WireMock Studio webhooks, proxy and recorder modes
+- Overall CVSS Score: 3.9 (AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:L/A:L/E:F/RL:O/RC:C)
+NOTE: WireMock Studio, a proprietary distribution discontinued in 2022, is also affected by those issues and also affected by CVE-2023-39967 - Overall CVSS Score 8.6 - “Controlled and full-read SSRF through URL parameter when testing a request, webhooks and proxy mode”. The fixes will not be provided. The vendor recommends migrating to WireMock Cloud which is available as SaaS and private beta for on-premises deployments
+Credits: @​W0rty, <a href=""https://git",changelog: https://github.com/wiremock/wiremock/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/wiremock/wiremock/releases  |  repo: https://github.com/wiremock/wiremock,curated-link,https://github.com/OpenAPITools/openapi-generator/pull/16539,,
+11,apache/dolphinscheduler#11331,apache/dolphinscheduler,11331,maven,roseau,org.postgresql:postgresql,42.3.4,42.4.1,minor,BC,1,METHOD_REMOVED x1,"Bump postgresql from 42.3.4 to 42.4.1 in /dolphinscheduler-bom
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.3.4
+  + org.postgresql:postgresql : 42.4.1
+full file diff: https://github.com/apache/dolphinscheduler/pull/11331/files","[Release notes] Sourced from postgresql's releases.
+42.4.0
+What's Changed
+- Enhancement: Made TimestampUtils.utcTz static and renamed to UTC_TIMEZONE by @​svendiedrichsen in pgjdbc/pgjdbc#2519
+- fix: return correct base type for domain from getUDTs (#2520) by @​alurie in pgjdbc/pgjdbc#2522
+- fix: support queries with up to 65535 (inclusive) parameters by @​vlsi in pgjdbc/pgjdbc#2525
+- chore: use META-INF/licenses/$group/$artifact-$version/... folder for licenses by @​vlsi in pgjdbc/pgjdbc#2531
+- fix: added GROUP_STARTUP_PARAMETERS boolean property to determine whether or not to group startup parameters in a transaction or not fixes Issue 2423 pgbouncer cannot deal with transactions in statement pooling mode by @​davecramer in pgjdbc/pgjdbc#2425
+- chore: Make the readme version agnostic by @​jorsol in pgjdbc/pgjdbc#2540
+- Release notes 42.4.0 by <a href=""https://git",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/apache/dolphinscheduler/pull/11331,,
+12,quarkusio/quarkus#43986,quarkusio/quarkus,43986,maven,roseau,org.htmlunit:htmlunit,4.3.0,4.5.0,minor,BC,2737,METHOD_RETURN_TYPE_CHANGED x2009; METHOD_REMOVED x675; FIELD_REMOVED x39; TYPE_REMOVED x12; CONSTRUCTOR_REMOVED x1; TYPE_SUPERTYPE_REMOVED x1,"Bump org.htmlunit:htmlunit from 4.3.0 to 4.5.0
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.htmlunit:htmlunit : 4.3.0
+  + org.htmlunit:htmlunit : 4.5.0
+full file diff: https://github.com/quarkusio/quarkus/pull/43986/files","[Release notes] Sourced from org.htmlunit:htmlunit's releases.
+HtmlUnit 4.5.0
+Highlights
+-
+This release is not compatible with 3.xx versions
+-
+Chrome/Edge 129, Firefox 131, FirefoxESR 128
+-
+core-js: optional chaining operator '?.' support added
+-
+core-js: Support for default parameters added
+-
+core-js: Support for nullish coalescing operator '??' added.
+-
+core-js: Support for logical assigment operators '||=' and '&&=' added.
+-
+core-js: many minor improvements and fixes
+-
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/HtmlUnit/htmlunit/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/HtmlUnit/htmlunit/releases  |  repo: https://github.com/HtmlUnit/htmlunit,curated-link,https://github.com/quarkusio/quarkus/pull/43986,,
+13,iluwatar/java-design-patterns#2014,iluwatar/java-design-patterns,2014,maven,roseau,org.mongodb:mongo-java-driver,3.12.1,3.12.8,patch,BC,3,TYPE_NEW_ABSTRACT_METHOD x2; TYPE_REMOVED x1,"build(deps): bump mongo-java-driver from 3.12.1 to 3.12.8
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.mongodb:mongo-java-driver : 3.12.1
+  + org.mongodb:mongo-java-driver : 3.12.8
+full file diff: https://github.com/iluwatar/java-design-patterns/pull/2014/files","[Release notes] Sourced from mongo-java-driver's releases.
+Java Driver 3.12.8 (February 18, 2021)
+Release Notes: https://developer.mongodb.com/community/forums/t/mongodb-java-driver-3-12-8-released/16823
+Java Driver 3.12.6 (July 8, 2020)
+Release Notes: https://developer.mongodb.com/community/forums/t/mongodb-java-driver-3-12-6-released/6448/2
+Java Driver 3.12.5 (June 2, 2020)
+Release Notes: https://developer.mongodb.com/community/forums/t/mongodb-java-driver-3-12-5-released/4886
+3.12.4
+Java Driver 3.12.3 (April 7, 2020)
+Release Notes: https://developer.mongodb.com/community/forums/t/mongodb-java-driver-3-12-4-released/3953
+3.12.3
+Java Driver 3.12.3 (April 7, 2020)
+Release Notes: https://community.mongodb.com/t/mongodb-java-driver-3-12-3-released/2510/2
+3.12.2
+Java Driver 3.12.2 (March 4, 2020)
+The 3.12.2 MongoDB Java Driver is a patch to the 3.12.1 release.
+Reference documentation
+The documentation hub includes extensive documentation of the 3.12 driver, including
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/mongodb/mongo-java-driver/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/mongodb/mongo-java-driver/releases  |  repo: https://github.com/mongodb/mongo-java-driver,curated-link,https://github.com/iluwatar/java-design-patterns/pull/2014,,
+14,OpenRefine/OpenRefine#5196,OpenRefine/OpenRefine,5196,maven,roseau,org.postgresql:postgresql,42.4.1,42.4.2,patch,BC,1,TYPE_NEW_ABSTRACT_METHOD x1,"build(deps): bump postgresql from 42.4.1 to 42.4.2
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.4.1
+  + org.postgresql:postgresql : 42.4.2
+full file diff: https://github.com/OpenRefine/OpenRefine/pull/5196/files","[Changelog] Sourced from postgresql's changelog.
+Changelog
+Notable changes since version 42.0.0, read the complete History of Changes.
+The format is based on Keep a Changelog.
+[Unreleased]
+Changed
+Added
+Fixed
+[42.4.2] (2022-08-17 10:33:40 -0400)
+Changed
+- fix: add alias to the generated getUDT() query for clarity (PR #2553)[https://github-redirect.dependabot.com/pgjdbc/pgjdbc/pull/2553]
+Added
+- fix: make setObject accept UUID array [PR #2587](pgjdbc/pgjdbc#2587)
+Fixed
+- fix: regression with GSS. Changes introduced to support building with Java 17 caused failures [Issue #2588](pgjdbc/pgjdbc#2588)
+- fix: set a timeout to get the return from requesting SSL upgrade. [PR #2572](pgjdbc/pgjdbc#2572)
+- feat: synchronize statement executions (e.g. avoid deadlock when Connection.isValid is executed from concurrent threads)
+[42.4.1] (2022-08-01 16:24:20 -0400)
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/OpenRefine/OpenRefine/pull/5196,,
+15,prestodb/presto#18387,prestodb/presto,18387,maven,roseau,org.postgresql:postgresql,42.3.3,42.3.7,patch,BC,1,METHOD_REMOVED x1,"Bump postgresql from 42.3.3 to 42.3.7
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.3.3
+  + org.postgresql:postgresql : 42.3.7
+full file diff: https://github.com/prestodb/presto/pull/18387/files","[Changelog] Sourced from postgresql's changelog.
+Changelog
+Notable changes since version 42.0.0, read the complete History of Changes.
+The format is based on Keep a Changelog.
+[Unreleased]
+Changed
+Added
+Fixed
+[42.5.0] (2022-08-23 11:20:11 -0400)
+Changed
+- fix: revert change in [PR #1986](pgjdbc/pgjdbc#1986) where float was aliased to float4 from float8.
+float now aliases to float8 [PR #2598](pgjdbc/pgjdbc#2598) fixes [Issue #2597](pgjdbc/pgjdbc#2597)
+[42.4.2] (2022-08-17 10:33:40 -0400)
+Changed
+- fix: add alias to the generated getUDT() query for clarity (PR #2553)[https://github-redirect.dependabot.com/pgjdbc/pgjdbc/pull/2553]
+Added
+- fix: make setObject accept UUID array [PR #2587](pgjdbc/pgjdbc#2587)
+Fixed
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/prestodb/presto/pull/18387,,
+16,mybatis/mybatis-3#2452,mybatis/mybatis-3,2452,maven,roseau,org.postgresql:postgresql,42.3.1,42.3.2,patch,BC,14,METHOD_REMOVED x7; CONSTRUCTOR_REMOVED x4; TYPE_REMOVED x2; TYPE_NEW_ABSTRACT_METHOD x1,"Bump postgresql from 42.3.1 to 42.3.2
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.3.1
+  + org.postgresql:postgresql : 42.3.2
+full file diff: https://github.com/mybatis/mybatis-3/pull/2452/files","[Changelog] Sourced from postgresql's changelog.
+Changelog
+Notable changes since version 42.0.0, read the complete History of Changes.
+The format is based on Keep a Changelog.
+[Unreleased]
+Changed
+Added
+Fixed
+[42.3.2] (2022-02-01 07:35:41 -0500)
+Security
+- CVE-2022-21724 pgjdbc instantiates plugin instances based on class names provided via authenticationPluginClassName,
+sslhostnameverifier, socketFactory, sslfactory, sslpasswordcallback connection properties.
+However, the driver did not verify if the class implements the expected interface before instantiating the class. This
+would allow a malicious class to be instantiated that could execute arbitrary code from the JVM. Fixed in commit
+Changed
+- perf: read in_hot_standby GUC on connection [PR #2334](pgjdbc/pgjdbc#2334)
+- test: materialized view privileges [PR #2209](pgjdbc/pgjdbc#2209) fixes [Issue #2060](pgjdbc/pgjdbc#2060)
+- docs: add info about convenience maven project [PR <a href=""https://github-redirect.dependabot.",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/mybatis/mybatis-3/pull/2452,,
+17,apache/seatunnel#6861,apache/seatunnel,6861,maven,roseau,com.amazon.redshift:redshift-jdbc42,2.1.0.9,2.1.0.28,unknown,BC,107,METHOD_REMOVED x65; METHOD_NOW_THROWS_CHECKED_EXCEPTION x32; TYPE_NEW_ABSTRACT_METHOD x5; CONSTRUCTOR_REMOVED x3; FIELD_REMOVED x2,"Bump com.amazon.redshift:redshift-jdbc42 from 2.1.0.9 to 2.1.0.28 in /seatunnel-connectors-v2/connector-s3-redshift
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.amazon.redshift:redshift-jdbc42 : 2.1.0.9
+  + com.amazon.redshift:redshift-jdbc42 : 2.1.0.28
+full file diff: https://github.com/apache/seatunnel/pull/6861/files","[Release notes] Sourced from com.amazon.redshift:redshift-jdbc42's releases.
+v2.1.0.28
+Release of driver version 2.1.0.28
+v2.1.0.26
+Release of driver version 2.1.0.26
+v2.1.0.25
+Release of driver version 2.1.0.25
+v2.1.0.24
+Release of driver version 2.1.0.24
+v2.1.0.23
+Release of driver version 2.1.0.23
+v2.1.0.22
+Release of driver version 2.1.0.22
+v2.1.0.21
+Release of driver version 2.1.0.21
+v2.1.0.20
+Release of driver version 2.1.0.20
+v2.1.0.19
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/aws/amazon-redshift-jdbc-driver/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/aws/amazon-redshift-jdbc-driver/releases  |  repo: https://github.com/aws/amazon-redshift-jdbc-driver,curated-link,https://github.com/apache/seatunnel/pull/6861,,
+18,langchain4j/langchain4j#341,langchain4j/langchain4j,341,maven,roseau,org.json:json,20230618,20231013,major,no-BC,0,(detector reported no BC),"Bump org.json:json from 20230618 to 20231013 in /langchain4j-cassandra
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.json:json : 20230618
+  + org.json:json : 20231013
+full file diff: https://github.com/langchain4j/langchain4j/pull/341/files","[Release notes] Sourced from org.json:json's releases.
+20231013
+Pull Request
+Description
+#793
+Reverted #761
+#792
+update the docs for release 20231013
+#783
+optLong vs getLong inconsistencies
+#782
+Fix XMLTest.testIndentComplicatedJsonObjectWithArrayAndWithConfig() for Windows
+#779
+add validity check for JSONObject constructors
+#778
+Fix XMLTest.testIndentComplicatedJsonObjectWithArrayAndWithConfig() for Windows
+#776
+Update [JUnit to version 4.13.2
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/douglascrockford/JSON-java/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/douglascrockford/JSON-java/releases  |  repo: https://github.com/douglascrockford/JSON-java,curated-link,https://github.com/langchain4j/langchain4j/pull/341,,
+19,OpenFeign/feign#1963,OpenFeign/feign,1963,maven,roseau,org.json:json,20220924,20230227,major,no-BC,0,(detector reported no BC),"build(deps): bump json from 20220924 to 20230227
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.json:json : 20220924
+  + org.json:json : 20230227
+full file diff: https://github.com/OpenFeign/feign/pull/1963/files","[Release notes] Sourced from json's releases.
+20230227
+Pull Request
+Description
+#723
+Protect JSONML from stack overflow exceptions caused by recursion
+#720
+Limit the XML nesting depth for CVE-2022-45688
+#711
+Revert pull 707 - interviewbit spam
+#704
+Move javadoc comments above the interface definition to make it visible
+#703
+Update Releases.md for JSONObject(Map): Throws NPE if key is null
+#696
+Update JSONPointerTest for NonDex compatibility
+#694
+Pretty print XML
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/douglascrockford/JSON-java/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/douglascrockford/JSON-java/releases  |  repo: https://github.com/douglascrockford/JSON-java,curated-link,https://github.com/OpenFeign/feign/pull/1963,,
+20,iluwatar/java-design-patterns#3073,iluwatar/java-design-patterns,3073,maven,roseau,org.htmlunit:htmlunit,4.4.0,4.5.0,minor,no-BC,0,(detector reported no BC),"build(deps-dev): bump org.htmlunit:htmlunit from 4.4.0 to 4.5.0
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.htmlunit:htmlunit : 4.4.0
+  + org.htmlunit:htmlunit : 4.5.0
+full file diff: https://github.com/iluwatar/java-design-patterns/pull/3073/files","[Release notes] Sourced from org.htmlunit:htmlunit's releases.
+HtmlUnit 4.5.0
+Highlights
+-
+This release is not compatible with 3.xx versions
+-
+Chrome/Edge 129, Firefox 131, FirefoxESR 128
+-
+core-js: optional chaining operator '?.' support added
+-
+core-js: Support for default parameters added
+-
+core-js: Support for nullish coalescing operator '??' added.
+-
+core-js: Support for logical assigment operators '||=' and '&&=' added.
+-
+core-js: many minor improvements and fixes
+-
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/HtmlUnit/htmlunit/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/HtmlUnit/htmlunit/releases  |  repo: https://github.com/HtmlUnit/htmlunit,curated-link,https://github.com/iluwatar/java-design-patterns/pull/3073,,
+21,quarkusio/quarkus#23156,quarkusio/quarkus,23156,maven,roseau,biz.paluch.logging:logstash-gelf,1.14.1,1.15.0,minor,no-BC,0,(detector reported no BC),"Bump logstash-gelf from 1.14.1 to 1.15.0
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - biz.paluch.logging:logstash-gelf : 1.14.1
+  + biz.paluch.logging:logstash-gelf : 1.15.0
+full file diff: https://github.com/quarkusio/quarkus/pull/23156/files","[Release notes] Sourced from logstash-gelf's releases.
+1.15.0
+:star: New Features
+- Fieldtype discovery wrong for strings starting with zero #250
+- Allow TCP and UDP sender creation for unresolvable hostnames #252
+- HTTP Basic Auth #254
+- Hide sensitive info from error message #255
+- enabled URI parse/check of multiple kafka bootstrap hosts #265
+:lady_beetle: Bug Fixes
+- Add version field #260
+- Fix context data with non-String values #261
+- Added close on the channel after a port failure #276
+:bulb: Other
+- Add YAML example for Log4j2 #258
+- Bump jackson-databind from 2.10.2 to 2.10.5.1 #266
+- Bump log4j2.version from 2.9.1 to 2.14.0 #267
+- bump log4j to 2.15.0 due to CVE-2021-44228 <a href=""htt",changelog: http://github.com/mp911de/logstash-gelf/blob/HEAD/CHANGELOG.md  |  releases: http://github.com/mp911de/logstash-gelf/releases  |  repo: http://github.com/mp911de/logstash-gelf,curated-link,https://github.com/quarkusio/quarkus/pull/23156,,
+22,prestodb/presto#24178,prestodb/presto,24178,maven,roseau,io.lettuce:lettuce-core,6.2.4.RELEASE,6.5.1.RELEASE,minor,no-BC,0,(detector reported no BC),"Bump io.lettuce:lettuce-core from 6.2.4.RELEASE to 6.5.1.RELEASE in /redis-hbo-provider
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.lettuce:lettuce-core : 6.2.4.RELEASE
+  + io.lettuce:lettuce-core : 6.5.1.RELEASE
+full file diff: https://github.com/prestodb/presto/pull/24178/files","[Release notes] Sourced from io.lettuce:lettuce-core's releases.
+6.5.1.RELEASE
+What's Changed
+- Bump to netty 4.1.115.Final to consume the security fix for CVE-2024-47535 by @​tishun
+- Restore API that was incidently deleted when introducing the JSON feature by @​tishun in redis/lettuce#3065
+- Propagate handshake failures to Handshake future @​mp911de in redis/lettuce#3058
+- Json commands not exposed in AsyncCluster by @​tishun in redis/lettuce#3048
+- OpsForGeo producing ""READONLY You can't write against a read only replica "" by @​ggivo in redis/lettuce#3032
+- WATCH is now working in the same time as MULTI when called inside a MULTI by @​tishun in redis/lettuce#3027
+Full Changelog: https://github.com/redis/lettuce/compare/6.5.0.RELEASE...6.5.1.RELEASE
+6.5.0.RELEASE
+:star: New Features
+- Introducing JSON to Lettuce (#",changelog: http://github.com/lettuce-io/lettuce-core/blob/HEAD/CHANGELOG.md  |  releases: http://github.com/lettuce-io/lettuce-core/releases  |  repo: http://github.com/lettuce-io/lettuce-core,curated-link,https://github.com/prestodb/presto/pull/24178,,
+23,apache/druid#15737,apache/druid,15737,maven,roseau,com.jayway.jsonpath:json-path,2.3.0,2.9.0,minor,no-BC,0,(detector reported no BC),"Bump com.jayway.jsonpath:json-path from 2.3.0 to 2.9.0
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.jayway.jsonpath:json-path : 2.3.0
+  + com.jayway.jsonpath:json-path : 2.9.0
+full file diff: https://github.com/apache/druid/pull/15737/files","[Release notes] Sourced from com.jayway.jsonpath:json-path's releases.
+json-path-2.9.0
+What's Changed
+- Fix for CVE-2023-51074.
+- update dependencies by @​SingingBush in json-path/JsonPath#965
+- JPMS: define Automatic-Module-Name as json.path by @​SingingBush in json-path/JsonPath#966
+- Bump json-smart version from 2.4.10 to 2.5.0 by @​shoothzj in json-path/JsonPath#945
+- Fixed rendering error on $..book[?(@.price in README.md by @​lulunac27a in json-path/JsonPath#967
+- [build] Remove deprecated gradle convetion usage by @​shoothzj in json-path/JsonPath#946
+- Check for the existence of the next significant bracket by @​twobiers in json-path/JsonPath#985
+- Update versions by @​kallestenflo in json-path/JsonPath#987
+<",changelog: git://github.com/jayway/JsonPath/blob/HEAD/CHANGELOG.md  |  releases: git://github.com/jayway/JsonPath/releases  |  repo: git://github.com/jayway/JsonPath,curated-link,https://github.com/apache/druid/pull/15737,,
+24,apache/dubbo#14907,apache/dubbo,14907,maven,roseau,io.micrometer:micrometer-core,1.13.6,1.14.1,minor,no-BC,0,(detector reported no BC),"Bump io.micrometer:micrometer-core from 1.13.6 to 1.14.1
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.micrometer:micrometer-core : 1.13.6
+  + io.micrometer:micrometer-core : 1.14.1
+full file diff: https://github.com/apache/dubbo/pull/14907/files","[Release notes] Sourced from io.micrometer:micrometer-core's releases.
+1.14.1
+:notebook_with_decorative_cover: Documentation
+- Gauges may be silently ignored when MeterFilters drop or transform tags #5616
+:hammer: Dependency Upgrades
+- Bump com.netflix.spectator:spectator-reg-atlas from 1.8.1 to 1.8.2 #5685
+- Bump software.amazon.awssdk:cloudwatch from 2.29.7 to 2.29.14 #5669
+- Bump shaded netty to 4.1.115.Final in micrometer-registry-statsd to address CVE-2024-47535 #5660
+:heart: Contributors
+Thank you to all the contributors who worked on this release:
+@​izeye
+1.14.0
+Micrometer 1.14.0 is the GA version of a new feature release. See our support policy for support timelines.
+Below are the combined release notes of all the pre-release milestones and release candidate preceding this GA release.
+:warning: Noteworthy
+- Support ExponentialHistogram in OTLP #3861
+- Virtual thread metrics #3956
+- Validate expected Observation API call ordering on TestObservationRegistry <a href=""https://redirect.github.c",changelog: git@github.com:micrometer-metrics/micrometer/blob/HEAD/CHANGELOG.md  |  releases: git@github.com:micrometer-metrics/micrometer/releases  |  repo: git@github.com:micrometer-metrics/micrometer,curated-link,https://github.com/apache/dubbo/pull/14907,,
+25,quarkusio/quarkus#31687,quarkusio/quarkus,31687,maven,roseau,io.quarkus.security:quarkus-security,2.0.1.Final,2.0.2.Final,patch,no-BC,0,(detector reported no BC),"Bump quarkus-security from 2.0.1.Final to 2.0.2.Final
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.quarkus.security:quarkus-security : 2.0.1.Final
+  + io.quarkus.security:quarkus-security : 2.0.2.Final
+full file diff: https://github.com/quarkusio/quarkus/pull/31687/files",,changelog: https://github.com/quarkus/quarkus-security/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/quarkus/quarkus-security/releases  |  repo: https://github.com/quarkus/quarkus-security,curated-link,https://github.com/quarkusio/quarkus/pull/31687,,
+26,OpenFeign/feign#2456,OpenFeign/feign,2456,maven,roseau,org.skyscreamer:jsonassert,1.5.1,1.5.2,patch,no-BC,0,(detector reported no BC),"Bump org.skyscreamer:jsonassert from 1.5.1 to 1.5.2
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.skyscreamer:jsonassert : 1.5.1
+  + org.skyscreamer:jsonassert : 1.5.2
+full file diff: https://github.com/OpenFeign/feign/pull/2456/files","[Release notes] Sourced from org.skyscreamer:jsonassert's releases.
+jsonassert-1.5.2
+- Update to Java 21
+- Fix CVE-2020-15250 JUnit vulnerability (https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15250). Bump dependencies.*
+- Add gitIgnore file
+- README syntax error fix
+New Contributors
+- @​imanushin made their first contribution in skyscreamer/JSONassert#159
+- @​RushikeshNaiknaware made their first contribution in skyscreamer/JSONassert#147
+- @​cpage-pivotal made their first contribution in skyscreamer/JSONassert#188
+Full Changelog: https://github.com/skyscreamer/JSONassert/compare/jsonassert-1.5.1...jsonassert-1.5.2",changelog: git@github.com:skyscreamer/JSONassert/blob/HEAD/CHANGELOG.md  |  releases: git@github.com:skyscreamer/JSONassert/releases  |  repo: git@github.com:skyscreamer/JSONassert,curated-link,https://github.com/OpenFeign/feign/pull/2456,,
+27,apache/druid#16015,apache/druid,16015,maven,roseau,org.bitbucket.b_c:jose4j,0.9.3,0.9.4,patch,no-BC,0,(detector reported no BC),"Bump org.bitbucket.b_c:jose4j from 0.9.3 to 0.9.4
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.bitbucket.b_c:jose4j : 0.9.3
+  + org.bitbucket.b_c:jose4j : 0.9.4
+full file diff: https://github.com/apache/druid/pull/16015/files",,repo: https://bitbucket.org/b_c/jose4j,curated-link,https://github.com/apache/druid/pull/16015,,
+28,apache/druid#16075,apache/druid,16075,maven,roseau,org.bitbucket.b_c:jose4j,0.9.3,0.9.6,patch,no-BC,0,(detector reported no BC),"Bump org.bitbucket.b_c:jose4j from 0.9.3 to 0.9.6
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.bitbucket.b_c:jose4j : 0.9.3
+  + org.bitbucket.b_c:jose4j : 0.9.6
+full file diff: https://github.com/apache/druid/pull/16075/files",,repo: https://bitbucket.org/b_c/jose4j,curated-link,https://github.com/apache/druid/pull/16075,,
+29,apache/druid#16017,apache/druid,16017,maven,roseau,org.bitbucket.b_c:jose4j,0.9.3,0.9.5,patch,no-BC,0,(detector reported no BC),"Bump org.bitbucket.b_c:jose4j from 0.9.3 to 0.9.5
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.bitbucket.b_c:jose4j : 0.9.3
+  + org.bitbucket.b_c:jose4j : 0.9.5
+full file diff: https://github.com/apache/druid/pull/16017/files",,repo: https://bitbucket.org/b_c/jose4j,curated-link,https://github.com/apache/druid/pull/16017,,
+30,quarkusio/quarkus#23742,quarkusio/quarkus,23742,maven,roseau,org.postgresql:postgresql,42.3.2,42.3.3,patch,no-BC,0,(detector reported no BC),"Bump postgresql from 42.3.2 to 42.3.3 in /bom/application
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.postgresql:postgresql : 42.3.2
+  + org.postgresql:postgresql : 42.3.3
+full file diff: https://github.com/quarkusio/quarkus/pull/23742/files","[Changelog] Sourced from postgresql's changelog.
+Changelog
+Notable changes since version 42.0.0, read the complete History of Changes.
+The format is based on Keep a Changelog.
+[Unreleased]
+Changed
+Added
+Fixed
+[42.3.3] (2022-02-15 11:32:24 -0500)
+Changed
+- fix: Removed loggerFile and loggerLevel configuration. While the properties still exist.
+They can no longer be used to configure the driver logging. Instead use java.util.logging
+configuration mechanisms such as logging.properties.
+Added
+Fixed
+[42.3.2] (2022-02-01 07:35:41 -0500)
+Security
+- CVE-2022-21724 pgjdbc instantiates plugin instances based on class names provided via authenticationPluginClassName,
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://github.com/pgjdbc/pgjdbc/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/pgjdbc/pgjdbc/releases  |  repo: https://github.com/pgjdbc/pgjdbc,curated-link,https://github.com/quarkusio/quarkus/pull/23742,,
+31,mybatis/mybatis-3#2440,mybatis/mybatis-3,2440,maven,roseau,ch.qos.reload4j:reload4j,1.2.18.2,1.2.18.3,unknown,no-BC,0,(detector reported no BC),"Bump reload4j from 1.2.18.2 to 1.2.18.3
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - ch.qos.reload4j:reload4j : 1.2.18.2
+  + ch.qos.reload4j:reload4j : 1.2.18.3
+full file diff: https://github.com/mybatis/mybatis-3/pull/2440/files",,changelog: https://github.com/qos-ch/reload4j/blob/HEAD/CHANGELOG.md  |  releases: https://github.com/qos-ch/reload4j/releases  |  repo: https://github.com/qos-ch/reload4j,curated-link,https://github.com/mybatis/mybatis-3/pull/2440,,
+32,googleapis/python-documentai-toolbox#53,googleapis/python-documentai-toolbox,53,pypi,griffe,cryptography,38.0.3,39.0.1,major,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 38.0.3 to 39.0.1 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 38.0.3
+  + cryptography : 39.0.1
+full file diff: https://github.com/googleapis/python-documentai-toolbox/pull/53/files","[Changelog] Sourced from cryptography's changelog.
+39.0.1 - 2023-02-07
+* **SECURITY ISSUE** - Fixed a bug where ``Cipher.update_into`` accepted Python
+buffer protocol objects, but allowed immutable buffers. **CVE-2023-23931**
+* Updated Windows, macOS, and Linux wheels to be compiled with OpenSSL 3.0.8.
+.. _v39-0-0:
+39.0.0 - 2023-01-01
+- BACKWARDS INCOMPATIBLE: Support for OpenSSL 1.1.0 has been removed.
+Users on older version of OpenSSL will need to upgrade.
+- BACKWARDS INCOMPATIBLE: Dropped support for LibreSSL
+- BACKWARDS INCOMPATIBLE: Removed the encode_point and
+from_encoded_point methods on
+:class:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicNumbers,
+which had been deprecated for several years.
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.public_bytes
+and
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.from_encoded_point
+should be used instead.
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/python-documentai-toolbox/pull/53,,
+33,googleapis/gapic-generator-python#1593,googleapis/gapic-generator-python,1593,pypi,griffe,cryptography,38.0.3,39.0.1,major,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 38.0.3 to 39.0.1 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 38.0.3
+  + cryptography : 39.0.1
+full file diff: https://github.com/googleapis/gapic-generator-python/pull/1593/files","[Changelog] Sourced from cryptography's changelog.
+39.0.1 - 2023-02-07
+* **SECURITY ISSUE** - Fixed a bug where ``Cipher.update_into`` accepted Python
+buffer protocol objects, but allowed immutable buffers. **CVE-2023-23931**
+* Updated Windows, macOS, and Linux wheels to be compiled with OpenSSL 3.0.8.
+.. _v39-0-0:
+39.0.0 - 2023-01-01
+- BACKWARDS INCOMPATIBLE: Support for OpenSSL 1.1.0 has been removed.
+Users on older version of OpenSSL will need to upgrade.
+- BACKWARDS INCOMPATIBLE: Dropped support for LibreSSL
+- BACKWARDS INCOMPATIBLE: Removed the encode_point and
+from_encoded_point methods on
+:class:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicNumbers,
+which had been deprecated for several years.
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.public_bytes
+and
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.from_encoded_point
+should be used instead.
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/gapic-generator-python/pull/1593,,
+34,googleapis/python-bigtable#701,googleapis/python-bigtable,701,pypi,griffe,cryptography,37.0.4,38.0.3,major,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 37.0.4 to 38.0.3 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 37.0.4
+  + cryptography : 38.0.3
+full file diff: https://github.com/googleapis/python-bigtable/pull/701/files","[Changelog] Sourced from cryptography's changelog.
+38.0.3 - 2022-11-01
+* Updated Windows, macOS, and Linux wheels to be compiled with OpenSSL 3.0.7,
+which resolves *CVE-2022-3602* and *CVE-2022-3786*.
+.. _v38-0-2:
+38.0.2 - 2022-10-11 (YANKED)
+.. attention::
+This release was subsequently yanked from PyPI due to a regression in OpenSSL.
+- Updated Windows, macOS, and Linux wheels to be compiled with OpenSSL 3.0.6.
+.. _v38-0-1:
+38.0.1 - 2022-09-07
+* Fixed parsing TLVs in ASN.1 with length greater than 65535 bytes (typically
+seen in large CRLs).
+.. _v38-0-0:
+38.0.0 - 2022-09-06
+- Final deprecation of OpenSSL 1.1.0. The next release of cryptography
+will drop support.
+- We no longer ship manylinux2010 wheels. Users should upgrade to the
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/python-bigtable/pull/701,,
+35,nrbnlulu/strawberry-django-auth#20,nrbnlulu/strawberry-django-auth,20,pypi,griffe,django,3.2.14,4.0.6,major,no-BC,0,(detector reported no BC),"Bump django from 3.2.14 to 4.0.6
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 3.2.14
+  + django : 4.0.6
+full file diff: https://github.com/nrbnlulu/strawberry-django-auth/pull/20/files",,releases: https://github.com/django/django/releases  |  repo: https://github.com/django/django,curated-link,https://github.com/nrbnlulu/strawberry-django-auth/pull/20,,
+36,googleapis/python-spanner#895,googleapis/python-spanner,895,pypi,griffe,cryptography,38.0.3,39.0.1,major,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 38.0.3 to 39.0.1 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 38.0.3
+  + cryptography : 39.0.1
+full file diff: https://github.com/googleapis/python-spanner/pull/895/files","[Changelog] Sourced from cryptography's changelog.
+39.0.1 - 2023-02-07
+* **SECURITY ISSUE** - Fixed a bug where ``Cipher.update_into`` accepted Python
+buffer protocol objects, but allowed immutable buffers. **CVE-2023-23931**
+* Updated Windows, macOS, and Linux wheels to be compiled with OpenSSL 3.0.8.
+.. _v39-0-0:
+39.0.0 - 2023-01-01
+- BACKWARDS INCOMPATIBLE: Support for OpenSSL 1.1.0 has been removed.
+Users on older version of OpenSSL will need to upgrade.
+- BACKWARDS INCOMPATIBLE: Dropped support for LibreSSL
+- BACKWARDS INCOMPATIBLE: Removed the encode_point and
+from_encoded_point methods on
+:class:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicNumbers,
+which had been deprecated for several years.
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.public_bytes
+and
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.from_encoded_point
+should be used instead.
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/python-spanner/pull/895,,
+37,googleapis/sphinx-docfx-yaml#395,googleapis/sphinx-docfx-yaml,395,pypi,griffe,django,3.2.25,4.2.16,major,no-BC,0,(detector reported no BC),"build(deps): Bump django from 3.2.25 to 4.2.16 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 3.2.25
+  + django : 4.2.16
+full file diff: https://github.com/googleapis/sphinx-docfx-yaml/pull/395/files",,releases: https://github.com/django/django/releases  |  repo: https://github.com/django/django,curated-link,https://github.com/googleapis/sphinx-docfx-yaml/pull/395,,
+38,googleapis/google-resumable-media-python#370,googleapis/google-resumable-media-python,370,pypi,griffe,cryptography,38.0.3,39.0.1,major,no-BC,0,(detector reported no BC),"build(deps): bump cryptography from 38.0.3 to 39.0.1 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 38.0.3
+  + cryptography : 39.0.1
+full file diff: https://github.com/googleapis/google-resumable-media-python/pull/370/files","[Changelog] Sourced from cryptography's changelog.
+39.0.1 - 2023-02-07
+* **SECURITY ISSUE** - Fixed a bug where ``Cipher.update_into`` accepted Python
+buffer protocol objects, but allowed immutable buffers. **CVE-2023-23931**
+* Updated Windows, macOS, and Linux wheels to be compiled with OpenSSL 3.0.8.
+.. _v39-0-0:
+39.0.0 - 2023-01-01
+- BACKWARDS INCOMPATIBLE: Support for OpenSSL 1.1.0 has been removed.
+Users on older version of OpenSSL will need to upgrade.
+- BACKWARDS INCOMPATIBLE: Dropped support for LibreSSL
+- BACKWARDS INCOMPATIBLE: Removed the encode_point and
+from_encoded_point methods on
+:class:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicNumbers,
+which had been deprecated for several years.
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.public_bytes
+and
+:meth:~cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey.from_encoded_point
+should be used instead.
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/google-resumable-media-python/pull/370,,
+39,googleapis/python-ndb#979,googleapis/python-ndb,979,pypi,griffe,idna,3.4,3.7,minor,no-BC,0,(detector reported no BC),"build(deps): bump idna from 3.4 to 3.7 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - idna : 3.4
+  + idna : 3.7
+full file diff: https://github.com/googleapis/python-ndb/pull/979/files","[Release notes] Sourced from idna's releases.
+v3.7
+What's Changed
+- Fix issue where specially crafted inputs to encode() could take exceptionally long amount of time to process. [CVE-2024-3651]
+Thanks to Guido Vranken for reporting the issue.
+Full Changelog: https://github.com/kjd/idna/compare/v3.6...v3.7",changelog: https://github.com/kjd/idna/blob/master/HISTORY.md  |  releases: https://github.com/kjd/idna/releases  |  repo: https://github.com/kjd/idna,curated-link,https://github.com/googleapis/python-ndb/pull/979,,
+40,mateimicu/auto-tag#121,mateimicu/auto-tag,121,pypi,griffe,cryptography,3.1.1,3.2,minor,no-BC,0,(detector reported no BC),"Bump cryptography from 3.1.1 to 3.2
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 3.1.1
+  + cryptography : 3.2
+full file diff: https://github.com/mateimicu/auto-tag/pull/121/files","[Changelog] Sourced from cryptography's changelog.
+3.2 - 2020-10-25
+* **SECURITY ISSUE:** Attempted to make RSA PKCS#1v1.5 decryption more constant
+time, to protect against Bleichenbacher vulnerabilities. Due to limitations
+imposed by our API, we cannot completely mitigate this vulnerability and a
+future release will contain a new API which is designed to be resilient to
+these for contexts where it is required. Credit to **Hubert Kario** for
+reporting the issue. *CVE-2020-25659*
+* Support for OpenSSL 1.0.2 has been removed. Users on older version of OpenSSL
+will need to upgrade.
+* Added basic support for PKCS7 signing (including SMIME) via
+:class:`~cryptography.hazmat.primitives.serialization.pkcs7.PKCS7SignatureBuilder`.
+.. _v3-1-1:",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/mateimicu/auto-tag/pull/121,,
+41,googleapis/python-bigquery-pandas#756,googleapis/python-bigquery-pandas,756,pypi,griffe,idna,3.4,3.7,minor,no-BC,0,(detector reported no BC),"chore(deps): bump idna from 3.4 to 3.7 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - idna : 3.4
+  + idna : 3.7
+full file diff: https://github.com/googleapis/python-bigquery-pandas/pull/756/files","[Release notes] Sourced from idna's releases.
+v3.7
+What's Changed
+- Fix issue where specially crafted inputs to encode() could take exceptionally long amount of time to process. [CVE-2024-3651]
+Thanks to Guido Vranken for reporting the issue.
+Full Changelog: https://github.com/kjd/idna/compare/v3.6...v3.7",changelog: https://github.com/kjd/idna/blob/master/HISTORY.md  |  releases: https://github.com/kjd/idna/releases  |  repo: https://github.com/kjd/idna,curated-link,https://github.com/googleapis/python-bigquery-pandas/pull/756,,
+42,googleapis/python-bigtable#953,googleapis/python-bigtable,953,pypi,griffe,idna,3.4,3.7,minor,no-BC,0,(detector reported no BC),"chore(deps): bump idna from 3.4 to 3.7 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - idna : 3.4
+  + idna : 3.7
+full file diff: https://github.com/googleapis/python-bigtable/pull/953/files","[Release notes] Sourced from idna's releases.
+v3.7
+What's Changed
+- Fix issue where specially crafted inputs to encode() could take exceptionally long amount of time to process. [CVE-2024-3651]
+Thanks to Guido Vranken for reporting the issue.
+Full Changelog: https://github.com/kjd/idna/compare/v3.6...v3.7",changelog: https://github.com/kjd/idna/blob/master/HISTORY.md  |  releases: https://github.com/kjd/idna/releases  |  repo: https://github.com/kjd/idna,curated-link,https://github.com/googleapis/python-bigtable/pull/953,,
+43,googleapis/python-bigquery#1895,googleapis/python-bigquery,1895,pypi,griffe,idna,3.6,3.7,minor,no-BC,0,(detector reported no BC),"chore(deps): bump idna from 3.6 to 3.7 in /samples/geography
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - idna : 3.6
+  + idna : 3.7
+full file diff: https://github.com/googleapis/python-bigquery/pull/1895/files","[Release notes] Sourced from idna's releases.
+v3.7
+What's Changed
+- Fix issue where specially crafted inputs to encode() could take exceptionally long amount of time to process. [CVE-2024-3651]
+Thanks to Guido Vranken for reporting the issue.
+Full Changelog: https://github.com/kjd/idna/compare/v3.6...v3.7",changelog: https://github.com/kjd/idna/blob/master/HISTORY.md  |  releases: https://github.com/kjd/idna/releases  |  repo: https://github.com/kjd/idna,curated-link,https://github.com/googleapis/python-bigquery/pull/1895,,
+44,googleapis/python-db-dtypes-pandas#268,googleapis/python-db-dtypes-pandas,268,pypi,griffe,idna,3.4,3.7,minor,no-BC,0,(detector reported no BC),"build(deps): bump idna from 3.4 to 3.7 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - idna : 3.4
+  + idna : 3.7
+full file diff: https://github.com/googleapis/python-db-dtypes-pandas/pull/268/files","[Release notes] Sourced from idna's releases.
+v3.7
+What's Changed
+- Fix issue where specially crafted inputs to encode() could take exceptionally long amount of time to process. [CVE-2024-3651]
+Thanks to Guido Vranken for reporting the issue.
+Full Changelog: https://github.com/kjd/idna/compare/v3.6...v3.7",changelog: https://github.com/kjd/idna/blob/master/HISTORY.md  |  releases: https://github.com/kjd/idna/releases  |  repo: https://github.com/kjd/idna,curated-link,https://github.com/googleapis/python-db-dtypes-pandas/pull/268,,
+45,greenbone/python-gvm#392,greenbone/python-gvm,392,pypi,griffe,cryptography,3.3.1,3.4.1,minor,no-BC,0,(detector reported no BC),"Bump cryptography from 3.3.1 to 3.4.1
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 3.3.1
+  + cryptography : 3.4.1
+full file diff: https://github.com/greenbone/python-gvm/pull/392/files","[Changelog] Sourced from cryptography's changelog.
+3.4.1 - 2021-02-07
+* Fixed a circular import issue.
+* Added additional debug output to assist users seeing installation errors
+due to outdated ``pip`` or missing ``rustc``.
+.. _v3-4:
+3.4 - 2021-02-07
+* **BACKWARDS INCOMPATIBLE:** Support for Python 2 has been removed.
+* We now ship ``manylinux2014`` wheels and no longer ship ``manylinux1``
+wheels. Users should upgrade to the latest ``pip`` to ensure this doesn't
+cause issues downloading wheels on their platform.
+* ``cryptography`` now incorporates Rust code. Users building ``cryptography``
+themselves will need to have the Rust toolchain installed. Users who use an
+officially produced wheel will not need to make any changes. The minimum
+supported Rust version is 1.45.0.
+* ``cryptography`` now has :pep:`484` type hints on nearly all of of its public
+APIs. Users can begin using them to type check their code with ``mypy``.
+.. _v3-3-2:
+  ... [truncated -- see changelog_link / pr_url]",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/greenbone/python-gvm/pull/392,,
+46,googleapis/python-documentai-toolbox#117,googleapis/python-documentai-toolbox,117,pypi,griffe,requests,2.28.1,2.31.0,minor,no-BC,0,(detector reported no BC),"chore(deps): bump requests from 2.28.1 to 2.31.0 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - requests : 2.28.1
+  + requests : 2.31.0
+full file diff: https://github.com/googleapis/python-documentai-toolbox/pull/117/files","[Release notes] Sourced from requests's releases.
+v2.31.0
+2.31.0 (2023-05-22)
+Security
+-
+Versions of Requests between v2.3.0 and v2.30.0 are vulnerable to potential
+forwarding of Proxy-Authorization headers to destination servers when
+following HTTPS redirects.
+When proxies are defined with user info (https://user:pass@proxy:8080), Requests
+will construct a Proxy-Authorization header that is attached to the request to
+authenticate with the proxy.
+In cases where Requests receives a redirect response, it previously reattached
+the Proxy-Authorization header incorrectly, resulting in the value being
+sent through the tunneled connection to the destination server. Users who rely on
+defining their proxy credentials in the URL are strongly encouraged to upgrade
+to Requests 2.31.0+ to prevent unintentional leakage and rotate their proxy
+credentials once the change has been fully deployed.
+Users who do not use a proxy or do not supply their proxy credentials through
+  ... [truncated -- see changelog_link / pr_url]",releases: https://github.com/psf/requests/releases  |  repo: https://github.com/psf/requests,curated-link,https://github.com/googleapis/python-documentai-toolbox/pull/117,,
+47,googleapis/langchain-google-spanner-python#72,googleapis/langchain-google-spanner-python,72,pypi,griffe,langchain-community,0.0.37,0.2.5,minor,no-BC,0,(detector reported no BC),"chore(deps): bump langchain-community from 0.0.37 to 0.2.5
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - langchain-community : 0.0.37
+  + langchain-community : 0.2.5
+full file diff: https://github.com/googleapis/langchain-google-spanner-python/pull/72/files","[Release notes] Sourced from langchain-community's releases.
+langchain-community==0.2.5
+Release langchain-community==0.2.5
+Changes since langchain-community==0.2.4
+community: release 0.2.5 (#22923)
+docs: Fix wrongly referenced class name in confluence.py (#22879)
+community[minor]: Fix long_context_reorder.py async (#22839)
+community[major], experimental[patch]: Remove Python REPL from community (#22904)
+community[patch]: SitemapLoader restrict depth of parsing sitemap (CVE-2024-2965) (#22903)
+core[patch]: fix validation of @​deprecated decorator (#22513)
+[Community]: HuggingFaceCrossEncoder score accounting for pairs. (#22578)
+community[minor]: add chat model llamacpp (#22589)
+community[minor]: Prem Templates (#22783)
+community[minor]: Implement ZhipuAIEmbeddings interface (#22821)
+docs, cli[patch]: document loaders doc template (<a href=""https://redirect.github.com/lan",releases: https://github.com/langchain-ai/langchain-community/tree/main/libs/community/releases  |  repo: https://github.com/langchain-ai/langchain-community/tree/main/libs/community,curated-link,https://github.com/googleapis/langchain-google-spanner-python/pull/72,,
+48,googleapis/sphinx-docfx-yaml#358,googleapis/sphinx-docfx-yaml,358,pypi,griffe,django,3.2.24,3.2.25,patch,no-BC,0,(detector reported no BC),"build(deps): Bump django from 3.2.24 to 3.2.25 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 3.2.24
+  + django : 3.2.25
+full file diff: https://github.com/googleapis/sphinx-docfx-yaml/pull/358/files",,releases: https://github.com/django/django/releases  |  repo: https://github.com/django/django,curated-link,https://github.com/googleapis/sphinx-docfx-yaml/pull/358,,
+49,googleapis/python-bigquery#1825,googleapis/python-bigquery,1825,pypi,griffe,cryptography,42.0.2,42.0.4,patch,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 42.0.2 to 42.0.4 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 42.0.2
+  + cryptography : 42.0.4
+full file diff: https://github.com/googleapis/python-bigquery/pull/1825/files","[Changelog] Sourced from cryptography's changelog.
+42.0.4 - 2024-02-20
+* Fixed a null-pointer-dereference and segfault that could occur when creating
+a PKCS#12 bundle. Credit to **Alexander-Programming** for reporting the
+issue. **CVE-2024-26130**
+* Fixed ASN.1 encoding for PKCS7/SMIME signed messages. The fields ``SMIMECapabilities``
+and ``SignatureAlgorithmIdentifier`` should now be correctly encoded according to the
+definitions in :rfc:`2633` :rfc:`3370`.
+.. _v42-0-3:
+42.0.3 - 2024-02-15
+- Fixed an initialization issue that caused key loading failures for some
+users.
+.. _v42-0-2:",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/python-bigquery/pull/1825,,
+50,rafsaf/Tribal-Wars-Planer#372,rafsaf/Tribal-Wars-Planer,372,pypi,griffe,django,4.2.6,4.2.7,patch,no-BC,0,(detector reported no BC),"Bump django from 4.2.6 to 4.2.7
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 4.2.6
+  + django : 4.2.7
+full file diff: https://github.com/rafsaf/Tribal-Wars-Planer/pull/372/files",,releases: https://github.com/django/django/releases  |  repo: https://github.com/django/django,curated-link,https://github.com/rafsaf/Tribal-Wars-Planer/pull/372,,
+51,googleapis/python-pubsub#1028,googleapis/python-pubsub,1028,pypi,griffe,cryptography,41.0.5,41.0.6,patch,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 41.0.5 to 41.0.6 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 41.0.5
+  + cryptography : 41.0.6
+full file diff: https://github.com/googleapis/python-pubsub/pull/1028/files","[Changelog] Sourced from cryptography's changelog.
+41.0.6 - 2023-11-27
+* Fixed a null-pointer-dereference and segfault that could occur when loading
+certificates from a PKCS#7 bundle. Credit to **pkuzco** for reporting the
+issue. **CVE-2023-49083**
+.. _v41-0-5:",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/python-pubsub/pull/1028,,
+52,holoviz/panel#2352,holoviz/panel,2352,pypi,griffe,django,3.1.8,3.1.9,patch,no-BC,0,(detector reported no BC),"Bump django from 3.1.8 to 3.1.9 in /examples/apps/django_multi_apps
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 3.1.8
+  + django : 3.1.9
+full file diff: https://github.com/holoviz/panel/pull/2352/files",,releases: https://github.com/django/django/releases  |  repo: https://github.com/django/django,curated-link,https://github.com/holoviz/panel/pull/2352,,
+53,googleapis/python-ndb#952,googleapis/python-ndb,952,pypi,griffe,cryptography,42.0.2,42.0.4,patch,no-BC,0,(detector reported no BC),"build(deps): bump cryptography from 42.0.2 to 42.0.4 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 42.0.2
+  + cryptography : 42.0.4
+full file diff: https://github.com/googleapis/python-ndb/pull/952/files","[Changelog] Sourced from cryptography's changelog.
+42.0.4 - 2024-02-20
+* Fixed a null-pointer-dereference and segfault that could occur when creating
+a PKCS#12 bundle. Credit to **Alexander-Programming** for reporting the
+issue. **CVE-2024-26130**
+* Fixed ASN.1 encoding for PKCS7/SMIME signed messages. The fields ``SMIMECapabilities``
+and ``SignatureAlgorithmIdentifier`` should now be correctly encoded according to the
+definitions in :rfc:`2633` :rfc:`3370`.
+.. _v42-0-3:
+42.0.3 - 2024-02-15
+- Fixed an initialization issue that caused key loading failures for some
+users.
+.. _v42-0-2:",changelog: https://cryptography.io/en/latest/changelog/  |  releases: https://github.com/pyca/cryptography/releases  |  repo: https://github.com/pyca/cryptography,curated-link,https://github.com/googleapis/python-ndb/pull/952,,
+54,googleapis/langchain-google-cloud-sql-pg-python#138,googleapis/langchain-google-cloud-sql-pg-python,138,pypi,griffe,langchain-community,0.2.1,0.2.5,patch,no-BC,0,(detector reported no BC),"chore(deps): bump langchain-community from 0.2.1 to 0.2.5
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - langchain-community : 0.2.1
+  + langchain-community : 0.2.5
+full file diff: https://github.com/googleapis/langchain-google-cloud-sql-pg-python/pull/138/files","[Release notes] Sourced from langchain-community's releases.
+langchain-community==0.2.5
+Release langchain-community==0.2.5
+Changes since langchain-community==0.2.4
+community: release 0.2.5 (#22923)
+docs: Fix wrongly referenced class name in confluence.py (#22879)
+community[minor]: Fix long_context_reorder.py async (#22839)
+community[major], experimental[patch]: Remove Python REPL from community (#22904)
+community[patch]: SitemapLoader restrict depth of parsing sitemap (CVE-2024-2965) (#22903)
+core[patch]: fix validation of @​deprecated decorator (#22513)
+[Community]: HuggingFaceCrossEncoder score accounting for pairs. (#22578)
+community[minor]: add chat model llamacpp (#22589)
+community[minor]: Prem Templates (#22783)
+community[minor]: Implement ZhipuAIEmbeddings interface (#22821)
+docs, cli[patch]: document loaders doc template (<a href=""https://redirect.github.com/lang",releases: https://github.com/langchain-ai/langchain-community/tree/main/libs/community/releases  |  repo: https://github.com/langchain-ai/langchain-community/tree/main/libs/community,curated-link,https://github.com/googleapis/langchain-google-cloud-sql-pg-python/pull/138,,
+55,flowable/flowable-engine#3665,flowable/flowable-engine,3665,maven,roseau,com.google.guava:guava,31.0.1-jre,32.0.0-jre,major,BC,5,METHOD_PARAMETER_GENERICS_CHANGED x3; CONSTRUCTOR_NOW_PROTECTED x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump guava from 31.0.1-jre to 32.0.0-jre
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 31.0.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/flowable/flowable-engine/pull/3665/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3665,,
+56,jhy/jsoup#1940,jhy/jsoup,1940,maven,roseau,org.eclipse.jetty:jetty-server,9.4.51.v20230217,10.0.14,major,BC,310,METHOD_REMOVED x191; METHOD_RETURN_TYPE_CHANGED x31; TYPE_REMOVED x27; TYPE_NEW_ABSTRACT_METHOD x13; FIELD_REMOVED x13; CONSTRUCTOR_REMOVED x13; FIELD_TYPE_CHANGED x8; METHOD_NOW_PROTECTED x4; METHOD_NOW_THROWS_CHECKED_EXCEPTION x4; TYPE_SUPERTYPE_REMOVED x3; CLASS_NOW_ABSTRACT x1; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x1; METHOD_NOW_ABSTRACT x1,"Bump jetty-server from 9.4.51.v20230217 to 10.0.14
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 9.4.51.v20230217
+  + org.eclipse.jetty:jetty-server : 10.0.14
+full file diff: https://github.com/jhy/jsoup/pull/1940/files","[Release notes] Sourced from jetty-server's releases.
+10.0.14
+Special Thanks to the following Eclipse Jetty community members
+- @​pzygielo (Piotrek Żygieło)
+- @​jluehe (jluehe)
+- @​dzoech (Dominik Zöchbauer)
+Changelog
+- #9344 - Cleanup Multipart handling for CVE-2023-26048
+- #9343 - URI Host Mismatch with optional Compliance modes
+- #9339 - Cleanup Cookie Cutter handling for CVE-2023-26049
+- #9337 - LowResourceMonitor.getReasons should include detailed reason instead of hard-coded message (@​jluehe)
+- #9334 - Better support for Cookie RFC 2965 compliance
+- #9285 - ContextHandler sends redirect on BaseResponse instead of Wrapped Response object from Handler chain
+- #9283 - Configurable Unsafe Host Header Behaviors
+- #9188 - Log as info exceptions from server after sending stop with StopMojo.
+- <a href=""https://redirect.github.co",,pr-body-excerpt,https://github.com/jhy/jsoup/pull/1940,,
+57,google/guice#1750,google/guice,1750,maven,roseau,com.google.guava:guava,31.0.1-jre,32.0.0-jre,major,BC,5,METHOD_PARAMETER_GENERICS_CHANGED x3; CONSTRUCTOR_NOW_PROTECTED x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump guava from 31.0.1-jre to 32.0.0-jre
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 31.0.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/google/guice/pull/1750/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/google/guice/pull/1750,,
+58,apache/druid#14113,apache/druid,14113,maven,roseau,org.eclipse.jetty:jetty-server,9.4.48.v20220622,10.0.14,major,BC,309,METHOD_REMOVED x191; METHOD_RETURN_TYPE_CHANGED x31; TYPE_REMOVED x26; TYPE_NEW_ABSTRACT_METHOD x13; FIELD_REMOVED x13; CONSTRUCTOR_REMOVED x13; FIELD_TYPE_CHANGED x8; METHOD_NOW_PROTECTED x4; METHOD_NOW_THROWS_CHECKED_EXCEPTION x4; TYPE_SUPERTYPE_REMOVED x3; CLASS_NOW_ABSTRACT x1; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x1; METHOD_NOW_ABSTRACT x1,"Bump jetty-server from 9.4.48.v20220622 to 10.0.14
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 9.4.48.v20220622
+  + org.eclipse.jetty:jetty-server : 10.0.14
+full file diff: https://github.com/apache/druid/pull/14113/files","[Release notes] Sourced from jetty-server's releases.
+10.0.14
+Special Thanks to the following Eclipse Jetty community members
+- @​pzygielo (Piotrek Żygieło)
+- @​jluehe (jluehe)
+- @​dzoech (Dominik Zöchbauer)
+Changelog
+- #9344 - Cleanup Multipart handling for CVE-2023-26048
+- #9343 - URI Host Mismatch with optional Compliance modes
+- #9339 - Cleanup Cookie Cutter handling for CVE-2023-26049
+- #9337 - LowResourceMonitor.getReasons should include detailed reason instead of hard-coded message (@​jluehe)
+- #9334 - Better support for Cookie RFC 2965 compliance
+- #9285 - ContextHandler sends redirect on BaseResponse instead of Wrapped Response object from Handler chain
+- #9283 - Configurable Unsafe Host Header Behaviors
+- #9188 - Log as info exceptions from server after sending stop with StopMojo.
+- <a href=""https://redirect.github.co",,pr-body-excerpt,https://github.com/apache/druid/pull/14113,,
+59,binarywang/WxJava#2986,binarywang/WxJava,2986,maven,roseau,org.eclipse.jetty:jetty-server,9.4.51.v20230217,10.0.14,major,BC,310,METHOD_REMOVED x191; METHOD_RETURN_TYPE_CHANGED x31; TYPE_REMOVED x27; TYPE_NEW_ABSTRACT_METHOD x13; FIELD_REMOVED x13; CONSTRUCTOR_REMOVED x13; FIELD_TYPE_CHANGED x8; METHOD_NOW_PROTECTED x4; METHOD_NOW_THROWS_CHECKED_EXCEPTION x4; TYPE_SUPERTYPE_REMOVED x3; CLASS_NOW_ABSTRACT x1; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x1; METHOD_NOW_ABSTRACT x1,"⬆️ Bump jetty-server from 9.4.51.v20230217 to 10.0.14
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 9.4.51.v20230217
+  + org.eclipse.jetty:jetty-server : 10.0.14
+full file diff: https://github.com/binarywang/WxJava/pull/2986/files","[Release notes] Sourced from jetty-server's releases.
+10.0.14
+Special Thanks to the following Eclipse Jetty community members
+- @​pzygielo (Piotrek Żygieło)
+- @​jluehe (jluehe)
+- @​dzoech (Dominik Zöchbauer)
+Changelog
+- #9344 - Cleanup Multipart handling for CVE-2023-26048
+- #9343 - URI Host Mismatch with optional Compliance modes
+- #9339 - Cleanup Cookie Cutter handling for CVE-2023-26049
+- #9337 - LowResourceMonitor.getReasons should include detailed reason instead of hard-coded message (@​jluehe)
+- #9334 - Better support for Cookie RFC 2965 compliance
+- #9285 - ContextHandler sends redirect on BaseResponse instead of Wrapped Response object from Handler chain
+- #9283 - Configurable Unsafe Host Header Behaviors
+- #9188 - Log as info exceptions from server after sending stop with StopMojo.
+- <a href=""https://redirect.github.co",,pr-body-excerpt,https://github.com/binarywang/WxJava/pull/2986,,
+60,YunaiV/yudao-cloud#96,YunaiV/yudao-cloud,96,maven,roseau,com.google.guava:guava,31.1-jre,32.0.0-jre,major,BC,5,METHOD_PARAMETER_GENERICS_CHANGED x3; CONSTRUCTOR_NOW_PROTECTED x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump guava from 31.1-jre to 32.0.0-jre in /yudao-dependencies
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 31.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/YunaiV/yudao-cloud/pull/96/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/YunaiV/yudao-cloud/pull/96,,
+61,langchain4j/langchain4j#547,langchain4j/langchain4j,547,maven,roseau,com.google.guava:guava,30.1-jre,32.0.0-jre,major,BC,33,METHOD_RETURN_TYPE_CHANGED x20; METHOD_PARAMETER_GENERICS_CHANGED x5; TYPE_SUPERTYPE_REMOVED x2; METHOD_REMOVED x2; FORMAL_TYPE_PARAMETER_ADDED x1; CONSTRUCTOR_NOW_PROTECTED x1; METHOD_NOW_FINAL x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump com.google.guava:guava from 30.1-jre to 32.0.0-jre in /langchain4j-qdrant
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 30.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/langchain4j/langchain4j/pull/547/files","[Release notes] Sourced from com.google.guava:guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/langchain4j/langchain4j/pull/547,,
+62,apache/dolphinscheduler#14351,apache/dolphinscheduler,14351,maven,roseau,com.google.guava:guava,31.0.1-jre,32.0.0-jre,major,BC,5,METHOD_PARAMETER_GENERICS_CHANGED x3; CONSTRUCTOR_NOW_PROTECTED x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump guava from 31.0.1-jre to 32.0.0-jre in /dolphinscheduler-api-test
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 31.0.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/apache/dolphinscheduler/pull/14351/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/apache/dolphinscheduler/pull/14351,,
+63,apache/shenyu#4739,apache/shenyu,4739,maven,roseau,com.google.guava:guava,31.1-jre,32.0.0-jre,major,BC,5,METHOD_PARAMETER_GENERICS_CHANGED x3; CONSTRUCTOR_NOW_PROTECTED x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump guava from 31.1-jre to 32.0.0-jre
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 31.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/apache/shenyu/pull/4739/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/apache/shenyu/pull/4739,,
+64,apache/shardingsphere-elasticjob#2232,apache/shardingsphere-elasticjob,2232,maven,roseau,com.google.guava:guava,29.0-jre,32.0.0-jre,major,BC,34,METHOD_RETURN_TYPE_CHANGED x20; METHOD_PARAMETER_GENERICS_CHANGED x5; METHOD_REMOVED x3; TYPE_SUPERTYPE_REMOVED x2; FORMAL_TYPE_PARAMETER_ADDED x1; CONSTRUCTOR_NOW_PROTECTED x1; METHOD_NOW_FINAL x1; TYPE_NEW_ABSTRACT_METHOD x1,"Bump guava from 29.0-jre to 32.0.0-jre
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 29.0-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/apache/shardingsphere-elasticjob/pull/2232/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/apache/shardingsphere-elasticjob/pull/2232,,
+65,apolloconfig/apollo#5039,apolloconfig/apollo,5039,maven,roseau,com.google.guava:guava,31.1-jre,32.0.0-jre,major,BC,5,METHOD_PARAMETER_GENERICS_CHANGED x3; CONSTRUCTOR_NOW_PROTECTED x1; TYPE_NEW_ABSTRACT_METHOD x1,"build(deps): bump com.google.guava:guava from 31.1-jre to 32.0.0-jre
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 31.1-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/apolloconfig/apollo/pull/5039/files","[Release notes] Sourced from com.google.guava:guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/apolloconfig/apollo/pull/5039,,
+66,apache/seatunnel#4926,apache/seatunnel,4926,maven,roseau,com.google.guava:guava,27.0-jre,32.0.0-jre,major,BC,71,TYPE_NEW_ABSTRACT_METHOD x28; METHOD_RETURN_TYPE_CHANGED x21; METHOD_REMOVED x6; TYPE_REMOVED x6; METHOD_PARAMETER_GENERICS_CHANGED x5; TYPE_SUPERTYPE_REMOVED x2; FORMAL_TYPE_PARAMETER_ADDED x1; CONSTRUCTOR_NOW_PROTECTED x1; METHOD_NOW_FINAL x1,"Bump guava from 27.0-jre to 32.0.0-jre in /seatunnel-connectors-v2/connector-file/connector-file-s3
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.guava:guava : 27.0-jre
+  + com.google.guava:guava : 32.0.0-jre
+full file diff: https://github.com/apache/seatunnel/pull/4926/files","[Release notes] Sourced from guava's releases.
+32.0.0
+Maven
+com.google.guava
+guava
+32.0.0-jre
+32.0.0-android
+Jar files
+- 32.0.0-jre.jar
+- 32.0.0-android.jar
+Guava requires one runtime dependency, which you can download here:
+- failureaccess-1.0.1.jar
+Javadoc
+- 32.0.0-jre
+- 32.0.0-android
+JDiff
+- 32.0.0-jre vs. 31.1-jre
+- 32.0.0-android vs. 31.1-android
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/apache/seatunnel/pull/4926,,
+67,eGovFramework/egovframe-runtime#6,eGovFramework/egovframe-runtime,6,maven,roseau,org.quartz-scheduler:quartz,2.2.2,2.3.2,minor,BC,15,TYPE_NEW_ABSTRACT_METHOD x8; METHOD_REMOVED x2; FIELD_REMOVED x2; TYPE_REMOVED x2; TYPE_KIND_CHANGED x1,"Bump quartz from 2.2.2 to 2.3.2 in /Batch/egovframework.rte.bat.core
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.quartz-scheduler:quartz : 2.2.2
+  + org.quartz-scheduler:quartz : 2.3.2
+full file diff: https://github.com/eGovFramework/egovframe-runtime/pull/6/files","[Release notes] Sourced from quartz's releases.
+Quartz 2.3.2
+This a bug fix release containing fixes for:
+- #508 : Error with H2 1.4.200
+- #505 : CronTrigger.getTriggerBuilder() changes misfire instruction from ""ignore misfire"" to ""smart""
+- #491 : StdJDBCDelegate.selectTriggerToAcquire may not respect maxCount
+- #490 : Return at most maxCount triggers
+- #482 : Update C3P0 version to 0.9.5.4 (CVE-2019-5427)
+- #474 : StdSchedulerFactory ConcurrentModificationException reading system properties
+- #467 : Security: XXE in initDocumentParser
+quartz-2.3.1
+THIS RELEASE REQUIRES JDK7
+- #294 depen: Update hikaricp-java6:2.3.13 to hikaricp-java7:2.4.13
+- #316 depen: Updated C3P0 version to 0.9.5.3
+- #147 bugfix: Fix BINARY to BLOG type for job data for hsqldb
+- <a href=""https://",,pr-body-excerpt,https://github.com/eGovFramework/egovframe-runtime/pull/6,,
+68,flowable/flowable-engine#3635,flowable/flowable-engine,3635,maven,roseau,org.eclipse.jetty:jetty-server,11.0.10,11.0.14,patch,BC,2,TYPE_SUPERTYPE_REMOVED x1; METHOD_REMOVED x1,"Bump jetty-server from 11.0.10 to 11.0.14 in /modules/flowable-dmn-rest
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 11.0.10
+  + org.eclipse.jetty:jetty-server : 11.0.14
+full file diff: https://github.com/flowable/flowable-engine/pull/3635/files","[Release notes] Sourced from jetty-server's releases.
+11.0.14
+Special Thanks to the following Eclipse Jetty community members
+- @​pzygielo (Piotrek Żygieło)
+- @​jluehe (jluehe)
+- @​dzoech (Dominik Zöchbauer)
+-
+Changelog
+- #9344 - Cleanup Multipart handling for CVE-2023-26048
+- #9343 - URI Host Mismatch with optional Compliance modes
+- #9339 - Cleanup Cookie Cutter handling for CVE-2023-26049
+- #9337 - LowResourceMonitor.getReasons should include detailed reason instead of hard-coded message (@​jluehe)
+- #9334 - Better support for Cookie RFC 2965 compliance
+- #9285 - ContextHandler sends redirect on BaseResponse instead of Wrapped Response object from Handler chain
+- #9283 - Configurable Unsafe Host Header Behaviors
+- #9188 - Log as info exceptions from server after sending stop with StopMojo.
+- <a href=""https://redirect.github.c",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3635,,
+69,dianping/cat#2122,dianping/cat,2122,maven,roseau,org.eclipse.jetty:jetty-server,9.4.35.v20201120,9.4.41.v20210516,patch,BC,9,METHOD_NOW_THROWS_CHECKED_EXCEPTION x4; METHOD_REMOVED x4; METHOD_NO_LONGER_THROWS_CHECKED_EXCEPTION x1,"Bump jetty-server from 9.4.35.v20201120 to 9.4.41.v20210516 in /integration/elasticsearch-jetty
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 9.4.35.v20201120
+  + org.eclipse.jetty:jetty-server : 9.4.41.v20210516
+full file diff: https://github.com/dianping/cat/pull/2122/files","[Release notes] Sourced from jetty-server's releases.
+9.4.41.v20210516
+Changelog
+- This release resolves CVE-2021-28169
+- #6099 Cipher preference may break SNI if certificates have different key types
+- #6186 Add Null Protection on Log / Logger
+- #6205 OpenIdAuthenticator may use incorrect redirect
+- #6208 HTTP/2 max local stream count exceeded
+- #6227 Better resolve race between AsyncListener.onTimeout and AsyncContext.dispatch
+- #6254 Total timeout not enforced for queued requests
+- #6263 Review URI encoding in ConcatServlet & WelcomeFilter
+- #6277 Better handle exceptions thrown from session destroy listener
+- #6280 Copy ServletHolder class/instance properly during startWebapp
+9.4.40.v20210413
+Notable Bug Fixes
+Users of GzipHandler s",,pr-body-excerpt,https://github.com/dianping/cat/pull/2122,,
+70,apache/shenyu#3081,apache/shenyu,3081,maven,roseau,com.alibaba:dubbo,2.6.5,2.6.9,patch,BC,30,METHOD_REMOVED x15; TYPE_NEW_ABSTRACT_METHOD x5; TYPE_REMOVED x5; CLASS_NOW_ABSTRACT x2; FIELD_REMOVED x1; METHOD_RETURN_TYPE_CHANGED x1; TYPE_SUPERTYPE_REMOVED x1,"Bump dubbo from 2.6.5 to 2.6.9
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.alibaba:dubbo : 2.6.5
+  + com.alibaba:dubbo : 2.6.9
+full file diff: https://github.com/apache/shenyu/pull/3081/files","[Release notes] Sourced from dubbo's releases.
+dubbo-2.6.9
+- Support hessian 3.2.8/3.2.9 whitelist and blacklist
+- Upgrade Fastjson dependency to 1.2.70
+- Enhanced consumer side thread pool strategy
+apache-dubbo-2.6.8
+Please upgrade to the latest version to avoid potential security issues.
+Vulnerability
+CVE-2019-17564, Apache Dubbo deserialization vulnerability.
+apache-dubbo-2.6.7
+2.6.7
+Enhancement / New feature：
+- Multicast ipv6 support #3430
+- Add Annotation-Driven for MethodConfig and ArgumentConfig #2298
+- @Method default value will be set to the field of MethodConfig #3642
+- ignore unrecognized dubbo versions. #4486
+Bugfixes:
+- @Reference field can't refer its' @Service Bean in same JVM from v2.6.6 #3695
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/apache/shenyu/pull/3081,,
+71,flowable/flowable-engine#3567,flowable/flowable-engine,3567,maven,roseau,org.eclipse.jetty:jetty-http,11.0.2,11.0.10,patch,BC,6,TYPE_NEW_ABSTRACT_METHOD x5; TYPE_REMOVED x1,"Bump jetty-http from 11.0.2 to 11.0.10 in /modules/flowable-rest
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-http : 11.0.2
+  + org.eclipse.jetty:jetty-http : 11.0.10
+full file diff: https://github.com/flowable/flowable-engine/pull/3567/files","[Release notes] Sourced from jetty-http's releases.
+11.0.10
+Fixed Security Advisories
+- (CVE-2022-2047) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-cj7v-27pg-wf7q - Invalid URI parsing may produce invalid HttpURI.authority
+- (CVE-2022-2048) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-wgmr-mf83-7x4j - Invalid HTTP/2 requests can lead to denial of service
+- (CVE-2022-2191) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-8mpp-f3f7-xc28 - SslConnection does not release pooled ByteBuffers in case of errors
+Special Thanks to the following Eclipse Jetty community members
+- @​jianglai (Lai Jiang)
+- @​markslater (markslater)
+- @​prenagha (Padraic Renaghan)
+Changelog
+- #8161 - Improve SSLConnection buffers handling (Resolves CVE-2022-2191)
+- #8134 - Improve cleanup of deflater/inflater pools for PerMessageDeflateExtension
+- #8088 - Add option to configure exitVm on ShutdownMonitor from Syst",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3567,,
+72,flowable/flowable-engine#3573,flowable/flowable-engine,3573,maven,roseau,org.eclipse.jetty:jetty-server,11.0.2,11.0.10,patch,BC,8,METHOD_REMOVED x5; TYPE_NEW_ABSTRACT_METHOD x2; FIELD_REMOVED x1,"Bump jetty-server from 11.0.2 to 11.0.10 in /modules/flowable-rest
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 11.0.2
+  + org.eclipse.jetty:jetty-server : 11.0.10
+full file diff: https://github.com/flowable/flowable-engine/pull/3573/files","[Release notes] Sourced from jetty-server's releases.
+11.0.10
+Fixed Security Advisories
+- (CVE-2022-2047) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-cj7v-27pg-wf7q - Invalid URI parsing may produce invalid HttpURI.authority
+- (CVE-2022-2048) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-wgmr-mf83-7x4j - Invalid HTTP/2 requests can lead to denial of service
+- (CVE-2022-2191) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-8mpp-f3f7-xc28 - SslConnection does not release pooled ByteBuffers in case of errors
+Special Thanks to the following Eclipse Jetty community members
+- @​jianglai (Lai Jiang)
+- @​markslater (markslater)
+- @​prenagha (Padraic Renaghan)
+Changelog
+- #8161 - Improve SSLConnection buffers handling (Resolves CVE-2022-2191)
+- #8134 - Improve cleanup of deflater/inflater pools for PerMessageDeflateExtension
+- #8088 - Add option to configure exitVm on ShutdownMonitor from",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3573,,
+73,flowable/flowable-engine#3637,flowable/flowable-engine,3637,maven,roseau,org.eclipse.jetty:jetty-server,11.0.10,11.0.14,patch,BC,2,TYPE_SUPERTYPE_REMOVED x1; METHOD_REMOVED x1,"Bump jetty-server from 11.0.10 to 11.0.14 in /modules/flowable-event-registry-rest
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 11.0.10
+  + org.eclipse.jetty:jetty-server : 11.0.14
+full file diff: https://github.com/flowable/flowable-engine/pull/3637/files","[Release notes] Sourced from jetty-server's releases.
+11.0.14
+Special Thanks to the following Eclipse Jetty community members
+- @​pzygielo (Piotrek Żygieło)
+- @​jluehe (jluehe)
+- @​dzoech (Dominik Zöchbauer)
+-
+Changelog
+- #9344 - Cleanup Multipart handling for CVE-2023-26048
+- #9343 - URI Host Mismatch with optional Compliance modes
+- #9339 - Cleanup Cookie Cutter handling for CVE-2023-26049
+- #9337 - LowResourceMonitor.getReasons should include detailed reason instead of hard-coded message (@​jluehe)
+- #9334 - Better support for Cookie RFC 2965 compliance
+- #9285 - ContextHandler sends redirect on BaseResponse instead of Wrapped Response object from Handler chain
+- #9283 - Configurable Unsafe Host Header Behaviors
+- #9188 - Log as info exceptions from server after sending stop with StopMojo.
+- <a href=""https://redirect.github.c",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3637,,
+74,flowable/flowable-engine#3634,flowable/flowable-engine,3634,maven,roseau,org.eclipse.jetty:jetty-server,11.0.10,11.0.14,patch,BC,2,TYPE_SUPERTYPE_REMOVED x1; METHOD_REMOVED x1,"Bump jetty-server from 11.0.10 to 11.0.14 in /modules/flowable-app-engine-rest
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 11.0.10
+  + org.eclipse.jetty:jetty-server : 11.0.14
+full file diff: https://github.com/flowable/flowable-engine/pull/3634/files","[Release notes] Sourced from jetty-server's releases.
+11.0.14
+Special Thanks to the following Eclipse Jetty community members
+- @​pzygielo (Piotrek Żygieło)
+- @​jluehe (jluehe)
+- @​dzoech (Dominik Zöchbauer)
+-
+Changelog
+- #9344 - Cleanup Multipart handling for CVE-2023-26048
+- #9343 - URI Host Mismatch with optional Compliance modes
+- #9339 - Cleanup Cookie Cutter handling for CVE-2023-26049
+- #9337 - LowResourceMonitor.getReasons should include detailed reason instead of hard-coded message (@​jluehe)
+- #9334 - Better support for Cookie RFC 2965 compliance
+- #9285 - ContextHandler sends redirect on BaseResponse instead of Wrapped Response object from Handler chain
+- #9283 - Configurable Unsafe Host Header Behaviors
+- #9188 - Log as info exceptions from server after sending stop with StopMojo.
+- <a href=""https://redirect.github.c",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3634,,
+75,OpenFeign/feign#2580,OpenFeign/feign,2580,maven,roseau,io.undertow:undertow-core,2.3.14.Final,2.3.17.Final,patch,BC,2,METHOD_NOW_THROWS_CHECKED_EXCEPTION x2,"Bump io.undertow:undertow-core from 2.3.14.Final to 2.3.17.Final
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.undertow:undertow-core : 2.3.14.Final
+  + io.undertow:undertow-core : 2.3.17.Final
+full file diff: https://github.com/OpenFeign/feign/pull/2580/files","[Release notes] Sourced from io.undertow:undertow-core's releases.
+v2.3.16.Final
+Release Notes - Undertow - Version 2.3.16.Final",,pr-body-excerpt,https://github.com/OpenFeign/feign/pull/2580,,
+76,flowable/flowable-engine#3570,flowable/flowable-engine,3570,maven,roseau,org.eclipse.jetty:jetty-server,11.0.2,11.0.10,patch,BC,8,METHOD_REMOVED x5; TYPE_NEW_ABSTRACT_METHOD x2; FIELD_REMOVED x1,"Bump jetty-server from 11.0.2 to 11.0.10 in /modules/flowable-http
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-server : 11.0.2
+  + org.eclipse.jetty:jetty-server : 11.0.10
+full file diff: https://github.com/flowable/flowable-engine/pull/3570/files","[Release notes] Sourced from jetty-server's releases.
+11.0.10
+Fixed Security Advisories
+- (CVE-2022-2047) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-cj7v-27pg-wf7q - Invalid URI parsing may produce invalid HttpURI.authority
+- (CVE-2022-2048) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-wgmr-mf83-7x4j - Invalid HTTP/2 requests can lead to denial of service
+- (CVE-2022-2191) - https://github.com/eclipse/jetty.project/security/advisories/GHSA-8mpp-f3f7-xc28 - SslConnection does not release pooled ByteBuffers in case of errors
+Special Thanks to the following Eclipse Jetty community members
+- @​jianglai (Lai Jiang)
+- @​markslater (markslater)
+- @​prenagha (Padraic Renaghan)
+Changelog
+- #8161 - Improve SSLConnection buffers handling (Resolves CVE-2022-2191)
+- #8134 - Improve cleanup of deflater/inflater pools for PerMessageDeflateExtension
+- #8088 - Add option to configure exitVm on ShutdownMonitor from",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3570,,
+77,holoviz/panel#2103,holoviz/panel,2103,pypi,griffe,pillow,7.1.0,8.1.1,major,BC,1,API_REMOVED:class UnidentifiedImageError(IOError): x1,"Bump pillow from 7.1.0 to 8.1.1 in /examples/apps/django_multi_apps
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - pillow : 7.1.0
+  + pillow : 8.1.1
+full file diff: https://github.com/holoviz/panel/pull/2103/files","[Release notes] Sourced from pillow's releases.
+8.1.1
+https://pillow.readthedocs.io/en/stable/releasenotes/8.1.1.html
+8.1.0
+https://pillow.readthedocs.io/en/stable/releasenotes/8.1.0.html
+Changes
+- Fix TIFF OOB Write error #5175 [@​radarhere]
+- Fix for Buffer Read Overrun in PCX Decoding #5174 [@​radarhere]
+- Fix for SGI Decode buffer overrun #5173 [@​radarhere]
+- Fix OOB Read when saving GIF of xsize=1 #5149 [@​wiredfool]
+- Add support for PySide6 #5161 [@​hugovk]
+- Moved QApplication into one test #5167 [@​radarhere]
+- Use disposal settings from previous frame in APNG #5126 [",,pr-body-excerpt,https://github.com/holoviz/panel/pull/2103,,
+78,quarkusio/quarkus#44107,quarkusio/quarkus,44107,maven,roseau,com.google.errorprone:error_prone_annotations,2.34.0,2.35.1,minor,no-BC,0,(detector reported no BC),"Bump com.google.errorprone:error_prone_annotations from 2.34.0 to 2.35.1
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.google.errorprone:error_prone_annotations : 2.34.0
+  + com.google.errorprone:error_prone_annotations : 2.35.1
+full file diff: https://github.com/quarkusio/quarkus/pull/44107/files","[Release notes] Sourced from com.google.errorprone:error_prone_annotations's releases.
+Error Prone 2.35.1
+Error Prone's dependency on protobuf has been downgraded to 3.25.5 for this release.
+Version 3.25.5 of protobuf still fixes CVE-2024-7254. This release is provided for users who aren't ready to update to 4.x, see also #4584 and #4634. Future versions of Error Prone will upgrade back to protobuf 4.x.
+Full changelog: https://github.com/google/error-prone/compare/v2.35.0...v2.35.1
+Error Prone 2.35.0
+Changes:
+- Fix handling of \s before the trailing delimiter in MisleadingEscapedSpace
+- TimeUnitMismatch improvements: handle binary trees, consider trees like fooSeconds * 1000 to have units of millis
+New checks:
+- JavaDurationGetSecondsToToSeconds: Prefer duration.toSeconds() over duration.getSeconds()
+Full changelog: https://github.com/google/error-prone/compare/v2.34.0...v2.35.0",,pr-body-excerpt,https://github.com/quarkusio/quarkus/pull/44107,,
+79,OpenAPITools/openapi-generator#18989,OpenAPITools/openapi-generator,18989,maven,roseau,io.undertow:undertow-core,2.3.12.Final,2.3.14.Final,patch,no-BC,0,(detector reported no BC),"Bump io.undertow:undertow-core from 2.3.12.Final to 2.3.14.Final in /samples/server/petstore/java-undertow
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.undertow:undertow-core : 2.3.12.Final
+  + io.undertow:undertow-core : 2.3.14.Final
+full file diff: https://github.com/OpenAPITools/openapi-generator/pull/18989/files","[Release notes] Sourced from io.undertow:undertow-core's releases.
+v2.3.14.Final
+Includes CVES: CVE-2024-6162 CVE-2024-27316 CVE-2023-5685
+Release Notes - Undertow - Version 2.3.14.Final",,pr-body-excerpt,https://github.com/OpenAPITools/openapi-generator/pull/18989,,
+80,flowable/flowable-engine#3569,flowable/flowable-engine,3569,maven,roseau,org.eclipse.jetty:jetty-webapp,11.0.2,11.0.6,patch,no-BC,0,(detector reported no BC),"Bump jetty-webapp from 11.0.2 to 11.0.6 in /modules/flowable-event-registry-rest
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - org.eclipse.jetty:jetty-webapp : 11.0.2
+  + org.eclipse.jetty:jetty-webapp : 11.0.6
+full file diff: https://github.com/flowable/flowable-engine/pull/3569/files","[Release notes] Sourced from jetty-webapp's releases.
+11.0.6
+Changelog
+- This release resolves CVE-2021-34429
+- #6473 - Improve alias checking in PathResource
+- #6468 - Revert logic in Request.setMetaData & clear emptySegment on HttpUri.clear()
+- #6464 - Wrong files/lib definitions in certain *-capture.mod files?
+- #6447 - Deprecate support for UTF16 encoding in URIs
+- #6426 - Update to spifly 1.3.3
+- #6425 - Update to asm 9.1
+- #6418 - Bad and/or missing Require-Capability for osgi.serviceloader
+- #6410 - Ensure Jetty IO uses SocketAddress instead of InetSocketAddress
+- #6407 - Malformed scheme logical expression check in WebSocket ClientUpgradeRequest
+- #6394 - Review osgi manifests within Jetty 11
+- #6376 - Cleanups fo",,pr-body-excerpt,https://github.com/flowable/flowable-engine/pull/3569,,
+81,googleapis/python-bigquery-pandas#633,googleapis/python-bigquery-pandas,633,pypi,griffe,requests,2.28.1,2.31.0,minor,no-BC,0,(detector reported no BC),"chore(deps): bump requests from 2.28.1 to 2.31.0 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - requests : 2.28.1
+  + requests : 2.31.0
+full file diff: https://github.com/googleapis/python-bigquery-pandas/pull/633/files","[Release notes] Sourced from requests's releases.
+v2.31.0
+2.31.0 (2023-05-22)
+Security
+-
+Versions of Requests between v2.3.0 and v2.30.0 are vulnerable to potential
+forwarding of Proxy-Authorization headers to destination servers when
+following HTTPS redirects.
+When proxies are defined with user info (https://user:pass@proxy:8080), Requests
+will construct a Proxy-Authorization header that is attached to the request to
+authenticate with the proxy.
+In cases where Requests receives a redirect response, it previously reattached
+the Proxy-Authorization header incorrectly, resulting in the value being
+sent through the tunneled connection to the destination server. Users who rely on
+defining their proxy credentials in the URL are strongly encouraged to upgrade
+to Requests 2.31.0+ to prevent unintentional leakage and rotate their proxy
+credentials once the change has been fully deployed.
+Users who do not use a proxy or do not supply their proxy credentials through
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/googleapis/python-bigquery-pandas/pull/633,,
+82,googleapis/python-documentai-toolbox#115,googleapis/python-documentai-toolbox,115,pypi,griffe,requests,2.28.1,2.31.0,minor,no-BC,0,(detector reported no BC),"chore(deps): bump requests from 2.28.1 to 2.31.0 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - requests : 2.28.1
+  + requests : 2.31.0
+full file diff: https://github.com/googleapis/python-documentai-toolbox/pull/115/files","[Release notes] Sourced from requests's releases.
+v2.31.0
+2.31.0 (2023-05-22)
+Security
+-
+Versions of Requests between v2.3.0 and v2.30.0 are vulnerable to potential
+forwarding of Proxy-Authorization headers to destination servers when
+following HTTPS redirects.
+When proxies are defined with user info (https://user:pass@proxy:8080), Requests
+will construct a Proxy-Authorization header that is attached to the request to
+authenticate with the proxy.
+In cases where Requests receives a redirect response, it previously reattached
+the Proxy-Authorization header incorrectly, resulting in the value being
+sent through the tunneled connection to the destination server. Users who rely on
+defining their proxy credentials in the URL are strongly encouraged to upgrade
+to Requests 2.31.0+ to prevent unintentional leakage and rotate their proxy
+credentials once the change has been fully deployed.
+Users who do not use a proxy or do not supply their proxy credentials through
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/googleapis/python-documentai-toolbox/pull/115,,
+83,doocs/leetcode#1013,doocs/leetcode,1013,pypi,griffe,requests,2.30.0,2.31.0,minor,no-BC,0,(detector reported no BC),"chore(deps): bump requests from 2.30.0 to 2.31.0
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - requests : 2.30.0
+  + requests : 2.31.0
+full file diff: https://github.com/doocs/leetcode/pull/1013/files","[Release notes] Sourced from requests's releases.
+v2.31.0
+2.31.0 (2023-05-22)
+Security
+-
+Versions of Requests between v2.3.0 and v2.30.0 are vulnerable to potential
+forwarding of Proxy-Authorization headers to destination servers when
+following HTTPS redirects.
+When proxies are defined with user info (https://user:pass@proxy:8080), Requests
+will construct a Proxy-Authorization header that is attached to the request to
+authenticate with the proxy.
+In cases where Requests receives a redirect response, it previously reattached
+the Proxy-Authorization header incorrectly, resulting in the value being
+sent through the tunneled connection to the destination server. Users who rely on
+defining their proxy credentials in the URL are strongly encouraged to upgrade
+to Requests 2.31.0+ to prevent unintentional leakage and rotate their proxy
+credentials once the change has been fully deployed.
+Users who do not use a proxy or do not supply their proxy credentials through
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/doocs/leetcode/pull/1013,,
+84,googleapis/google-auth-library-python#757,googleapis/google-auth-library-python,757,pypi,griffe,rsa,4.6,4.7,minor,no-BC,0,(detector reported no BC),"build(deps): bump rsa from 4.6 to 4.7
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - rsa : 4.6
+  + rsa : 4.7
+full file diff: https://github.com/googleapis/google-auth-library-python/pull/757/files","[Changelog] Sourced from rsa's changelog.
+Version 4.7 - released 2021-01-10
+- Fix #165:
+CVE-2020-25658 - Bleichenbacher-style timing oracle in PKCS#1 v1.5 decryption
+code
+- Add padding length check as described by PKCS#1 v1.5 (Fixes
+#164)
+- Reuse of blinding factors to speed up blinding operations.
+Fixes #162.
+- Declare & test support for Python 3.9",,pr-body-excerpt,https://github.com/googleapis/google-auth-library-python/pull/757,,
+85,googleapis/google-auth-library-python#1302,googleapis/google-auth-library-python,1302,pypi,griffe,requests,2.28.1,2.31.0,minor,no-BC,0,(detector reported no BC),"chore(deps): bump requests from 2.28.1 to 2.31.0 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - requests : 2.28.1
+  + requests : 2.31.0
+full file diff: https://github.com/googleapis/google-auth-library-python/pull/1302/files","[Release notes] Sourced from requests's releases.
+v2.31.0
+2.31.0 (2023-05-22)
+Security
+-
+Versions of Requests between v2.3.0 and v2.30.0 are vulnerable to potential
+forwarding of Proxy-Authorization headers to destination servers when
+following HTTPS redirects.
+When proxies are defined with user info (https://user:pass@proxy:8080), Requests
+will construct a Proxy-Authorization header that is attached to the request to
+authenticate with the proxy.
+In cases where Requests receives a redirect response, it previously reattached
+the Proxy-Authorization header incorrectly, resulting in the value being
+sent through the tunneled connection to the destination server. Users who rely on
+defining their proxy credentials in the URL are strongly encouraged to upgrade
+to Requests 2.31.0+ to prevent unintentional leakage and rotate their proxy
+credentials once the change has been fully deployed.
+Users who do not use a proxy or do not supply their proxy credentials through
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/googleapis/google-auth-library-python/pull/1302,,
+86,googleapis/google-api-python-client#2290,googleapis/google-api-python-client,2290,pypi,griffe,cryptography,41.0.5,41.0.6,patch,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 41.0.5 to 41.0.6 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 41.0.5
+  + cryptography : 41.0.6
+full file diff: https://github.com/googleapis/google-api-python-client/pull/2290/files","[Changelog] Sourced from cryptography's changelog.
+41.0.6 - 2023-11-27
+* Fixed a null-pointer-dereference and segfault that could occur when loading
+certificates from a PKCS#7 bundle. Credit to **pkuzco** for reporting the
+issue. **CVE-2023-49083**
+.. _v41-0-5:",,pr-body-excerpt,https://github.com/googleapis/google-api-python-client/pull/2290,,
+87,breatheco-de/apiv2#164,breatheco-de/apiv2,164,pypi,griffe,pillow,8.3.1,8.3.2,patch,no-BC,0,(detector reported no BC),"Bump pillow from 8.3.1 to 8.3.2
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - pillow : 8.3.1
+  + pillow : 8.3.2
+full file diff: https://github.com/breatheco-de/apiv2/pull/164/files","[Release notes] Sourced from pillow's releases.
+8.3.2
+https://pillow.readthedocs.io/en/stable/releasenotes/8.3.2.html
+Security
+-
+CVE-2021-23437 Raise ValueError if color specifier is too long
+[hugovk, radarhere]
+-
+Fix 6-byte OOB read in FliDecode
+[wiredfool]
+Python 3.10 wheels
+- Add support for Python 3.10 #5569, #5570
+[hugovk, radarhere]
+Fixed regressions
+-
+Ensure TIFF RowsPerStrip is multiple of 8 for JPEG compression #5588
+[kmilos, radarhere]
+-
+  ... [truncated -- see changelog_link / pr_url]",,pr-body-excerpt,https://github.com/breatheco-de/apiv2/pull/164,,
+88,Zenlytic/metrics_layer#133,Zenlytic/metrics_layer,133,pypi,griffe,cryptography,41.0.5,41.0.6,patch,no-BC,0,(detector reported no BC),"Bump cryptography from 41.0.5 to 41.0.6
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 41.0.5
+  + cryptography : 41.0.6
+full file diff: https://github.com/Zenlytic/metrics_layer/pull/133/files","[Changelog] Sourced from cryptography's changelog.
+41.0.6 - 2023-11-27
+* Fixed a null-pointer-dereference and segfault that could occur when loading
+certificates from a PKCS#7 bundle. Credit to **pkuzco** for reporting the
+issue. **CVE-2023-49083**
+.. _v41-0-5:",,pr-body-excerpt,https://github.com/Zenlytic/metrics_layer/pull/133,,
+89,googleapis/python-pubsub#1085,googleapis/python-pubsub,1085,pypi,griffe,cryptography,42.0.2,42.0.4,patch,no-BC,0,(detector reported no BC),"build(deps): bump cryptography from 42.0.2 to 42.0.4 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 42.0.2
+  + cryptography : 42.0.4
+full file diff: https://github.com/googleapis/python-pubsub/pull/1085/files","[Changelog] Sourced from cryptography's changelog.
+42.0.4 - 2024-02-20
+* Fixed a null-pointer-dereference and segfault that could occur when creating
+a PKCS#12 bundle. Credit to **Alexander-Programming** for reporting the
+issue. **CVE-2024-26130**
+* Fixed ASN.1 encoding for PKCS7/SMIME signed messages. The fields ``SMIMECapabilities``
+and ``SignatureAlgorithmIdentifier`` should now be correctly encoded according to the
+definitions in :rfc:`2633` :rfc:`3370`.
+.. _v42-0-3:
+42.0.3 - 2024-02-15
+- Fixed an initialization issue that caused key loading failures for some
+users.
+.. _v42-0-2:",,pr-body-excerpt,https://github.com/googleapis/python-pubsub/pull/1085,,
+90,googleapis/python-spanner#1042,googleapis/python-spanner,1042,pypi,griffe,cryptography,41.0.5,41.0.6,patch,no-BC,0,(detector reported no BC),"chore(deps): bump cryptography from 41.0.5 to 41.0.6 in /.kokoro
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - cryptography : 41.0.5
+  + cryptography : 41.0.6
+full file diff: https://github.com/googleapis/python-spanner/pull/1042/files","[Changelog] Sourced from cryptography's changelog.
+41.0.6 - 2023-11-27
+* Fixed a null-pointer-dereference and segfault that could occur when loading
+certificates from a PKCS#7 bundle. Credit to **pkuzco** for reporting the
+issue. **CVE-2023-49083**
+.. _v41-0-5:",,pr-body-excerpt,https://github.com/googleapis/python-spanner/pull/1042,,
+91,alibaba/nacos#11473,alibaba/nacos,11473,maven,roseau,ch.qos.logback:logback-classic,1.2.9,1.2.13,patch,BC,1,FIELD_REMOVED x1,"Bump ch.qos.logback:logback-classic from 1.2.9 to 1.2.13
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - ch.qos.logback:logback-classic : 1.2.9
+  + ch.qos.logback:logback-classic : 1.2.13
+full file diff: https://github.com/alibaba/nacos/pull/11473/files",,,none,https://github.com/alibaba/nacos/pull/11473,,
+92,OpenAPITools/openapi-generator#15217,OpenAPITools/openapi-generator,15217,maven,roseau,io.undertow:undertow-core,2.2.19.Final,2.2.24.Final,patch,BC,1,TYPE_NEW_ABSTRACT_METHOD x1,"Bump undertow-core from 2.2.19.Final to 2.2.24.Final in /samples/server/petstore/java-undertow
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.undertow:undertow-core : 2.2.19.Final
+  + io.undertow:undertow-core : 2.2.24.Final
+full file diff: https://github.com/OpenAPITools/openapi-generator/pull/15217/files",,,none,https://github.com/OpenAPITools/openapi-generator/pull/15217,,
+93,apache/seatunnel#5966,apache/seatunnel,5966,maven,roseau,ch.qos.logback:logback-core,1.2.3,1.2.13,patch,BC,22,TYPE_REMOVED x19; METHOD_REMOVED x2; TYPE_NEW_ABSTRACT_METHOD x1,"Bump ch.qos.logback:logback-core from 1.2.3 to 1.2.13
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - ch.qos.logback:logback-core : 1.2.3
+  + ch.qos.logback:logback-core : 1.2.13
+full file diff: https://github.com/apache/seatunnel/pull/5966/files",,,none,https://github.com/apache/seatunnel/pull/5966,,
+94,quarkusio/quarkus#40611,quarkusio/quarkus,40611,maven,roseau,io.quarkus:quarkus-spring-security-core-api,5.4.Final,6.2,major,no-BC,0,(detector reported no BC),"Bump io.quarkus:quarkus-spring-security-core-api from 5.4.Final to 6.2
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.quarkus:quarkus-spring-security-core-api : 5.4.Final
+  + io.quarkus:quarkus-spring-security-core-api : 6.2
+full file diff: https://github.com/quarkusio/quarkus/pull/40611/files",,,none,https://github.com/quarkusio/quarkus/pull/40611,,
+95,OpenAPITools/openapi-generator#18395,OpenAPITools/openapi-generator,18395,maven,roseau,io.undertow:undertow-core,2.3.5.Final,2.3.12.Final,patch,no-BC,0,(detector reported no BC),"Bump io.undertow:undertow-core from 2.3.5.Final to 2.3.12.Final in /samples/server/petstore/java-undertow
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - io.undertow:undertow-core : 2.3.5.Final
+  + io.undertow:undertow-core : 2.3.12.Final
+full file diff: https://github.com/OpenAPITools/openapi-generator/pull/18395/files",,,none,https://github.com/OpenAPITools/openapi-generator/pull/18395,,
+96,apache/shardingsphere-elasticjob#2376,apache/shardingsphere-elasticjob,2376,maven,roseau,ch.qos.logback:logback-classic,1.2.12,1.2.13,patch,no-BC,0,(detector reported no BC),"Bump ch.qos.logback:logback-classic from 1.2.12 to 1.2.13
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - ch.qos.logback:logback-classic : 1.2.12
+  + ch.qos.logback:logback-classic : 1.2.13
+full file diff: https://github.com/apache/shardingsphere-elasticjob/pull/2376/files",,,none,https://github.com/apache/shardingsphere-elasticjob/pull/2376,,
+97,apache/shardingsphere#29302,apache/shardingsphere,29302,maven,roseau,ch.qos.logback:logback-classic,1.2.10,1.2.13,patch,no-BC,0,(detector reported no BC),"Bump ch.qos.logback:logback-classic from 1.2.10 to 1.2.13 in /examples
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - ch.qos.logback:logback-classic : 1.2.10
+  + ch.qos.logback:logback-classic : 1.2.13
+full file diff: https://github.com/apache/shardingsphere/pull/29302/files",,,none,https://github.com/apache/shardingsphere/pull/29302,,
+98,jenkinsci/jenkins#6231,jenkinsci/jenkins,6231,maven,roseau,com.thoughtworks.xstream:xstream,1.4.18,1.4.19,patch,no-BC,0,(detector reported no BC),"Bump XStream from 1.4.18 to 1.4.19
+manifest (pom.xml / build.gradle) -- dependency version bump only:
+  - com.thoughtworks.xstream:xstream : 1.4.18
+  + com.thoughtworks.xstream:xstream : 1.4.19
+full file diff: https://github.com/jenkinsci/jenkins/pull/6231/files",,,none,https://github.com/jenkinsci/jenkins/pull/6231,,
+99,safe-global/safe-transaction-service#1016,safe-global/safe-transaction-service,1016,pypi,griffe,django,4.0.6,4.1,minor,no-BC,0,(detector reported no BC),"Bump django from 4.0.6 to 4.1
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 4.0.6
+  + django : 4.1
+full file diff: https://github.com/safe-global/safe-transaction-service/pull/1016/files",,,none,https://github.com/safe-global/safe-transaction-service/pull/1016,,
+100,holoviz/panel#2155,holoviz/panel,2155,pypi,griffe,django,3.1.6,3.1.8,patch,no-BC,0,(detector reported no BC),"Bump django from 3.1.6 to 3.1.8 in /examples/apps/django_multi_apps
+manifest (requirements / setup / pyproject) -- dependency version bump only:
+  - django : 3.1.6
+  + django : 3.1.8
+full file diff: https://github.com/holoviz/panel/pull/2155/files",,,none,https://github.com/holoviz/panel/pull/2155,,

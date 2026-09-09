@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-09-09T07:33:41+00:00",
+  "sheet": "results/manual_validation_sheet.csv",
+  "total_rows": 100,
+  "labeled_rows": 0,
+  "unlabeled_rows": 100,
+  "label_counts": {
+    "TP": 0,
+    "FP": 0,
+    "FN": 0,
+    "TN": 0,
+    "UNSURE": 0
+  },
+  "unrecognised_labels": [],
+  "inconsistent_rows": [],
+  "gate_min_labeled": 20,
+  "gate_met": false,
+  "overall": {
+    "labeled": 0,
+    "scored": 0,
+    "unsure": 0,
+    "confusion": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0
+    },
+    "precision": null,
+    "precision_ci95": null,
+    "recall": null,
+    "recall_ci95": null,
+    "f1": null,
+    "accuracy": null
+  },
+  "by_detector": {
+    "roseau": {
+      "labeled": 0,
+      "scored": 0,
+      "unsure": 0,
+      "confusion": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 0,
+        "TN": 0
+      },
+      "precision": null,
+      "precision_ci95": null,
+      "recall": null,
+      "recall_ci95": null,
+      "f1": null,
+      "accuracy": null
+    },
+    "griffe": {
+      "labeled": 0,
+      "scored": 0,
+      "unsure": 0,
+      "confusion": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 0,
+        "TN": 0
+      },
+      "precision": null,
+      "precision_ci95": null,
+      "recall": null,
+      "recall_ci95": null,
+      "f1": null,
+      "accuracy": null
+    }
+  }
+}

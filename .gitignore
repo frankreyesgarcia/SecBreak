@@ -17,3 +17,9 @@ data/progress_fix_coords.json
 data/progress_rerun_bcs.json
 data/phase4_diagnostic_results.jsonl
 
+
+data/progress_push_coverage.json
+data/backups/
+paper/*.aux
+paper/*.log
+paper/*.out

@@ -5,9 +5,27 @@ bug (branch `rectification/rq1-fix`); this one covers the 8-phase paper-strength
 pass on top of it (branch `paper-strengthening/v2`), aimed at making the paper
 submission-ready on its methodological merits ahead of a SANER 2027 submission.
 
-All 8 phases completed. Nothing here contradicts `RECTIFICATION_REPORT.md`'s numbers —
-this pass tightens methodology and adds robustness checks on top of the already-corrected
-43.1% analyzed-only RQ1 prevalence.
+All 8 phases completed. After commit `8b129e9` (`Update paper analysis artifacts and manuscript`),
+parts of the corrected pipeline were re-run via `improve_corrected_results.py`, changing the
+final dual-ecosystem numbers again. This report has therefore been regenerated from the
+current artifacts on disk (`data/analysis_dataset_corrected.csv`, `results/rq1_bounds.json`,
+`results/rq1_tables_corrected.csv`, `results/rq2_*`, `results/rq3_tables_strict.csv`,
+`results/selection_bias_table.csv`) rather than copied from the earlier narrative.
+
+## Reconciliation: prior report vs. current artifacts
+
+| Metric | Prior report | Current artifacts |
+|---|---|---|
+| `analyzed_ok` rows | 369 | 380 |
+| Unanalyzed rows | 414 | 403 |
+| BC-introducing PRs | 159 | 160 |
+| Analyzed-only prevalence | 43.1% (159/369) | 42.1% (160/380) |
+| 95% CI | [38.1%, 48.2%] | [37.2%, 47.1%] |
+| Worst-case bounds | [20.3%, 73.2%] | [20.4%, 71.9%] |
+| Model-imputed estimate | 38.0% [36.6%, 39.4%] | 38.0% [36.6%, 39.2%] |
+| RQ2 best AUC (Random Forest) | 0.906 ± 0.064 | 0.894 ± 0.069 |
+| Strict RQ3 fixes found | 46 (28.9%) | 47 (29.4%) |
+| Strict RQ3 median fix time | 3.54 days | 3.54 days |
 
 ## Phase 1: RQ3 follow-up-fix relatedness fix
 
@@ -19,28 +37,28 @@ file, or mention the dependency by name.
 
 | | Naive (keyword-only) | Strict (relatedness-filtered) |
 |---|---|---|
-| Candidate fix PRs found (across all 159 BC PRs) | 765 | 245 |
-| Fixes attributed | 53 (33.3%) | 46 (28.9%) |
+| Candidate fix PRs found (across all 160 BC PRs) | 784 | 248 |
+| Fixes attributed | 53 (33.1%) | 47 (29.4%) |
 | Median time-to-fix | 0.96 days | **3.54 days** |
-| IQR | 0.13–3.54 | 1.11–11.06 |
-| Within 7 days | 28.3% | 19.5% |
-| Within 30 days | 31.4% | 25.2% |
-| Reverted | 14.5% | **8.2%** |
+| IQR | 0.13–3.54 | 0.80–10.40 |
+| Within 7 days | 28.1% | 20.0% |
+| Within 30 days | 31.2% | 25.6% |
+| Reverted | 14.4% | **8.8%** |
 
-**68% of naive keyword-matched candidates were unrelated.** The strict numbers are now
+**68.4% of naive keyword-matched candidates were unrelated.** The strict numbers are now
 cited throughout the paper (Abstract, RQ3, Conclusion) in place of the naive ones.
 
 ## Phase 2: Selection-bias quantification
 
 Backs the paper's prose claim ("the analyzed subset is not a random subsample") with
-statistics, comparing `analyzed_ok=True` (n=369) vs. `analyzed_ok=False` (n=414):
+statistics, comparing `analyzed_ok=True` (n=380) vs. `analyzed_ok=False` (n=403):
 
 | Variable | Test | Statistic | p-value | Direction |
 |---|---|---|---|---|
-| `repo_stars` | Mann-Whitney U | 49,730.0 | $3.0\times10^{-17}$ | Analyzed rows skew **lower**-star (median 9,234 vs. 15,591) |
-| `ecosystem` | $\chi^2$ | 9.50 | 0.0021 | Analyzed skews less-Maven (65.3% vs. 75.6%) |
-| `version_bump_type` | $\chi^2$ | 1.59 | 0.66 | **Not** significantly different |
-| `merged` | $\chi^2$ | 24.63 | $6.9\times10^{-7}$ | Analyzed rows skew **unmerged** (43.4% merged vs. 61.4%) |
+| `repo_stars` | Mann-Whitney U | 46,736.5 | $3.6\times10^{-21}$ | Analyzed rows skew **lower**-star (median 9,234 vs. 16,684) |
+| `ecosystem` | $\chi^2$ | 18.50 | $1.7\times10^{-5}$ | Analyzed skews less-Maven (63.4% vs. 77.7%) |
+| `version_bump_type` | $\chi^2$ | 1.10 | 0.78 | **Not** significantly different |
+| `merged` | $\chi^2$ | 21.57 | $3.4\times10^{-6}$ | Analyzed rows skew **unmerged** (44.2% merged vs. 61.0%) |
 
 Full table: `results/selection_bias_table.csv`; LaTeX snippet: `paper/tables/selection_bias.tex`.
 
@@ -51,19 +69,19 @@ paper's new "Robustness" subsection (RQ1):
 
 | Method | Estimate | Interval |
 |---|---|---|
-| Worst-case (Manski) bounds | — | **[20.3%, 73.2%]** |
-| Analyzed-only (headline, unchanged) | **43.1%** | 95% CI [38.1%, 48.2%] |
-| Model-based imputed (RF on pre-outcome features, applied to the 414 unanalyzed rows, bootstrapped) | **38.0%** | bootstrap 95% CI [36.6%, 39.4%] |
+| Worst-case (Manski) bounds | — | **[20.4%, 71.9%]** |
+| Analyzed-only (headline, unchanged) | **42.1%** | 95% CI [37.2%, 47.1%] |
+| Model-based imputed (RF on pre-outcome features, applied to the 403 unanalyzed rows, bootstrapped) | **38.0%** | bootstrap 95% CI [36.6%, 39.2%] |
 
 All three converge on "far above the original buggy 3.4% and above the 13.2% provider-side
 baseline." The imputed estimate sitting close to (slightly below) the analyzed-only estimate
-is a reassuring cross-check, not a contradiction — 43.1% remains the cited primary number.
+is a reassuring cross-check, not a contradiction — 42.1% remains the cited primary number.
 Full output: `results/rq1_bounds.json`.
 
 ## Phase 4: RQ2 baseline and interpretable coefficients
 
 Added a `DummyClassifier(most_frequent)` baseline (AUC = 0.500, as expected) to
-`results/rq2_model_results_corrected.csv`, contextualizing Random Forest's 0.906.
+`results/rq2_model_results_corrected.csv`, contextualizing Random Forest's 0.894.
 
 Fit `statsmodels.Logit` on the full `analyzed_ok` set for coefficients with 95% CIs. The
 full-feature fit did not converge — diagnosed as quasi-complete separation in one rare CWE
@@ -72,10 +90,10 @@ excluding that single column converges cleanly with near-identical coefficients:
 
 | Feature | Coefficient | 95% CI | p-value |
 |---|---|---|---|
-| `ecosystem_bin` (Maven=0, PyPI=1) | −6.03 | [−8.12, −3.93] | $1.7\times10^{-8}$ |
-| `version_bump_ord` | 0.69 | [0.23, 1.14] | 0.003 |
-| `cvss_score` | 0.23 | [−0.10, 0.56] | 0.18 (n.s.) |
-| `repo_stars` | −7.6e-6 | [−3.0e-5, 1.5e-5] | 0.51 (n.s.) |
+| `ecosystem_bin` (Maven=0, PyPI=1) | −5.26 | [−6.81, −3.70] | $3.7\times10^{-11}$ |
+| `version_bump_ord` | 0.68 | [0.25, 1.11] | 0.002 |
+| `cvss_score` | 0.14 | [−0.17, 0.45] | 0.36 (n.s.) |
+| `repo_stars` | −1.0e-5 | [−3.3e-5, 1.2e-5] | 0.36 (n.s.) |
 
 Ecosystem and version-bump magnitude remain strong, significant, *converged* predictors
 even controlling for other covariates; CVSS score and repo stars do not reach significance
@@ -90,9 +108,9 @@ Full comparison: `results/MAVEN_ONLY_COMPARISON.md`. Summary:
 
 | | Dual-ecosystem | Maven-only |
 |---|---|---|
-| RQ1 analyzed-only prevalence | 43.1% (159/369) | 65.6% (158/241) |
-| RQ2 best model AUC (Random Forest) | 0.906 ± 0.064 | 0.785 ± 0.065 |
-| RQ3 strict median fix time | 3.54 days | 3.54 days (158 vs. 159 BC PRs — only one is PyPI) |
+| RQ1 analyzed-only prevalence | 42.1% (160/380) | 65.6% (158/241) |
+| RQ2 best model AUC (Random Forest) | 0.894 ± 0.069 | 0.785 ± 0.065 |
+| RQ3 strict median fix time | 3.54 days | 3.54 days (158 vs. 160 BC PRs — two are PyPI) |
 
 RQ1 and RQ2 change substantially under Maven-only scoping (RQ2's biggest predictor,
 `ecosystem_bin`, is removed by construction); RQ3 is essentially unaffected either way.
@@ -154,10 +172,8 @@ citations are undefined as intended).
    vs. journal template conformance, or SANER's specific submission requirements — the
    paper is currently in `journal` mode (`\documentclass[10pt,journal]{IEEEtran}`); SANER
    is a conference, so this likely needs `\documentclass[10pt,conference]{IEEEtran}` and a
-   page-count check against the 10+2-page limit before submission. IEEEtran.cls is not
-   installed in this environment, so no compiled PDF was produced to verify page count —
-   this needs to happen on a machine with a working LaTeX install before the 2026-09-25
-   deadline.
+   page-count check against the 10+2-page limit before submission. The pre-submission audit
+   should treat this as an explicit verification task rather than leaving it as a note.
 
 ## File manifest (new in this pass)
 
